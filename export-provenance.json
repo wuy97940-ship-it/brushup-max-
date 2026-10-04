@@ -31,8 +31,8 @@
       "source": "public-template/.gitignore",
       "target": ".gitignore",
       "role": "public_workflow",
-      "source_sha256": "9551ca26d9286df74e4977c674f539444e9fb730f6ae83bb9d096b9645879d2f",
-      "target_sha256": "9551ca26d9286df74e4977c674f539444e9fb730f6ae83bb9d096b9645879d2f",
+      "source_sha256": "280a93067b4a1e6fd397365f1a63ae7682eb8058a69b80d02c67e5e5b4d0b8f5",
+      "target_sha256": "280a93067b4a1e6fd397365f1a63ae7682eb8058a69b80d02c67e5e5b4d0b8f5",
       "transformed": false
     },
     {

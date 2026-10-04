@@ -9,7 +9,7 @@ __pycache__/
 dist/
 dist-ios/
 build/
-release/
+/release/
 *.exe
 *.spec
 *.tsbuildinfo
