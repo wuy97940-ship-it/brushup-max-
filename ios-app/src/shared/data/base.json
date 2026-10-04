@@ -1,0 +1,840 @@
+{
+  "config": {
+    "schema_version": 1,
+    "pass_percent": 70,
+    "two_star_percent": 90,
+    "ordinary_size": 10,
+    "subjective_boss_size": 5,
+    "boss_size": 10,
+    "normal_xp": 50,
+    "boss_xp": 150,
+    "boss_coins": 30,
+    "star_xp": 10,
+    "xp_per_level": 500,
+    "drop_percent": 15,
+    "bonus_coins": 100,
+    "bonus_xp": 100,
+    "category_weights": {
+      "coins": 20,
+      "xp": 20,
+      "skin": 20,
+      "equipment": 20,
+      "collection": 20
+    },
+    "rarity_weights": {
+      "common": 700,
+      "rare": 250,
+      "epic": 49,
+      "legendary": 1
+    },
+    "rarities": {
+      "common": {
+        "name": "普通",
+        "price": 150,
+        "duplicate_coins": 30,
+        "bonus_percent": 5,
+        "color": "#64748B"
+      },
+      "rare": {
+        "name": "稀有",
+        "price": 300,
+        "duplicate_coins": 60,
+        "bonus_percent": 10,
+        "color": "#3B82F6"
+      },
+      "epic": {
+        "name": "史诗",
+        "price": 600,
+        "duplicate_coins": 120,
+        "bonus_percent": 15,
+        "color": "#8B5CF6"
+      },
+      "legendary": {
+        "name": "传说",
+        "duplicate_coins": 600,
+        "price": 6800
+      }
+    },
+    "biomes": [
+      {
+        "id": "forest",
+        "name": "晨光森林",
+        "rarity": "common",
+        "color": "#29A88D",
+        "light": "#E4F5EC",
+        "dark": "#172E2B",
+        "outfit": "森林探险帽",
+        "souvenir": "晨光树叶"
+      },
+      {
+        "id": "island",
+        "name": "蔚蓝海岛",
+        "rarity": "common",
+        "color": "#22A6C7",
+        "light": "#E0F4FC",
+        "dark": "#152B3D",
+        "outfit": "海岛水手帽",
+        "souvenir": "海蓝贝壳"
+      },
+      {
+        "id": "snow",
+        "name": "星霜雪山",
+        "rarity": "rare",
+        "color": "#739EE6",
+        "light": "#ECF3FF",
+        "dark": "#202A40",
+        "outfit": "雪山绒线帽",
+        "souvenir": "六角雪晶"
+      },
+      {
+        "id": "ruins",
+        "name": "时光遗迹",
+        "rarity": "rare",
+        "color": "#C49955",
+        "light": "#F7F0E4",
+        "dark": "#332C27",
+        "outfit": "遗迹冒险帽",
+        "souvenir": "时光符石"
+      },
+      {
+        "id": "sky",
+        "name": "云端之城",
+        "rarity": "epic",
+        "color": "#8F91EA",
+        "light": "#F0EFFF",
+        "dark": "#29243F",
+        "outfit": "云端飞行帽",
+        "souvenir": "云羽结晶"
+      },
+      {
+        "id": "stars",
+        "name": "银河终点",
+        "rarity": "epic",
+        "color": "#8C72D9",
+        "light": "#EDEAFF",
+        "dark": "#211D37",
+        "outfit": "星空魔法帽",
+        "souvenir": "银河星石"
+      }
+    ]
+  },
+  "catalog": {
+    "xiaoyuan": {
+      "id": "xiaoyuan",
+      "name": "小圆 · 金棕主角",
+      "category": "skin",
+      "rarity": "common",
+      "price": 150,
+      "starter": true,
+      "character": "xiaoyuan"
+    },
+    "orange_adventurer": {
+      "id": "orange_adventurer",
+      "name": "小团 · 蓝围巾冒险者",
+      "category": "skin",
+      "rarity": "common",
+      "price": 150,
+      "starter": true,
+      "character": "orange_adventurer"
+    },
+    "orange_mage": {
+      "id": "orange_mage",
+      "name": "小团 · 星蓝法师",
+      "category": "skin",
+      "rarity": "rare",
+      "price": 300,
+      "character": "orange_mage"
+    },
+    "orange_knight": {
+      "id": "orange_knight",
+      "name": "小团 · 蓝盾骑士",
+      "category": "skin",
+      "rarity": "epic",
+      "price": 600,
+      "character": "orange_knight"
+    },
+    "xiaobao": {
+      "id": "xiaobao",
+      "name": "小宝 · 黑白企鹅",
+      "starter": true,
+      "category": "skin",
+      "rarity": "common",
+      "character": "xiaobao",
+      "price": 0
+    },
+    "outfit_forest": {
+      "id": "outfit_forest",
+      "name": "森林探险帽",
+      "category": "skin",
+      "rarity": "common",
+      "price": 150,
+      "outfit": "forest"
+    },
+    "souvenir_forest": {
+      "id": "souvenir_forest",
+      "name": "晨光树叶",
+      "category": "collection",
+      "rarity": "common",
+      "price": 150,
+      "biome": "forest"
+    },
+    "outfit_island": {
+      "id": "outfit_island",
+      "name": "海岛水手帽",
+      "category": "skin",
+      "rarity": "common",
+      "price": 150,
+      "outfit": "island"
+    },
+    "souvenir_island": {
+      "id": "souvenir_island",
+      "name": "海蓝贝壳",
+      "category": "collection",
+      "rarity": "common",
+      "price": 150,
+      "biome": "island"
+    },
+    "outfit_snow": {
+      "id": "outfit_snow",
+      "name": "雪山绒线帽",
+      "category": "skin",
+      "rarity": "rare",
+      "price": 300,
+      "outfit": "snow"
+    },
+    "souvenir_snow": {
+      "id": "souvenir_snow",
+      "name": "六角雪晶",
+      "category": "collection",
+      "rarity": "rare",
+      "price": 300,
+      "biome": "snow"
+    },
+    "outfit_ruins": {
+      "id": "outfit_ruins",
+      "name": "遗迹冒险帽",
+      "category": "skin",
+      "rarity": "rare",
+      "price": 300,
+      "outfit": "ruins"
+    },
+    "souvenir_ruins": {
+      "id": "souvenir_ruins",
+      "name": "时光符石",
+      "category": "collection",
+      "rarity": "rare",
+      "price": 300,
+      "biome": "ruins"
+    },
+    "outfit_sky": {
+      "id": "outfit_sky",
+      "name": "云端飞行帽",
+      "category": "skin",
+      "rarity": "epic",
+      "price": 600,
+      "outfit": "sky"
+    },
+    "souvenir_sky": {
+      "id": "souvenir_sky",
+      "name": "云羽结晶",
+      "category": "collection",
+      "rarity": "epic",
+      "price": 600,
+      "biome": "sky"
+    },
+    "outfit_stars": {
+      "id": "outfit_stars",
+      "name": "星空魔法帽",
+      "category": "skin",
+      "rarity": "epic",
+      "price": 600,
+      "outfit": "stars"
+    },
+    "souvenir_stars": {
+      "id": "souvenir_stars",
+      "name": "银河星石",
+      "category": "collection",
+      "rarity": "epic",
+      "price": 600,
+      "biome": "stars"
+    },
+    "title_common": {
+      "id": "title_common",
+      "name": "初行探险家",
+      "category": "collection",
+      "rarity": "common",
+      "price": 150,
+      "title": true
+    },
+    "title_rare": {
+      "id": "title_rare",
+      "name": "知识守护者",
+      "category": "collection",
+      "rarity": "rare",
+      "price": 300,
+      "title": true
+    },
+    "title_epic": {
+      "id": "title_epic",
+      "name": "星海征服者",
+      "category": "collection",
+      "rarity": "epic",
+      "price": 600,
+      "title": true
+    },
+    "equipment_xp_common": {
+      "id": "equipment_xp_common",
+      "name": "普通经验护符",
+      "category": "equipment",
+      "rarity": "common",
+      "price": 150,
+      "slot": "xp",
+      "bonus_percent": 5
+    },
+    "equipment_xp_rare": {
+      "id": "equipment_xp_rare",
+      "name": "稀有经验护符",
+      "category": "equipment",
+      "rarity": "rare",
+      "price": 300,
+      "slot": "xp",
+      "bonus_percent": 10
+    },
+    "equipment_xp_epic": {
+      "id": "equipment_xp_epic",
+      "name": "史诗经验护符",
+      "category": "equipment",
+      "rarity": "epic",
+      "price": 600,
+      "slot": "xp",
+      "bonus_percent": 15
+    },
+    "equipment_coins_common": {
+      "id": "equipment_coins_common",
+      "name": "普通金币铃铛",
+      "category": "equipment",
+      "rarity": "common",
+      "price": 150,
+      "slot": "coins",
+      "bonus_percent": 5
+    },
+    "equipment_coins_rare": {
+      "id": "equipment_coins_rare",
+      "name": "稀有金币铃铛",
+      "category": "equipment",
+      "rarity": "rare",
+      "price": 300,
+      "slot": "coins",
+      "bonus_percent": 10
+    },
+    "equipment_coins_epic": {
+      "id": "equipment_coins_epic",
+      "name": "史诗金币铃铛",
+      "category": "equipment",
+      "rarity": "epic",
+      "price": 600,
+      "slot": "coins",
+      "bonus_percent": 15
+    },
+    "wonder_lantern": {
+      "id": "wonder_lantern",
+      "name": "月光提灯",
+      "category": "equipment",
+      "slot": "wonder",
+      "rarity": "common",
+      "price": 80,
+      "xp_percent": 5,
+      "coins_percent": 0,
+      "story": "把一小束月光装进提灯，小圆的夜间旅程也亮了起来。",
+      "layer": "front",
+      "rect": [
+        158,
+        135,
+        66,
+        88
+      ]
+    },
+    "wonder_satchel": {
+      "id": "wonder_satchel",
+      "name": "旅行书箱",
+      "category": "equipment",
+      "slot": "wonder",
+      "rarity": "common",
+      "price": 120,
+      "xp_percent": 0,
+      "coins_percent": 5,
+      "story": "小团把书和沿途捡到的宝贝放在一起，背着知识去旅行。",
+      "layer": "back",
+      "rect": [
+        151,
+        120,
+        89,
+        114
+      ]
+    },
+    "wonder_wand": {
+      "id": "wonder_wand",
+      "name": "猫爪法杖",
+      "category": "equipment",
+      "slot": "wonder",
+      "rarity": "rare",
+      "price": 650,
+      "xp_percent": 0,
+      "coins_percent": 10,
+      "story": "轻轻一挥，爪印亮起。每场胜利，都听见更清脆的金币声。",
+      "layer": "front",
+      "rect": [
+        21,
+        84,
+        57,
+        159
+      ]
+    },
+    "wonder_broom": {
+      "id": "wonder_broom",
+      "name": "会飞的扫帚",
+      "category": "equipment",
+      "slot": "wonder",
+      "rarity": "rare",
+      "price": 1200,
+      "xp_percent": 10,
+      "coins_percent": 0,
+      "story": "踏上会飞的扫帚，星光从脚边经过。学习的旅程也能像冒险一样轻快。",
+      "layer": "front",
+      "rect": [
+        8,
+        160,
+        240,
+        95
+      ]
+    },
+    "wonder_cape": {
+      "id": "wonder_cape",
+      "name": "星河披风",
+      "category": "equipment",
+      "slot": "wonder",
+      "rarity": "epic",
+      "price": 2400,
+      "xp_percent": 15,
+      "coins_percent": 0,
+      "story": "把遥远星河披在肩上，每个新学会的知识点，都是一颗星星。",
+      "layer": "back",
+      "rect": [
+        0,
+        65,
+        256,
+        190
+      ]
+    },
+    "wonder_wings": {
+      "id": "wonder_wings",
+      "name": "云羽翅膀",
+      "category": "equipment",
+      "slot": "wonder",
+      "rarity": "legendary",
+      "price": 6800,
+      "xp_percent": 20,
+      "coins_percent": 20,
+      "story": "穿过森林与雪山后，云端送来一双羽翼。小圆和小团都能飞得更远。",
+      "layer": "back",
+      "rect": [
+        0,
+        0,
+        256,
+        240
+      ]
+    },
+    "outfit_finance_xiaoyuan_ledger": {
+      "id": "outfit_finance_xiaoyuan_ledger",
+      "name": "小圆 · 星页账房",
+      "fit_character": "xiaoyuan",
+      "outfit": "finance_xiaoyuan_ledger",
+      "theme": "ledger",
+      "rarity": "common",
+      "price": 150,
+      "asset": "finance/outfits/finance_xiaoyuan_ledger.png",
+      "category": "skin"
+    },
+    "outfit_finance_xiaoyuan_sailing": {
+      "id": "outfit_finance_xiaoyuan_sailing",
+      "name": "小圆 · 蓝海航海家",
+      "fit_character": "xiaoyuan",
+      "outfit": "finance_xiaoyuan_sailing",
+      "theme": "sailing",
+      "rarity": "common",
+      "price": 150,
+      "asset": "finance/outfits/finance_xiaoyuan_sailing.png",
+      "category": "skin"
+    },
+    "outfit_finance_xiaoyuan_workshop": {
+      "id": "outfit_finance_xiaoyuan_workshop",
+      "name": "小圆 · 估值工坊师",
+      "fit_character": "xiaoyuan",
+      "outfit": "finance_xiaoyuan_workshop",
+      "theme": "workshop",
+      "rarity": "rare",
+      "price": 300,
+      "asset": "finance/outfits/finance_xiaoyuan_workshop.png",
+      "category": "skin"
+    },
+    "outfit_finance_xiaoyuan_stars": {
+      "id": "outfit_finance_xiaoyuan_stars",
+      "name": "小圆 · 星光掌柜",
+      "fit_character": "xiaoyuan",
+      "outfit": "finance_xiaoyuan_stars",
+      "theme": "stars",
+      "rarity": "epic",
+      "price": 600,
+      "asset": "finance/outfits/finance_xiaoyuan_stars.png",
+      "category": "skin"
+    },
+    "outfit_finance_orange_adventurer_ledger": {
+      "id": "outfit_finance_orange_adventurer_ledger",
+      "name": "小团 · 算盘账房",
+      "fit_character": "orange_adventurer",
+      "outfit": "finance_orange_adventurer_ledger",
+      "theme": "ledger",
+      "rarity": "common",
+      "price": 150,
+      "asset": "finance/outfits/finance_orange_adventurer_ledger.png",
+      "category": "skin"
+    },
+    "outfit_finance_orange_adventurer_sailing": {
+      "id": "outfit_finance_orange_adventurer_sailing",
+      "name": "小团 · 筹资领航员",
+      "fit_character": "orange_adventurer",
+      "outfit": "finance_orange_adventurer_sailing",
+      "theme": "sailing",
+      "rarity": "common",
+      "price": 150,
+      "asset": "finance/outfits/finance_orange_adventurer_sailing.png",
+      "category": "skin"
+    },
+    "outfit_finance_orange_adventurer_workshop": {
+      "id": "outfit_finance_orange_adventurer_workshop",
+      "name": "小团 · 成本工程师",
+      "fit_character": "orange_adventurer",
+      "outfit": "finance_orange_adventurer_workshop",
+      "theme": "workshop",
+      "rarity": "rare",
+      "price": 300,
+      "asset": "finance/outfits/finance_orange_adventurer_workshop.png",
+      "category": "skin"
+    },
+    "outfit_finance_orange_adventurer_stars": {
+      "id": "outfit_finance_orange_adventurer_stars",
+      "name": "小团 · 预算星术师",
+      "fit_character": "orange_adventurer",
+      "outfit": "finance_orange_adventurer_stars",
+      "theme": "stars",
+      "rarity": "epic",
+      "price": 600,
+      "asset": "finance/outfits/finance_orange_adventurer_stars.png",
+      "category": "skin"
+    },
+    "outfit_finance_xiaobao_ledger": {
+      "id": "outfit_finance_xiaobao_ledger",
+      "name": "小宝 · 企鹅账房",
+      "fit_character": "xiaobao",
+      "outfit": "finance_xiaobao_ledger",
+      "theme": "ledger",
+      "rarity": "common",
+      "price": 150,
+      "asset": "finance/outfits/finance_xiaobao_ledger.png",
+      "category": "skin"
+    },
+    "outfit_finance_xiaobao_sailing": {
+      "id": "outfit_finance_xiaobao_sailing",
+      "name": "小宝 · 极地小船长",
+      "fit_character": "xiaobao",
+      "outfit": "finance_xiaobao_sailing",
+      "theme": "sailing",
+      "rarity": "common",
+      "price": 150,
+      "asset": "finance/outfits/finance_xiaobao_sailing.png",
+      "category": "skin"
+    },
+    "outfit_finance_xiaobao_workshop": {
+      "id": "outfit_finance_xiaobao_workshop",
+      "name": "小宝 · 南极工坊师",
+      "fit_character": "xiaobao",
+      "outfit": "finance_xiaobao_workshop",
+      "theme": "workshop",
+      "rarity": "rare",
+      "price": 300,
+      "asset": "finance/outfits/finance_xiaobao_workshop.png",
+      "category": "skin"
+    },
+    "outfit_finance_xiaobao_stars": {
+      "id": "outfit_finance_xiaobao_stars",
+      "name": "小宝 · 星光大掌柜",
+      "fit_character": "xiaobao",
+      "outfit": "finance_xiaobao_stars",
+      "theme": "stars",
+      "rarity": "epic",
+      "price": 600,
+      "asset": "finance/outfits/finance_xiaobao_stars_v3.png",
+      "category": "skin"
+    },
+    "spirit_deer": {
+      "id": "spirit_deer",
+      "name": "小鹿露露",
+      "price": 150,
+      "unlock_chapter": 2,
+      "act_id": "ledger",
+      "role": "复习提醒",
+      "story": "露露记得每一次努力，轻轻提醒你再看看薄弱知识。",
+      "asset": "finance/companions/spirit_deer.png",
+      "category": "companion",
+      "rarity": "rare",
+      "story_only": true
+    },
+    "spirit_owl": {
+      "id": "spirit_owl",
+      "name": "猫头鹰知知",
+      "price": 300,
+      "unlock_chapter": 4,
+      "act_id": "time",
+      "role": "公式索引",
+      "story": "知知的小翅膀像书签，陪你找到公式和它的适用条件。",
+      "asset": "finance/companions/spirit_owl.png",
+      "category": "companion",
+      "rarity": "rare",
+      "story_only": true
+    },
+    "spirit_otter": {
+      "id": "spirit_otter",
+      "name": "海獭泡泡",
+      "price": 300,
+      "unlock_chapter": 11,
+      "act_id": "funding",
+      "role": "经营线索",
+      "story": "泡泡收集沿途的经营故事，把抽象知识连到小店生活。",
+      "asset": "finance/companions/spirit_otter.png",
+      "category": "companion",
+      "rarity": "rare",
+      "story_only": true
+    },
+    "spirit_hedgehog": {
+      "id": "spirit_hedgehog",
+      "name": "刺猬豆豆",
+      "price": 600,
+      "unlock_chapter": 17,
+      "act_id": "workshop",
+      "role": "鼓励陪伴",
+      "story": "豆豆把错题当作新的线索，每一次复盘都记进伙伴日记。",
+      "asset": "finance/companions/spirit_hedgehog.png",
+      "category": "companion",
+      "rarity": "rare",
+      "story_only": true
+    },
+    "finance_compass": {
+      "id": "finance_compass",
+      "name": "折现罗盘",
+      "kind": "tool",
+      "utility": "formulas",
+      "price": 80,
+      "story": "将未来的现金流放到同一时点。打开公式图鉴。",
+      "asset": "finance/props/compass.png",
+      "category": "collection",
+      "rarity": "common"
+    },
+    "finance_abacus": {
+      "id": "finance_abacus",
+      "name": "成本算盘",
+      "kind": "tool",
+      "utility": "scratch",
+      "price": 120,
+      "story": "把计算过程和单位记在一起。打开计算草稿。",
+      "asset": "finance/props/abacus.png",
+      "category": "collection",
+      "rarity": "common"
+    },
+    "finance_hourglass": {
+      "id": "finance_hourglass",
+      "name": "预算沙漏",
+      "kind": "tool",
+      "utility": "focus",
+      "price": 150,
+      "story": "专注一小段时间，让思路慢慢变清楚。打开专注计时。",
+      "asset": "finance/props/hourglass.png",
+      "category": "collection",
+      "rarity": "common"
+    },
+    "finance_mailbag": {
+      "id": "finance_mailbag",
+      "name": "企鹅邮袋",
+      "kind": "tool",
+      "utility": "review",
+      "price": 150,
+      "story": "小宝把待复习的题装进邮袋。打开复习清单。",
+      "asset": "finance/props/mailbag.png",
+      "category": "collection",
+      "rarity": "common"
+    },
+    "finance_lamp": {
+      "id": "finance_lamp",
+      "name": "现金流灯",
+      "kind": "decoration",
+      "utility": "",
+      "price": 150,
+      "story": "一盏温暖的小灯，照亮小镇的现金流路线。",
+      "asset": "finance/props/lamp.png",
+      "category": "collection",
+      "rarity": "common"
+    },
+    "finance_starmap": {
+      "id": "finance_starmap",
+      "name": "投资星图",
+      "kind": "decoration",
+      "utility": "",
+      "price": 300,
+      "story": "每一颗星星，都是认真比较过的投资机会。",
+      "asset": "finance/props/starmap.png",
+      "category": "collection",
+      "rarity": "rare"
+    },
+    "finance_stamp": {
+      "id": "finance_stamp",
+      "name": "猫爪图章",
+      "kind": "decoration",
+      "utility": "",
+      "price": 150,
+      "story": "盖上猫爪印，把今天学会的知识留在账本上。",
+      "asset": "finance/props/stamp.png",
+      "category": "collection",
+      "rarity": "common"
+    },
+    "finance_chest": {
+      "id": "finance_chest",
+      "name": "现金宝箱",
+      "kind": "decoration",
+      "utility": "",
+      "price": 600,
+      "story": "金币有自己的用途，也需要妥善的计划。",
+      "asset": "finance/props/chest.png",
+      "category": "collection",
+      "rarity": "epic"
+    },
+    "postcard_ledger_1": {
+      "id": "postcard_ledger_1",
+      "name": "账本港 · 小店问答 · 明信片",
+      "category": "collection",
+      "rarity": "common",
+      "price": 0,
+      "starter": true,
+      "earned_only": true,
+      "asset": "finance/npcs/npc_beaver.png"
+    },
+    "postcard_ledger_2": {
+      "id": "postcard_ledger_2",
+      "name": "账本港 · 经营决策 · 明信片",
+      "category": "collection",
+      "rarity": "common",
+      "price": 0,
+      "starter": true,
+      "earned_only": true,
+      "asset": "finance/npcs/npc_beaver.png"
+    },
+    "postcard_time_1": {
+      "id": "postcard_time_1",
+      "name": "时光储蓄所 · 小店问答 · 明信片",
+      "category": "collection",
+      "rarity": "common",
+      "price": 0,
+      "starter": true,
+      "earned_only": true,
+      "asset": "finance/npcs/npc_squirrel.png"
+    },
+    "postcard_time_2": {
+      "id": "postcard_time_2",
+      "name": "时光储蓄所 · 经营决策 · 明信片",
+      "category": "collection",
+      "rarity": "common",
+      "price": 0,
+      "starter": true,
+      "earned_only": true,
+      "asset": "finance/npcs/npc_squirrel.png"
+    },
+    "postcard_invest_1": {
+      "id": "postcard_invest_1",
+      "name": "星光投资站 · 小店问答 · 明信片",
+      "category": "collection",
+      "rarity": "common",
+      "price": 0,
+      "starter": true,
+      "earned_only": true,
+      "asset": "finance/npcs/npc_fox.png"
+    },
+    "postcard_invest_2": {
+      "id": "postcard_invest_2",
+      "name": "星光投资站 · 经营决策 · 明信片",
+      "category": "collection",
+      "rarity": "common",
+      "price": 0,
+      "starter": true,
+      "earned_only": true,
+      "asset": "finance/npcs/npc_fox.png"
+    },
+    "postcard_funding_1": {
+      "id": "postcard_funding_1",
+      "name": "航海筹资港 · 小店问答 · 明信片",
+      "category": "collection",
+      "rarity": "common",
+      "price": 0,
+      "starter": true,
+      "earned_only": true,
+      "asset": "finance/npcs/npc_rabbit.png"
+    },
+    "postcard_funding_2": {
+      "id": "postcard_funding_2",
+      "name": "航海筹资港 · 经营决策 · 明信片",
+      "category": "collection",
+      "rarity": "common",
+      "price": 0,
+      "starter": true,
+      "earned_only": true,
+      "asset": "finance/npcs/npc_rabbit.png"
+    },
+    "postcard_workshop_1": {
+      "id": "postcard_workshop_1",
+      "name": "猫爪工坊 · 小店问答 · 明信片",
+      "category": "collection",
+      "rarity": "common",
+      "price": 0,
+      "starter": true,
+      "earned_only": true,
+      "asset": "finance/npcs/npc_raccoon.png"
+    },
+    "postcard_workshop_2": {
+      "id": "postcard_workshop_2",
+      "name": "猫爪工坊 · 经营决策 · 明信片",
+      "category": "collection",
+      "rarity": "common",
+      "price": 0,
+      "starter": true,
+      "earned_only": true,
+      "asset": "finance/npcs/npc_raccoon.png"
+    },
+    "postcard_budget_1": {
+      "id": "postcard_budget_1",
+      "name": "预算指挥塔 · 小店问答 · 明信片",
+      "category": "collection",
+      "rarity": "common",
+      "price": 0,
+      "starter": true,
+      "earned_only": true,
+      "asset": "finance/npcs/npc_turtle.png"
+    },
+    "postcard_budget_2": {
+      "id": "postcard_budget_2",
+      "name": "预算指挥塔 · 经营决策 · 明信片",
+      "category": "collection",
+      "rarity": "common",
+      "price": 0,
+      "starter": true,
+      "earned_only": true,
+      "asset": "finance/npcs/npc_turtle.png"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+name: 公开原创版契约
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: ios-app/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements.txt
+      - run: python scripts/sync_public_content.py
+      - run: python scripts/check_public_release.py
+      - run: python -m unittest discover -s tests -v
+      - run: node --test tests/*.test.cjs
+      - run: npm ci
+        working-directory: ios-app
+      - run: npm test
+        working-directory: ios-app
+      - run: npm run typecheck
+        working-directory: ios-app
+      - run: npm run lint
+        working-directory: ios-app
+      - run: npm run build:pwa
+        working-directory: ios-app
+

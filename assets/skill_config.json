@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "ink_source": "主线首次通关的低概率惊喜包",
+  "mercy_kinds": ["normal", "expedition"],
+  "mercy_extra_wrong": 1,
+  "mercy_min_correct": 1,
+  "definitions": [
+    {"id":"insight","name":"灵光一现","level":2,"price":10,"glyph":"✧","color":"#4199D7","description":"在尚未提交的客观题中排除一个错误选项。每场挑战最多一次。","type":"hint"},
+    {"id":"mercy","name":"瞒天过海","level":3,"price":30,"glyph":"☁","color":"#7B7EE0","description":"普通关与远征离70%通关线只差一题时，消耗一次技能继续前进；短关至少答对一题。","type":"clear"},
+    {"id":"gold","name":"点石成金","level":5,"price":15,"glyph":"✦","color":"#C39532","description":"下一场新开的未通关Boss，结算金币收益增加50%。可与装备加成叠加。","type":"boost","slot":"coins","bonus_percent":50},
+    {"id":"focus","name":"学霸专注","level":8,"price":20,"glyph":"✎","color":"#398AA6","description":"下一场新开的未通关挑战，结算经验增加25%。可与装备加成叠加。","type":"boost","slot":"xp","bonus_percent":25},
+    {"id":"outline","name":"妙笔生花","level":10,"price":20,"glyph":"❋","color":"#A775B9","description":"填写主观题并查看参考答案后，将原答案整理为分段答题卡，帮助对照复盘。","type":"outline"}
+  ]
+}

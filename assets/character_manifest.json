@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "generation_tool": "ChatGPT 内置 image_gen",
+  "render_canvas": [
+    512,
+    512
+  ],
+  "render_foot_y": 472,
+  "render_max_content": [
+    440,
+    450
+  ],
+  "characters": {
+    "xiaoyuan": {
+      "name": "小圆 · 金棕主角",
+      "appearance": "金棕渐层、绿眼睛、圆脸、浅色嘴套与胸口",
+      "poses": {
+        "idle": "characters/xiaoyuan_idle.png",
+        "walk": "characters/xiaoyuan_walk.png",
+        "think": "characters/xiaoyuan_think.png",
+        "attack": "characters/xiaoyuan_attack.png",
+        "happy": "characters/xiaoyuan_happy.png",
+        "hurt": "characters/xiaoyuan_hurt.png",
+        "celebrate": "characters/xiaoyuan_celebrate.png",
+        "chest": "characters/xiaoyuan_chest.png"
+      },
+      "aliases": {}
+    },
+    "orange_adventurer": {
+      "name": "橘白 · 围巾冒险者",
+      "appearance": "橘白毛色、蓝围巾",
+      "poses": {
+        "idle": "characters/orange_adventurer_idle.png",
+        "attack": "characters/orange_adventurer_attack.png",
+        "hurt": "characters/orange_adventurer_hurt.png",
+        "celebrate": "characters/orange_adventurer_celebrate.png"
+      },
+      "aliases": {
+        "walk": "idle",
+        "think": "idle",
+        "happy": "celebrate",
+        "chest": "celebrate"
+      }
+    },
+    "orange_mage": {
+      "name": "橘白 · 星蓝法师",
+      "appearance": "橘白毛色、蓝披风与魔法帽、星杖",
+      "poses": {
+        "idle": "characters/orange_mage_idle.png",
+        "attack": "characters/orange_mage_attack.png",
+        "hurt": "characters/orange_mage_hurt.png",
+        "celebrate": "characters/orange_mage_celebrate.png"
+      },
+      "aliases": {
+        "walk": "idle",
+        "think": "idle",
+        "happy": "celebrate",
+        "chest": "celebrate"
+      }
+    },
+    "orange_knight": {
+      "name": "橘白 · 蓝盾骑士",
+      "appearance": "橘白毛色、蓝甲与盾牌",
+      "poses": {
+        "idle": "characters/orange_knight_idle.png",
+        "attack": "characters/orange_knight_attack.png",
+        "hurt": "characters/orange_knight_hurt.png",
+        "celebrate": "characters/orange_knight_celebrate.png"
+      },
+      "aliases": {
+        "walk": "idle",
+        "think": "idle",
+        "happy": "celebrate",
+        "chest": "celebrate"
+      }
+    },
+    "xiaobao": {
+      "name": "小宝 · 黑白企鹅",
+      "appearance": "圆头、黑色绒感轮廓、白腹、黄色脚掌、白眼睛和红嘴",
+      "poses": {
+        "idle": "characters/xiaobao_idle.png",
+        "walk": "characters/xiaobao_walk.png",
+        "think": "characters/xiaobao_think.png",
+        "attack": "characters/xiaobao_attack.png",
+        "happy": "characters/xiaobao_happy.png",
+        "hurt": "characters/xiaobao_hurt.png",
+        "celebrate": "characters/xiaobao_celebrate.png",
+        "chest": "characters/xiaobao_chest.png"
+      },
+      "aliases": {}
+    }
+  },
+  "overlays": {
+    "equipment_coins_common": "overlays/equipment_coins_common.png",
+    "equipment_coins_epic": "overlays/equipment_coins_epic.png",
+    "equipment_coins_rare": "overlays/equipment_coins_rare.png",
+    "equipment_xp_common": "overlays/equipment_xp_common.png",
+    "equipment_xp_epic": "overlays/equipment_xp_epic.png",
+    "equipment_xp_rare": "overlays/equipment_xp_rare.png",
+    "outfit_forest": "overlays/outfit_forest.png",
+    "outfit_island": "overlays/outfit_island.png",
+    "outfit_ruins": "overlays/outfit_ruins.png",
+    "outfit_sky": "overlays/outfit_sky.png",
+    "outfit_snow": "overlays/outfit_snow.png",
+    "outfit_stars": "overlays/outfit_stars.png",
+    "outfit_finance_xiaoyuan_ledger": "finance/outfits/finance_xiaoyuan_ledger.png",
+    "outfit_finance_xiaoyuan_sailing": "finance/outfits/finance_xiaoyuan_sailing.png",
+    "outfit_finance_xiaoyuan_workshop": "finance/outfits/finance_xiaoyuan_workshop.png",
+    "outfit_finance_xiaoyuan_stars": "finance/outfits/finance_xiaoyuan_stars.png",
+    "outfit_finance_orange_adventurer_ledger": "finance/outfits/finance_orange_adventurer_ledger.png",
+    "outfit_finance_orange_adventurer_sailing": "finance/outfits/finance_orange_adventurer_sailing.png",
+    "outfit_finance_orange_adventurer_workshop": "finance/outfits/finance_orange_adventurer_workshop.png",
+    "outfit_finance_orange_adventurer_stars": "finance/outfits/finance_orange_adventurer_stars.png",
+    "outfit_finance_xiaobao_ledger": "finance/outfits/finance_xiaobao_ledger.png",
+    "outfit_finance_xiaobao_sailing": "finance/outfits/finance_xiaobao_sailing.png",
+    "outfit_finance_xiaobao_workshop": "finance/outfits/finance_xiaobao_workshop.png",
+    "outfit_finance_xiaobao_stars": "finance/outfits/finance_xiaobao_stars_v3.png"
+  },
+  "finance_wear_positions": {
+    "canvas": [
+      512,
+      512
+    ],
+    "foot_y": 472,
+    "mode": "alpha overlay in original canvas coordinates",
+    "fit_character_required": true,
+    "generated_from": "qa/finance-upgrade/wear-anchors",
+    "poses": "衣服保持归一化画布，逐姿势检查穿戴图"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "小圆的原创挑战",
+  "usingComponents": {
+    "cat-actor": "/components/actor/index",
+    "study-text": "/components/study-text/index"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "expo": {
+    "name": "小圆冒险世界 · 原创版",
+    "slug": "xiaoyuan-adventure-public",
+    "version": "0.2.0",
+    "orientation": "default",
+    "icon": "./assets/appstore-icon-1024-v1.png",
+    "scheme": "xiaoyuan-public",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.example.xiaoyuanpublic",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      }
+    },
+    "web": {
+      "favicon": "./assets/appstore-icon-1024-v1.png",
+      "output": "single"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-sharing",
+      "expo-document-picker"
+    ],
+    "extra": {
+      "contentEdition": "original-v02",
+      "releaseChannel": "github-public-candidate",
+      "router": {}
+    }
+  }
+}

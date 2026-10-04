@@ -1,0 +1,617 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-03",
+  "source_versions": {
+    "desktop": "4.2.0",
+    "wechat": "1.1.0"
+  },
+  "shared_pairs": [
+    {
+      "source": "miniprogram/utils/game.js",
+      "target": "ios-app/src/shared/utils/game.js",
+      "sha256": "148901f3b7b166362d0142c2a29b29641d7adbb9ffac03f9be95d464d39b076d"
+    },
+    {
+      "source": "miniprogram/utils/skills.js",
+      "target": "ios-app/src/shared/utils/skills.js",
+      "sha256": "d6ccb7130a7db64e828fb8b47fc00cc9946490223445f3a20f59209ea5eddd6a"
+    },
+    {
+      "source": "miniprogram/utils/shop.js",
+      "target": "ios-app/src/shared/utils/shop.js",
+      "sha256": "8fe5a3434609a7eccf3e3c768a70eced5a403ba4e2c642138d46968491c68670"
+    },
+    {
+      "source": "miniprogram/utils/finance.js",
+      "target": "ios-app/src/shared/utils/finance.js",
+      "sha256": "8e548a5287274101eecbebb843389ef53854285f4f24aba8aea3de7bdc148cb3"
+    },
+    {
+      "source": "miniprogram/utils/migration.js",
+      "target": "ios-app/src/shared/utils/migration.js",
+      "sha256": "18f93cffa7b37fd9abdab0df14d2dc320f59ce14534adf57d42810d209e4acfe"
+    },
+    {
+      "source": "miniprogram/utils/study_text.js",
+      "target": "ios-app/src/shared/utils/study_text.js",
+      "sha256": "a4ea5e16835a3a125309eadf0e664c9791567c0b012df6509c4c6a9b05745b54"
+    },
+    {
+      "source": "miniprogram/data/shop_config.js",
+      "target": "ios-app/src/shared/data/shop_config.js",
+      "sha256": "d9a073a723ae1d6b9f8dd86ba98edc01678e8905715cef32a1ff2e72a602116a"
+    },
+    {
+      "source": "miniprogram/data/skills.js",
+      "target": "ios-app/src/shared/data/skills.js",
+      "sha256": "d6e75c914f7adb421d0f9210b9f9a402b90a1c1e426d5c787450e7189aa3e79f"
+    },
+    {
+      "source": "miniprogram/data/wonders.js",
+      "target": "ios-app/src/shared/data/wonders.js",
+      "sha256": "69633e4b4637d005805de4f623803feb7d11c68bb0c70d0a04893a33b87681c7"
+    },
+    {
+      "source": "miniprogram/data/characters.js",
+      "target": "ios-app/src/shared/data/characters.js",
+      "sha256": "f229ec9689bdaf18fa5a93de03a3b8cd8d7641cdb8b53bdb2a0d31bbe78636fe"
+    },
+    {
+      "source": "miniprogram/data/shop_art.js",
+      "target": "ios-app/src/shared/data/shop_art.js",
+      "sha256": "a174c5980cebff5f1e66ac6007faaec6a7c6f2848db918d338bdaf507e0f3ce5"
+    },
+    {
+      "source": "miniprogram/data/finance_config.js",
+      "target": "ios-app/src/shared/data/finance_config.js",
+      "sha256": "5e509388ff9acd1bfe958ebf0a5667063d28e9cc2a464450b34ae50ba240c387"
+    },
+    {
+      "source": "miniprogram/data/finance_knowledge.js",
+      "target": "ios-app/src/shared/data/finance_knowledge.js",
+      "sha256": "ac65cf0441294eaf8a0109d5d711e6b9e028b82574753c29b804eb3155735d6b"
+    },
+    {
+      "source": "ios-app/src/migration/baseline.json",
+      "target": "ios-app/src/shared/data/migration_baseline.json",
+      "sha256": "4a697b8ed478c1ffc6810aa657f8fb7e9a4c81ef79c3d8db92ba0225103d889a"
+    },
+    {
+      "source": "miniprogram/assets/equipment_coins_common.png",
+      "target": "ios-app/assets/equipment_coins_common.png",
+      "sha256": "8f4c01aa7386c28a094740dee79474269d1c8115ec9e5670ec31fa409595a9c5"
+    },
+    {
+      "source": "miniprogram/assets/equipment_coins_epic.png",
+      "target": "ios-app/assets/equipment_coins_epic.png",
+      "sha256": "7e1c162753d38e1c659d584fadc0d0d16ac93f467f457a1be049628e4b0c0d2f"
+    },
+    {
+      "source": "miniprogram/assets/equipment_coins_rare.png",
+      "target": "ios-app/assets/equipment_coins_rare.png",
+      "sha256": "84d7ed45b64a4b14584851a899a488790dfa69c47c461ab1364b2f64788b9f52"
+    },
+    {
+      "source": "miniprogram/assets/equipment_xp_common.png",
+      "target": "ios-app/assets/equipment_xp_common.png",
+      "sha256": "08f0c38bbac40f5f5ad051619ce35a60ffd1f7e59b57da3726fcb9d5601e3cea"
+    },
+    {
+      "source": "miniprogram/assets/equipment_xp_epic.png",
+      "target": "ios-app/assets/equipment_xp_epic.png",
+      "sha256": "e6d8c36c2e220551005d412775da59beb927cf8b09a71956b1921dc7c1537f95"
+    },
+    {
+      "source": "miniprogram/assets/equipment_xp_rare.png",
+      "target": "ios-app/assets/equipment_xp_rare.png",
+      "sha256": "c8fc9f713e116c599e2c1a1541caa45b9d55add95af1bc0bc726b137ff9e3786"
+    },
+    {
+      "source": "miniprogram/assets/orange_adventurer_attack.png",
+      "target": "ios-app/assets/orange_adventurer_attack.png",
+      "sha256": "b23e395f62001afc4a50f839b11680b08943b9e52d8a6267066cc019117b2de5"
+    },
+    {
+      "source": "miniprogram/assets/orange_adventurer_celebrate.png",
+      "target": "ios-app/assets/orange_adventurer_celebrate.png",
+      "sha256": "87c1ef94f4ea62918a76d499f672686a057855c8ada9036a36d8d20e2ab409ea"
+    },
+    {
+      "source": "miniprogram/assets/orange_adventurer_hurt.png",
+      "target": "ios-app/assets/orange_adventurer_hurt.png",
+      "sha256": "05ba28fc15de46a5a212f424f02e8062b8b3309bec061518671969b3a9dc645c"
+    },
+    {
+      "source": "miniprogram/assets/orange_adventurer_idle.png",
+      "target": "ios-app/assets/orange_adventurer_idle.png",
+      "sha256": "c29aff93ecf24df4cbc69671950b12f57547f27fd93fd08f9efc52d8d5086184"
+    },
+    {
+      "source": "miniprogram/assets/orange_knight_attack.png",
+      "target": "ios-app/assets/orange_knight_attack.png",
+      "sha256": "fa4e46b0c4b00866596b5d906dbd38ecef7d8f4908f2eb6568336e6edfa1f70c"
+    },
+    {
+      "source": "miniprogram/assets/orange_knight_celebrate.png",
+      "target": "ios-app/assets/orange_knight_celebrate.png",
+      "sha256": "3b0db8eac45e85c2d21b9eaed0dc26fea2208e3512b0fbad54f16aacdd9eb787"
+    },
+    {
+      "source": "miniprogram/assets/orange_knight_hurt.png",
+      "target": "ios-app/assets/orange_knight_hurt.png",
+      "sha256": "bd2d2d29830d77829977e7af5fbca05facdc906b90a4cd648c163556209dbe6f"
+    },
+    {
+      "source": "miniprogram/assets/orange_knight_idle.png",
+      "target": "ios-app/assets/orange_knight_idle.png",
+      "sha256": "40fe5f25cc267aa19ecf1af875e24458b459f44da7bfabb1f4d655ce9c4464b3"
+    },
+    {
+      "source": "miniprogram/assets/orange_mage_attack.png",
+      "target": "ios-app/assets/orange_mage_attack.png",
+      "sha256": "98c7c1aa1d4c1f5f3704514b0afbf53b06a53aa453094f8afa8af72093b42bbf"
+    },
+    {
+      "source": "miniprogram/assets/orange_mage_celebrate.png",
+      "target": "ios-app/assets/orange_mage_celebrate.png",
+      "sha256": "e6d7a02d0ef35eee2c2a8f3e3cfc20064f2f5f4eb15a2f9658f8adf03d6ce93e"
+    },
+    {
+      "source": "miniprogram/assets/orange_mage_hurt.png",
+      "target": "ios-app/assets/orange_mage_hurt.png",
+      "sha256": "953d93171665e0c564db47776826eb6a630d453e48a83e1967ef2dbb727f5203"
+    },
+    {
+      "source": "miniprogram/assets/orange_mage_idle.png",
+      "target": "ios-app/assets/orange_mage_idle.png",
+      "sha256": "642c4e1e59c3bb20622d58f44b0b875f2d8950a46797deaa7a3a944eceadc5c5"
+    },
+    {
+      "source": "miniprogram/assets/outfit_forest.png",
+      "target": "ios-app/assets/outfit_forest.png",
+      "sha256": "859a57204fbf1ecccaa0073ecc6c18810422a8c77117bac38a5252cfa84bd204"
+    },
+    {
+      "source": "miniprogram/assets/outfit_island.png",
+      "target": "ios-app/assets/outfit_island.png",
+      "sha256": "4acd7a36c97e89332ef1368f203dd0e60ffb6ec66058cc86e1524eac8f377b67"
+    },
+    {
+      "source": "miniprogram/assets/outfit_ruins.png",
+      "target": "ios-app/assets/outfit_ruins.png",
+      "sha256": "331bfbfa72c8c29c89dada7710a209e4964ddce11e820e3fe93bd9d4d40f95c1"
+    },
+    {
+      "source": "miniprogram/assets/outfit_sky.png",
+      "target": "ios-app/assets/outfit_sky.png",
+      "sha256": "b61a4ddd7effd367d03b0f4f65a945c3461f41530f2f880a2b68bde16d4b5245"
+    },
+    {
+      "source": "miniprogram/assets/outfit_snow.png",
+      "target": "ios-app/assets/outfit_snow.png",
+      "sha256": "caa7138f81eb8bdbe3b24264f2b820f5c88ae8aeb1fcad451fdb7160fdeae865"
+    },
+    {
+      "source": "miniprogram/assets/outfit_stars.png",
+      "target": "ios-app/assets/outfit_stars.png",
+      "sha256": "8d974ba937726d2cff6a6516a259a190fbd789ea17be0ef75bef543eb390c445"
+    },
+    {
+      "source": "miniprogram/assets/shop/souvenir_forest.png",
+      "target": "ios-app/assets/shop/souvenir_forest.png",
+      "sha256": "4a05faff472b6bbf8895656d84fc2c9fa6d4f7716efe6dfad9fba250945cd747"
+    },
+    {
+      "source": "miniprogram/assets/shop/souvenir_island.png",
+      "target": "ios-app/assets/shop/souvenir_island.png",
+      "sha256": "e62a2909833adb28267dfa567e59ed00cabb1fc98e3078234844664145a5f247"
+    },
+    {
+      "source": "miniprogram/assets/shop/souvenir_ruins.png",
+      "target": "ios-app/assets/shop/souvenir_ruins.png",
+      "sha256": "9b8273df76a0500a4d3937fb59d8f2bee4778f9da6a92f6501c81090e04dedaa"
+    },
+    {
+      "source": "miniprogram/assets/shop/souvenir_sky.png",
+      "target": "ios-app/assets/shop/souvenir_sky.png",
+      "sha256": "734537de53db7fa93597b7c338fcd71ca67275e9518fb4dcca7380b26cf4da83"
+    },
+    {
+      "source": "miniprogram/assets/shop/souvenir_snow.png",
+      "target": "ios-app/assets/shop/souvenir_snow.png",
+      "sha256": "d096108d270fe6786134f1ce0caab01bb8b1a03c9cd4e3495d7464759c106b16"
+    },
+    {
+      "source": "miniprogram/assets/shop/souvenir_stars.png",
+      "target": "ios-app/assets/shop/souvenir_stars.png",
+      "sha256": "3d36b28acf0118ecd95d49e17743c10246b2174d2e9332cee6334827a0a0ff71"
+    },
+    {
+      "source": "miniprogram/assets/shop/wonder_broom.png",
+      "target": "ios-app/assets/shop/wonder_broom.png",
+      "sha256": "47a7cf93ec351b9aa2f824b280fd1246f5778b35ce65d626b7eb8c8946f2f262"
+    },
+    {
+      "source": "miniprogram/assets/shop/wonder_broom_layer.png",
+      "target": "ios-app/assets/shop/wonder_broom_layer.png",
+      "sha256": "8b774608b902d1f36cea333a8b540f3eb6e5648d85cb4a920291e7e3e372acfb"
+    },
+    {
+      "source": "miniprogram/assets/shop/wonder_cape.png",
+      "target": "ios-app/assets/shop/wonder_cape.png",
+      "sha256": "88f83b9ca5430cd2865c180885e4b2e16397addb6fcfad3486999106b60a8ff1"
+    },
+    {
+      "source": "miniprogram/assets/shop/wonder_cape_layer.png",
+      "target": "ios-app/assets/shop/wonder_cape_layer.png",
+      "sha256": "a13c6b7aac93187b2af704509159b67a42d4dd64df55c5737df99564a132c4a6"
+    },
+    {
+      "source": "miniprogram/assets/shop/wonder_lantern.png",
+      "target": "ios-app/assets/shop/wonder_lantern.png",
+      "sha256": "98199107f888ffe6d7f37c4b4b801dcd516faf8ad7a23f6bc57cc6d56c746dfe"
+    },
+    {
+      "source": "miniprogram/assets/shop/wonder_lantern_layer.png",
+      "target": "ios-app/assets/shop/wonder_lantern_layer.png",
+      "sha256": "a180224fef2f2026110fb1d1027373906c18427ef3393d5a54226596d9708f20"
+    },
+    {
+      "source": "miniprogram/assets/shop/wonder_satchel.png",
+      "target": "ios-app/assets/shop/wonder_satchel.png",
+      "sha256": "7b80821776cca4a574fdd4037938b8a3d130b2d1aefdfe4e3f8610c4441b3285"
+    },
+    {
+      "source": "miniprogram/assets/shop/wonder_satchel_layer.png",
+      "target": "ios-app/assets/shop/wonder_satchel_layer.png",
+      "sha256": "63bd1b0878d3f3b1c90788dd6ed5feb74c4691837d38a65a20bcc7dd255f61c2"
+    },
+    {
+      "source": "miniprogram/assets/shop/wonder_wand.png",
+      "target": "ios-app/assets/shop/wonder_wand.png",
+      "sha256": "a9391be23a6f9212fbcf10d0161af2dec57ac449ffdd5840795c5593aa628650"
+    },
+    {
+      "source": "miniprogram/assets/shop/wonder_wand_layer.png",
+      "target": "ios-app/assets/shop/wonder_wand_layer.png",
+      "sha256": "53457afb045ff1423dbc1b6caeead97f756820a515bb5bd28d6c0ef5ed7e7207"
+    },
+    {
+      "source": "miniprogram/assets/shop/wonder_wings.png",
+      "target": "ios-app/assets/shop/wonder_wings.png",
+      "sha256": "64f428004d8f411ab6ac195031ba6b8548e94d600f217c914275e31962f6a26f"
+    },
+    {
+      "source": "miniprogram/assets/shop/wonder_wings_layer.png",
+      "target": "ios-app/assets/shop/wonder_wings_layer.png",
+      "sha256": "870344b46414d529e632fe2040ca4b871407701e8f57b46ffdd6c15b5146949c"
+    },
+    {
+      "source": "miniprogram/assets/xiaobao_attack.png",
+      "target": "ios-app/assets/xiaobao_attack.png",
+      "sha256": "a913c6b6e1d74b2d04c08bffbde8c91b42c237996de981095ae65fa38cb6a155"
+    },
+    {
+      "source": "miniprogram/assets/xiaobao_celebrate.png",
+      "target": "ios-app/assets/xiaobao_celebrate.png",
+      "sha256": "3fa0a8fe44ba24803a56f86f9a6dfbb3c4d23a1a9f07f80ce52e18c73670a869"
+    },
+    {
+      "source": "miniprogram/assets/xiaobao_chest.png",
+      "target": "ios-app/assets/xiaobao_chest.png",
+      "sha256": "a50bf3ae60a2426c6c045c3fe52fd5e72057118fec06db5955afa9aeae6c8fed"
+    },
+    {
+      "source": "miniprogram/assets/xiaobao_happy.png",
+      "target": "ios-app/assets/xiaobao_happy.png",
+      "sha256": "1969be6584e718620edbd26ca9b40cb676c533e7538d2c8ba2d7937b83db5440"
+    },
+    {
+      "source": "miniprogram/assets/xiaobao_hurt.png",
+      "target": "ios-app/assets/xiaobao_hurt.png",
+      "sha256": "ed167560a3072bf5f1b6d2481ddba0e3de30b8b5aeb1d4d8e87a8cb3d336bb5e"
+    },
+    {
+      "source": "miniprogram/assets/xiaobao_idle.png",
+      "target": "ios-app/assets/xiaobao_idle.png",
+      "sha256": "9f0abf88d81d5ce8c852be1fadb55fe368f53e172f0333fd0a6b2329d748707a"
+    },
+    {
+      "source": "miniprogram/assets/xiaobao_think.png",
+      "target": "ios-app/assets/xiaobao_think.png",
+      "sha256": "0731f612f6578a0893976c4f6849a00ca18667174a9504f13782ceaa8d091aca"
+    },
+    {
+      "source": "miniprogram/assets/xiaobao_walk.png",
+      "target": "ios-app/assets/xiaobao_walk.png",
+      "sha256": "b55344863c0bdb29bb0f1cfdaf06ba1a839ef8582774827a7042f939dc084668"
+    },
+    {
+      "source": "miniprogram/assets/xiaoyuan_attack.png",
+      "target": "ios-app/assets/xiaoyuan_attack.png",
+      "sha256": "773678fb10eab5defcbb6eb9fe33a373a22a5b10fe7c118debacd860242f5273"
+    },
+    {
+      "source": "miniprogram/assets/xiaoyuan_celebrate.png",
+      "target": "ios-app/assets/xiaoyuan_celebrate.png",
+      "sha256": "8f0b9304d7d9109829ec8d1172cff722298ed29b890459193766e5ef5594eab6"
+    },
+    {
+      "source": "miniprogram/assets/xiaoyuan_chest.png",
+      "target": "ios-app/assets/xiaoyuan_chest.png",
+      "sha256": "bf9ca2f0c4add5d55f51ed732bf3aa43fd608e9a3a3a7fbc6f1d82d2934a0cb3"
+    },
+    {
+      "source": "miniprogram/assets/xiaoyuan_happy.png",
+      "target": "ios-app/assets/xiaoyuan_happy.png",
+      "sha256": "2eab53251b5744e81d9e02a533e18a80013a4c59a69049cd455b4523066cc552"
+    },
+    {
+      "source": "miniprogram/assets/xiaoyuan_hurt.png",
+      "target": "ios-app/assets/xiaoyuan_hurt.png",
+      "sha256": "f932b840293587e731d214538f4c0690341842e27adb5b60db73afe3a4f94406"
+    },
+    {
+      "source": "miniprogram/assets/xiaoyuan_idle.png",
+      "target": "ios-app/assets/xiaoyuan_idle.png",
+      "sha256": "cd46a08d1d5912098fdcfcf6c55a0ed1c941eeed9ccf5ca02a11c5318a63c6c9"
+    },
+    {
+      "source": "miniprogram/assets/xiaoyuan_think.png",
+      "target": "ios-app/assets/xiaoyuan_think.png",
+      "sha256": "87a52f98057b3e215d93621f209f5ef2ee867ed2b11ddb1b2ba7c0bf9351deba"
+    },
+    {
+      "source": "miniprogram/assets/xiaoyuan_walk.png",
+      "target": "ios-app/assets/xiaoyuan_walk.png",
+      "sha256": "5628f42fe4af379250cca5dac31c87f35ea09479b70cc422193e62b89f941dcb"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/buildings/budget_1.png",
+      "target": "ios-app/assets/finance/buildings/budget_1.png",
+      "sha256": "183bcffcfaf6eff5db9bdf1ce1f03cfb34349adaf6559763eb84fd6289660ddc"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/buildings/budget_2.png",
+      "target": "ios-app/assets/finance/buildings/budget_2.png",
+      "sha256": "036bab15d213f3b6a07eb129bc59fecdc17a7c514192a06189b9dc88dfa15033"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/buildings/budget_3.png",
+      "target": "ios-app/assets/finance/buildings/budget_3.png",
+      "sha256": "3b683e96e84b8c317d641a7da1597c121b11477c08164bc8a62934da00e4d08c"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/buildings/funding_1.png",
+      "target": "ios-app/assets/finance/buildings/funding_1.png",
+      "sha256": "87b66616af166d398cd96a211596f035686a03528b1d17101722a02ad35c15ff"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/buildings/funding_2.png",
+      "target": "ios-app/assets/finance/buildings/funding_2.png",
+      "sha256": "da34acdc2b5aef462b38470c9af443dba67f868abdb8b8ae978021f1a4d610e0"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/buildings/funding_3.png",
+      "target": "ios-app/assets/finance/buildings/funding_3.png",
+      "sha256": "b06520272afc30a083df4cd2de51471fde4c2a06bf2c1395a658cba74c8eceb2"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/buildings/invest_1.png",
+      "target": "ios-app/assets/finance/buildings/invest_1.png",
+      "sha256": "a29ac430e5fe926a7226df0ddf7e172fff78e68334223dc2360df722591a109c"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/buildings/invest_2.png",
+      "target": "ios-app/assets/finance/buildings/invest_2.png",
+      "sha256": "dbd9c250df9665cbfe9f898561060b6ab2124fe49812c1e8e8c370d54097b17e"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/buildings/invest_3.png",
+      "target": "ios-app/assets/finance/buildings/invest_3.png",
+      "sha256": "ee9121b660a80df5ec83c97903d084476f7665b9fe571bc8f8a55a427d8e0ddf"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/buildings/ledger_1.png",
+      "target": "ios-app/assets/finance/buildings/ledger_1.png",
+      "sha256": "1b2cc0d30b6005868bdf00b704d265650e396b36b7b1032bc2d3b79a88c08bd5"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/buildings/ledger_2.png",
+      "target": "ios-app/assets/finance/buildings/ledger_2.png",
+      "sha256": "fe4f6027e4203daf1b2656980e96dc5f940d66c1ebf330c3ef9e98074f5c04a9"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/buildings/ledger_3.png",
+      "target": "ios-app/assets/finance/buildings/ledger_3.png",
+      "sha256": "695f9a4c5e557281fbca96e53878833eb015e9c01171d6e3a5a56a5f4b6e037c"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/buildings/time_1.png",
+      "target": "ios-app/assets/finance/buildings/time_1.png",
+      "sha256": "af33bd7e79d59f39ed3731007702ce1e713d5b52f5aae9ed83d09df1ec8b3817"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/buildings/time_2.png",
+      "target": "ios-app/assets/finance/buildings/time_2.png",
+      "sha256": "35030a66c532fceba2d3513a694f02cf767de05d4e64f6fbf5ac4f0819ad990e"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/buildings/time_3.png",
+      "target": "ios-app/assets/finance/buildings/time_3.png",
+      "sha256": "a7d89c55d0c9584e64ecac0d68c05fe6735ae276e20f2a0e79280334268a9878"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/buildings/workshop_1.png",
+      "target": "ios-app/assets/finance/buildings/workshop_1.png",
+      "sha256": "356c3701c2c4ae9300228a851e8bb181d7ab66d9e8483a0844c17688524adfa7"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/buildings/workshop_2.png",
+      "target": "ios-app/assets/finance/buildings/workshop_2.png",
+      "sha256": "197c2fa662c62ec2f61d7f29e49187528462f37026ac6d65540e2235bbace853"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/buildings/workshop_3.png",
+      "target": "ios-app/assets/finance/buildings/workshop_3.png",
+      "sha256": "9fcee966f280c58ba2f411b6a03234bb06832fd3fe8c4e35a7e673e0b81a6442"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/companions/spirit_deer.png",
+      "target": "ios-app/assets/finance/companions/spirit_deer.png",
+      "sha256": "478daee7d0b0bdbae00f60462872edf4b7475e314d7322d0370172262046851c"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/companions/spirit_hedgehog.png",
+      "target": "ios-app/assets/finance/companions/spirit_hedgehog.png",
+      "sha256": "6871a04a951327fd10833c3ee8bac06a866c4b93f819998d4f21325e3593689d"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/companions/spirit_otter.png",
+      "target": "ios-app/assets/finance/companions/spirit_otter.png",
+      "sha256": "38bd143185aa1f00652bccc15e3cb617dd92baf0a34544a26af170162f662146"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/companions/spirit_owl.png",
+      "target": "ios-app/assets/finance/companions/spirit_owl.png",
+      "sha256": "4fec30b49e8decda9312901f168d868c34ea812ea04edea1b806a1fef8e295e6"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/npcs/npc_beaver.png",
+      "target": "ios-app/assets/finance/npcs/npc_beaver.png",
+      "sha256": "76e682c08b377f1acb3d2a8100952c98b6609179136098223e3ebfbfddf91862"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/npcs/npc_fox.png",
+      "target": "ios-app/assets/finance/npcs/npc_fox.png",
+      "sha256": "388036af022245225e99f9422372f0686954535fb1b6f1c0112a37a71c5c7211"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/npcs/npc_rabbit.png",
+      "target": "ios-app/assets/finance/npcs/npc_rabbit.png",
+      "sha256": "7fdc1f5249a6f239c91fc93fb3aade9bbc8df173172d997d3d2e2cb6bff17047"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/npcs/npc_raccoon.png",
+      "target": "ios-app/assets/finance/npcs/npc_raccoon.png",
+      "sha256": "8adcabdda4b72ca149c2e73bca97033d5ff3a9f39b86d38e3bed849046618650"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/npcs/npc_squirrel.png",
+      "target": "ios-app/assets/finance/npcs/npc_squirrel.png",
+      "sha256": "6033d118771af6a852c956b0441e8b1de737f5c52ed30ec6b6a2331377099cd3"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/npcs/npc_turtle.png",
+      "target": "ios-app/assets/finance/npcs/npc_turtle.png",
+      "sha256": "f8690ecc08fedfc974324909cc0b1b7152f6af9acaeaa1413d2cf815d55051f9"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/outfits/finance_orange_adventurer_ledger.png",
+      "target": "ios-app/assets/finance/outfits/finance_orange_adventurer_ledger.png",
+      "sha256": "72fec01c0162e08766ac0ff9f64221e3aa1de9650f32f93e4a0b4ee9917c46a5"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/outfits/finance_orange_adventurer_sailing.png",
+      "target": "ios-app/assets/finance/outfits/finance_orange_adventurer_sailing.png",
+      "sha256": "675caad667ec86bd6ebf1c535e84e32972f41545f59cd0e13f7f4820e74eb77c"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/outfits/finance_orange_adventurer_stars.png",
+      "target": "ios-app/assets/finance/outfits/finance_orange_adventurer_stars.png",
+      "sha256": "bae5c50b5058da1a7aeae9d4d8d397d29b116bcfbe8f265edd3a7a878de400aa"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/outfits/finance_orange_adventurer_workshop.png",
+      "target": "ios-app/assets/finance/outfits/finance_orange_adventurer_workshop.png",
+      "sha256": "f638153318023e7c567027fa9625cfba9cd6756d99f52d9045157ed960283fee"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/outfits/finance_xiaobao_ledger.png",
+      "target": "ios-app/assets/finance/outfits/finance_xiaobao_ledger.png",
+      "sha256": "a76a2fe8be106e40fb262f3a67d3996178c47b30f5330a88cf02a1ca36d25483"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/outfits/finance_xiaobao_sailing.png",
+      "target": "ios-app/assets/finance/outfits/finance_xiaobao_sailing.png",
+      "sha256": "4f2e53ea9e93a929a38efaf51fc3cfe6559ddcf2b0825bd09a3840a10227eec3"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/outfits/finance_xiaobao_stars_v3.png",
+      "target": "ios-app/assets/finance/outfits/finance_xiaobao_stars_v3.png",
+      "sha256": "e1d9e9c88a1d2cfb3e0c2fac4ce025416ea4096e9fe718f160b529d6206ee1e4"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/outfits/finance_xiaobao_workshop.png",
+      "target": "ios-app/assets/finance/outfits/finance_xiaobao_workshop.png",
+      "sha256": "e05643e76a20f01e61abd5e9c04b55d57320f7659bd5f7e997fd68bf66546fd6"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/outfits/finance_xiaoyuan_ledger.png",
+      "target": "ios-app/assets/finance/outfits/finance_xiaoyuan_ledger.png",
+      "sha256": "4a1c2669af9dbbcc157407aee8c598fd9b57a05a279f35f4715ddd7d0f9b83eb"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/outfits/finance_xiaoyuan_sailing.png",
+      "target": "ios-app/assets/finance/outfits/finance_xiaoyuan_sailing.png",
+      "sha256": "d0c4fdc785806e7b04367885e1f27b350718015f09db8b75360aa699cc7ad9ab"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/outfits/finance_xiaoyuan_stars.png",
+      "target": "ios-app/assets/finance/outfits/finance_xiaoyuan_stars.png",
+      "sha256": "e654bf6232cd7ec1183a9e9955f2df0043b60e53cd7b9935e4b1dbe5d5652c75"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/outfits/finance_xiaoyuan_workshop.png",
+      "target": "ios-app/assets/finance/outfits/finance_xiaoyuan_workshop.png",
+      "sha256": "0f448eb594c3c61bd7d87e9ae295afa14fe69061f88105d3fa144805f68f6548"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/props/abacus.png",
+      "target": "ios-app/assets/finance/props/abacus.png",
+      "sha256": "5700232a601a01b38d7cdc9592b475533586f0f791e80f0eb3bd01d46b3a0b21"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/props/chest.png",
+      "target": "ios-app/assets/finance/props/chest.png",
+      "sha256": "b36b3ff658c17e759a149afdef2a9b7dd71833df0be169245d9a3f9ee7d81cb0"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/props/compass.png",
+      "target": "ios-app/assets/finance/props/compass.png",
+      "sha256": "026856dea2f9386ea33e234a70e0cb188dc90a594d22670425cda6575d338b59"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/props/hourglass.png",
+      "target": "ios-app/assets/finance/props/hourglass.png",
+      "sha256": "d96aa0aa3cb59c280c35587f9a63871b85797d2c66c4f65f6a2ec8148fdb87b8"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/props/lamp.png",
+      "target": "ios-app/assets/finance/props/lamp.png",
+      "sha256": "faec6a7195f6e687b84f546b2e8b04e8601a57b0956cb777f3e2d59ca0941a0e"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/props/mailbag.png",
+      "target": "ios-app/assets/finance/props/mailbag.png",
+      "sha256": "9e66e46e9ef2a9ae53f699f4d7123e562b51d5e0d780a9be3acf51c7298f35d3"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/props/stamp.png",
+      "target": "ios-app/assets/finance/props/stamp.png",
+      "sha256": "3bc99002460380cc8576ca74ed3fe1f67473180a6390cc71643c09bc9cc449f9"
+    },
+    {
+      "source": "miniprogram/packages/financeArt/assets/finance/props/starmap.png",
+      "target": "ios-app/assets/finance/props/starmap.png",
+      "sha256": "ebfd23684f096166d352189984bb2215c3d01fde0c9296482c76921fd975b2c5"
+    }
+  ],
+  "shared_code_files": 13,
+  "art_png_count": 106,
+  "bank_id": "xiaoyuan-original-v02",
+  "bank_fingerprint": "c03eb4a3e5c2222e42c909f2d9905753d0c8320d00234445b6283c3d47b56178",
+  "original_question_count": 704,
+  "old_question_bank_included": false,
+  "note": "公开候选内共有代码与美术来源核对，题库使用独立原创主库。"
+}

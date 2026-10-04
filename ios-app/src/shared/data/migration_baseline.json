@@ -1,0 +1,1181 @@
+{
+  "family": "original",
+  "fingerprints": [
+    "61f373b9b823c1709ead12ef97d1ba384b5baa2857825eefce1ef580b4f68b66",
+    "119b1f1b864d3f1f43552768c19d46098639f206988f0c2fa19349b3f3dd5c34"
+  ],
+  "campaign": {
+    "schema_version": 1,
+    "bank_fingerprint": "61f373b9b823c1709ead12ef97d1ba384b5baa2857825eefce1ef580b4f68b66",
+    "worlds": [
+      {
+        "id": "accounting",
+        "name": "会计世界",
+        "prefix": "acc",
+        "chapters": [
+          {
+            "id": "accounting:01",
+            "number": 1,
+            "no": 1,
+            "title": "会计恒等式",
+            "biome": "forest",
+            "stages": [
+              "accounting:01:normal:01",
+              "accounting:01:boss:01"
+            ]
+          },
+          {
+            "id": "accounting:02",
+            "number": 2,
+            "no": 2,
+            "title": "资产的增减",
+            "biome": "forest",
+            "stages": [
+              "accounting:02:normal:01",
+              "accounting:02:boss:01"
+            ]
+          },
+          {
+            "id": "accounting:03",
+            "number": 3,
+            "no": 3,
+            "title": "借贷与账务",
+            "biome": "island",
+            "stages": [
+              "accounting:03:normal:01",
+              "accounting:03:boss:01"
+            ]
+          },
+          {
+            "id": "accounting:04",
+            "number": 4,
+            "no": 4,
+            "title": "权责发生制",
+            "biome": "island",
+            "stages": [
+              "accounting:04:normal:01",
+              "accounting:04:boss:01"
+            ]
+          },
+          {
+            "id": "accounting:05",
+            "number": 5,
+            "no": 5,
+            "title": "存货成本",
+            "biome": "snow",
+            "stages": [
+              "accounting:05:normal:01",
+              "accounting:05:boss:01"
+            ]
+          },
+          {
+            "id": "accounting:06",
+            "number": 6,
+            "no": 6,
+            "title": "折旧与账面价值",
+            "biome": "snow",
+            "stages": [
+              "accounting:06:normal:01",
+              "accounting:06:boss:01"
+            ]
+          },
+          {
+            "id": "accounting:07",
+            "number": 7,
+            "no": 7,
+            "title": "收入与费用",
+            "biome": "ruins",
+            "stages": [
+              "accounting:07:normal:01",
+              "accounting:07:boss:01"
+            ]
+          },
+          {
+            "id": "accounting:08",
+            "number": 8,
+            "no": 8,
+            "title": "应收与减值",
+            "biome": "ruins",
+            "stages": [
+              "accounting:08:normal:01",
+              "accounting:08:boss:01"
+            ]
+          },
+          {
+            "id": "accounting:09",
+            "number": 9,
+            "no": 9,
+            "title": "负债与利息",
+            "biome": "sky",
+            "stages": [
+              "accounting:09:normal:01",
+              "accounting:09:boss:01"
+            ]
+          },
+          {
+            "id": "accounting:10",
+            "number": 10,
+            "no": 10,
+            "title": "所有者权益",
+            "biome": "sky",
+            "stages": [
+              "accounting:10:normal:01",
+              "accounting:10:boss:01"
+            ]
+          },
+          {
+            "id": "accounting:11",
+            "number": 11,
+            "no": 11,
+            "title": "现金流分类",
+            "biome": "stars",
+            "stages": [
+              "accounting:11:normal:01",
+              "accounting:11:boss:01"
+            ]
+          },
+          {
+            "id": "accounting:12",
+            "number": 12,
+            "no": 12,
+            "title": "财务比率",
+            "biome": "stars",
+            "stages": [
+              "accounting:12:normal:01",
+              "accounting:12:boss:01"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "law",
+        "name": "经济法世界",
+        "prefix": "law",
+        "chapters": [
+          {
+            "id": "law:01",
+            "number": 1,
+            "no": 1,
+            "title": "民事主体",
+            "biome": "forest",
+            "stages": [
+              "law:01:normal:01",
+              "law:01:boss:01"
+            ]
+          },
+          {
+            "id": "law:02",
+            "number": 2,
+            "no": 2,
+            "title": "法律行为",
+            "biome": "forest",
+            "stages": [
+              "law:02:normal:01",
+              "law:02:boss:01"
+            ]
+          },
+          {
+            "id": "law:03",
+            "number": 3,
+            "no": 3,
+            "title": "代理规则",
+            "biome": "island",
+            "stages": [
+              "law:03:normal:01",
+              "law:03:boss:01"
+            ]
+          },
+          {
+            "id": "law:04",
+            "number": 4,
+            "no": 4,
+            "title": "物权基础",
+            "biome": "island",
+            "stages": [
+              "law:04:normal:01",
+              "law:04:boss:01"
+            ]
+          },
+          {
+            "id": "law:05",
+            "number": 5,
+            "no": 5,
+            "title": "合同成立",
+            "biome": "snow",
+            "stages": [
+              "law:05:normal:01",
+              "law:05:boss:01"
+            ]
+          },
+          {
+            "id": "law:06",
+            "number": 6,
+            "no": 6,
+            "title": "合同履行",
+            "biome": "snow",
+            "stages": [
+              "law:06:normal:01",
+              "law:06:boss:01"
+            ]
+          },
+          {
+            "id": "law:07",
+            "number": 7,
+            "no": 7,
+            "title": "定金与保证",
+            "biome": "ruins",
+            "stages": [
+              "law:07:normal:01",
+              "law:07:boss:01"
+            ]
+          },
+          {
+            "id": "law:08",
+            "number": 8,
+            "no": 8,
+            "title": "违约责任",
+            "biome": "ruins",
+            "stages": [
+              "law:08:normal:01",
+              "law:08:boss:01"
+            ]
+          },
+          {
+            "id": "law:09",
+            "number": 9,
+            "no": 9,
+            "title": "公司基础",
+            "biome": "sky",
+            "stages": [
+              "law:09:normal:01",
+              "law:09:boss:01"
+            ]
+          },
+          {
+            "id": "law:10",
+            "number": 10,
+            "no": 10,
+            "title": "股东出资",
+            "biome": "sky",
+            "stages": [
+              "law:10:normal:01",
+              "law:10:boss:01"
+            ]
+          },
+          {
+            "id": "law:11",
+            "number": 11,
+            "no": 11,
+            "title": "债权保护",
+            "biome": "stars",
+            "stages": [
+              "law:11:normal:01",
+              "law:11:boss:01"
+            ]
+          },
+          {
+            "id": "law:12",
+            "number": 12,
+            "no": 12,
+            "title": "商事综合",
+            "biome": "stars",
+            "stages": [
+              "law:12:normal:01",
+              "law:12:boss:01"
+            ]
+          }
+        ]
+      }
+    ],
+    "levels": {
+      "accounting:01:normal:01": {
+        "id": "accounting:01:normal:01",
+        "world_id": "accounting",
+        "chapter_id": "accounting:01",
+        "chapter_no": 1,
+        "chapter_title": "会计恒等式",
+        "biome": "forest",
+        "kind": "normal",
+        "name": "第1章 · 知识小径",
+        "qids": [
+          "orig-acc-01-01",
+          "orig-acc-01-02",
+          "orig-acc-01-03",
+          "orig-acc-01-04",
+          "orig-acc-01-05",
+          "orig-acc-01-06",
+          "orig-acc-01-07",
+          "orig-acc-01-08",
+          "orig-acc-01-09",
+          "orig-acc-01-10"
+        ],
+        "subjective": false
+      },
+      "accounting:01:boss:01": {
+        "id": "accounting:01:boss:01",
+        "world_id": "accounting",
+        "chapter_id": "accounting:01",
+        "chapter_no": 1,
+        "chapter_title": "会计恒等式",
+        "biome": "forest",
+        "kind": "boss",
+        "name": "第1章 · 守关 Boss",
+        "qids": [
+          "orig-acc-01-boss"
+        ],
+        "subjective": true
+      },
+      "accounting:02:normal:01": {
+        "id": "accounting:02:normal:01",
+        "world_id": "accounting",
+        "chapter_id": "accounting:02",
+        "chapter_no": 2,
+        "chapter_title": "资产的增减",
+        "biome": "forest",
+        "kind": "normal",
+        "name": "第2章 · 知识小径",
+        "qids": [
+          "orig-acc-02-01",
+          "orig-acc-02-02",
+          "orig-acc-02-03",
+          "orig-acc-02-04",
+          "orig-acc-02-05",
+          "orig-acc-02-06",
+          "orig-acc-02-07",
+          "orig-acc-02-08",
+          "orig-acc-02-09",
+          "orig-acc-02-10"
+        ],
+        "subjective": false
+      },
+      "accounting:02:boss:01": {
+        "id": "accounting:02:boss:01",
+        "world_id": "accounting",
+        "chapter_id": "accounting:02",
+        "chapter_no": 2,
+        "chapter_title": "资产的增减",
+        "biome": "forest",
+        "kind": "boss",
+        "name": "第2章 · 守关 Boss",
+        "qids": [
+          "orig-acc-02-boss"
+        ],
+        "subjective": true
+      },
+      "accounting:03:normal:01": {
+        "id": "accounting:03:normal:01",
+        "world_id": "accounting",
+        "chapter_id": "accounting:03",
+        "chapter_no": 3,
+        "chapter_title": "借贷与账务",
+        "biome": "island",
+        "kind": "normal",
+        "name": "第3章 · 知识小径",
+        "qids": [
+          "orig-acc-03-01",
+          "orig-acc-03-02",
+          "orig-acc-03-03",
+          "orig-acc-03-04",
+          "orig-acc-03-05",
+          "orig-acc-03-06",
+          "orig-acc-03-07",
+          "orig-acc-03-08",
+          "orig-acc-03-09",
+          "orig-acc-03-10"
+        ],
+        "subjective": false
+      },
+      "accounting:03:boss:01": {
+        "id": "accounting:03:boss:01",
+        "world_id": "accounting",
+        "chapter_id": "accounting:03",
+        "chapter_no": 3,
+        "chapter_title": "借贷与账务",
+        "biome": "island",
+        "kind": "boss",
+        "name": "第3章 · 守关 Boss",
+        "qids": [
+          "orig-acc-03-boss"
+        ],
+        "subjective": true
+      },
+      "accounting:04:normal:01": {
+        "id": "accounting:04:normal:01",
+        "world_id": "accounting",
+        "chapter_id": "accounting:04",
+        "chapter_no": 4,
+        "chapter_title": "权责发生制",
+        "biome": "island",
+        "kind": "normal",
+        "name": "第4章 · 知识小径",
+        "qids": [
+          "orig-acc-04-01",
+          "orig-acc-04-02",
+          "orig-acc-04-03",
+          "orig-acc-04-04",
+          "orig-acc-04-05",
+          "orig-acc-04-06",
+          "orig-acc-04-07",
+          "orig-acc-04-08",
+          "orig-acc-04-09",
+          "orig-acc-04-10"
+        ],
+        "subjective": false
+      },
+      "accounting:04:boss:01": {
+        "id": "accounting:04:boss:01",
+        "world_id": "accounting",
+        "chapter_id": "accounting:04",
+        "chapter_no": 4,
+        "chapter_title": "权责发生制",
+        "biome": "island",
+        "kind": "boss",
+        "name": "第4章 · 守关 Boss",
+        "qids": [
+          "orig-acc-04-boss"
+        ],
+        "subjective": true
+      },
+      "accounting:05:normal:01": {
+        "id": "accounting:05:normal:01",
+        "world_id": "accounting",
+        "chapter_id": "accounting:05",
+        "chapter_no": 5,
+        "chapter_title": "存货成本",
+        "biome": "snow",
+        "kind": "normal",
+        "name": "第5章 · 知识小径",
+        "qids": [
+          "orig-acc-05-01",
+          "orig-acc-05-02",
+          "orig-acc-05-03",
+          "orig-acc-05-04",
+          "orig-acc-05-05",
+          "orig-acc-05-06",
+          "orig-acc-05-07",
+          "orig-acc-05-08",
+          "orig-acc-05-09",
+          "orig-acc-05-10"
+        ],
+        "subjective": false
+      },
+      "accounting:05:boss:01": {
+        "id": "accounting:05:boss:01",
+        "world_id": "accounting",
+        "chapter_id": "accounting:05",
+        "chapter_no": 5,
+        "chapter_title": "存货成本",
+        "biome": "snow",
+        "kind": "boss",
+        "name": "第5章 · 守关 Boss",
+        "qids": [
+          "orig-acc-05-boss"
+        ],
+        "subjective": true
+      },
+      "accounting:06:normal:01": {
+        "id": "accounting:06:normal:01",
+        "world_id": "accounting",
+        "chapter_id": "accounting:06",
+        "chapter_no": 6,
+        "chapter_title": "折旧与账面价值",
+        "biome": "snow",
+        "kind": "normal",
+        "name": "第6章 · 知识小径",
+        "qids": [
+          "orig-acc-06-01",
+          "orig-acc-06-02",
+          "orig-acc-06-03",
+          "orig-acc-06-04",
+          "orig-acc-06-05",
+          "orig-acc-06-06",
+          "orig-acc-06-07",
+          "orig-acc-06-08",
+          "orig-acc-06-09",
+          "orig-acc-06-10"
+        ],
+        "subjective": false
+      },
+      "accounting:06:boss:01": {
+        "id": "accounting:06:boss:01",
+        "world_id": "accounting",
+        "chapter_id": "accounting:06",
+        "chapter_no": 6,
+        "chapter_title": "折旧与账面价值",
+        "biome": "snow",
+        "kind": "boss",
+        "name": "第6章 · 守关 Boss",
+        "qids": [
+          "orig-acc-06-boss"
+        ],
+        "subjective": true
+      },
+      "accounting:07:normal:01": {
+        "id": "accounting:07:normal:01",
+        "world_id": "accounting",
+        "chapter_id": "accounting:07",
+        "chapter_no": 7,
+        "chapter_title": "收入与费用",
+        "biome": "ruins",
+        "kind": "normal",
+        "name": "第7章 · 知识小径",
+        "qids": [
+          "orig-acc-07-01",
+          "orig-acc-07-02",
+          "orig-acc-07-03",
+          "orig-acc-07-04",
+          "orig-acc-07-05",
+          "orig-acc-07-06",
+          "orig-acc-07-07",
+          "orig-acc-07-08",
+          "orig-acc-07-09",
+          "orig-acc-07-10"
+        ],
+        "subjective": false
+      },
+      "accounting:07:boss:01": {
+        "id": "accounting:07:boss:01",
+        "world_id": "accounting",
+        "chapter_id": "accounting:07",
+        "chapter_no": 7,
+        "chapter_title": "收入与费用",
+        "biome": "ruins",
+        "kind": "boss",
+        "name": "第7章 · 守关 Boss",
+        "qids": [
+          "orig-acc-07-boss"
+        ],
+        "subjective": true
+      },
+      "accounting:08:normal:01": {
+        "id": "accounting:08:normal:01",
+        "world_id": "accounting",
+        "chapter_id": "accounting:08",
+        "chapter_no": 8,
+        "chapter_title": "应收与减值",
+        "biome": "ruins",
+        "kind": "normal",
+        "name": "第8章 · 知识小径",
+        "qids": [
+          "orig-acc-08-01",
+          "orig-acc-08-02",
+          "orig-acc-08-03",
+          "orig-acc-08-04",
+          "orig-acc-08-05",
+          "orig-acc-08-06",
+          "orig-acc-08-07",
+          "orig-acc-08-08",
+          "orig-acc-08-09",
+          "orig-acc-08-10"
+        ],
+        "subjective": false
+      },
+      "accounting:08:boss:01": {
+        "id": "accounting:08:boss:01",
+        "world_id": "accounting",
+        "chapter_id": "accounting:08",
+        "chapter_no": 8,
+        "chapter_title": "应收与减值",
+        "biome": "ruins",
+        "kind": "boss",
+        "name": "第8章 · 守关 Boss",
+        "qids": [
+          "orig-acc-08-boss"
+        ],
+        "subjective": true
+      },
+      "accounting:09:normal:01": {
+        "id": "accounting:09:normal:01",
+        "world_id": "accounting",
+        "chapter_id": "accounting:09",
+        "chapter_no": 9,
+        "chapter_title": "负债与利息",
+        "biome": "sky",
+        "kind": "normal",
+        "name": "第9章 · 知识小径",
+        "qids": [
+          "orig-acc-09-01",
+          "orig-acc-09-02",
+          "orig-acc-09-03",
+          "orig-acc-09-04",
+          "orig-acc-09-05",
+          "orig-acc-09-06",
+          "orig-acc-09-07",
+          "orig-acc-09-08",
+          "orig-acc-09-09",
+          "orig-acc-09-10"
+        ],
+        "subjective": false
+      },
+      "accounting:09:boss:01": {
+        "id": "accounting:09:boss:01",
+        "world_id": "accounting",
+        "chapter_id": "accounting:09",
+        "chapter_no": 9,
+        "chapter_title": "负债与利息",
+        "biome": "sky",
+        "kind": "boss",
+        "name": "第9章 · 守关 Boss",
+        "qids": [
+          "orig-acc-09-boss"
+        ],
+        "subjective": true
+      },
+      "accounting:10:normal:01": {
+        "id": "accounting:10:normal:01",
+        "world_id": "accounting",
+        "chapter_id": "accounting:10",
+        "chapter_no": 10,
+        "chapter_title": "所有者权益",
+        "biome": "sky",
+        "kind": "normal",
+        "name": "第10章 · 知识小径",
+        "qids": [
+          "orig-acc-10-01",
+          "orig-acc-10-02",
+          "orig-acc-10-03",
+          "orig-acc-10-04",
+          "orig-acc-10-05",
+          "orig-acc-10-06",
+          "orig-acc-10-07",
+          "orig-acc-10-08",
+          "orig-acc-10-09",
+          "orig-acc-10-10"
+        ],
+        "subjective": false
+      },
+      "accounting:10:boss:01": {
+        "id": "accounting:10:boss:01",
+        "world_id": "accounting",
+        "chapter_id": "accounting:10",
+        "chapter_no": 10,
+        "chapter_title": "所有者权益",
+        "biome": "sky",
+        "kind": "boss",
+        "name": "第10章 · 守关 Boss",
+        "qids": [
+          "orig-acc-10-boss"
+        ],
+        "subjective": true
+      },
+      "accounting:11:normal:01": {
+        "id": "accounting:11:normal:01",
+        "world_id": "accounting",
+        "chapter_id": "accounting:11",
+        "chapter_no": 11,
+        "chapter_title": "现金流分类",
+        "biome": "stars",
+        "kind": "normal",
+        "name": "第11章 · 知识小径",
+        "qids": [
+          "orig-acc-11-01",
+          "orig-acc-11-02",
+          "orig-acc-11-03",
+          "orig-acc-11-04",
+          "orig-acc-11-05",
+          "orig-acc-11-06",
+          "orig-acc-11-07",
+          "orig-acc-11-08",
+          "orig-acc-11-09",
+          "orig-acc-11-10"
+        ],
+        "subjective": false
+      },
+      "accounting:11:boss:01": {
+        "id": "accounting:11:boss:01",
+        "world_id": "accounting",
+        "chapter_id": "accounting:11",
+        "chapter_no": 11,
+        "chapter_title": "现金流分类",
+        "biome": "stars",
+        "kind": "boss",
+        "name": "第11章 · 守关 Boss",
+        "qids": [
+          "orig-acc-11-boss"
+        ],
+        "subjective": true
+      },
+      "accounting:12:normal:01": {
+        "id": "accounting:12:normal:01",
+        "world_id": "accounting",
+        "chapter_id": "accounting:12",
+        "chapter_no": 12,
+        "chapter_title": "财务比率",
+        "biome": "stars",
+        "kind": "normal",
+        "name": "第12章 · 知识小径",
+        "qids": [
+          "orig-acc-12-01",
+          "orig-acc-12-02",
+          "orig-acc-12-03",
+          "orig-acc-12-04",
+          "orig-acc-12-05",
+          "orig-acc-12-06",
+          "orig-acc-12-07",
+          "orig-acc-12-08",
+          "orig-acc-12-09",
+          "orig-acc-12-10"
+        ],
+        "subjective": false
+      },
+      "accounting:12:boss:01": {
+        "id": "accounting:12:boss:01",
+        "world_id": "accounting",
+        "chapter_id": "accounting:12",
+        "chapter_no": 12,
+        "chapter_title": "财务比率",
+        "biome": "stars",
+        "kind": "boss",
+        "name": "第12章 · 守关 Boss",
+        "qids": [
+          "orig-acc-12-boss"
+        ],
+        "subjective": true
+      },
+      "law:01:normal:01": {
+        "id": "law:01:normal:01",
+        "world_id": "law",
+        "chapter_id": "law:01",
+        "chapter_no": 1,
+        "chapter_title": "民事主体",
+        "biome": "forest",
+        "kind": "normal",
+        "name": "第1章 · 知识小径",
+        "qids": [
+          "orig-law-01-01",
+          "orig-law-01-02",
+          "orig-law-01-03",
+          "orig-law-01-04",
+          "orig-law-01-05",
+          "orig-law-01-06",
+          "orig-law-01-07",
+          "orig-law-01-08",
+          "orig-law-01-09",
+          "orig-law-01-10"
+        ],
+        "subjective": false
+      },
+      "law:01:boss:01": {
+        "id": "law:01:boss:01",
+        "world_id": "law",
+        "chapter_id": "law:01",
+        "chapter_no": 1,
+        "chapter_title": "民事主体",
+        "biome": "forest",
+        "kind": "boss",
+        "name": "第1章 · 守关 Boss",
+        "qids": [
+          "orig-law-01-boss"
+        ],
+        "subjective": true
+      },
+      "law:02:normal:01": {
+        "id": "law:02:normal:01",
+        "world_id": "law",
+        "chapter_id": "law:02",
+        "chapter_no": 2,
+        "chapter_title": "法律行为",
+        "biome": "forest",
+        "kind": "normal",
+        "name": "第2章 · 知识小径",
+        "qids": [
+          "orig-law-02-01",
+          "orig-law-02-02",
+          "orig-law-02-03",
+          "orig-law-02-04",
+          "orig-law-02-05",
+          "orig-law-02-06",
+          "orig-law-02-07",
+          "orig-law-02-08",
+          "orig-law-02-09",
+          "orig-law-02-10"
+        ],
+        "subjective": false
+      },
+      "law:02:boss:01": {
+        "id": "law:02:boss:01",
+        "world_id": "law",
+        "chapter_id": "law:02",
+        "chapter_no": 2,
+        "chapter_title": "法律行为",
+        "biome": "forest",
+        "kind": "boss",
+        "name": "第2章 · 守关 Boss",
+        "qids": [
+          "orig-law-02-boss"
+        ],
+        "subjective": true
+      },
+      "law:03:normal:01": {
+        "id": "law:03:normal:01",
+        "world_id": "law",
+        "chapter_id": "law:03",
+        "chapter_no": 3,
+        "chapter_title": "代理规则",
+        "biome": "island",
+        "kind": "normal",
+        "name": "第3章 · 知识小径",
+        "qids": [
+          "orig-law-03-01",
+          "orig-law-03-02",
+          "orig-law-03-03",
+          "orig-law-03-04",
+          "orig-law-03-05",
+          "orig-law-03-06",
+          "orig-law-03-07",
+          "orig-law-03-08",
+          "orig-law-03-09",
+          "orig-law-03-10"
+        ],
+        "subjective": false
+      },
+      "law:03:boss:01": {
+        "id": "law:03:boss:01",
+        "world_id": "law",
+        "chapter_id": "law:03",
+        "chapter_no": 3,
+        "chapter_title": "代理规则",
+        "biome": "island",
+        "kind": "boss",
+        "name": "第3章 · 守关 Boss",
+        "qids": [
+          "orig-law-03-boss"
+        ],
+        "subjective": true
+      },
+      "law:04:normal:01": {
+        "id": "law:04:normal:01",
+        "world_id": "law",
+        "chapter_id": "law:04",
+        "chapter_no": 4,
+        "chapter_title": "物权基础",
+        "biome": "island",
+        "kind": "normal",
+        "name": "第4章 · 知识小径",
+        "qids": [
+          "orig-law-04-01",
+          "orig-law-04-02",
+          "orig-law-04-03",
+          "orig-law-04-04",
+          "orig-law-04-05",
+          "orig-law-04-06",
+          "orig-law-04-07",
+          "orig-law-04-08",
+          "orig-law-04-09",
+          "orig-law-04-10"
+        ],
+        "subjective": false
+      },
+      "law:04:boss:01": {
+        "id": "law:04:boss:01",
+        "world_id": "law",
+        "chapter_id": "law:04",
+        "chapter_no": 4,
+        "chapter_title": "物权基础",
+        "biome": "island",
+        "kind": "boss",
+        "name": "第4章 · 守关 Boss",
+        "qids": [
+          "orig-law-04-boss"
+        ],
+        "subjective": true
+      },
+      "law:05:normal:01": {
+        "id": "law:05:normal:01",
+        "world_id": "law",
+        "chapter_id": "law:05",
+        "chapter_no": 5,
+        "chapter_title": "合同成立",
+        "biome": "snow",
+        "kind": "normal",
+        "name": "第5章 · 知识小径",
+        "qids": [
+          "orig-law-05-01",
+          "orig-law-05-02",
+          "orig-law-05-03",
+          "orig-law-05-04",
+          "orig-law-05-05",
+          "orig-law-05-06",
+          "orig-law-05-07",
+          "orig-law-05-08",
+          "orig-law-05-09",
+          "orig-law-05-10"
+        ],
+        "subjective": false
+      },
+      "law:05:boss:01": {
+        "id": "law:05:boss:01",
+        "world_id": "law",
+        "chapter_id": "law:05",
+        "chapter_no": 5,
+        "chapter_title": "合同成立",
+        "biome": "snow",
+        "kind": "boss",
+        "name": "第5章 · 守关 Boss",
+        "qids": [
+          "orig-law-05-boss"
+        ],
+        "subjective": true
+      },
+      "law:06:normal:01": {
+        "id": "law:06:normal:01",
+        "world_id": "law",
+        "chapter_id": "law:06",
+        "chapter_no": 6,
+        "chapter_title": "合同履行",
+        "biome": "snow",
+        "kind": "normal",
+        "name": "第6章 · 知识小径",
+        "qids": [
+          "orig-law-06-01",
+          "orig-law-06-02",
+          "orig-law-06-03",
+          "orig-law-06-04",
+          "orig-law-06-05",
+          "orig-law-06-06",
+          "orig-law-06-07",
+          "orig-law-06-08",
+          "orig-law-06-09",
+          "orig-law-06-10"
+        ],
+        "subjective": false
+      },
+      "law:06:boss:01": {
+        "id": "law:06:boss:01",
+        "world_id": "law",
+        "chapter_id": "law:06",
+        "chapter_no": 6,
+        "chapter_title": "合同履行",
+        "biome": "snow",
+        "kind": "boss",
+        "name": "第6章 · 守关 Boss",
+        "qids": [
+          "orig-law-06-boss"
+        ],
+        "subjective": true
+      },
+      "law:07:normal:01": {
+        "id": "law:07:normal:01",
+        "world_id": "law",
+        "chapter_id": "law:07",
+        "chapter_no": 7,
+        "chapter_title": "定金与保证",
+        "biome": "ruins",
+        "kind": "normal",
+        "name": "第7章 · 知识小径",
+        "qids": [
+          "orig-law-07-01",
+          "orig-law-07-02",
+          "orig-law-07-03",
+          "orig-law-07-04",
+          "orig-law-07-05",
+          "orig-law-07-06",
+          "orig-law-07-07",
+          "orig-law-07-08",
+          "orig-law-07-09",
+          "orig-law-07-10"
+        ],
+        "subjective": false
+      },
+      "law:07:boss:01": {
+        "id": "law:07:boss:01",
+        "world_id": "law",
+        "chapter_id": "law:07",
+        "chapter_no": 7,
+        "chapter_title": "定金与保证",
+        "biome": "ruins",
+        "kind": "boss",
+        "name": "第7章 · 守关 Boss",
+        "qids": [
+          "orig-law-07-boss"
+        ],
+        "subjective": true
+      },
+      "law:08:normal:01": {
+        "id": "law:08:normal:01",
+        "world_id": "law",
+        "chapter_id": "law:08",
+        "chapter_no": 8,
+        "chapter_title": "违约责任",
+        "biome": "ruins",
+        "kind": "normal",
+        "name": "第8章 · 知识小径",
+        "qids": [
+          "orig-law-08-01",
+          "orig-law-08-02",
+          "orig-law-08-03",
+          "orig-law-08-04",
+          "orig-law-08-05",
+          "orig-law-08-06",
+          "orig-law-08-07",
+          "orig-law-08-08",
+          "orig-law-08-09",
+          "orig-law-08-10"
+        ],
+        "subjective": false
+      },
+      "law:08:boss:01": {
+        "id": "law:08:boss:01",
+        "world_id": "law",
+        "chapter_id": "law:08",
+        "chapter_no": 8,
+        "chapter_title": "违约责任",
+        "biome": "ruins",
+        "kind": "boss",
+        "name": "第8章 · 守关 Boss",
+        "qids": [
+          "orig-law-08-boss"
+        ],
+        "subjective": true
+      },
+      "law:09:normal:01": {
+        "id": "law:09:normal:01",
+        "world_id": "law",
+        "chapter_id": "law:09",
+        "chapter_no": 9,
+        "chapter_title": "公司基础",
+        "biome": "sky",
+        "kind": "normal",
+        "name": "第9章 · 知识小径",
+        "qids": [
+          "orig-law-09-01",
+          "orig-law-09-02",
+          "orig-law-09-03",
+          "orig-law-09-04",
+          "orig-law-09-05",
+          "orig-law-09-06",
+          "orig-law-09-07",
+          "orig-law-09-08",
+          "orig-law-09-09",
+          "orig-law-09-10"
+        ],
+        "subjective": false
+      },
+      "law:09:boss:01": {
+        "id": "law:09:boss:01",
+        "world_id": "law",
+        "chapter_id": "law:09",
+        "chapter_no": 9,
+        "chapter_title": "公司基础",
+        "biome": "sky",
+        "kind": "boss",
+        "name": "第9章 · 守关 Boss",
+        "qids": [
+          "orig-law-09-boss"
+        ],
+        "subjective": true
+      },
+      "law:10:normal:01": {
+        "id": "law:10:normal:01",
+        "world_id": "law",
+        "chapter_id": "law:10",
+        "chapter_no": 10,
+        "chapter_title": "股东出资",
+        "biome": "sky",
+        "kind": "normal",
+        "name": "第10章 · 知识小径",
+        "qids": [
+          "orig-law-10-01",
+          "orig-law-10-02",
+          "orig-law-10-03",
+          "orig-law-10-04",
+          "orig-law-10-05",
+          "orig-law-10-06",
+          "orig-law-10-07",
+          "orig-law-10-08",
+          "orig-law-10-09",
+          "orig-law-10-10"
+        ],
+        "subjective": false
+      },
+      "law:10:boss:01": {
+        "id": "law:10:boss:01",
+        "world_id": "law",
+        "chapter_id": "law:10",
+        "chapter_no": 10,
+        "chapter_title": "股东出资",
+        "biome": "sky",
+        "kind": "boss",
+        "name": "第10章 · 守关 Boss",
+        "qids": [
+          "orig-law-10-boss"
+        ],
+        "subjective": true
+      },
+      "law:11:normal:01": {
+        "id": "law:11:normal:01",
+        "world_id": "law",
+        "chapter_id": "law:11",
+        "chapter_no": 11,
+        "chapter_title": "债权保护",
+        "biome": "stars",
+        "kind": "normal",
+        "name": "第11章 · 知识小径",
+        "qids": [
+          "orig-law-11-01",
+          "orig-law-11-02",
+          "orig-law-11-03",
+          "orig-law-11-04",
+          "orig-law-11-05",
+          "orig-law-11-06",
+          "orig-law-11-07",
+          "orig-law-11-08",
+          "orig-law-11-09",
+          "orig-law-11-10"
+        ],
+        "subjective": false
+      },
+      "law:11:boss:01": {
+        "id": "law:11:boss:01",
+        "world_id": "law",
+        "chapter_id": "law:11",
+        "chapter_no": 11,
+        "chapter_title": "债权保护",
+        "biome": "stars",
+        "kind": "boss",
+        "name": "第11章 · 守关 Boss",
+        "qids": [
+          "orig-law-11-boss"
+        ],
+        "subjective": true
+      },
+      "law:12:normal:01": {
+        "id": "law:12:normal:01",
+        "world_id": "law",
+        "chapter_id": "law:12",
+        "chapter_no": 12,
+        "chapter_title": "商事综合",
+        "biome": "stars",
+        "kind": "normal",
+        "name": "第12章 · 知识小径",
+        "qids": [
+          "orig-law-12-01",
+          "orig-law-12-02",
+          "orig-law-12-03",
+          "orig-law-12-04",
+          "orig-law-12-05",
+          "orig-law-12-06",
+          "orig-law-12-07",
+          "orig-law-12-08",
+          "orig-law-12-09",
+          "orig-law-12-10"
+        ],
+        "subjective": false
+      },
+      "law:12:boss:01": {
+        "id": "law:12:boss:01",
+        "world_id": "law",
+        "chapter_id": "law:12",
+        "chapter_no": 12,
+        "chapter_title": "商事综合",
+        "biome": "stars",
+        "kind": "boss",
+        "name": "第12章 · 守关 Boss",
+        "qids": [
+          "orig-law-12-boss"
+        ],
+        "subjective": true
+      }
+    }
+  }
+}

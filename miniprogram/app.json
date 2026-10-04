@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/home/index"
+  ],
+  "subpackages": [
+    {
+      "root": "packages/accounting1",
+      "name": "accounting1",
+      "pages": [
+        "pages/quiz/index"
+      ]
+    },
+    {
+      "root": "packages/law1",
+      "name": "law1",
+      "pages": [
+        "pages/quiz/index"
+      ]
+    },
+    {
+      "root": "packages/finance1",
+      "name": "finance1",
+      "pages": [
+        "pages/quiz/index"
+      ]
+    },
+    {
+      "root": "packages/financeArt",
+      "name": "financeArt",
+      "pages": [
+        "pages/ready/index"
+      ]
+    }
+  ],
+  "window": {
+    "navigationBarTitleText": "小圆原创冒险",
+    "navigationBarBackgroundColor": "#2066D5",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F1F6FF"
+  },
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json"
+}

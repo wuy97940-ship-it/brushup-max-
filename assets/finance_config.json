@@ -1,0 +1,893 @@
+{
+  "schema_version": 1,
+  "expansion_id": "finance_2026",
+  "world_id": "finance",
+  "chapter_materials": 3,
+  "building_costs": [
+    1,
+    3,
+    6
+  ],
+  "subjective_boss_size": 1,
+  "hero": {
+    "id": "xiaobao",
+    "name": "小宝 · 黑白企鹅",
+    "starter": true
+  },
+  "acts": [
+    {
+      "id": "ledger",
+      "name": "账本港",
+      "chapters": [
+        1,
+        2
+      ],
+      "npc": "npc_beaver",
+      "building": "building_ledger",
+      "theme": "经营目标、财务报表与成长预测",
+      "story": [
+        {
+          "speaker": "小宝",
+          "text": "星光账本被海风吹散了！先读懂小店的账目，找回第一张星页。"
+        },
+        {
+          "speaker": "小圆",
+          "text": "把每个条件看清楚，一步一步来。今天的知识会成为小镇的新力量。"
+        },
+        {
+          "speaker": "小团",
+          "text": "遇到难题就记下思路，看看解析，我们一起把星光账本补完整！"
+        },
+        {
+          "speaker": "海狸账房",
+          "text": "货架上有好多漂亮贝壳，可账本却没有告诉我店铺有没有赚钱。帮我把资产、利润和现金流的线索连起来吧。"
+        },
+        {
+          "speaker": "小圆",
+          "text": "先读报表，再看比率。利润和现金不总是在同一天到来，不能只看一个数字。"
+        },
+        {
+          "speaker": "小团",
+          "text": "我来找今年和去年的变化，看看增长需要多少资金。"
+        },
+        {
+          "speaker": "小宝",
+          "text": "找到第一张星页后，账本港就能重新开灯！"
+        }
+      ],
+      "completion_story": [
+        {
+          "speaker": "小宝",
+          "text": "账本港的星页亮起来啦！"
+        },
+        {
+          "speaker": "小圆",
+          "text": "我们学会了经营目标、财务报表与成长预测。现在去建设小镇吧。"
+        }
+      ],
+      "asset": "finance/buildings/ledger_1.png"
+    },
+    {
+      "id": "time",
+      "name": "时光储蓄所",
+      "chapters": [
+        3,
+        4
+      ],
+      "npc": "npc_squirrel",
+      "building": "building_time",
+      "theme": "时间价值与资本成本",
+      "story": [
+        {
+          "speaker": "小宝",
+          "text": "松鼠把今天和明天的金币放进了不同盒子。小宝决定找出跨越时间的换算方法。"
+        },
+        {
+          "speaker": "小圆",
+          "text": "把每个条件看清楚，一步一步来。今天的知识会成为小镇的新力量。"
+        },
+        {
+          "speaker": "小团",
+          "text": "遇到难题就记下思路，看看解析，我们一起把星光账本补完整！"
+        },
+        {
+          "speaker": "松鼠储蓄员",
+          "text": "这箱松果今天就能领，那箱要等明年。先把它们换到同一时点，才能公平比较。"
+        },
+        {
+          "speaker": "小宝",
+          "text": "折现罗盘终于有用了！期初还是期末、利率对应几年，都要先写清。"
+        },
+        {
+          "speaker": "小圆",
+          "text": "资金也有成本。项目的风险和融资条件不同，使用的资本成本也要检查。"
+        },
+        {
+          "speaker": "小团",
+          "text": "算好时间和成本，下一段航程才有可靠的坐标。"
+        }
+      ],
+      "completion_story": [
+        {
+          "speaker": "小宝",
+          "text": "时光储蓄所的星页亮起来啦！"
+        },
+        {
+          "speaker": "小圆",
+          "text": "我们学会了时间价值与资本成本。现在去建设小镇吧。"
+        }
+      ],
+      "asset": "finance/buildings/time_1.png"
+    },
+    {
+      "id": "invest",
+      "name": "星光投资站",
+      "chapters": [
+        5,
+        6,
+        7
+      ],
+      "npc": "npc_fox",
+      "building": "building_invest",
+      "theme": "资本预算、期权与企业估值",
+      "story": [
+        {
+          "speaker": "小宝",
+          "text": "狐狸送来三张投资邀请函。小圆和小团要分清有价值的机会，点亮投资星图。"
+        },
+        {
+          "speaker": "小圆",
+          "text": "把每个条件看清楚，一步一步来。今天的知识会成为小镇的新力量。"
+        },
+        {
+          "speaker": "小团",
+          "text": "遇到难题就记下思路，看看解析，我们一起把星光账本补完整！"
+        },
+        {
+          "speaker": "狐狸投资顾问",
+          "text": "一张邀请函说收益很高，一张保留了未来选择，还有一张要买下整家店。你们愿意先检查现金流吗？"
+        },
+        {
+          "speaker": "小团",
+          "text": "把相关现金流列全，再看净现值，不能被已经花掉的沉没成本牵着走。"
+        },
+        {
+          "speaker": "小圆",
+          "text": "期权的选择权和企业的整体价值，要分别按适用模型分析。"
+        },
+        {
+          "speaker": "小宝",
+          "text": "每看清一个条件，投资星图就亮起一颗星！"
+        }
+      ],
+      "completion_story": [
+        {
+          "speaker": "小宝",
+          "text": "星光投资站的星页亮起来啦！"
+        },
+        {
+          "speaker": "小圆",
+          "text": "我们学会了资本预算、期权与企业估值。现在去建设小镇吧。"
+        }
+      ],
+      "asset": "finance/buildings/invest_1.png"
+    },
+    {
+      "id": "funding",
+      "name": "航海筹资港",
+      "chapters": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "npc": "npc_rabbit",
+      "building": "building_funding",
+      "theme": "筹资、股利与营运资本",
+      "story": [
+        {
+          "speaker": "小宝",
+          "text": "小店的远航船就要出发。筹多少钱、留多少现金，每个决定都关系着航程。"
+        },
+        {
+          "speaker": "小圆",
+          "text": "把每个条件看清楚，一步一步来。今天的知识会成为小镇的新力量。"
+        },
+        {
+          "speaker": "小团",
+          "text": "遇到难题就记下思路，看看解析，我们一起把星光账本补完整！"
+        },
+        {
+          "speaker": "兔子航运商",
+          "text": "船已经装好了，可货款下个月才回。筹资、分红、库存和现金，每一项都关系着这次远航。"
+        },
+        {
+          "speaker": "小圆",
+          "text": "先安排资金需求，再比较融资方式、资本结构和股利政策。"
+        },
+        {
+          "speaker": "小团",
+          "text": "利润不错也可能暂时缺现金。把存货、应收账款和回款时间一起检查。"
+        },
+        {
+          "speaker": "小宝",
+          "text": "企鹅邮袋准备好了，容易混淆的条件都留在复习清单里！"
+        }
+      ],
+      "completion_story": [
+        {
+          "speaker": "小宝",
+          "text": "航海筹资港的星页亮起来啦！"
+        },
+        {
+          "speaker": "小圆",
+          "text": "我们学会了筹资、股利与营运资本。现在去建设小镇吧。"
+        }
+      ],
+      "asset": "finance/buildings/funding_1.png"
+    },
+    {
+      "id": "workshop",
+      "name": "猫爪工坊",
+      "chapters": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "npc": "npc_raccoon",
+      "building": "building_workshop",
+      "theme": "成本计算、差异分析与经营决策",
+      "story": [
+        {
+          "speaker": "小宝",
+          "text": "工坊订单越来越多，材料却不够用了。小团邀请大家一起算清成本、安排生产。"
+        },
+        {
+          "speaker": "小圆",
+          "text": "把每个条件看清楚，一步一步来。今天的知识会成为小镇的新力量。"
+        },
+        {
+          "speaker": "小团",
+          "text": "遇到难题就记下思路，看看解析，我们一起把星光账本补完整！"
+        },
+        {
+          "speaker": "浣熊工坊师",
+          "text": "同一间工坊收到两批不同的订单。每件用了多少材料，哪些成本会随决定变化，我们需要一张清楚的计算单。"
+        },
+        {
+          "speaker": "小团",
+          "text": "从成本归集到分配一步一步算，先分清固定成本、变动成本和相关成本。"
+        },
+        {
+          "speaker": "小圆",
+          "text": "定价和经营决策还要看约束与差异，不能把全部账面成本都塞进同一个公式。"
+        },
+        {
+          "speaker": "小宝",
+          "text": "成本算盘记下过程，猫爪图章盖在每一次认真复盘上。"
+        }
+      ],
+      "completion_story": [
+        {
+          "speaker": "小宝",
+          "text": "猫爪工坊的星页亮起来啦！"
+        },
+        {
+          "speaker": "小圆",
+          "text": "我们学会了成本计算、差异分析与经营决策。现在去建设小镇吧。"
+        }
+      ],
+      "asset": "finance/buildings/workshop_1.png"
+    },
+    {
+      "id": "budget",
+      "name": "预算指挥塔",
+      "chapters": [
+        18,
+        19,
+        20
+      ],
+      "npc": "npc_turtle",
+      "building": "building_budget",
+      "theme": "全面预算、责任会计与业绩评价",
+      "story": [
+        {
+          "speaker": "小宝",
+          "text": "最后三张星页藏在未来的计划里。三位主角将把预算、责任与成果拼成完整账本。"
+        },
+        {
+          "speaker": "小圆",
+          "text": "把每个条件看清楚，一步一步来。今天的知识会成为小镇的新力量。"
+        },
+        {
+          "speaker": "小团",
+          "text": "遇到难题就记下思路，看看解析，我们一起把星光账本补完整！"
+        },
+        {
+          "speaker": "乌龟预算师",
+          "text": "小镇终于热闹了。未来的计划由谁负责，实际结果如何评价，最后三张星页正等着你们。"
+        },
+        {
+          "speaker": "小圆",
+          "text": "把销售、生产和现金预算连起来，计划之间也要能勾稽。"
+        },
+        {
+          "speaker": "小团",
+          "text": "评价时看责任中心的可控范围，再按适用指标判断业绩。"
+        },
+        {
+          "speaker": "小宝",
+          "text": "星光账本快完整了！六座地标会记住我们学过的每一章。"
+        }
+      ],
+      "completion_story": [
+        {
+          "speaker": "小宝",
+          "text": "预算指挥塔的星页亮起来啦！"
+        },
+        {
+          "speaker": "小圆",
+          "text": "我们学会了全面预算、责任会计与业绩评价。现在去建设小镇吧。"
+        }
+      ],
+      "asset": "finance/buildings/budget_1.png"
+    }
+  ],
+  "buildings": [
+    {
+      "id": "building_ledger",
+      "act_id": "ledger",
+      "name": "账本事务所",
+      "levels": [
+        "初建小屋",
+        "繁忙铺面",
+        "星光地标"
+      ],
+      "assets": [
+        "finance/buildings/ledger_1.png",
+        "finance/buildings/ledger_2.png",
+        "finance/buildings/ledger_3.png"
+      ]
+    },
+    {
+      "id": "building_time",
+      "act_id": "time",
+      "name": "时光储蓄所",
+      "levels": [
+        "初建小屋",
+        "繁忙铺面",
+        "星光地标"
+      ],
+      "assets": [
+        "finance/buildings/time_1.png",
+        "finance/buildings/time_2.png",
+        "finance/buildings/time_3.png"
+      ]
+    },
+    {
+      "id": "building_invest",
+      "act_id": "invest",
+      "name": "星光投资站",
+      "levels": [
+        "初建小屋",
+        "繁忙铺面",
+        "星光地标"
+      ],
+      "assets": [
+        "finance/buildings/invest_1.png",
+        "finance/buildings/invest_2.png",
+        "finance/buildings/invest_3.png"
+      ]
+    },
+    {
+      "id": "building_funding",
+      "act_id": "funding",
+      "name": "航海筹资港",
+      "levels": [
+        "初建小屋",
+        "繁忙铺面",
+        "星光地标"
+      ],
+      "assets": [
+        "finance/buildings/funding_1.png",
+        "finance/buildings/funding_2.png",
+        "finance/buildings/funding_3.png"
+      ]
+    },
+    {
+      "id": "building_workshop",
+      "act_id": "workshop",
+      "name": "猫爪工坊",
+      "levels": [
+        "初建小屋",
+        "繁忙铺面",
+        "星光地标"
+      ],
+      "assets": [
+        "finance/buildings/workshop_1.png",
+        "finance/buildings/workshop_2.png",
+        "finance/buildings/workshop_3.png"
+      ]
+    },
+    {
+      "id": "building_budget",
+      "act_id": "budget",
+      "name": "预算指挥塔",
+      "levels": [
+        "初建小屋",
+        "繁忙铺面",
+        "星光地标"
+      ],
+      "assets": [
+        "finance/buildings/budget_1.png",
+        "finance/buildings/budget_2.png",
+        "finance/buildings/budget_3.png"
+      ]
+    }
+  ],
+  "companions": [
+    {
+      "id": "spirit_deer",
+      "name": "小鹿露露",
+      "price": 150,
+      "unlock_chapter": 2,
+      "act_id": "ledger",
+      "role": "复习提醒",
+      "story": "露露记得每一次努力，轻轻提醒你再看看薄弱知识。",
+      "asset": "finance/companions/spirit_deer.png"
+    },
+    {
+      "id": "spirit_owl",
+      "name": "猫头鹰知知",
+      "price": 300,
+      "unlock_chapter": 4,
+      "act_id": "time",
+      "role": "公式索引",
+      "story": "知知的小翅膀像书签，陪你找到公式和它的适用条件。",
+      "asset": "finance/companions/spirit_owl.png"
+    },
+    {
+      "id": "spirit_otter",
+      "name": "海獭泡泡",
+      "price": 300,
+      "unlock_chapter": 11,
+      "act_id": "funding",
+      "role": "经营线索",
+      "story": "泡泡收集沿途的经营故事，把抽象知识连到小店生活。",
+      "asset": "finance/companions/spirit_otter.png"
+    },
+    {
+      "id": "spirit_hedgehog",
+      "name": "刺猬豆豆",
+      "price": 600,
+      "unlock_chapter": 17,
+      "act_id": "workshop",
+      "role": "鼓励陪伴",
+      "story": "豆豆把错题当作新的线索，每一次复盘都记进伙伴日记。",
+      "asset": "finance/companions/spirit_hedgehog.png"
+    }
+  ],
+  "npcs": [
+    {
+      "id": "npc_beaver",
+      "name": "海狸账房",
+      "act_id": "ledger",
+      "animal": "海狸",
+      "story": "认真又温和的账房，喜欢用账本解释小店的经营状况。",
+      "asset": "finance/npcs/npc_beaver.png"
+    },
+    {
+      "id": "npc_squirrel",
+      "name": "松鼠储蓄员",
+      "act_id": "time",
+      "animal": "松鼠",
+      "story": "把每颗松果都放在合适的时间里，是储蓄所的时间向导。",
+      "asset": "finance/npcs/npc_squirrel.png"
+    },
+    {
+      "id": "npc_fox",
+      "name": "狐狸投资顾问",
+      "act_id": "invest",
+      "animal": "狐狸",
+      "story": "随身带着投资星图，先看现金流和风险，再谈热闹的机会。",
+      "asset": "finance/npcs/npc_fox.png"
+    },
+    {
+      "id": "npc_rabbit",
+      "name": "兔子航运商",
+      "act_id": "funding",
+      "animal": "兔子",
+      "story": "为小镇运来货物，最关心航程资金、库存和回款。",
+      "asset": "finance/npcs/npc_rabbit.png"
+    },
+    {
+      "id": "npc_raccoon",
+      "name": "浣熊工坊师",
+      "act_id": "workshop",
+      "animal": "浣熊",
+      "story": "工坊里可靠的工程师，会把复杂成本拆成一张清楚的计算单。",
+      "asset": "finance/npcs/npc_raccoon.png"
+    },
+    {
+      "id": "npc_turtle",
+      "name": "乌龟预算师",
+      "act_id": "budget",
+      "animal": "乌龟",
+      "story": "稳稳规划未来，也会认真检查计划与实际结果的差异。",
+      "asset": "finance/npcs/npc_turtle.png"
+    }
+  ],
+  "outfits": [
+    {
+      "id": "outfit_finance_xiaoyuan_ledger",
+      "name": "小圆 · 星页账房",
+      "fit_character": "xiaoyuan",
+      "outfit": "finance_xiaoyuan_ledger",
+      "theme": "ledger",
+      "rarity": "common",
+      "price": 150,
+      "asset": "finance/outfits/finance_xiaoyuan_ledger.png"
+    },
+    {
+      "id": "outfit_finance_xiaoyuan_sailing",
+      "name": "小圆 · 蓝海航海家",
+      "fit_character": "xiaoyuan",
+      "outfit": "finance_xiaoyuan_sailing",
+      "theme": "sailing",
+      "rarity": "common",
+      "price": 150,
+      "asset": "finance/outfits/finance_xiaoyuan_sailing.png"
+    },
+    {
+      "id": "outfit_finance_xiaoyuan_workshop",
+      "name": "小圆 · 估值工坊师",
+      "fit_character": "xiaoyuan",
+      "outfit": "finance_xiaoyuan_workshop",
+      "theme": "workshop",
+      "rarity": "rare",
+      "price": 300,
+      "asset": "finance/outfits/finance_xiaoyuan_workshop.png"
+    },
+    {
+      "id": "outfit_finance_xiaoyuan_stars",
+      "name": "小圆 · 星光掌柜",
+      "fit_character": "xiaoyuan",
+      "outfit": "finance_xiaoyuan_stars",
+      "theme": "stars",
+      "rarity": "epic",
+      "price": 600,
+      "asset": "finance/outfits/finance_xiaoyuan_stars.png"
+    },
+    {
+      "id": "outfit_finance_orange_adventurer_ledger",
+      "name": "小团 · 算盘账房",
+      "fit_character": "orange_adventurer",
+      "outfit": "finance_orange_adventurer_ledger",
+      "theme": "ledger",
+      "rarity": "common",
+      "price": 150,
+      "asset": "finance/outfits/finance_orange_adventurer_ledger.png"
+    },
+    {
+      "id": "outfit_finance_orange_adventurer_sailing",
+      "name": "小团 · 筹资领航员",
+      "fit_character": "orange_adventurer",
+      "outfit": "finance_orange_adventurer_sailing",
+      "theme": "sailing",
+      "rarity": "common",
+      "price": 150,
+      "asset": "finance/outfits/finance_orange_adventurer_sailing.png"
+    },
+    {
+      "id": "outfit_finance_orange_adventurer_workshop",
+      "name": "小团 · 成本工程师",
+      "fit_character": "orange_adventurer",
+      "outfit": "finance_orange_adventurer_workshop",
+      "theme": "workshop",
+      "rarity": "rare",
+      "price": 300,
+      "asset": "finance/outfits/finance_orange_adventurer_workshop.png"
+    },
+    {
+      "id": "outfit_finance_orange_adventurer_stars",
+      "name": "小团 · 预算星术师",
+      "fit_character": "orange_adventurer",
+      "outfit": "finance_orange_adventurer_stars",
+      "theme": "stars",
+      "rarity": "epic",
+      "price": 600,
+      "asset": "finance/outfits/finance_orange_adventurer_stars.png"
+    },
+    {
+      "id": "outfit_finance_xiaobao_ledger",
+      "name": "小宝 · 企鹅账房",
+      "fit_character": "xiaobao",
+      "outfit": "finance_xiaobao_ledger",
+      "theme": "ledger",
+      "rarity": "common",
+      "price": 150,
+      "asset": "finance/outfits/finance_xiaobao_ledger.png"
+    },
+    {
+      "id": "outfit_finance_xiaobao_sailing",
+      "name": "小宝 · 极地小船长",
+      "fit_character": "xiaobao",
+      "outfit": "finance_xiaobao_sailing",
+      "theme": "sailing",
+      "rarity": "common",
+      "price": 150,
+      "asset": "finance/outfits/finance_xiaobao_sailing.png"
+    },
+    {
+      "id": "outfit_finance_xiaobao_workshop",
+      "name": "小宝 · 南极工坊师",
+      "fit_character": "xiaobao",
+      "outfit": "finance_xiaobao_workshop",
+      "theme": "workshop",
+      "rarity": "rare",
+      "price": 300,
+      "asset": "finance/outfits/finance_xiaobao_workshop.png"
+    },
+    {
+      "id": "outfit_finance_xiaobao_stars",
+      "name": "小宝 · 星光大掌柜",
+      "fit_character": "xiaobao",
+      "outfit": "finance_xiaobao_stars",
+      "theme": "stars",
+      "rarity": "epic",
+      "price": 600,
+      "asset": "finance/outfits/finance_xiaobao_stars_v3.png"
+    }
+  ],
+  "props": [
+    {
+      "id": "finance_compass",
+      "name": "折现罗盘",
+      "kind": "tool",
+      "utility": "formulas",
+      "price": 80,
+      "story": "将未来的现金流放到同一时点。打开公式图鉴。",
+      "asset": "finance/props/compass.png"
+    },
+    {
+      "id": "finance_abacus",
+      "name": "成本算盘",
+      "kind": "tool",
+      "utility": "scratch",
+      "price": 120,
+      "story": "把计算过程和单位记在一起。打开计算草稿。",
+      "asset": "finance/props/abacus.png"
+    },
+    {
+      "id": "finance_hourglass",
+      "name": "预算沙漏",
+      "kind": "tool",
+      "utility": "focus",
+      "price": 150,
+      "story": "专注一小段时间，让思路慢慢变清楚。打开专注计时。",
+      "asset": "finance/props/hourglass.png"
+    },
+    {
+      "id": "finance_mailbag",
+      "name": "企鹅邮袋",
+      "kind": "tool",
+      "utility": "review",
+      "price": 150,
+      "story": "小宝把待复习的题装进邮袋。打开复习清单。",
+      "asset": "finance/props/mailbag.png"
+    },
+    {
+      "id": "finance_lamp",
+      "name": "现金流灯",
+      "kind": "decoration",
+      "utility": "",
+      "price": 150,
+      "story": "一盏温暖的小灯，照亮小镇的现金流路线。",
+      "asset": "finance/props/lamp.png"
+    },
+    {
+      "id": "finance_starmap",
+      "name": "投资星图",
+      "kind": "decoration",
+      "utility": "",
+      "price": 300,
+      "story": "每一颗星星，都是认真比较过的投资机会。",
+      "asset": "finance/props/starmap.png"
+    },
+    {
+      "id": "finance_stamp",
+      "name": "猫爪图章",
+      "kind": "decoration",
+      "utility": "",
+      "price": 150,
+      "story": "盖上猫爪印，把今天学会的知识留在账本上。",
+      "asset": "finance/props/stamp.png"
+    },
+    {
+      "id": "finance_chest",
+      "name": "现金宝箱",
+      "kind": "decoration",
+      "utility": "",
+      "price": 600,
+      "story": "金币有自己的用途，也需要妥善的计划。",
+      "asset": "finance/props/chest.png"
+    }
+  ],
+  "commissions": [
+    {
+      "id": "commission_ledger_1",
+      "act_id": "ledger",
+      "name": "账本港 · 小店问答",
+      "chapters": [
+        1,
+        2
+      ],
+      "type": "objective",
+      "amount": 3,
+      "postcard": "postcard_ledger_1",
+      "prompt": "账本事务所需要你的帮助，完成三道经营问答，收下朋友的明信片。"
+    },
+    {
+      "id": "commission_ledger_2",
+      "act_id": "ledger",
+      "name": "账本港 · 经营决策",
+      "chapters": [
+        1,
+        2
+      ],
+      "type": "subjective",
+      "amount": 1,
+      "postcard": "postcard_ledger_2",
+      "prompt": "账本事务所需要你的帮助，完成一道经营案例，收下朋友的明信片。"
+    },
+    {
+      "id": "commission_time_1",
+      "act_id": "time",
+      "name": "时光储蓄所 · 小店问答",
+      "chapters": [
+        3,
+        4
+      ],
+      "type": "objective",
+      "amount": 3,
+      "postcard": "postcard_time_1",
+      "prompt": "时光储蓄所需要你的帮助，完成三道经营问答，收下朋友的明信片。"
+    },
+    {
+      "id": "commission_time_2",
+      "act_id": "time",
+      "name": "时光储蓄所 · 经营决策",
+      "chapters": [
+        3,
+        4
+      ],
+      "type": "subjective",
+      "amount": 1,
+      "postcard": "postcard_time_2",
+      "prompt": "时光储蓄所需要你的帮助，完成一道经营案例，收下朋友的明信片。"
+    },
+    {
+      "id": "commission_invest_1",
+      "act_id": "invest",
+      "name": "星光投资站 · 小店问答",
+      "chapters": [
+        5,
+        6,
+        7
+      ],
+      "type": "objective",
+      "amount": 3,
+      "postcard": "postcard_invest_1",
+      "prompt": "星光投资站需要你的帮助，完成三道经营问答，收下朋友的明信片。"
+    },
+    {
+      "id": "commission_invest_2",
+      "act_id": "invest",
+      "name": "星光投资站 · 经营决策",
+      "chapters": [
+        5,
+        6,
+        7
+      ],
+      "type": "subjective",
+      "amount": 1,
+      "postcard": "postcard_invest_2",
+      "prompt": "星光投资站需要你的帮助，完成一道经营案例，收下朋友的明信片。"
+    },
+    {
+      "id": "commission_funding_1",
+      "act_id": "funding",
+      "name": "航海筹资港 · 小店问答",
+      "chapters": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "type": "objective",
+      "amount": 3,
+      "postcard": "postcard_funding_1",
+      "prompt": "航海筹资港需要你的帮助，完成三道经营问答，收下朋友的明信片。"
+    },
+    {
+      "id": "commission_funding_2",
+      "act_id": "funding",
+      "name": "航海筹资港 · 经营决策",
+      "chapters": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "type": "subjective",
+      "amount": 1,
+      "postcard": "postcard_funding_2",
+      "prompt": "航海筹资港需要你的帮助，完成一道经营案例，收下朋友的明信片。"
+    },
+    {
+      "id": "commission_workshop_1",
+      "act_id": "workshop",
+      "name": "猫爪工坊 · 小店问答",
+      "chapters": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "type": "objective",
+      "amount": 3,
+      "postcard": "postcard_workshop_1",
+      "prompt": "猫爪工坊需要你的帮助，完成三道经营问答，收下朋友的明信片。"
+    },
+    {
+      "id": "commission_workshop_2",
+      "act_id": "workshop",
+      "name": "猫爪工坊 · 经营决策",
+      "chapters": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "type": "subjective",
+      "amount": 1,
+      "postcard": "postcard_workshop_2",
+      "prompt": "猫爪工坊需要你的帮助，完成一道经营案例，收下朋友的明信片。"
+    },
+    {
+      "id": "commission_budget_1",
+      "act_id": "budget",
+      "name": "预算指挥塔 · 小店问答",
+      "chapters": [
+        18,
+        19,
+        20
+      ],
+      "type": "objective",
+      "amount": 3,
+      "postcard": "postcard_budget_1",
+      "prompt": "预算指挥塔需要你的帮助，完成三道经营问答，收下朋友的明信片。"
+    },
+    {
+      "id": "commission_budget_2",
+      "act_id": "budget",
+      "name": "预算指挥塔 · 经营决策",
+      "chapters": [
+        18,
+        19,
+        20
+      ],
+      "type": "subjective",
+      "amount": 1,
+      "postcard": "postcard_budget_2",
+      "prompt": "预算指挥塔需要你的帮助，完成一道经营案例，收下朋友的明信片。"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "/",
+  "name": "小圆冒险世界",
+  "short_name": "小圆冒险",
+  "lang": "zh-CN",
+  "description": "与小圆和小团一起闯关学习、积攒金币、学会技能与换装。",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#eff5ff",
+  "theme_color": "#2269dd",
+  "icons": [
+    {"src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"}
+  ]
+}

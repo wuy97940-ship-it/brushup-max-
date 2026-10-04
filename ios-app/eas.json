@@ -1,0 +1,8 @@
+{
+  "cli": { "version": ">= 24.8.0", "appVersionSource": "remote" },
+  "build": {
+    "preview": { "distribution": "internal", "ios": { "image": "latest" } },
+    "production": { "autoIncrement": true, "ios": { "image": "latest" } }
+  },
+  "submit": { "production": {} }
+}

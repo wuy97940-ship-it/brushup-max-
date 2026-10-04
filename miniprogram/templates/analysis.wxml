@@ -1,0 +1,10 @@
+<view class="explanation deep-analysis" wx:if="{{analysis.position||analysis.principle}}">
+ <view class="subtitle">深入理解</view><view wx:if="{{analysis.position}}">考点 · {{analysis.position}}</view>
+ <text wx:if="{{analysis.principle}}" user-select>{{analysis.principle}}</text>
+ <view wx:if="{{analysis.formulas.length}}" class="subtitle">公式与适用条件</view><text wx:for="{{analysis.formulas}}" wx:key="*this" class="analysis-line" user-select>{{item}}</text>
+ <view wx:if="{{analysis.steps.length}}" class="subtitle">逐步推导</view><text wx:for="{{analysis.steps}}" wx:key="*this" class="analysis-line" user-select>{{index+1}}. {{item}}</text>
+ <view wx:if="{{optionAnalysis.length}}" class="subtitle">逐项辨析</view><text wx:for="{{optionAnalysis}}" wx:key="option" class="analysis-line" user-select>{{item.option}}. {{item.text}}</text>
+ <view wx:if="{{analysis.units}}">单位与精度 · {{analysis.units}}</view>
+ <view wx:if="{{analysis.pitfalls.length}}" class="subtitle">容易错在哪里</view><text wx:for="{{analysis.pitfalls}}" wx:key="*this" class="analysis-line" user-select>• {{item}}</text>
+ <view wx:if="{{analysis.memory}}" class="memory">记忆提示 · {{analysis.memory}}</view>
+</view>

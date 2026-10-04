@@ -1,0 +1,32 @@
+<block wx:if="{{bagTab==='shop'}}">
+  <view class="shop-front">
+    <view class="awning"/><view class="shop-spark spark-a">✦</view><view class="shop-spark spark-b">✧</view>
+    <view class="shopkeeper"><cat-actor skin="orange_adventurer" pose="celebrate"/></view>
+    <view class="shop-sign"><view class="shop-label">小团的旅行小铺</view><view class="shop-title">把努力，变成宝贝。</view><view class="shop-talk">喵，今天想带哪件装备出发？</view><view class="shop-wallet">✦ {{g.coins}} 金币</view></view>
+  </view>
+</block>
+<view wx:else class="card row wardrobe"><view class="bag-cat"><cat-actor skin="{{g.skin}}" companion="{{g.finance_expansion.companion||''}}" pose="celebrate" outfit="{{g.outfit||''}}" xp="{{g.equipment.xp||''}}" coins="{{g.equipment.coins||''}}" wonder="{{g.equipment.wonder||''}}"/></view><view class="wardrobe-info"><view class="subtitle">我的冒险装备</view><view class="muted">经验 +{{bonuses.xp}}% · 金币 +{{bonuses.coins}}%</view><view class="slot-note">护符 / 铃铛 / 魔法奇物</view><view class="slot-note">{{wonderName}}</view></view></view>
+<view class="bag-tabs row"><view class="{{bagTab==='owned'?'selected':''}}" bindtap="bagTab" data-tab="owned">背包</view><view class="{{bagTab==='shop'?'selected':''}}" bindtap="bagTab" data-tab="shop">金币商店</view><view class="{{bagTab==='collection'?'selected':''}}" bindtap="bagTab" data-tab="collection">收藏图鉴</view></view>
+<block wx:if="{{bagTab==='shop'}}">
+  <view wx:if="{{goal&&!goal.owned}}" class="wish-card" data-id="{{goal.id}}" bindtap="openItem"><image src="{{goal.icon}}" class="wish-icon" mode="aspectFit"/><view class="wish-copy"><view class="eyebrow">我的攒钱心愿</view><view class="subtitle">{{goal.name}}</view><view class="wish-track"><view class="wish-fill" style="width:{{goal.progress}}%"/></view><view class="muted small">{{g.coins}} / {{goal.price}} 金币 · 还差 {{goal.remaining}}</view></view><text class="wish-arrow">›</text></view>
+  <scroll-view class="shop-filter" scroll-x enhanced><view class="shop-filter-row"><view wx:for="{{shopCategories}}" wx:key="id" class="filter-chip {{shopFilter===item.id?'selected':''}}" data-id="{{item.id}}" bindtap="filterShop">{{item.name}}</view></view></scroll-view>
+  <view class="row shop-heading"><view class="subtitle">{{shopFilter==='skills'?'把技能装进行囊':'冒险家的宝贝'}}</view><text class="muted small">点开可试穿 / 看效果</text></view>
+  <view class="item-grid shop-products"><view wx:for="{{shopItems}}" wx:key="id" class="product-card rarity-border-{{item.rarity}}" data-id="{{item.id}}" bindtap="openItem">
+    <view class="product-top"><text class="rarity-{{item.rarity}}">{{item.rarityName}}</text><text wx:if="{{item.owned}}" class="owned-mark">✓ 已藏</text><text wx:elif="{{!item.unlocked}}" class="muted">待上架</text></view>
+    <view class="product-stage rarity-bg-{{item.rarity}}">
+      <view wx:if="{{item.isSkill}}" class="skill-book" style="background:{{item.color}}"><view class="book-spine"/><text>{{item.glyph}}</text></view>
+      <view wx:elif="{{item.hasActorPreview}}" class="product-actor"><cat-actor skin="{{item.preview.skin}}" outfit="{{item.preview.outfit}}"/></view>
+      <image wx:elif="{{item.icon}}" class="product-image" src="{{item.icon}}" mode="aspectFit"/>
+      <view wx:else class="title-medal"><text>✦</text></view>
+    </view>
+    <view class="product-name">{{item.name}}</view><view class="product-effect">{{item.isSkill?'Lv.'+item.level+' · 剩余 '+item.charges+' 次':item.effect}}</view>
+    <view class="product-price {{item.owned?'is-owned':''}}">{{item.owned?'查看 / 试穿':'✦ '+item.price+' 金币'}}</view>
+    <view class="product-unlock" wx:if="{{!item.unlocked}}">{{item.unlockText}}</view>
+  </view></view>
+  <view class="card shop-help"><view class="subtitle">金币从认真闯关而来</view><view class="muted">普通关首通 +10，Boss 首通 +30；新增第二、第三颗星各 +5。远征新关首通 +20。装备加成在出发时固定。</view><view class="muted">主线首通有 10% 惊喜机会，可能得到墨水或奇物；每关只抽一次。稀有宝贝需要耐心积累。</view></view>
+</block>
+<block wx:else>
+  <view wx:if="{{bagTab==='collection'}}" class="collection-themes"><view class="subtitle">六地图旅行纪念册</view><view class="theme-stamps"><view wx:for="{{themeSets}}" wx:key="id" class="theme-stamp {{item.count===2?'complete':''}}"><image src="{{item.icon}}" mode="aspectFit"/><view>{{item.name}}</view><text>{{item.count}} / 2</text></view></view><view class="muted small">每个主题收齐装扮与纪念品，就点亮一枚旅行印章。</view></view>
+  <view class="item-grid"><view wx:for="{{bagTab==='owned'?ownedItems:collectionItems}}" wx:key="id" class="product-card rarity-border-{{item.rarity}}" data-id="{{item.id}}" bindtap="openItem"><view class="product-top"><text class="rarity-{{item.rarity}}">{{item.rarityName}}</text><text class="owned-mark">{{item.equipped?'使用中':item.owned?'✓ 已藏':''}}</text></view><view class="product-stage rarity-bg-{{item.rarity}}"><view wx:if="{{item.hasActorPreview}}" class="product-actor"><cat-actor skin="{{item.preview.skin}}" outfit="{{item.preview.outfit}}"/></view><image wx:elif="{{item.icon}}" src="{{item.icon}}" class="product-image" mode="aspectFit"/><view wx:else class="title-medal"><text>✦</text></view></view><view class="product-name">{{item.name}}</view><view class="product-effect">{{item.effect}}</view><view class="product-price">{{item.owned?item.wearable?'试穿 / 装备':'已珍藏':'尚未发现'}}</view></view></view>
+  <view class="card muted" wx:if="{{bagTab==='collection'}}">章节徽章：{{badges}} / 42。每个固定 Boss 仅首次击败有一次 {{bossDropPercent}}% 额外掉落机会。</view>
+</block>

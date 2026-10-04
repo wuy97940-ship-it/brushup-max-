@@ -1,0 +1,1998 @@
+{
+  "schema_version": 1,
+  "revision": "0.2.0",
+  "world": "finance",
+  "sources": {
+    "project_finance_original": {
+      "title": "小圆爱刷题MAX项目独立编写的财管经营情境",
+      "kind": "project_original",
+      "revision": "0.2.0",
+      "checked": "2026-10-03",
+      "note": "题干、参数、选项和解析为本项目独立编写；不提取教材题目。内部复核不等于外部专业编辑验收。"
+    },
+    "cicpa_2026_scope": {
+      "title": "中注协2026年注册会计师全国统一考试大纲——专业阶段考试",
+      "url": "https://www.cicpa.org.cn/xxfb/tzgg/202603/W020260304555799366109.pdf",
+      "checked": "2026-10-03",
+      "purpose": "仅核对财管学习范围；原创题目不是中注协试题或官方题库。"
+    }
+  },
+  "note": "原创公式卡；章节编号与2026财管20章对应。公式须结合卡片条件使用。",
+  "chapters": [
+    {
+      "chapter_no": 1,
+      "title": "财务管理概述",
+      "world": "finance",
+      "cards": [
+        {
+          "id": "finance-01-formula-1",
+          "name": "价值最大化",
+          "title": "价值最大化",
+          "expression": "V=ΣCFt/(1+r)^t",
+          "symbols": "CFt为第t期现金流，r为匹配风险的折现率",
+          "conditions": "比较风险、期限与资本投入，遵守合法合规约束",
+          "units": "现金流和价值使用同一货币单位",
+          "pitfalls": [
+            "账面利润最大不保证价值最大"
+          ],
+          "hint": "先现金，再时间，后风险"
+        },
+        {
+          "id": "finance-01-formula-2",
+          "name": "净经营资产",
+          "title": "净经营资产",
+          "expression": "净经营资产=经营资产−经营负债",
+          "symbols": "经营负债不包含有息筹资负债",
+          "conditions": "经营与金融项目按经济性质分类",
+          "units": "元或万元",
+          "pitfalls": [
+            "应付账款通常是经营负债，借款是金融负债"
+          ],
+          "hint": "先分类，再相减"
+        },
+        {
+          "id": "finance-01-formula-3",
+          "name": "股东现金流",
+          "title": "股东现金流",
+          "expression": "股东现金流=股利−股权资本净增加",
+          "symbols": "股权资本净增加=发行−回购",
+          "conditions": "站在股东收付现金角度",
+          "units": "元或万元",
+          "pitfalls": [
+            "发行股票对企业是流入，对股东是流出"
+          ],
+          "hint": "股东收到减股东投入"
+        }
+      ],
+      "formulas": [
+        {
+          "id": "finance-01-formula-1",
+          "name": "价值最大化",
+          "title": "价值最大化",
+          "expression": "V=ΣCFt/(1+r)^t",
+          "symbols": "CFt为第t期现金流，r为匹配风险的折现率",
+          "conditions": "比较风险、期限与资本投入，遵守合法合规约束",
+          "units": "现金流和价值使用同一货币单位",
+          "pitfalls": [
+            "账面利润最大不保证价值最大"
+          ],
+          "hint": "先现金，再时间，后风险"
+        },
+        {
+          "id": "finance-01-formula-2",
+          "name": "净经营资产",
+          "title": "净经营资产",
+          "expression": "净经营资产=经营资产−经营负债",
+          "symbols": "经营负债不包含有息筹资负债",
+          "conditions": "经营与金融项目按经济性质分类",
+          "units": "元或万元",
+          "pitfalls": [
+            "应付账款通常是经营负债，借款是金融负债"
+          ],
+          "hint": "先分类，再相减"
+        },
+        {
+          "id": "finance-01-formula-3",
+          "name": "股东现金流",
+          "title": "股东现金流",
+          "expression": "股东现金流=股利−股权资本净增加",
+          "symbols": "股权资本净增加=发行−回购",
+          "conditions": "站在股东收付现金角度",
+          "units": "元或万元",
+          "pitfalls": [
+            "发行股票对企业是流入，对股东是流出"
+          ],
+          "hint": "股东收到减股东投入"
+        }
+      ],
+      "formula_texts": [
+        "价值最大化：V=ΣCFt/(1+r)^t。CFt为第t期现金流，r为匹配风险的折现率；适用：比较风险、期限与资本投入，遵守合法合规约束",
+        "净经营资产：净经营资产=经营资产−经营负债。经营负债不包含有息筹资负债；适用：经营与金融项目按经济性质分类",
+        "股东现金流：股东现金流=股利−股权资本净增加。股权资本净增加=发行−回购；适用：站在股东收付现金角度"
+      ]
+    },
+    {
+      "chapter_no": 2,
+      "title": "财务报表分析和财务预测",
+      "world": "finance",
+      "cards": [
+        {
+          "id": "finance-02-formula-1",
+          "name": "杜邦分析",
+          "title": "杜邦分析",
+          "expression": "ROE=销售净利率×总资产周转率×权益乘数",
+          "symbols": "权益乘数=平均总资产/平均权益",
+          "conditions": "利润为同一期间，资产权益使用一致平均口径",
+          "units": "比率或百分比",
+          "pitfalls": [
+            "不能用税前利润代替净利润"
+          ],
+          "hint": "利润率、周转、杠杆三联动"
+        },
+        {
+          "id": "finance-02-formula-2",
+          "name": "外部融资需求",
+          "title": "外部融资需求",
+          "expression": "EFN=Δ销售额×(经营资产销售比−经营负债销售比)−预计净利润×留存率",
+          "symbols": "经营负债为自发融资",
+          "conditions": "比例稳定、资产无闲置容量，未另设金融资产变动",
+          "units": "元或万元",
+          "pitfalls": [
+            "销售增长额与预计销售总额不能混用"
+          ],
+          "hint": "增加资金占用，扣自发融资和留存"
+        },
+        {
+          "id": "finance-02-formula-3",
+          "name": "可持续增长",
+          "title": "可持续增长",
+          "expression": "g=ROE×b/(1−ROE×b)",
+          "symbols": "b为利润留存率，ROE采用期初权益口径的等价式需另行调整",
+          "conditions": "不增发股权，财务与经营比率稳定，公式中ROE为期末权益口径",
+          "units": "百分比",
+          "pitfalls": [
+            "直接用ROE×b是内含期初/期末口径变换后的表达，勿混用"
+          ],
+          "hint": "先核权益时点"
+        }
+      ],
+      "formulas": [
+        {
+          "id": "finance-02-formula-1",
+          "name": "杜邦分析",
+          "title": "杜邦分析",
+          "expression": "ROE=销售净利率×总资产周转率×权益乘数",
+          "symbols": "权益乘数=平均总资产/平均权益",
+          "conditions": "利润为同一期间，资产权益使用一致平均口径",
+          "units": "比率或百分比",
+          "pitfalls": [
+            "不能用税前利润代替净利润"
+          ],
+          "hint": "利润率、周转、杠杆三联动"
+        },
+        {
+          "id": "finance-02-formula-2",
+          "name": "外部融资需求",
+          "title": "外部融资需求",
+          "expression": "EFN=Δ销售额×(经营资产销售比−经营负债销售比)−预计净利润×留存率",
+          "symbols": "经营负债为自发融资",
+          "conditions": "比例稳定、资产无闲置容量，未另设金融资产变动",
+          "units": "元或万元",
+          "pitfalls": [
+            "销售增长额与预计销售总额不能混用"
+          ],
+          "hint": "增加资金占用，扣自发融资和留存"
+        },
+        {
+          "id": "finance-02-formula-3",
+          "name": "可持续增长",
+          "title": "可持续增长",
+          "expression": "g=ROE×b/(1−ROE×b)",
+          "symbols": "b为利润留存率，ROE采用期初权益口径的等价式需另行调整",
+          "conditions": "不增发股权，财务与经营比率稳定，公式中ROE为期末权益口径",
+          "units": "百分比",
+          "pitfalls": [
+            "直接用ROE×b是内含期初/期末口径变换后的表达，勿混用"
+          ],
+          "hint": "先核权益时点"
+        }
+      ],
+      "formula_texts": [
+        "杜邦分析：ROE=销售净利率×总资产周转率×权益乘数。权益乘数=平均总资产/平均权益；适用：利润为同一期间，资产权益使用一致平均口径",
+        "外部融资需求：EFN=Δ销售额×(经营资产销售比−经营负债销售比)−预计净利润×留存率。经营负债为自发融资；适用：比例稳定、资产无闲置容量，未另设金融资产变动",
+        "可持续增长：g=ROE×b/(1−ROE×b)。b为利润留存率，ROE采用期初权益口径的等价式需另行调整；适用：不增发股权，财务与经营比率稳定，公式中ROE为期末权益口径"
+      ]
+    },
+    {
+      "chapter_no": 3,
+      "title": "价值评估基础",
+      "world": "finance",
+      "cards": [
+        {
+          "id": "finance-03-formula-1",
+          "name": "年金现值",
+          "title": "年金现值",
+          "expression": "PV=A×[1−(1+r)^−n]/r",
+          "symbols": "A为每期期末等额收付",
+          "conditions": "普通年金，r与期间一致",
+          "units": "元或万元",
+          "pitfalls": [
+            "先付年金要乘(1+r)"
+          ],
+          "hint": "期末基准，期初前移"
+        },
+        {
+          "id": "finance-03-formula-2",
+          "name": "实际年利率",
+          "title": "实际年利率",
+          "expression": "EAR=(1+名义年利率/m)^m−1",
+          "symbols": "m为每年复利次数",
+          "conditions": "名义年率可按m等分",
+          "units": "百分比",
+          "pitfalls": [
+            "月利率不能直接充当年有效利率"
+          ],
+          "hint": "先分期，再复利"
+        },
+        {
+          "id": "finance-03-formula-3",
+          "name": "组合风险",
+          "title": "组合风险",
+          "expression": "σp²=w1²σ1²+w2²σ2²+2w1w2ρσ1σ2",
+          "symbols": "w为权重，ρ为相关系数",
+          "conditions": "两资产组合，权重和为1",
+          "units": "小数收益率平方",
+          "pitfalls": [
+            "标准差不能简单加权，相关性决定分散效果"
+          ],
+          "hint": "均值可加权，风险看协方差"
+        },
+        {
+          "id": "finance-03-formula-4",
+          "name": "资本资产定价",
+          "title": "资本资产定价",
+          "expression": "E(Ri)=Rf+βi×[E(Rm)−Rf]",
+          "symbols": "β为系统风险系数",
+          "conditions": "市场均衡且以分散化投资者为对象",
+          "units": "百分比",
+          "pitfalls": [
+            "总标准差不等于β"
+          ],
+          "hint": "只给系统风险定价"
+        }
+      ],
+      "formulas": [
+        {
+          "id": "finance-03-formula-1",
+          "name": "年金现值",
+          "title": "年金现值",
+          "expression": "PV=A×[1−(1+r)^−n]/r",
+          "symbols": "A为每期期末等额收付",
+          "conditions": "普通年金，r与期间一致",
+          "units": "元或万元",
+          "pitfalls": [
+            "先付年金要乘(1+r)"
+          ],
+          "hint": "期末基准，期初前移"
+        },
+        {
+          "id": "finance-03-formula-2",
+          "name": "实际年利率",
+          "title": "实际年利率",
+          "expression": "EAR=(1+名义年利率/m)^m−1",
+          "symbols": "m为每年复利次数",
+          "conditions": "名义年率可按m等分",
+          "units": "百分比",
+          "pitfalls": [
+            "月利率不能直接充当年有效利率"
+          ],
+          "hint": "先分期，再复利"
+        },
+        {
+          "id": "finance-03-formula-3",
+          "name": "组合风险",
+          "title": "组合风险",
+          "expression": "σp²=w1²σ1²+w2²σ2²+2w1w2ρσ1σ2",
+          "symbols": "w为权重，ρ为相关系数",
+          "conditions": "两资产组合，权重和为1",
+          "units": "小数收益率平方",
+          "pitfalls": [
+            "标准差不能简单加权，相关性决定分散效果"
+          ],
+          "hint": "均值可加权，风险看协方差"
+        },
+        {
+          "id": "finance-03-formula-4",
+          "name": "资本资产定价",
+          "title": "资本资产定价",
+          "expression": "E(Ri)=Rf+βi×[E(Rm)−Rf]",
+          "symbols": "β为系统风险系数",
+          "conditions": "市场均衡且以分散化投资者为对象",
+          "units": "百分比",
+          "pitfalls": [
+            "总标准差不等于β"
+          ],
+          "hint": "只给系统风险定价"
+        }
+      ],
+      "formula_texts": [
+        "年金现值：PV=A×[1−(1+r)^−n]/r。A为每期期末等额收付；适用：普通年金，r与期间一致",
+        "实际年利率：EAR=(1+名义年利率/m)^m−1。m为每年复利次数；适用：名义年率可按m等分",
+        "组合风险：σp²=w1²σ1²+w2²σ2²+2w1w2ρσ1σ2。w为权重，ρ为相关系数；适用：两资产组合，权重和为1",
+        "资本资产定价：E(Ri)=Rf+βi×[E(Rm)−Rf]。β为系统风险系数；适用：市场均衡且以分散化投资者为对象"
+      ]
+    },
+    {
+      "chapter_no": 4,
+      "title": "资本成本",
+      "world": "finance",
+      "cards": [
+        {
+          "id": "finance-04-formula-1",
+          "name": "债务资本成本",
+          "title": "债务资本成本",
+          "expression": "税后Kd=税前到期收益率×(1−T)",
+          "symbols": "T为适用所得税率",
+          "conditions": "利息可抵税，估计增量筹资机会成本",
+          "units": "百分比",
+          "pitfalls": [
+            "票面率不等于市场到期收益率"
+          ],
+          "hint": "先收益率，再抵税"
+        },
+        {
+          "id": "finance-04-formula-2",
+          "name": "股利增长模型",
+          "title": "股利增长模型",
+          "expression": "Ke=D1/P0+g",
+          "symbols": "D1为下一期股利",
+          "conditions": "持续稳定增长且Ke>g，发行时净筹资额需另扣费用",
+          "units": "百分比",
+          "pitfalls": [
+            "D0必须先乘(1+g)"
+          ],
+          "hint": "明年股利除今天价格"
+        },
+        {
+          "id": "finance-04-formula-3",
+          "name": "加权资本成本",
+          "title": "加权资本成本",
+          "expression": "WACC=weKe+wdKd(1−T)+wpKp",
+          "symbols": "w为目标市场价值权重",
+          "conditions": "资本结构稳定，风险与项目匹配",
+          "units": "百分比",
+          "pitfalls": [
+            "不能把税盾扣两次"
+          ],
+          "hint": "权重用市场，债务扣一次税"
+        },
+        {
+          "id": "finance-04-formula-4",
+          "name": "可比β调整",
+          "title": "可比β调整",
+          "expression": "β资产=β权益/[1+(1−T)D/E]",
+          "symbols": "D/E为市场价值比",
+          "conditions": "债务β近似0，税盾假设一致",
+          "units": "无单位",
+          "pitfalls": [
+            "去杠杆与加杠杆顺序反了会误判风险"
+          ],
+          "hint": "先剥财务杠杆，再加目标杠杆"
+        }
+      ],
+      "formulas": [
+        {
+          "id": "finance-04-formula-1",
+          "name": "债务资本成本",
+          "title": "债务资本成本",
+          "expression": "税后Kd=税前到期收益率×(1−T)",
+          "symbols": "T为适用所得税率",
+          "conditions": "利息可抵税，估计增量筹资机会成本",
+          "units": "百分比",
+          "pitfalls": [
+            "票面率不等于市场到期收益率"
+          ],
+          "hint": "先收益率，再抵税"
+        },
+        {
+          "id": "finance-04-formula-2",
+          "name": "股利增长模型",
+          "title": "股利增长模型",
+          "expression": "Ke=D1/P0+g",
+          "symbols": "D1为下一期股利",
+          "conditions": "持续稳定增长且Ke>g，发行时净筹资额需另扣费用",
+          "units": "百分比",
+          "pitfalls": [
+            "D0必须先乘(1+g)"
+          ],
+          "hint": "明年股利除今天价格"
+        },
+        {
+          "id": "finance-04-formula-3",
+          "name": "加权资本成本",
+          "title": "加权资本成本",
+          "expression": "WACC=weKe+wdKd(1−T)+wpKp",
+          "symbols": "w为目标市场价值权重",
+          "conditions": "资本结构稳定，风险与项目匹配",
+          "units": "百分比",
+          "pitfalls": [
+            "不能把税盾扣两次"
+          ],
+          "hint": "权重用市场，债务扣一次税"
+        },
+        {
+          "id": "finance-04-formula-4",
+          "name": "可比β调整",
+          "title": "可比β调整",
+          "expression": "β资产=β权益/[1+(1−T)D/E]",
+          "symbols": "D/E为市场价值比",
+          "conditions": "债务β近似0，税盾假设一致",
+          "units": "无单位",
+          "pitfalls": [
+            "去杠杆与加杠杆顺序反了会误判风险"
+          ],
+          "hint": "先剥财务杠杆，再加目标杠杆"
+        }
+      ],
+      "formula_texts": [
+        "债务资本成本：税后Kd=税前到期收益率×(1−T)。T为适用所得税率；适用：利息可抵税，估计增量筹资机会成本",
+        "股利增长模型：Ke=D1/P0+g。D1为下一期股利；适用：持续稳定增长且Ke>g，发行时净筹资额需另扣费用",
+        "加权资本成本：WACC=weKe+wdKd(1−T)+wpKp。w为目标市场价值权重；适用：资本结构稳定，风险与项目匹配",
+        "可比β调整：β资产=β权益/[1+(1−T)D/E]。D/E为市场价值比；适用：债务β近似0，税盾假设一致"
+      ]
+    },
+    {
+      "chapter_no": 5,
+      "title": "投资项目资本预算",
+      "world": "finance",
+      "cards": [
+        {
+          "id": "finance-05-formula-1",
+          "name": "经营现金流",
+          "title": "经营现金流",
+          "expression": "OCF=(收入−付现成本)(1−T)+折旧×T",
+          "symbols": "折旧为非现金成本",
+          "conditions": "无其他现金调整，税损可当期充分抵扣",
+          "units": "元或万元",
+          "pitfalls": [
+            "折旧不能既全额加回又额外重复计税盾"
+          ],
+          "hint": "付现利润税后，加折旧税盾"
+        },
+        {
+          "id": "finance-05-formula-2",
+          "name": "净现值",
+          "title": "净现值",
+          "expression": "NPV=ΣCFt/(1+r)^t−初始投资",
+          "symbols": "CF含营运资本与残值回收",
+          "conditions": "增量现金流，折现率匹配风险",
+          "units": "元或万元",
+          "pitfalls": [
+            "沉没成本排除，机会成本计入"
+          ],
+          "hint": "只看因决策改变的现金"
+        },
+        {
+          "id": "finance-05-formula-3",
+          "name": "年金净流量",
+          "title": "年金净流量",
+          "expression": "ANCF=NPV/(P/A,r,n)",
+          "symbols": "n为项目寿命",
+          "conditions": "互斥寿命不同，具备可重复或等效服务条件",
+          "units": "元或万元每期",
+          "pitfalls": [
+            "没有可重复假设时不能机械年金化"
+          ],
+          "hint": "统一服务期再比"
+        }
+      ],
+      "formulas": [
+        {
+          "id": "finance-05-formula-1",
+          "name": "经营现金流",
+          "title": "经营现金流",
+          "expression": "OCF=(收入−付现成本)(1−T)+折旧×T",
+          "symbols": "折旧为非现金成本",
+          "conditions": "无其他现金调整，税损可当期充分抵扣",
+          "units": "元或万元",
+          "pitfalls": [
+            "折旧不能既全额加回又额外重复计税盾"
+          ],
+          "hint": "付现利润税后，加折旧税盾"
+        },
+        {
+          "id": "finance-05-formula-2",
+          "name": "净现值",
+          "title": "净现值",
+          "expression": "NPV=ΣCFt/(1+r)^t−初始投资",
+          "symbols": "CF含营运资本与残值回收",
+          "conditions": "增量现金流，折现率匹配风险",
+          "units": "元或万元",
+          "pitfalls": [
+            "沉没成本排除，机会成本计入"
+          ],
+          "hint": "只看因决策改变的现金"
+        },
+        {
+          "id": "finance-05-formula-3",
+          "name": "年金净流量",
+          "title": "年金净流量",
+          "expression": "ANCF=NPV/(P/A,r,n)",
+          "symbols": "n为项目寿命",
+          "conditions": "互斥寿命不同，具备可重复或等效服务条件",
+          "units": "元或万元每期",
+          "pitfalls": [
+            "没有可重复假设时不能机械年金化"
+          ],
+          "hint": "统一服务期再比"
+        }
+      ],
+      "formula_texts": [
+        "经营现金流：OCF=(收入−付现成本)(1−T)+折旧×T。折旧为非现金成本；适用：无其他现金调整，税损可当期充分抵扣",
+        "净现值：NPV=ΣCFt/(1+r)^t−初始投资。CF含营运资本与残值回收；适用：增量现金流，折现率匹配风险",
+        "年金净流量：ANCF=NPV/(P/A,r,n)。n为项目寿命；适用：互斥寿命不同，具备可重复或等效服务条件"
+      ]
+    },
+    {
+      "chapter_no": 6,
+      "title": "期权价值评估",
+      "world": "finance",
+      "cards": [
+        {
+          "id": "finance-06-formula-1",
+          "name": "到期价值",
+          "title": "到期价值",
+          "expression": "看涨=max(ST−K,0)；看跌=max(K−ST,0)",
+          "symbols": "ST为到期标的价，K为执行价",
+          "conditions": "未扣期权费",
+          "units": "元",
+          "pitfalls": [
+            "到期价值不是净损益"
+          ],
+          "hint": "看涨求超价，看跌求差价"
+        },
+        {
+          "id": "finance-06-formula-2",
+          "name": "欧式平价",
+          "title": "欧式平价",
+          "expression": "C+PV(K)=P+S0",
+          "symbols": "C/P为同到期同执行价欧式期权价格",
+          "conditions": "无分红、无摩擦、可无风险借贷",
+          "units": "元",
+          "pitfalls": [
+            "现金股利与美式提前执行需调整"
+          ],
+          "hint": "认购加债券等于认沽加股票"
+        },
+        {
+          "id": "finance-06-formula-3",
+          "name": "二叉树定价",
+          "title": "二叉树定价",
+          "expression": "p=(1+r−d)/(u−d)；C0=[pCu+(1−p)Cd]/(1+r)",
+          "symbols": "u/d为上涨/下跌倍数",
+          "conditions": "一期无套利：d<1+r<u",
+          "units": "元，概率为小数",
+          "pitfalls": [
+            "风险中性概率不是实际上涨概率"
+          ],
+          "hint": "复制定价，不猜方向"
+        }
+      ],
+      "formulas": [
+        {
+          "id": "finance-06-formula-1",
+          "name": "到期价值",
+          "title": "到期价值",
+          "expression": "看涨=max(ST−K,0)；看跌=max(K−ST,0)",
+          "symbols": "ST为到期标的价，K为执行价",
+          "conditions": "未扣期权费",
+          "units": "元",
+          "pitfalls": [
+            "到期价值不是净损益"
+          ],
+          "hint": "看涨求超价，看跌求差价"
+        },
+        {
+          "id": "finance-06-formula-2",
+          "name": "欧式平价",
+          "title": "欧式平价",
+          "expression": "C+PV(K)=P+S0",
+          "symbols": "C/P为同到期同执行价欧式期权价格",
+          "conditions": "无分红、无摩擦、可无风险借贷",
+          "units": "元",
+          "pitfalls": [
+            "现金股利与美式提前执行需调整"
+          ],
+          "hint": "认购加债券等于认沽加股票"
+        },
+        {
+          "id": "finance-06-formula-3",
+          "name": "二叉树定价",
+          "title": "二叉树定价",
+          "expression": "p=(1+r−d)/(u−d)；C0=[pCu+(1−p)Cd]/(1+r)",
+          "symbols": "u/d为上涨/下跌倍数",
+          "conditions": "一期无套利：d<1+r<u",
+          "units": "元，概率为小数",
+          "pitfalls": [
+            "风险中性概率不是实际上涨概率"
+          ],
+          "hint": "复制定价，不猜方向"
+        }
+      ],
+      "formula_texts": [
+        "到期价值：看涨=max(ST−K,0)；看跌=max(K−ST,0)。ST为到期标的价，K为执行价；适用：未扣期权费",
+        "欧式平价：C+PV(K)=P+S0。C/P为同到期同执行价欧式期权价格；适用：无分红、无摩擦、可无风险借贷",
+        "二叉树定价：p=(1+r−d)/(u−d)；C0=[pCu+(1−p)Cd]/(1+r)。u/d为上涨/下跌倍数；适用：一期无套利：d<1+r<u"
+      ]
+    },
+    {
+      "chapter_no": 7,
+      "title": "企业价值评估",
+      "world": "finance",
+      "cards": [
+        {
+          "id": "finance-07-formula-1",
+          "name": "实体现金流",
+          "title": "实体现金流",
+          "expression": "FCFF=税后经营净利润−净经营资产增加",
+          "symbols": "等价于NOPAT+折旧−资本支出−营运资本增加",
+          "conditions": "经营净资产口径一致",
+          "units": "元或万元",
+          "pitfalls": [
+            "净利润含利息，不能直接当NOPAT"
+          ],
+          "hint": "经营利润留给全体资本"
+        },
+        {
+          "id": "finance-07-formula-2",
+          "name": "股权现金流",
+          "title": "股权现金流",
+          "expression": "FCFE=FCFF−税后利息+净借款",
+          "symbols": "净借款=新增债务−偿还债务",
+          "conditions": "现金流与资本结构估计一致",
+          "units": "元或万元",
+          "pitfalls": [
+            "偿债不是加号"
+          ],
+          "hint": "全体减债权流出"
+        },
+        {
+          "id": "finance-07-formula-3",
+          "name": "永续增长价值",
+          "title": "永续增长价值",
+          "expression": "Vn=CF(n+1)/(k−g)",
+          "symbols": "终值在预测期末n时点",
+          "conditions": "稳定增长、k>g；实体用WACC，股权用Ke",
+          "units": "元或万元",
+          "pitfalls": [
+            "终值还要折回今天"
+          ],
+          "hint": "下一年现金流，期末终值"
+        },
+        {
+          "id": "finance-07-formula-4",
+          "name": "修正市盈率",
+          "title": "修正市盈率",
+          "expression": "目标PE=可比PE×目标增长率/可比增长率",
+          "symbols": "增长率单位一致",
+          "conditions": "盈利正值，其他价值驱动因素近似",
+          "units": "无单位",
+          "pitfalls": [
+            "百分数与小数混用使倍数失真"
+          ],
+          "hint": "先校正成长再估值"
+        }
+      ],
+      "formulas": [
+        {
+          "id": "finance-07-formula-1",
+          "name": "实体现金流",
+          "title": "实体现金流",
+          "expression": "FCFF=税后经营净利润−净经营资产增加",
+          "symbols": "等价于NOPAT+折旧−资本支出−营运资本增加",
+          "conditions": "经营净资产口径一致",
+          "units": "元或万元",
+          "pitfalls": [
+            "净利润含利息，不能直接当NOPAT"
+          ],
+          "hint": "经营利润留给全体资本"
+        },
+        {
+          "id": "finance-07-formula-2",
+          "name": "股权现金流",
+          "title": "股权现金流",
+          "expression": "FCFE=FCFF−税后利息+净借款",
+          "symbols": "净借款=新增债务−偿还债务",
+          "conditions": "现金流与资本结构估计一致",
+          "units": "元或万元",
+          "pitfalls": [
+            "偿债不是加号"
+          ],
+          "hint": "全体减债权流出"
+        },
+        {
+          "id": "finance-07-formula-3",
+          "name": "永续增长价值",
+          "title": "永续增长价值",
+          "expression": "Vn=CF(n+1)/(k−g)",
+          "symbols": "终值在预测期末n时点",
+          "conditions": "稳定增长、k>g；实体用WACC，股权用Ke",
+          "units": "元或万元",
+          "pitfalls": [
+            "终值还要折回今天"
+          ],
+          "hint": "下一年现金流，期末终值"
+        },
+        {
+          "id": "finance-07-formula-4",
+          "name": "修正市盈率",
+          "title": "修正市盈率",
+          "expression": "目标PE=可比PE×目标增长率/可比增长率",
+          "symbols": "增长率单位一致",
+          "conditions": "盈利正值，其他价值驱动因素近似",
+          "units": "无单位",
+          "pitfalls": [
+            "百分数与小数混用使倍数失真"
+          ],
+          "hint": "先校正成长再估值"
+        }
+      ],
+      "formula_texts": [
+        "实体现金流：FCFF=税后经营净利润−净经营资产增加。等价于NOPAT+折旧−资本支出−营运资本增加；适用：经营净资产口径一致",
+        "股权现金流：FCFE=FCFF−税后利息+净借款。净借款=新增债务−偿还债务；适用：现金流与资本结构估计一致",
+        "永续增长价值：Vn=CF(n+1)/(k−g)。终值在预测期末n时点；适用：稳定增长、k>g；实体用WACC，股权用Ke",
+        "修正市盈率：目标PE=可比PE×目标增长率/可比增长率。增长率单位一致；适用：盈利正值，其他价值驱动因素近似"
+      ]
+    },
+    {
+      "chapter_no": 8,
+      "title": "资本结构",
+      "world": "finance",
+      "cards": [
+        {
+          "id": "finance-08-formula-1",
+          "name": "经营杠杆",
+          "title": "经营杠杆",
+          "expression": "DOL=(销售收入−变动成本)/EBIT",
+          "symbols": "EBIT=边际贡献−固定经营成本",
+          "conditions": "基期EBIT正值，业务与成本结构稳定",
+          "units": "倍数",
+          "pitfalls": [
+            "利息不计入经营固定成本"
+          ],
+          "hint": "经营固定成本放大营业利润"
+        },
+        {
+          "id": "finance-08-formula-2",
+          "name": "财务杠杆",
+          "title": "财务杠杆",
+          "expression": "DFL=EBIT/(EBIT−I)",
+          "symbols": "I为固定利息",
+          "conditions": "无优先股，税率不变，EBIT>I",
+          "units": "倍数",
+          "pitfalls": [
+            "DFL反映筹资风险不反映销售波动"
+          ],
+          "hint": "固定利息放大每股收益"
+        },
+        {
+          "id": "finance-08-formula-3",
+          "name": "每股收益无差别",
+          "title": "每股收益无差别",
+          "expression": "EPS=[(EBIT−I)(1−T)−优先股股利]/普通股股数",
+          "symbols": "按各筹资方案列式",
+          "conditions": "方案的股数、利息与税率明示",
+          "units": "元每股",
+          "pitfalls": [
+            "EPS最大不必然是企业价值最大"
+          ],
+          "hint": "列两式找交点"
+        },
+        {
+          "id": "finance-08-formula-4",
+          "name": "有税MM",
+          "title": "有税MM",
+          "expression": "VL=VU+T×D",
+          "symbols": "D为永久债务市值",
+          "conditions": "永久债务、税率稳定、忽略困境等成本",
+          "units": "元或万元",
+          "pitfalls": [
+            "现实不能凭此无限举债"
+          ],
+          "hint": "税盾有利，现实也有代价"
+        }
+      ],
+      "formulas": [
+        {
+          "id": "finance-08-formula-1",
+          "name": "经营杠杆",
+          "title": "经营杠杆",
+          "expression": "DOL=(销售收入−变动成本)/EBIT",
+          "symbols": "EBIT=边际贡献−固定经营成本",
+          "conditions": "基期EBIT正值，业务与成本结构稳定",
+          "units": "倍数",
+          "pitfalls": [
+            "利息不计入经营固定成本"
+          ],
+          "hint": "经营固定成本放大营业利润"
+        },
+        {
+          "id": "finance-08-formula-2",
+          "name": "财务杠杆",
+          "title": "财务杠杆",
+          "expression": "DFL=EBIT/(EBIT−I)",
+          "symbols": "I为固定利息",
+          "conditions": "无优先股，税率不变，EBIT>I",
+          "units": "倍数",
+          "pitfalls": [
+            "DFL反映筹资风险不反映销售波动"
+          ],
+          "hint": "固定利息放大每股收益"
+        },
+        {
+          "id": "finance-08-formula-3",
+          "name": "每股收益无差别",
+          "title": "每股收益无差别",
+          "expression": "EPS=[(EBIT−I)(1−T)−优先股股利]/普通股股数",
+          "symbols": "按各筹资方案列式",
+          "conditions": "方案的股数、利息与税率明示",
+          "units": "元每股",
+          "pitfalls": [
+            "EPS最大不必然是企业价值最大"
+          ],
+          "hint": "列两式找交点"
+        },
+        {
+          "id": "finance-08-formula-4",
+          "name": "有税MM",
+          "title": "有税MM",
+          "expression": "VL=VU+T×D",
+          "symbols": "D为永久债务市值",
+          "conditions": "永久债务、税率稳定、忽略困境等成本",
+          "units": "元或万元",
+          "pitfalls": [
+            "现实不能凭此无限举债"
+          ],
+          "hint": "税盾有利，现实也有代价"
+        }
+      ],
+      "formula_texts": [
+        "经营杠杆：DOL=(销售收入−变动成本)/EBIT。EBIT=边际贡献−固定经营成本；适用：基期EBIT正值，业务与成本结构稳定",
+        "财务杠杆：DFL=EBIT/(EBIT−I)。I为固定利息；适用：无优先股，税率不变，EBIT>I",
+        "每股收益无差别：EPS=[(EBIT−I)(1−T)−优先股股利]/普通股股数。按各筹资方案列式；适用：方案的股数、利息与税率明示",
+        "有税MM：VL=VU+T×D。D为永久债务市值；适用：永久债务、税率稳定、忽略困境等成本"
+      ]
+    },
+    {
+      "chapter_no": 9,
+      "title": "长期筹资",
+      "world": "finance",
+      "cards": [
+        {
+          "id": "finance-09-formula-1",
+          "name": "债券价值",
+          "title": "债券价值",
+          "expression": "P=Σ利息/(1+y)^t+面值/(1+y)^n",
+          "symbols": "y为每期市场收益率",
+          "conditions": "现金流时点及复利频率匹配",
+          "units": "元",
+          "pitfalls": [
+            "折价发行对应票面率低于收益率"
+          ],
+          "hint": "现金流折现决定价格"
+        },
+        {
+          "id": "finance-09-formula-2",
+          "name": "融资租赁现金流",
+          "title": "融资租赁现金流",
+          "expression": "租赁净优势=租赁相对购买的税后增量现金流现值",
+          "symbols": "按双方方案同口径比较",
+          "conditions": "风险、税盾及期末资产权益明确",
+          "units": "元或万元",
+          "pitfalls": [
+            "不能漏掉购买方案残值"
+          ],
+          "hint": "同风险同服务期"
+        },
+        {
+          "id": "finance-09-formula-3",
+          "name": "可转换债券",
+          "title": "可转换债券",
+          "expression": "转换股数=债券面值/转换价格；转换价值=股数×股价",
+          "symbols": "转换价格为每股金额",
+          "conditions": "忽略交易费，使用合同约定",
+          "units": "股、元",
+          "pitfalls": [
+            "转换价格不是债券市价"
+          ],
+          "hint": "先算股数再乘市价"
+        }
+      ],
+      "formulas": [
+        {
+          "id": "finance-09-formula-1",
+          "name": "债券价值",
+          "title": "债券价值",
+          "expression": "P=Σ利息/(1+y)^t+面值/(1+y)^n",
+          "symbols": "y为每期市场收益率",
+          "conditions": "现金流时点及复利频率匹配",
+          "units": "元",
+          "pitfalls": [
+            "折价发行对应票面率低于收益率"
+          ],
+          "hint": "现金流折现决定价格"
+        },
+        {
+          "id": "finance-09-formula-2",
+          "name": "融资租赁现金流",
+          "title": "融资租赁现金流",
+          "expression": "租赁净优势=租赁相对购买的税后增量现金流现值",
+          "symbols": "按双方方案同口径比较",
+          "conditions": "风险、税盾及期末资产权益明确",
+          "units": "元或万元",
+          "pitfalls": [
+            "不能漏掉购买方案残值"
+          ],
+          "hint": "同风险同服务期"
+        },
+        {
+          "id": "finance-09-formula-3",
+          "name": "可转换债券",
+          "title": "可转换债券",
+          "expression": "转换股数=债券面值/转换价格；转换价值=股数×股价",
+          "symbols": "转换价格为每股金额",
+          "conditions": "忽略交易费，使用合同约定",
+          "units": "股、元",
+          "pitfalls": [
+            "转换价格不是债券市价"
+          ],
+          "hint": "先算股数再乘市价"
+        }
+      ],
+      "formula_texts": [
+        "债券价值：P=Σ利息/(1+y)^t+面值/(1+y)^n。y为每期市场收益率；适用：现金流时点及复利频率匹配",
+        "融资租赁现金流：租赁净优势=租赁相对购买的税后增量现金流现值。按双方方案同口径比较；适用：风险、税盾及期末资产权益明确",
+        "可转换债券：转换股数=债券面值/转换价格；转换价值=股数×股价。转换价格为每股金额；适用：忽略交易费，使用合同约定"
+      ]
+    },
+    {
+      "chapter_no": 10,
+      "title": "股利分配、股票分割与股票回购",
+      "world": "finance",
+      "cards": [
+        {
+          "id": "finance-10-formula-1",
+          "name": "剩余股利",
+          "title": "剩余股利",
+          "expression": "股利=净利润−资本预算×目标权益比例",
+          "symbols": "保留满足投资需求的权益资金",
+          "conditions": "可分配利润及融资条件满足，负数表示不分红并需补充权益",
+          "units": "元或万元",
+          "pitfalls": [
+            "只留权益部分不是全部投资额"
+          ],
+          "hint": "先投资结构，后利润分配"
+        },
+        {
+          "id": "finance-10-formula-2",
+          "name": "除权参考",
+          "title": "除权参考",
+          "expression": "除权参考价=(登记日价−现金股利)/(1+送转比例)",
+          "symbols": "假设没有市场因素变动",
+          "conditions": "仅作机械参考，实际价格由市场形成",
+          "units": "元每股",
+          "pitfalls": [
+            "机械价格变化不是财富自动损失"
+          ],
+          "hint": "总份额与每份额联看"
+        },
+        {
+          "id": "finance-10-formula-3",
+          "name": "股票回购",
+          "title": "股票回购",
+          "expression": "回购后股数=原股数−回购金额/回购价格",
+          "symbols": "EPS=净利润/回购后股数",
+          "conditions": "忽略回购对盈利及税负影响，仅做机械比较",
+          "units": "股、元每股",
+          "pitfalls": [
+            "EPS提高本身不创造价值"
+          ],
+          "hint": "少股数可抬EPS，价值仍看经营"
+        }
+      ],
+      "formulas": [
+        {
+          "id": "finance-10-formula-1",
+          "name": "剩余股利",
+          "title": "剩余股利",
+          "expression": "股利=净利润−资本预算×目标权益比例",
+          "symbols": "保留满足投资需求的权益资金",
+          "conditions": "可分配利润及融资条件满足，负数表示不分红并需补充权益",
+          "units": "元或万元",
+          "pitfalls": [
+            "只留权益部分不是全部投资额"
+          ],
+          "hint": "先投资结构，后利润分配"
+        },
+        {
+          "id": "finance-10-formula-2",
+          "name": "除权参考",
+          "title": "除权参考",
+          "expression": "除权参考价=(登记日价−现金股利)/(1+送转比例)",
+          "symbols": "假设没有市场因素变动",
+          "conditions": "仅作机械参考，实际价格由市场形成",
+          "units": "元每股",
+          "pitfalls": [
+            "机械价格变化不是财富自动损失"
+          ],
+          "hint": "总份额与每份额联看"
+        },
+        {
+          "id": "finance-10-formula-3",
+          "name": "股票回购",
+          "title": "股票回购",
+          "expression": "回购后股数=原股数−回购金额/回购价格",
+          "symbols": "EPS=净利润/回购后股数",
+          "conditions": "忽略回购对盈利及税负影响，仅做机械比较",
+          "units": "股、元每股",
+          "pitfalls": [
+            "EPS提高本身不创造价值"
+          ],
+          "hint": "少股数可抬EPS，价值仍看经营"
+        }
+      ],
+      "formula_texts": [
+        "剩余股利：股利=净利润−资本预算×目标权益比例。保留满足投资需求的权益资金；适用：可分配利润及融资条件满足，负数表示不分红并需补充权益",
+        "除权参考：除权参考价=(登记日价−现金股利)/(1+送转比例)。假设没有市场因素变动；适用：仅作机械参考，实际价格由市场形成",
+        "股票回购：回购后股数=原股数−回购金额/回购价格。EPS=净利润/回购后股数；适用：忽略回购对盈利及税负影响，仅做机械比较"
+      ]
+    },
+    {
+      "chapter_no": 11,
+      "title": "营运资本管理",
+      "world": "finance",
+      "cards": [
+        {
+          "id": "finance-11-formula-1",
+          "name": "现金周转期",
+          "title": "现金周转期",
+          "expression": "CCC=存货期+应收期−应付期",
+          "symbols": "各周转天数同用360或365天",
+          "conditions": "营业周期口径一致",
+          "units": "天",
+          "pitfalls": [
+            "应付账款延期是融资，需减去"
+          ],
+          "hint": "存货加收款，减付款"
+        },
+        {
+          "id": "finance-11-formula-2",
+          "name": "经济订货量",
+          "title": "经济订货量",
+          "expression": "EOQ=√(2DS/H)",
+          "symbols": "D年需求，S每次订货成本，H单位年储存成本",
+          "conditions": "需求均匀、即时到货、无缺货折扣约束",
+          "units": "件",
+          "pitfalls": [
+            "固定总储存成本不进入最优量"
+          ],
+          "hint": "订货与储存边际平衡"
+        },
+        {
+          "id": "finance-11-formula-3",
+          "name": "现金折扣成本",
+          "title": "现金折扣成本",
+          "expression": "年成本≈d/(1−d)×360/(N−n)",
+          "symbols": "d为折扣率，n折扣期，N信用期",
+          "conditions": "本题使用360天近似单利",
+          "units": "百分比",
+          "pitfalls": [
+            "利息期间为延迟支付天数"
+          ],
+          "hint": "为多用几天钱付出的代价"
+        },
+        {
+          "id": "finance-11-formula-4",
+          "name": "米勒—奥尔",
+          "title": "米勒—奥尔",
+          "expression": "目标现金R=L+Z；上限H=L+3Z",
+          "symbols": "Z为最优现金回归距离",
+          "conditions": "随机现金流，按给定L/Z使用",
+          "units": "元或万元",
+          "pitfalls": [
+            "触及上限卖现金买证券，回到R而非L"
+          ],
+          "hint": "上限回中，下限补中"
+        }
+      ],
+      "formulas": [
+        {
+          "id": "finance-11-formula-1",
+          "name": "现金周转期",
+          "title": "现金周转期",
+          "expression": "CCC=存货期+应收期−应付期",
+          "symbols": "各周转天数同用360或365天",
+          "conditions": "营业周期口径一致",
+          "units": "天",
+          "pitfalls": [
+            "应付账款延期是融资，需减去"
+          ],
+          "hint": "存货加收款，减付款"
+        },
+        {
+          "id": "finance-11-formula-2",
+          "name": "经济订货量",
+          "title": "经济订货量",
+          "expression": "EOQ=√(2DS/H)",
+          "symbols": "D年需求，S每次订货成本，H单位年储存成本",
+          "conditions": "需求均匀、即时到货、无缺货折扣约束",
+          "units": "件",
+          "pitfalls": [
+            "固定总储存成本不进入最优量"
+          ],
+          "hint": "订货与储存边际平衡"
+        },
+        {
+          "id": "finance-11-formula-3",
+          "name": "现金折扣成本",
+          "title": "现金折扣成本",
+          "expression": "年成本≈d/(1−d)×360/(N−n)",
+          "symbols": "d为折扣率，n折扣期，N信用期",
+          "conditions": "本题使用360天近似单利",
+          "units": "百分比",
+          "pitfalls": [
+            "利息期间为延迟支付天数"
+          ],
+          "hint": "为多用几天钱付出的代价"
+        },
+        {
+          "id": "finance-11-formula-4",
+          "name": "米勒—奥尔",
+          "title": "米勒—奥尔",
+          "expression": "目标现金R=L+Z；上限H=L+3Z",
+          "symbols": "Z为最优现金回归距离",
+          "conditions": "随机现金流，按给定L/Z使用",
+          "units": "元或万元",
+          "pitfalls": [
+            "触及上限卖现金买证券，回到R而非L"
+          ],
+          "hint": "上限回中，下限补中"
+        }
+      ],
+      "formula_texts": [
+        "现金周转期：CCC=存货期+应收期−应付期。各周转天数同用360或365天；适用：营业周期口径一致",
+        "经济订货量：EOQ=√(2DS/H)。D年需求，S每次订货成本，H单位年储存成本；适用：需求均匀、即时到货、无缺货折扣约束",
+        "现金折扣成本：年成本≈d/(1−d)×360/(N−n)。d为折扣率，n折扣期，N信用期；适用：本题使用360天近似单利",
+        "米勒—奥尔：目标现金R=L+Z；上限H=L+3Z。Z为最优现金回归距离；适用：随机现金流，按给定L/Z使用"
+      ]
+    },
+    {
+      "chapter_no": 12,
+      "title": "成本管理会计基础概念与理论",
+      "world": "finance",
+      "cards": [
+        {
+          "id": "finance-12-formula-1",
+          "name": "高低点法",
+          "title": "高低点法",
+          "expression": "单位变动成本=(高点成本−低点成本)/(高点业务量−低点业务量)",
+          "symbols": "固定成本=总成本−单位变动成本×业务量",
+          "conditions": "相关范围内线性，高低按业务量选",
+          "units": "元每单位、元",
+          "pitfalls": [
+            "不能按总成本高低选点"
+          ],
+          "hint": "先数量高低，再算斜率"
+        },
+        {
+          "id": "finance-12-formula-2",
+          "name": "边际贡献",
+          "title": "边际贡献",
+          "expression": "CM=销售收入−变动成本",
+          "symbols": "单位CM=单价−单位变动成本",
+          "conditions": "同一业务范围和成本分类",
+          "units": "元或万元",
+          "pitfalls": [
+            "固定成本不在边际贡献中扣除"
+          ],
+          "hint": "先贡献，再覆盖固定"
+        },
+        {
+          "id": "finance-12-formula-3",
+          "name": "相关成本",
+          "title": "相关成本",
+          "expression": "相关成本=未来且方案间不同的成本",
+          "symbols": "机会成本为放弃的最佳收益",
+          "conditions": "给定决策、时间范围和可避免性",
+          "units": "元或万元",
+          "pitfalls": [
+            "历史账面金额和分摊固定成本不当然相关"
+          ],
+          "hint": "未来差额才参与决策"
+        }
+      ],
+      "formulas": [
+        {
+          "id": "finance-12-formula-1",
+          "name": "高低点法",
+          "title": "高低点法",
+          "expression": "单位变动成本=(高点成本−低点成本)/(高点业务量−低点业务量)",
+          "symbols": "固定成本=总成本−单位变动成本×业务量",
+          "conditions": "相关范围内线性，高低按业务量选",
+          "units": "元每单位、元",
+          "pitfalls": [
+            "不能按总成本高低选点"
+          ],
+          "hint": "先数量高低，再算斜率"
+        },
+        {
+          "id": "finance-12-formula-2",
+          "name": "边际贡献",
+          "title": "边际贡献",
+          "expression": "CM=销售收入−变动成本",
+          "symbols": "单位CM=单价−单位变动成本",
+          "conditions": "同一业务范围和成本分类",
+          "units": "元或万元",
+          "pitfalls": [
+            "固定成本不在边际贡献中扣除"
+          ],
+          "hint": "先贡献，再覆盖固定"
+        },
+        {
+          "id": "finance-12-formula-3",
+          "name": "相关成本",
+          "title": "相关成本",
+          "expression": "相关成本=未来且方案间不同的成本",
+          "symbols": "机会成本为放弃的最佳收益",
+          "conditions": "给定决策、时间范围和可避免性",
+          "units": "元或万元",
+          "pitfalls": [
+            "历史账面金额和分摊固定成本不当然相关"
+          ],
+          "hint": "未来差额才参与决策"
+        }
+      ],
+      "formula_texts": [
+        "高低点法：单位变动成本=(高点成本−低点成本)/(高点业务量−低点业务量)。固定成本=总成本−单位变动成本×业务量；适用：相关范围内线性，高低按业务量选",
+        "边际贡献：CM=销售收入−变动成本。单位CM=单价−单位变动成本；适用：同一业务范围和成本分类",
+        "相关成本：相关成本=未来且方案间不同的成本。机会成本为放弃的最佳收益；适用：给定决策、时间范围和可避免性"
+      ]
+    },
+    {
+      "chapter_no": 13,
+      "title": "产品成本计算",
+      "world": "finance",
+      "cards": [
+        {
+          "id": "finance-13-formula-1",
+          "name": "约当产量",
+          "title": "约当产量",
+          "expression": "约当量=在产品数量×完工程度",
+          "symbols": "材料与转换成本分开计算",
+          "conditions": "分配方法及投料时点明示",
+          "units": "件",
+          "pitfalls": [
+            "材料一次投入不等于转换100%"
+          ],
+          "hint": "按要素分开看进度"
+        },
+        {
+          "id": "finance-13-formula-2",
+          "name": "加权平均分配",
+          "title": "加权平均分配",
+          "expression": "单位成本=(期初在产成本+本期成本)/(完工量+期末约当量)",
+          "symbols": "不同要素各用相应分母",
+          "conditions": "采用加权平均法",
+          "units": "元每约当件",
+          "pitfalls": [
+            "先进先出法不能直接套此分母"
+          ],
+          "hint": "平均混期，FIFO分期"
+        },
+        {
+          "id": "finance-13-formula-3",
+          "name": "制造费用分配",
+          "title": "制造费用分配",
+          "expression": "分配率=待分配制造费用/分配标准总量",
+          "symbols": "产品负担=分配率×产品标准量",
+          "conditions": "同成本池和适当动因",
+          "units": "元每小时等",
+          "pitfalls": [
+            "直接材料不属于间接费用池"
+          ],
+          "hint": "成本池除动因量"
+        }
+      ],
+      "formulas": [
+        {
+          "id": "finance-13-formula-1",
+          "name": "约当产量",
+          "title": "约当产量",
+          "expression": "约当量=在产品数量×完工程度",
+          "symbols": "材料与转换成本分开计算",
+          "conditions": "分配方法及投料时点明示",
+          "units": "件",
+          "pitfalls": [
+            "材料一次投入不等于转换100%"
+          ],
+          "hint": "按要素分开看进度"
+        },
+        {
+          "id": "finance-13-formula-2",
+          "name": "加权平均分配",
+          "title": "加权平均分配",
+          "expression": "单位成本=(期初在产成本+本期成本)/(完工量+期末约当量)",
+          "symbols": "不同要素各用相应分母",
+          "conditions": "采用加权平均法",
+          "units": "元每约当件",
+          "pitfalls": [
+            "先进先出法不能直接套此分母"
+          ],
+          "hint": "平均混期，FIFO分期"
+        },
+        {
+          "id": "finance-13-formula-3",
+          "name": "制造费用分配",
+          "title": "制造费用分配",
+          "expression": "分配率=待分配制造费用/分配标准总量",
+          "symbols": "产品负担=分配率×产品标准量",
+          "conditions": "同成本池和适当动因",
+          "units": "元每小时等",
+          "pitfalls": [
+            "直接材料不属于间接费用池"
+          ],
+          "hint": "成本池除动因量"
+        }
+      ],
+      "formula_texts": [
+        "约当产量：约当量=在产品数量×完工程度。材料与转换成本分开计算；适用：分配方法及投料时点明示",
+        "加权平均分配：单位成本=(期初在产成本+本期成本)/(完工量+期末约当量)。不同要素各用相应分母；适用：采用加权平均法",
+        "制造费用分配：分配率=待分配制造费用/分配标准总量。产品负担=分配率×产品标准量；适用：同成本池和适当动因"
+      ]
+    },
+    {
+      "chapter_no": 14,
+      "title": "标准成本法",
+      "world": "finance",
+      "cards": [
+        {
+          "id": "finance-14-formula-1",
+          "name": "材料差异",
+          "title": "材料差异",
+          "expression": "价差=(实际价−标准价)×实际量；量差=(实际量−标准量)×标准价",
+          "symbols": "标准量为实际产出允许耗用量",
+          "conditions": "明确采购或耗用价差核算时点",
+          "units": "元",
+          "pitfalls": [
+            "标准量不能直接用计划产量"
+          ],
+          "hint": "价差乘实量，量差乘标价"
+        },
+        {
+          "id": "finance-14-formula-2",
+          "name": "人工差异",
+          "title": "人工差异",
+          "expression": "工资率差异=(实际率−标准率)×实际工时；效率差异=(实际工时−标准工时)×标准率",
+          "symbols": "标准工时按实际产出确定",
+          "conditions": "实际/标准工时口径一致",
+          "units": "元",
+          "pitfalls": [
+            "效率差异不使用实际工资率"
+          ],
+          "hint": "率差实量，效率标价"
+        },
+        {
+          "id": "finance-14-formula-3",
+          "name": "固定制造费用三差异",
+          "title": "固定制造费用三差异",
+          "expression": "耗费=实际−预算；闲置=(生产能量−实际工时)×标准分配率；效率=(实际−标准工时)×标准率",
+          "symbols": "能量为分母产能工时",
+          "conditions": "正数表示不利差异，标准率=预算/产能",
+          "units": "元",
+          "pitfalls": [
+            "二差异与三差异分解不能混加"
+          ],
+          "hint": "花钱、闲置、效率三段"
+        }
+      ],
+      "formulas": [
+        {
+          "id": "finance-14-formula-1",
+          "name": "材料差异",
+          "title": "材料差异",
+          "expression": "价差=(实际价−标准价)×实际量；量差=(实际量−标准量)×标准价",
+          "symbols": "标准量为实际产出允许耗用量",
+          "conditions": "明确采购或耗用价差核算时点",
+          "units": "元",
+          "pitfalls": [
+            "标准量不能直接用计划产量"
+          ],
+          "hint": "价差乘实量，量差乘标价"
+        },
+        {
+          "id": "finance-14-formula-2",
+          "name": "人工差异",
+          "title": "人工差异",
+          "expression": "工资率差异=(实际率−标准率)×实际工时；效率差异=(实际工时−标准工时)×标准率",
+          "symbols": "标准工时按实际产出确定",
+          "conditions": "实际/标准工时口径一致",
+          "units": "元",
+          "pitfalls": [
+            "效率差异不使用实际工资率"
+          ],
+          "hint": "率差实量，效率标价"
+        },
+        {
+          "id": "finance-14-formula-3",
+          "name": "固定制造费用三差异",
+          "title": "固定制造费用三差异",
+          "expression": "耗费=实际−预算；闲置=(生产能量−实际工时)×标准分配率；效率=(实际−标准工时)×标准率",
+          "symbols": "能量为分母产能工时",
+          "conditions": "正数表示不利差异，标准率=预算/产能",
+          "units": "元",
+          "pitfalls": [
+            "二差异与三差异分解不能混加"
+          ],
+          "hint": "花钱、闲置、效率三段"
+        }
+      ],
+      "formula_texts": [
+        "材料差异：价差=(实际价−标准价)×实际量；量差=(实际量−标准量)×标准价。标准量为实际产出允许耗用量；适用：明确采购或耗用价差核算时点",
+        "人工差异：工资率差异=(实际率−标准率)×实际工时；效率差异=(实际工时−标准工时)×标准率。标准工时按实际产出确定；适用：实际/标准工时口径一致",
+        "固定制造费用三差异：耗费=实际−预算；闲置=(生产能量−实际工时)×标准分配率；效率=(实际−标准工时)×标准率。能量为分母产能工时；适用：正数表示不利差异，标准率=预算/产能"
+      ]
+    },
+    {
+      "chapter_no": 15,
+      "title": "作业成本法和生命周期成本法",
+      "world": "finance",
+      "cards": [
+        {
+          "id": "finance-15-formula-1",
+          "name": "作业成本",
+          "title": "作业成本",
+          "expression": "作业率=成本池金额/动因总量；产品作业成本=Σ作业率×产品耗用动因",
+          "symbols": "各成本池使用各自驱动因素",
+          "conditions": "可合理归集资源与追踪动因",
+          "units": "元",
+          "pitfalls": [
+            "小批量多批次产品不宜只按件数分配"
+          ],
+          "hint": "资源到作业，作业到产品"
+        },
+        {
+          "id": "finance-15-formula-2",
+          "name": "生命周期成本",
+          "title": "生命周期成本",
+          "expression": "生命周期成本=研发设计+制造+销售服务+处置成本",
+          "symbols": "覆盖产品完整生命历程",
+          "conditions": "明示是生产者口径还是全社会口径",
+          "units": "元或万元",
+          "pitfalls": [
+            "发生时点晚不代表设计阶段不能影响"
+          ],
+          "hint": "全周期看决策锁定"
+        },
+        {
+          "id": "finance-15-formula-3",
+          "name": "目标成本",
+          "title": "目标成本",
+          "expression": "目标成本=目标售价−目标利润",
+          "symbols": "目标利润率若按售价计算则售价×利润率",
+          "conditions": "售价与利润口径给定",
+          "units": "元每件",
+          "pitfalls": [
+            "成本利润率和销售利润率不能混用"
+          ],
+          "hint": "市场定价倒推成本"
+        }
+      ],
+      "formulas": [
+        {
+          "id": "finance-15-formula-1",
+          "name": "作业成本",
+          "title": "作业成本",
+          "expression": "作业率=成本池金额/动因总量；产品作业成本=Σ作业率×产品耗用动因",
+          "symbols": "各成本池使用各自驱动因素",
+          "conditions": "可合理归集资源与追踪动因",
+          "units": "元",
+          "pitfalls": [
+            "小批量多批次产品不宜只按件数分配"
+          ],
+          "hint": "资源到作业，作业到产品"
+        },
+        {
+          "id": "finance-15-formula-2",
+          "name": "生命周期成本",
+          "title": "生命周期成本",
+          "expression": "生命周期成本=研发设计+制造+销售服务+处置成本",
+          "symbols": "覆盖产品完整生命历程",
+          "conditions": "明示是生产者口径还是全社会口径",
+          "units": "元或万元",
+          "pitfalls": [
+            "发生时点晚不代表设计阶段不能影响"
+          ],
+          "hint": "全周期看决策锁定"
+        },
+        {
+          "id": "finance-15-formula-3",
+          "name": "目标成本",
+          "title": "目标成本",
+          "expression": "目标成本=目标售价−目标利润",
+          "symbols": "目标利润率若按售价计算则售价×利润率",
+          "conditions": "售价与利润口径给定",
+          "units": "元每件",
+          "pitfalls": [
+            "成本利润率和销售利润率不能混用"
+          ],
+          "hint": "市场定价倒推成本"
+        }
+      ],
+      "formula_texts": [
+        "作业成本：作业率=成本池金额/动因总量；产品作业成本=Σ作业率×产品耗用动因。各成本池使用各自驱动因素；适用：可合理归集资源与追踪动因",
+        "生命周期成本：生命周期成本=研发设计+制造+销售服务+处置成本。覆盖产品完整生命历程；适用：明示是生产者口径还是全社会口径",
+        "目标成本：目标成本=目标售价−目标利润。目标利润率若按售价计算则售价×利润率；适用：售价与利润口径给定"
+      ]
+    },
+    {
+      "chapter_no": 16,
+      "title": "本量利分析",
+      "world": "finance",
+      "cards": [
+        {
+          "id": "finance-16-formula-1",
+          "name": "保本量",
+          "title": "保本量",
+          "expression": "Q0=F/(P−V)",
+          "symbols": "F固定成本，P单价，V单位变动成本",
+          "conditions": "线性单品，CM>0，销量与产量一致",
+          "units": "件",
+          "pitfalls": [
+            "保本量向上取整才能避免亏损"
+          ],
+          "hint": "固定除单位贡献"
+        },
+        {
+          "id": "finance-16-formula-2",
+          "name": "目标利润量",
+          "title": "目标利润量",
+          "expression": "Q=(F+目标税前利润)/(P−V)",
+          "symbols": "税后目标先除(1−T)",
+          "conditions": "在相关范围内成本结构不变",
+          "units": "件",
+          "pitfalls": [
+            "税后利润不能直接塞分子"
+          ],
+          "hint": "先税前，再求量"
+        },
+        {
+          "id": "finance-16-formula-3",
+          "name": "安全边际",
+          "title": "安全边际",
+          "expression": "安全边际率=(实际销售额−保本销售额)/实际销售额",
+          "symbols": "销售利润率=安全边际率×边际贡献率",
+          "conditions": "单品或结构固定的多品",
+          "units": "百分比",
+          "pitfalls": [
+            "安全边际分母是实际销售额"
+          ],
+          "hint": "离保本越远，缓冲越大"
+        }
+      ],
+      "formulas": [
+        {
+          "id": "finance-16-formula-1",
+          "name": "保本量",
+          "title": "保本量",
+          "expression": "Q0=F/(P−V)",
+          "symbols": "F固定成本，P单价，V单位变动成本",
+          "conditions": "线性单品，CM>0，销量与产量一致",
+          "units": "件",
+          "pitfalls": [
+            "保本量向上取整才能避免亏损"
+          ],
+          "hint": "固定除单位贡献"
+        },
+        {
+          "id": "finance-16-formula-2",
+          "name": "目标利润量",
+          "title": "目标利润量",
+          "expression": "Q=(F+目标税前利润)/(P−V)",
+          "symbols": "税后目标先除(1−T)",
+          "conditions": "在相关范围内成本结构不变",
+          "units": "件",
+          "pitfalls": [
+            "税后利润不能直接塞分子"
+          ],
+          "hint": "先税前，再求量"
+        },
+        {
+          "id": "finance-16-formula-3",
+          "name": "安全边际",
+          "title": "安全边际",
+          "expression": "安全边际率=(实际销售额−保本销售额)/实际销售额",
+          "symbols": "销售利润率=安全边际率×边际贡献率",
+          "conditions": "单品或结构固定的多品",
+          "units": "百分比",
+          "pitfalls": [
+            "安全边际分母是实际销售额"
+          ],
+          "hint": "离保本越远，缓冲越大"
+        }
+      ],
+      "formula_texts": [
+        "保本量：Q0=F/(P−V)。F固定成本，P单价，V单位变动成本；适用：线性单品，CM>0，销量与产量一致",
+        "目标利润量：Q=(F+目标税前利润)/(P−V)。税后目标先除(1−T)；适用：在相关范围内成本结构不变",
+        "安全边际：安全边际率=(实际销售额−保本销售额)/实际销售额。销售利润率=安全边际率×边际贡献率；适用：单品或结构固定的多品"
+      ]
+    },
+    {
+      "chapter_no": 17,
+      "title": "短期经营决策",
+      "world": "finance",
+      "cards": [
+        {
+          "id": "finance-17-formula-1",
+          "name": "特殊订单",
+          "title": "特殊订单",
+          "expression": "增量利润=增量收入−增量成本−机会成本",
+          "symbols": "增量成本含专属固定成本",
+          "conditions": "明确闲置产能、正常销售影响和约束",
+          "units": "元或万元",
+          "pitfalls": [
+            "闲置下分摊固定制造费通常不相关"
+          ],
+          "hint": "空闲先差额，挤占算机会"
+        },
+        {
+          "id": "finance-17-formula-2",
+          "name": "限制资源排序",
+          "title": "限制资源排序",
+          "expression": "单位稀缺资源贡献=单位边际贡献/单位资源耗用",
+          "symbols": "按需求上限分配资源",
+          "conditions": "单一限制资源且固定成本不变",
+          "units": "元每机器小时等",
+          "pitfalls": [
+            "单位产品利润高未必资源收益高"
+          ],
+          "hint": "一小时能贡献多少"
+        },
+        {
+          "id": "finance-17-formula-3",
+          "name": "进一步加工",
+          "title": "进一步加工",
+          "expression": "增量收益=加工后收入−分离点收入−新增加工成本",
+          "symbols": "联合成本为已发生或不随决策变动",
+          "conditions": "明确可销售的分离点产品",
+          "units": "元或万元",
+          "pitfalls": [
+            "分摊联合成本不应再次扣减"
+          ],
+          "hint": "比较分离点之后"
+        }
+      ],
+      "formulas": [
+        {
+          "id": "finance-17-formula-1",
+          "name": "特殊订单",
+          "title": "特殊订单",
+          "expression": "增量利润=增量收入−增量成本−机会成本",
+          "symbols": "增量成本含专属固定成本",
+          "conditions": "明确闲置产能、正常销售影响和约束",
+          "units": "元或万元",
+          "pitfalls": [
+            "闲置下分摊固定制造费通常不相关"
+          ],
+          "hint": "空闲先差额，挤占算机会"
+        },
+        {
+          "id": "finance-17-formula-2",
+          "name": "限制资源排序",
+          "title": "限制资源排序",
+          "expression": "单位稀缺资源贡献=单位边际贡献/单位资源耗用",
+          "symbols": "按需求上限分配资源",
+          "conditions": "单一限制资源且固定成本不变",
+          "units": "元每机器小时等",
+          "pitfalls": [
+            "单位产品利润高未必资源收益高"
+          ],
+          "hint": "一小时能贡献多少"
+        },
+        {
+          "id": "finance-17-formula-3",
+          "name": "进一步加工",
+          "title": "进一步加工",
+          "expression": "增量收益=加工后收入−分离点收入−新增加工成本",
+          "symbols": "联合成本为已发生或不随决策变动",
+          "conditions": "明确可销售的分离点产品",
+          "units": "元或万元",
+          "pitfalls": [
+            "分摊联合成本不应再次扣减"
+          ],
+          "hint": "比较分离点之后"
+        }
+      ],
+      "formula_texts": [
+        "特殊订单：增量利润=增量收入−增量成本−机会成本。增量成本含专属固定成本；适用：明确闲置产能、正常销售影响和约束",
+        "限制资源排序：单位稀缺资源贡献=单位边际贡献/单位资源耗用。按需求上限分配资源；适用：单一限制资源且固定成本不变",
+        "进一步加工：增量收益=加工后收入−分离点收入−新增加工成本。联合成本为已发生或不随决策变动；适用：明确可销售的分离点产品"
+      ]
+    },
+    {
+      "chapter_no": 18,
+      "title": "全面预算",
+      "world": "finance",
+      "cards": [
+        {
+          "id": "finance-18-formula-1",
+          "name": "生产预算",
+          "title": "生产预算",
+          "expression": "预计产量=预计销量+预计期末成品−期初成品",
+          "symbols": "存货数量按同产品口径",
+          "conditions": "以销售预算为起点",
+          "units": "件",
+          "pitfalls": [
+            "不能把期初和期末符号颠倒"
+          ],
+          "hint": "卖出加留存减已有"
+        },
+        {
+          "id": "finance-18-formula-2",
+          "name": "材料采购预算",
+          "title": "材料采购预算",
+          "expression": "采购量=生产耗用+期末材料−期初材料",
+          "symbols": "生产耗用=产量×单位耗用",
+          "conditions": "采购付款时点另列",
+          "units": "公斤等",
+          "pitfalls": [
+            "耗用量不等于采购量"
+          ],
+          "hint": "够用再留期末"
+        },
+        {
+          "id": "finance-18-formula-3",
+          "name": "现金预算",
+          "title": "现金预算",
+          "expression": "期末现金=期初现金+现金收入−现金支出+筹资净流入",
+          "symbols": "折旧不是现金支出",
+          "conditions": "收款与付款进度明示",
+          "units": "元或万元",
+          "pitfalls": [
+            "销售收入不等于当期现金收入"
+          ],
+          "hint": "按收付时点排队"
+        }
+      ],
+      "formulas": [
+        {
+          "id": "finance-18-formula-1",
+          "name": "生产预算",
+          "title": "生产预算",
+          "expression": "预计产量=预计销量+预计期末成品−期初成品",
+          "symbols": "存货数量按同产品口径",
+          "conditions": "以销售预算为起点",
+          "units": "件",
+          "pitfalls": [
+            "不能把期初和期末符号颠倒"
+          ],
+          "hint": "卖出加留存减已有"
+        },
+        {
+          "id": "finance-18-formula-2",
+          "name": "材料采购预算",
+          "title": "材料采购预算",
+          "expression": "采购量=生产耗用+期末材料−期初材料",
+          "symbols": "生产耗用=产量×单位耗用",
+          "conditions": "采购付款时点另列",
+          "units": "公斤等",
+          "pitfalls": [
+            "耗用量不等于采购量"
+          ],
+          "hint": "够用再留期末"
+        },
+        {
+          "id": "finance-18-formula-3",
+          "name": "现金预算",
+          "title": "现金预算",
+          "expression": "期末现金=期初现金+现金收入−现金支出+筹资净流入",
+          "symbols": "折旧不是现金支出",
+          "conditions": "收款与付款进度明示",
+          "units": "元或万元",
+          "pitfalls": [
+            "销售收入不等于当期现金收入"
+          ],
+          "hint": "按收付时点排队"
+        }
+      ],
+      "formula_texts": [
+        "生产预算：预计产量=预计销量+预计期末成品−期初成品。存货数量按同产品口径；适用：以销售预算为起点",
+        "材料采购预算：采购量=生产耗用+期末材料−期初材料。生产耗用=产量×单位耗用；适用：采购付款时点另列",
+        "现金预算：期末现金=期初现金+现金收入−现金支出+筹资净流入。折旧不是现金支出；适用：收款与付款进度明示"
+      ]
+    },
+    {
+      "chapter_no": 19,
+      "title": "责任会计",
+      "world": "finance",
+      "cards": [
+        {
+          "id": "finance-19-formula-1",
+          "name": "投资报酬率",
+          "title": "投资报酬率",
+          "expression": "ROI=部门税前经营利润/平均经营资产",
+          "symbols": "部门利润与资产范围一致",
+          "conditions": "用于投资中心，不使用企业净利润混口径",
+          "units": "百分比",
+          "pitfalls": [
+            "ROI高的部门可能拒绝正剩余收益投资"
+          ],
+          "hint": "比率要配金额"
+        },
+        {
+          "id": "finance-19-formula-2",
+          "name": "剩余收益",
+          "title": "剩余收益",
+          "expression": "RI=部门税前经营利润−平均经营资产×要求报酬率",
+          "symbols": "要求报酬率与风险和税前口径一致",
+          "conditions": "投资中心，使用明示资产基数",
+          "units": "元或万元",
+          "pitfalls": [
+            "剩余收益受部门规模影响"
+          ],
+          "hint": "赚过资本门槛的金额"
+        },
+        {
+          "id": "finance-19-formula-3",
+          "name": "内部转移价格",
+          "title": "内部转移价格",
+          "expression": "最低价=变动成本+单位机会成本",
+          "symbols": "外购可得时最高价通常是外部采购价",
+          "conditions": "明确产能、外售机会和可避免费用",
+          "units": "元每件",
+          "pitfalls": [
+            "闲置产能和满负荷产能最低价不同"
+          ],
+          "hint": "贡献被挤走才补机会"
+        }
+      ],
+      "formulas": [
+        {
+          "id": "finance-19-formula-1",
+          "name": "投资报酬率",
+          "title": "投资报酬率",
+          "expression": "ROI=部门税前经营利润/平均经营资产",
+          "symbols": "部门利润与资产范围一致",
+          "conditions": "用于投资中心，不使用企业净利润混口径",
+          "units": "百分比",
+          "pitfalls": [
+            "ROI高的部门可能拒绝正剩余收益投资"
+          ],
+          "hint": "比率要配金额"
+        },
+        {
+          "id": "finance-19-formula-2",
+          "name": "剩余收益",
+          "title": "剩余收益",
+          "expression": "RI=部门税前经营利润−平均经营资产×要求报酬率",
+          "symbols": "要求报酬率与风险和税前口径一致",
+          "conditions": "投资中心，使用明示资产基数",
+          "units": "元或万元",
+          "pitfalls": [
+            "剩余收益受部门规模影响"
+          ],
+          "hint": "赚过资本门槛的金额"
+        },
+        {
+          "id": "finance-19-formula-3",
+          "name": "内部转移价格",
+          "title": "内部转移价格",
+          "expression": "最低价=变动成本+单位机会成本",
+          "symbols": "外购可得时最高价通常是外部采购价",
+          "conditions": "明确产能、外售机会和可避免费用",
+          "units": "元每件",
+          "pitfalls": [
+            "闲置产能和满负荷产能最低价不同"
+          ],
+          "hint": "贡献被挤走才补机会"
+        }
+      ],
+      "formula_texts": [
+        "投资报酬率：ROI=部门税前经营利润/平均经营资产。部门利润与资产范围一致；适用：用于投资中心，不使用企业净利润混口径",
+        "剩余收益：RI=部门税前经营利润−平均经营资产×要求报酬率。要求报酬率与风险和税前口径一致；适用：投资中心，使用明示资产基数",
+        "内部转移价格：最低价=变动成本+单位机会成本。外购可得时最高价通常是外部采购价；适用：明确产能、外售机会和可避免费用"
+      ]
+    },
+    {
+      "chapter_no": 20,
+      "title": "业绩评价",
+      "world": "finance",
+      "cards": [
+        {
+          "id": "finance-20-formula-1",
+          "name": "经济增加值",
+          "title": "经济增加值",
+          "expression": "EVA=税后净营业利润−调整后资本×WACC",
+          "symbols": "利润和资本均依所给调整规则计算",
+          "conditions": "年度平均或期初资本基数按题设",
+          "units": "元或万元",
+          "pitfalls": [
+            "会计利润为正未必创造价值"
+          ],
+          "hint": "扣全体资本的代价"
+        },
+        {
+          "id": "finance-20-formula-2",
+          "name": "杜邦与价值指标",
+          "title": "杜邦与价值指标",
+          "expression": "ROE=净利率×周转率×权益乘数",
+          "symbols": "ROE可能被杠杆推高",
+          "conditions": "评价时同时检查风险、现金流和资本成本",
+          "units": "百分比",
+          "pitfalls": [
+            "单一财务比率不能代替全面评价"
+          ],
+          "hint": "结果、风险、驱动一起看"
+        },
+        {
+          "id": "finance-20-formula-3",
+          "name": "平衡计分卡",
+          "title": "平衡计分卡",
+          "expression": "财务/客户/内部流程/学习成长四维相互联系",
+          "symbols": "战略分解为结果与驱动指标",
+          "conditions": "结合业务因果链与反馈",
+          "units": "指标单位按定义",
+          "pitfalls": [
+            "指标数量多不等于战略一致"
+          ],
+          "hint": "能力推动流程，流程服务客户"
+        }
+      ],
+      "formulas": [
+        {
+          "id": "finance-20-formula-1",
+          "name": "经济增加值",
+          "title": "经济增加值",
+          "expression": "EVA=税后净营业利润−调整后资本×WACC",
+          "symbols": "利润和资本均依所给调整规则计算",
+          "conditions": "年度平均或期初资本基数按题设",
+          "units": "元或万元",
+          "pitfalls": [
+            "会计利润为正未必创造价值"
+          ],
+          "hint": "扣全体资本的代价"
+        },
+        {
+          "id": "finance-20-formula-2",
+          "name": "杜邦与价值指标",
+          "title": "杜邦与价值指标",
+          "expression": "ROE=净利率×周转率×权益乘数",
+          "symbols": "ROE可能被杠杆推高",
+          "conditions": "评价时同时检查风险、现金流和资本成本",
+          "units": "百分比",
+          "pitfalls": [
+            "单一财务比率不能代替全面评价"
+          ],
+          "hint": "结果、风险、驱动一起看"
+        },
+        {
+          "id": "finance-20-formula-3",
+          "name": "平衡计分卡",
+          "title": "平衡计分卡",
+          "expression": "财务/客户/内部流程/学习成长四维相互联系",
+          "symbols": "战略分解为结果与驱动指标",
+          "conditions": "结合业务因果链与反馈",
+          "units": "指标单位按定义",
+          "pitfalls": [
+            "指标数量多不等于战略一致"
+          ],
+          "hint": "能力推动流程，流程服务客户"
+        }
+      ],
+      "formula_texts": [
+        "经济增加值：EVA=税后净营业利润−调整后资本×WACC。利润和资本均依所给调整规则计算；适用：年度平均或期初资本基数按题设",
+        "杜邦与价值指标：ROE=净利率×周转率×权益乘数。ROE可能被杠杆推高；适用：评价时同时检查风险、现金流和资本成本",
+        "平衡计分卡：财务/客户/内部流程/学习成长四维相互联系。战略分解为结果与驱动指标；适用：结合业务因果链与反馈"
+      ]
+    }
+  ]
+}

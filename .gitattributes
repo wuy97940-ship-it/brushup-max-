@@ -1,0 +1,6 @@
+# 共用来源摘要依赖原字节，Git不自动转换已验收文件的换行。
+* -text
+*.png binary
+*.ico binary
+*.ttf binary
+

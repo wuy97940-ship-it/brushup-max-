@@ -1,0 +1,16 @@
+<view class="structured-note muted">分小问保存过程与数值。提交后核对参考答案，再逐项自评；本轮只计第一次完整提交。</view>
+<view wx:for="{{subquestions}}" wx:for-item="part" wx:key="id" class="subquestion">
+ <view class="subtitle">（{{part.id}}）{{question.stem_images_primary?'按教材题图中本小问的要求作答。':part.prompt}}</view>
+ <textarea class="subjective-answer" auto-height value="{{part.process}}" placeholder="写下公式、代入、计算与结论…" maxlength="-1" disabled="{{!structuredEditable}}" data-kind="process" data-key="{{part.id}}" bindinput="structuredInput"/>
+ <view wx:for="{{part.checks}}" wx:for-item="check" wx:key="key" class="numeric-check">
+  <view>{{check.label}}</view><view class="row"><input class="numeric-input" value="{{check.input}}" placeholder="关键数值" disabled="{{!structuredEditable}}" data-kind="values" data-key="{{check.key}}" bindinput="structuredInput"/><picker range="{{check.unitChoices}}" value="{{check.unitIndex}}" disabled="{{!structuredEditable}}" data-key="{{check.key}}" data-choices="{{check.unitChoices}}" bindchange="structuredUnit"><view class="unit-select">{{check.inputUnit}} ⌄</view></picker></view>
+  <view wx:if="{{submission}}" class="numeric-result {{check.result.correct?'correct':'incorrect'}}">{{check.result.correct?'✓ 数值通过':'再核对一下'}} · 参考 {{check.result.expected}} {{check.result.unit}}<view class="muted">{{check.result.message}}</view></view>
+ </view>
+ <view wx:if="{{submission||rec}}" class="explanation"><view class="subtitle">本小问参考</view><study-text content="{{question.reference_images_primary?'请逐步对照教材参考图自评。':part.reference}}" theme="{{theme}}"/><view wx:for="{{part.process_checklist}}" wx:for-item="point" wx:key="*this" class="muted">• {{point}}</view></view>
+ <view wx:if="{{submission&&!submission.graded}}" class="self-grade"><button class="{{part.hasSelf&&part.self?'primary':'secondary'}}" data-id="{{part.id}}" data-correct="yes" bindtap="processGrade">过程正确</button><button class="{{part.hasSelf&&!part.self?'primary':'secondary'}}" data-id="{{part.id}}" data-correct="no" bindtap="processGrade">还需复习</button></view>
+</view>
+<button wx:if="{{structuredEditable}}" class="primary" bindtap="submitStructured">提交各小问 · 核对数值</button>
+<button wx:if="{{submission&&!submission.graded}}" class="primary" bindtap="gradeStructured">完成过程自评 · 保存结果</button>
+<view wx:if="{{submission||rec}}" class="explanation"><view class="subtitle">完整参考答案</view><study-text content="{{question.reference_images_primary?'请对照下方教材参考图，核对完整推导。':question.answer}}" theme="{{theme}}"/></view>
+<button wx:if="{{rec&&submission.graded}}" class="secondary" bindtap="correctStructured">重新核对 · 保留首次成绩</button>
+<view wx:if="{{correctionCount}}" class="muted">已完成 {{correctionCount}} 次纠正练习，首次成绩保持不变。</view>

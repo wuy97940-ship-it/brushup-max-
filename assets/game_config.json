@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "pass_percent": 70,
+  "two_star_percent": 90,
+  "ordinary_size": 10,
+  "subjective_boss_size": 5,
+  "boss_size": 10,
+  "normal_xp": 50,
+  "boss_xp": 150,
+  "boss_coins": 30,
+  "star_xp": 10,
+  "xp_per_level": 500,
+  "drop_percent": 70,
+  "bonus_coins": 100,
+  "bonus_xp": 100,
+  "category_weights": {"coins": 20, "xp": 20, "skin": 20, "equipment": 20, "collection": 20},
+  "rarity_weights": {"common": 70, "rare": 25, "epic": 5},
+  "rarities": {
+    "common": {"name": "普通", "price": 150, "duplicate_coins": 30, "bonus_percent": 5, "color": "#64748B"},
+    "rare": {"name": "稀有", "price": 300, "duplicate_coins": 60, "bonus_percent": 10, "color": "#3B82F6"},
+    "epic": {"name": "史诗", "price": 600, "duplicate_coins": 120, "bonus_percent": 15, "color": "#8B5CF6"}
+  },
+  "biomes": [
+    {"id": "forest", "name": "晨光森林", "rarity": "common", "color": "#29A88D", "light": "#E4F5EC", "dark": "#172E2B", "outfit": "森林探险帽", "souvenir": "晨光树叶"},
+    {"id": "island", "name": "蔚蓝海岛", "rarity": "common", "color": "#22A6C7", "light": "#E0F4FC", "dark": "#152B3D", "outfit": "海岛水手帽", "souvenir": "海蓝贝壳"},
+    {"id": "snow", "name": "星霜雪山", "rarity": "rare", "color": "#739EE6", "light": "#ECF3FF", "dark": "#202A40", "outfit": "雪山绒线帽", "souvenir": "六角雪晶"},
+    {"id": "ruins", "name": "时光遗迹", "rarity": "rare", "color": "#C49955", "light": "#F7F0E4", "dark": "#332C27", "outfit": "遗迹冒险帽", "souvenir": "时光符石"},
+    {"id": "sky", "name": "云端之城", "rarity": "epic", "color": "#8F91EA", "light": "#F0EFFF", "dark": "#29243F", "outfit": "云端飞行帽", "souvenir": "云羽结晶"},
+    {"id": "stars", "name": "银河终点", "rarity": "epic", "color": "#8C72D9", "light": "#EDEAFF", "dark": "#211D37", "outfit": "星空魔法帽", "souvenir": "银河星石"}
+  ]
+}
