@@ -71,8 +71,8 @@
       "source": "public-template/README.md",
       "target": "README.md",
       "role": "public_workflow",
-      "source_sha256": "7f0b29ace237e11dc6950d1de2ad91dbe8a8226b0460e8f8299b3583a29a0e95",
-      "target_sha256": "618944a0cc8cfeb817e200cc5d839baa61b12352ee433b1b759048d9a1de44c3",
+      "source_sha256": "39a8c9cff6f6f1697085e9eb8323a160ad48f85f89fd5f8eab84a744d1941f49",
+      "target_sha256": "df70f7cad9c8e9cd8af747b2b94a176b8febd315d4a578e611da1c042534127a",
       "transformed": true
     },
     {
@@ -4799,8 +4799,8 @@
       "source": "public-template/scripts/build_windows.py",
       "target": "scripts/build_windows.py",
       "role": "public_workflow",
-      "source_sha256": "950bb82f89952ad3cd04975ff6522a1d88aa6b8a09fd62e5228330180bcfef39",
-      "target_sha256": "950bb82f89952ad3cd04975ff6522a1d88aa6b8a09fd62e5228330180bcfef39",
+      "source_sha256": "fb301e4858637a7298d2040278428b59e075188336c0b9d74ffc76397d239d44",
+      "target_sha256": "fb301e4858637a7298d2040278428b59e075188336c0b9d74ffc76397d239d44",
       "transformed": false
     }
   ],

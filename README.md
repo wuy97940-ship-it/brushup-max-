@@ -19,7 +19,7 @@ python -m pip install -r requirements.txt
 python src/main.py
 ```
 
-Windows源码打包：先运行`python -m pip install pyinstaller`，再运行`python scripts/build_windows.py`；默认输出到`release/windows`，先检查原创内容再打包，关闭UPX。自行构建后仍需验证实际EXE启动、作答和备份。
+Windows源码打包：先运行`python -m pip install pyinstaller`，再运行`python scripts/build_windows.py`；默认输出到源码目录旁的`<源码目录名>-windows-build`，也可用`--output`指定源码目录外的目录。先检查原创内容再打包，关闭UPX。自行构建后仍需验证实际EXE启动、作答和备份。
 
 网页及苹果代码候选：
 
