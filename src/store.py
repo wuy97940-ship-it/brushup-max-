@@ -9,6 +9,17 @@
 """
 from __future__ import annotations
 
+
+def question_number(question: dict) -> str:
+    """保留原题号；旧整数序号从零转为显示序号，缺号题使用稳定ID尾号。"""
+    number = question.get("num")
+    if isinstance(number, int):
+        return str(number + 1)
+    if number is not None and str(number).strip():
+        return str(number)
+    tail = str(question["id"]).rsplit("-", 1)[-1]
+    return str(int(tail)) if tail.isdigit() else str(question["id"])
+
 import json
 import os
 import re

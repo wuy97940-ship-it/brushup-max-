@@ -18,6 +18,22 @@ from sync_public_content import validate
 
 
 class PublicContracts(unittest.TestCase):
+    def test_original_question_numbers_display_without_changing_content(self):
+        questions = store.load_questions()
+        before = copy.deepcopy(questions)
+        for question in questions:
+            number = store.question_number(question)
+            self.assertTrue(number)
+            if question.get("num") is not None:
+                self.assertEqual(number, str(question["num"]))
+            elif question["id"].rsplit("-", 1)[-1].isdigit():
+                self.assertEqual(number, str(int(question["id"].rsplit("-", 1)[-1])))
+            else:
+                self.assertEqual(number, question["id"])
+        self.assertEqual(questions, before)
+        self.assertEqual(store.question_number({"id": "legacy", "num": 0}), "1")
+        self.assertEqual(store.question_number({"id": "orig-01-03", "num": ""}), "3")
+
     def test_desktop_map_has_required_world_display_fields(self):
         for world in [*game.WORLDS, *game.build_campaign(store.load_questions())["worlds"]]:
             for field in ("id", "prefix", "name", "subtitle"):

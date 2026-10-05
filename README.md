@@ -8,7 +8,9 @@
 
 ## 启动
 
-要求Python3.11+和Node24。项目依赖已有锁文件。
+Windows电脑可从[Releases](https://github.com/wuy97940-ship-it/brushup-max-/releases)下载带`windows-x64`的ZIP，解压后打开`小圆爱刷题MAX.exe`，无需安装Python或Node。附带的`SHA256SUMS.txt`用于核对下载文件；学习记录在本机独立保存。
+
+源码运行桌面版需要Python3.11+；网页及苹果代码候选需要Node24。项目依赖已有锁文件。
 
 桌面版：
 
@@ -16,6 +18,8 @@
 python -m pip install -r requirements.txt
 python src/main.py
 ```
+
+Windows源码打包：先运行`python -m pip install pyinstaller`，再运行`python scripts/build_windows.py`；默认输出到`release/windows`，先检查原创内容再打包，关闭UPX。自行构建后仍需验证实际EXE启动、作答和备份。
 
 网页及苹果代码候选：
 

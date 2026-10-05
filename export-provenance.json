@@ -71,8 +71,8 @@
       "source": "public-template/README.md",
       "target": "README.md",
       "role": "public_workflow",
-      "source_sha256": "afab95c5d9d757f8926e2989bfaae5da5f20675981db12d503287e3c21a3b85a",
-      "target_sha256": "61d1edd7906c3df5c3c074f63cb3f1ec9574177b6673ca6d6ac721889b831d43",
+      "source_sha256": "7f0b29ace237e11dc6950d1de2ad91dbe8a8226b0460e8f8299b3583a29a0e95",
+      "target_sha256": "618944a0cc8cfeb817e200cc5d839baa61b12352ee433b1b759048d9a1de44c3",
       "transformed": true
     },
     {
@@ -103,8 +103,8 @@
       "source": "public-template/tests/test_public_contracts.py",
       "target": "tests/test_public_contracts.py",
       "role": "public_workflow",
-      "source_sha256": "8c80269e82841391314e1065c63b418290113114faf030767c32c36db68a0ffb",
-      "target_sha256": "8c80269e82841391314e1065c63b418290113114faf030767c32c36db68a0ffb",
+      "source_sha256": "11f9902f8c3a344e648d2effe1438f0d00a1111ad73e5a815a4c8d64ac6b49d9",
+      "target_sha256": "11f9902f8c3a344e648d2effe1438f0d00a1111ad73e5a815a4c8d64ac6b49d9",
       "transformed": false
     },
     {
@@ -128,7 +128,7 @@
       "target": "src/app.py",
       "role": "project_code",
       "source_sha256": "1ab7d58fd5659804afba7b2f00be3896b05fb6d5929ab69222a4fdeb481927cb",
-      "target_sha256": "e319bdc57ab8d086783b9157a4d0e3a3e6d2557a6e93cb993c03e8e06cda1df0",
+      "target_sha256": "4a43a8d7c1a7cb283c1916c2dd0348de21ed3043a1d1494cf152d4ecf5389a5d",
       "transformed": true
     },
     {
@@ -144,7 +144,7 @@
       "target": "src/store.py",
       "role": "project_code",
       "source_sha256": "b45cb9136c9c394cba7244a914b8e654a7a045334e2123d06128ad94ef815d9f",
-      "target_sha256": "4c7feefb3c5f7db63ef8a21fbcdaee9532a24981b7e6beadf6efadc3cf4dd30a",
+      "target_sha256": "dd961e5997a7457b1fa2807d12bcb59b57d746de7b8da1f55071cfafe51f43f6",
       "transformed": true
     },
     {
@@ -184,7 +184,7 @@
       "target": "src/game_ui.py",
       "role": "project_code",
       "source_sha256": "a84651fef0d7500422df0f05c9bfec75c4223b60d8b5b8f9690ab60c80b1b5c2",
-      "target_sha256": "495ebd35295823c620107c501d15697d7236b51584ea0ef17aa35d3620348bb1",
+      "target_sha256": "c967a10639ab209784dd0ebbeaa23e722c957d5b3e85aacd46fbf2c076d241d4",
       "transformed": true
     },
     {
@@ -4793,6 +4793,14 @@
       "role": "original_content",
       "source_sha256": "c83dfe4aca81a3ec99ea39aa7e53de80656a42b6300224374109e0cd2f1e537b",
       "target_sha256": "c83dfe4aca81a3ec99ea39aa7e53de80656a42b6300224374109e0cd2f1e537b",
+      "transformed": false
+    },
+    {
+      "source": "public-template/scripts/build_windows.py",
+      "target": "scripts/build_windows.py",
+      "role": "public_workflow",
+      "source_sha256": "950bb82f89952ad3cd04975ff6522a1d88aa6b8a09fd62e5228330180bcfef39",
+      "target_sha256": "950bb82f89952ad3cd04975ff6522a1d88aa6b8a09fd62e5228330180bcfef39",
       "transformed": false
     }
   ],

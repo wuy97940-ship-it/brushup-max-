@@ -1167,7 +1167,7 @@ def main() -> None:
         kernel.CloseHandle.argtypes = [ctypes.c_void_p]
         data_dir = os.environ.get("XY_SHUATI_DATA_DIR")
         suffix = "-" + hashlib.sha256(os.path.abspath(data_dir).encode("utf-8")).hexdigest()[:12] if data_dir else ""
-        mutex = kernel.CreateMutexW(None, False, "Local\\XiaoYuanAdventureMAX-v4" + suffix)
+        mutex = kernel.CreateMutexW(None, False, "Local\\XiaoYuanAdventureOriginal-v02" + suffix)
         if kernel.GetLastError() == 183:
             root = tk.Tk()
             root.withdraw()

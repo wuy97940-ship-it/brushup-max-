@@ -29,6 +29,7 @@ from tkinter import messagebox, simpledialog
 import customtkinter as ctk
 
 import store
+from store import question_number
 from books import (
     ALL_BOOKS_VALUE,
     BOOKS,
@@ -770,7 +771,7 @@ class App(ctk.CTk):
         q = self.qmap[self.current_qids[self.current_idx]]
 
         self.lbl_meta.configure(
-            text=f"{self._chapter_label(q)} · {q['type']} · 第 {q['num'] + 1} 题  [{self.current_mode}]"
+            text=f"{self._chapter_label(q)} · {q['type']} · 第 {question_number(q)} 题  [{self.current_mode}]"
         )
         self._render_score_only()
 
@@ -1449,7 +1450,7 @@ class App(ctk.CTk):
                                border_color=C["border"])
             row.pack(fill="x", pady=3)
             badge = "主观题" if is_subjective(q) else q["type"]
-            head = f"#{i+1}  {self._chapter_label(q)} · {badge} · 第 {q['num'] + 1} 题"
+            head = f"#{i+1}  {self._chapter_label(q)} · {badge} · 第 {question_number(q)} 题"
             ctk.CTkLabel(row, text=head, font=_f(11),
                          text_color=C["text_sub"],
                          anchor="w", justify="left").pack(fill="x", padx=18, pady=(10, 0))
