@@ -1,0 +1,210 @@
+{
+  "version": "5.8.0",
+  "schema_version": 3,
+  "daily_target": 10,
+  "missed_day_points": 10,
+  "xp_curve": {
+    "constant": 120,
+    "linear": 25,
+    "quadratic": 1
+  },
+  "question_xp": {
+    "objective": 10,
+    "subjective": 40,
+    "objective_correct": 5,
+    "subjective_correct": 8
+  },
+  "mode_weights": {
+    "adventure": 100,
+    "basic": 80,
+    "review": 80,
+    "remediation": 80,
+    "arena": 60,
+    "arena_skills": 50,
+    "hero_trial": 80,
+    "spirit_hunt": 80
+  },
+  "timer": {
+    "objective_seconds": 60,
+    "objective_per_level": 1,
+    "subjective_seconds": 480,
+    "subjective_per_level": 10,
+    "timed_modes": [
+      "adventure",
+      "arena",
+      "arena_skills"
+    ]
+  },
+  "honors": [
+    {
+      "level": 0,
+      "name": "初来乍到"
+    },
+    {
+      "level": 10,
+      "name": "初露锋芒"
+    },
+    {
+      "level": 20,
+      "name": "破题游侠"
+    },
+    {
+      "level": 30,
+      "name": "知识骑士"
+    },
+    {
+      "level": 40,
+      "name": "智慧贤者"
+    },
+    {
+      "level": 50,
+      "name": "星河宗师"
+    },
+    {
+      "level": 60,
+      "name": "刷题传说"
+    }
+  ],
+  "skills": [
+    {
+      "id": "clock",
+      "name": "时光缓缓",
+      "level": 10,
+      "price": 120,
+      "objective": [
+        5,
+        10,
+        15,
+        20
+      ],
+      "subjective": [
+        60,
+        120,
+        180,
+        240
+      ],
+      "description": "为当前题延长时间。每题只能施展一次，延时仍可获得独立答对奖励。",
+      "mana_costs": [
+        30,
+        24,
+        18,
+        12
+      ],
+      "npc_id": "npc_squirrel",
+      "cast_image": "market/npcs/npc_squirrel_cast.png"
+    },
+    {
+      "id": "memory",
+      "name": "回忆线索",
+      "level": 15,
+      "price": 180,
+      "description": "显示一条可靠知识线索；没有可靠线索时不消耗魔法。",
+      "mana_costs": [
+        24,
+        18,
+        12,
+        8
+      ],
+      "npc_id": "npc_turtle",
+      "cast_image": "market/npcs/npc_turtle_cast.png"
+    },
+    {
+      "id": "insight",
+      "name": "灵光一现",
+      "level": 20,
+      "price": 240,
+      "exclude": [
+        1,
+        1,
+        2,
+        2
+      ],
+      "description": "排除单选题的错误选项，至少留下两个候选。提示答题不给独立答对加成。",
+      "mana_costs": [
+        36,
+        28,
+        20,
+        12
+      ],
+      "npc_id": "npc_fox",
+      "cast_image": "market/npcs/npc_fox_cast.png"
+    },
+    {
+      "id": "mercy",
+      "name": "瞒天过海",
+      "level": 30,
+      "price": 480,
+      "description": "实际错误或超时时自动消耗魔法保护游戏成绩；真实成绩和错题仍保留。",
+      "mana_costs": [
+        45,
+        36,
+        27,
+        18
+      ],
+      "npc_id": "npc_raccoon",
+      "cast_image": "market/npcs/npc_raccoon_cast.png"
+    },
+    {
+      "id": "outline",
+      "name": "妙笔生花",
+      "level": 40,
+      "price": 720,
+      "lines": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "description": "主观题展示可信的答题结构提示，不显示完整答案或最终数值。",
+      "mana_costs": [
+        40,
+        32,
+        24,
+        16
+      ],
+      "npc_id": "npc_beaver",
+      "cast_image": "market/npcs/npc_beaver_cast.png"
+    },
+    {
+      "id": "spirit_bond",
+      "name": "精灵羁绊",
+      "kind": "passive",
+      "level": 50,
+      "price": 960,
+      "coins_percent": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "xp_percent": [
+        0,
+        5,
+        5,
+        5
+      ],
+      "mana_percent": [
+        0,
+        0,
+        10,
+        10
+      ],
+      "companions": [
+        1,
+        1,
+        1,
+        2
+      ],
+      "icon": "hunting/spirits/spirit_blue_fat_fish.png",
+      "description": "精灵同行时自动生效，不耗魔法、不占主动技能位置。前三阶逐步提高金币、经验和魔法上限，第四阶解锁两只不同精灵同行；收益只计算一次。"
+    }
+  ],
+  "mana": {
+    "unlock_level": 10,
+    "initial": 30,
+    "base_maximum": 30,
+    "per_level": 1,
+    "base_ceiling": 80,
+    "correct_restore": 1
+  }
+}

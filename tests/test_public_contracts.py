@@ -44,7 +44,9 @@ class PublicContracts(unittest.TestCase):
         qs = store.load_questions()
         self.assertEqual({q["id"]: q for q in qs}, bank["questions"])
         self.assertEqual(len(qs), 704)
-        self.assertEqual(len(game.build_campaign(qs)["levels"]), 128)
+        campaign = game.build_campaign(qs)
+        arranged = [qid for level in campaign["levels"].values() for qid in level["qids"]]
+        self.assertEqual(sorted(arranged), sorted(q["id"] for q in qs))
 
     def test_rejects_private_backup_without_mutating_it(self):
         progress = store.default_progress()
@@ -70,7 +72,8 @@ class PublicContracts(unittest.TestCase):
         qs = store.load_questions()
         progress = store.default_progress()
         game.ensure_game(progress, qs)
-        progress["game"]["campaign"]["levels"]["accounting:01:normal:01"]["qids"] = [qs[0]["id"]]
+        first_level = next(iter(progress["game"]["campaign"]["levels"]))
+        progress["game"]["campaign"]["levels"][first_level]["qids"] = [qs[0]["id"]]
         with self.assertRaises(ValueError):
             game.ensure_game(progress, qs)
 

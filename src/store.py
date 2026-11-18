@@ -9,25 +9,60 @@
 """
 from __future__ import annotations
 
-
-def question_number(question: dict) -> str:
-    """保留原题号；旧整数序号从零转为显示序号，缺号题使用稳定ID尾号。"""
-    number = question.get("num")
-    if isinstance(number, int):
-        return str(number + 1)
-    if number is not None and str(number).strip():
-        return str(number)
-    tail = str(question["id"]).rsplit("-", 1)[-1]
-    return str(int(tail)) if tail.isdigit() else str(question["id"])
-
 import json
 import os
+import copy
 import re
 import shutil
 import sys
 import time
 from pathlib import Path
 from typing import Any
+from collections import OrderedDict
+import threading
+
+_progress_bytes_cache = OrderedDict()
+_progress_bytes_lock = threading.RLock()
+_PROGRESS_CACHE_LIMIT = 8 * 1024 * 1024
+
+
+def _file_stamp(path):
+    info = path.stat()
+    return (info.st_dev, info.st_ino, info.st_size, info.st_mtime_ns)
+
+
+def _remember_bytes(path, content, stamp=None):
+    if len(content) > _PROGRESS_CACHE_LIMIT:
+        return
+    key = str(path.absolute())
+    try:
+        current = _file_stamp(path)
+    except OSError:
+        return
+    if stamp is not None and stamp != current:
+        return
+    stamp = current
+    with _progress_bytes_lock:
+        _progress_bytes_cache[key] = (stamp, content)
+        _progress_bytes_cache.move_to_end(key)
+        while (len(_progress_bytes_cache) > 64 or
+               sum(len(row[1]) for row in _progress_bytes_cache.values()) > _PROGRESS_CACHE_LIMIT):
+            _progress_bytes_cache.popitem(last=False)
+
+
+def _trusted_bytes(path):
+    """只复用已读/已刷盘且文件身份、长度、修改时间均未变的字节。"""
+    stamp = _file_stamp(path)
+    key = str(path.absolute())
+    with _progress_bytes_lock:
+        cached = _progress_bytes_cache.get(key)
+        if cached is not None and cached[0] == stamp:
+            _progress_bytes_cache.move_to_end(key)
+            return cached[1]
+    content = path.read_bytes()
+    if _file_stamp(path) == stamp:
+        _remember_bytes(path, content, stamp)
+    return content
 
 from books import (
     BOOKS,
@@ -214,24 +249,19 @@ def book_meta(qs: list[dict]) -> dict[str, dict[str, Any]]:
     book_order = {b["id"]: i for i, b in enumerate(BOOKS)}
     out: dict[str, dict[str, Any]] = {}
     for q in qs:
-        bid = q.get("book_id") or ""
-        if not bid:
-            continue
-        b = out.setdefault(bid, {
-            "chapters": [],
-            "_chset": set(),
-            "type_counter": {},
-            "total": 0,
-            "name": (book_by_id(bid) or {}).get("name", bid),
-            "category": (book_by_id(bid) or {}).get("category", ""),
-            "order": book_order.get(bid, 999),
-        })
-        ch = q.get("chapter") or ""
-        if ch and ch not in b["_chset"]:
-            b["_chset"].add(ch)
-            b["chapters"].append(ch)
-        b["type_counter"][q["type"]] = b["type_counter"].get(q["type"], 0) + 1
-        b["total"] += 1
+        for bid in q.get('book_ids',[q.get('book_id')]):
+            if not bid:continue
+            b = out.setdefault(bid, {
+                "chapters": [], "_chset": set(), "type_counter": {}, "total": 0,
+                "name": (book_by_id(bid) or {}).get("name", bid),
+                "category": (book_by_id(bid) or {}).get("category", ""),
+                "order": book_order.get(bid, 999),
+            })
+            ch = q.get("chapter") or ""
+            if ch and ch not in b["_chset"]:
+                b["_chset"].add(ch);b["chapters"].append(ch)
+            b["type_counter"][q["type"]] = b["type_counter"].get(q["type"], 0) + 1
+            b["total"] += 1
     for b in out.values():
         b.pop("_chset", None)
     return out
@@ -239,14 +269,14 @@ def book_meta(qs: list[dict]) -> dict[str, dict[str, Any]]:
 
 def available_books(qs: list[dict]) -> list[dict]:
     """返回有题的书本元数据，按 BOOKS 中的顺序。"""
-    have = {q.get("book_id") for q in qs if q.get("book_id")}
+    have = {bid for q in qs for bid in q.get('book_ids',[q.get('book_id')]) if bid}
     return [b for b in BOOKS if b["id"] in have]
 
 
 def filter_by_book(qs: list[dict], book_id: str | None) -> list[dict]:
     if not book_id or book_id == ALL_BOOKS_VALUE:
         return qs
-    return [q for q in qs if q.get("book_id") == book_id]
+    return [q for q in qs if book_id in q.get('book_ids',[q.get('book_id')])]
 
 
 PROGRESS_FILE = "progress.json"
@@ -270,19 +300,72 @@ def default_progress() -> dict:
     }
 
 
+def _valid_progress(path):
+    data = json.loads(_trusted_bytes(path).decode("utf-8"))
+    if not isinstance(data, dict):
+        raise ValueError("存档格式不正确")
+    from static_campaigns import hydrate
+    return hydrate(data)
+
+
 def load_progress() -> dict:
     f = app_data_dir() / PROGRESS_FILE
+    if (f.parent / "game-saves/switch-commit.json").exists():
+        import desktop_save_slots as slots
+        slots.recover_switch(f.parent)
+    # 重开以单个持久化提交日志为恢复界限，防止旧last-good复活旧学习记录。
+    reset_commit = f.with_name(f.name + '.reset-commit')
+    if reset_commit.exists():
+        try:
+            fresh = _valid_progress(reset_commit)
+            if not fresh.get('reset_epoch'):
+                raise ValueError('重开提交标记无效')
+            content = reset_commit.read_bytes()
+            _atomic_bytes(f.with_name(f.name + '.last-good'), content)
+            _atomic_bytes(f, content)
+            import desktop_save_slots as slots
+            slots.reset_completed(f.parent, fresh)
+            reset_commit.unlink()
+        except (OSError, ValueError, UnicodeError):
+            # 已确认的重开候选优先，磁盘仍失败时保持候选；不能回读旧恢复副本。
+            if 'fresh' in locals() and fresh.get('reset_epoch'):
+                return _normalize_progress(fresh)
+            raise ValueError('重开恢复标记无法读取，请保留目录并恢复完整备份。')
     if not f.exists():
+        recovery = f.with_name(f.name + '.last-good')
+        if recovery.exists():
+            # Windows替换中断可能已把上一主档移至备份，不能当作空的新局。
+            return _normalize_progress(_valid_progress(recovery))
         return default_progress()
     try:
-        data = json.loads(f.read_text(encoding="utf-8"))
-    except Exception:
+        data = _valid_progress(f)
+    except (OSError, ValueError, UnicodeError) as error:
+        from static_campaigns import MapReferenceError
+        if isinstance(error, MapReferenceError):
+            raise
         try:
-            bak = f.with_suffix(".json.broken")
+            import uuid
+            historical = sorted(f.parent.glob(f.name + ".broken-*"))
+            prefix = f.name + ".broken-"
+            stamps = [p.name[len(prefix):].split("-", 1)[0] for p in historical]
+            # 两种时钟均可同值；递增前缀保证轮换按留存顺序，UUID仅防重名。
+            latest = max((int(s) for s in stamps if s.isdecimal()), default=0)
+            sequence = max(time.time_ns(), latest + 1)
+            stamp = f"{sequence:020d}-{time.monotonic_ns():020d}-{uuid.uuid4().hex}"
+            bak = f.with_name(f.name + ".broken-" + stamp)
             shutil.copy2(f, bak)
-        except Exception:
+            for old in historical[:-2]:
+                old.unlink()
+        except OSError:
             pass
-        return default_progress()
+        try:
+            data = _valid_progress(f.with_name(f.name + ".last-good"))
+        except (OSError, ValueError, UnicodeError) as error:
+            raise ValueError('当前存档和恢复副本均无法读取。原文件已保留，请恢复完整备份或明确选择重新开始。') from error
+    return _normalize_progress(data)
+
+
+def _normalize_progress(data):
     base = default_progress()
     if isinstance(data, dict):
         base.update(data)
@@ -302,14 +385,230 @@ def load_progress() -> dict:
     return base
 
 
-def save_progress(p: dict) -> bool:
-    f = app_data_dir() / PROGRESS_FILE
-    tmp = f.with_suffix(".json.tmp")
+def _open_atomic_temp(path):
+    """独占新临时文件；由调用者flush、fsync后原子替换主档。"""
+    return path.open('xb')
+
+
+def _atomic_bytes(path, content):
+    import uuid
+    tmp = path.with_name(path.name + f".{os.getpid()}.{uuid.uuid4().hex}.tmp")
     try:
-        tmp.write_text(json.dumps(p, ensure_ascii=False, indent=2), encoding="utf-8")
-        tmp.replace(f)
+        with _open_atomic_temp(tmp) as stream:
+            stream.write(content)
+            stream.flush()
+            os.fsync(stream.fileno())
+        # 外部进程（杀软扫描/索引服务）的瞬时读句柄会让 replace 抛 PermissionError，
+        # 同一已刷盘候选文件短退避重试；不重算事务，耗尽后finally清理tmp。
+        last_error = None
+        written_stamp = _file_stamp(tmp)
+        for delay in (0.0, 0.05, 0.15, 0.45):
+            if delay:
+                time.sleep(delay)
+            try:
+                tmp.replace(path)
+                _remember_bytes(path, content, written_stamp)
+                last_error = None
+                break
+            except PermissionError as error:
+                last_error = error
+        if last_error is not None:
+            raise last_error
+    finally:
+        try:
+            tmp.unlink(missing_ok=True)
+        except OSError:
+            pass
+
+
+def clone_progress(p: dict) -> dict:
+    """可变进度深隔离；已校验的安装地图只读共享，避免每题复制近一兆地图。"""
+    return copy.deepcopy(p)
+
+
+def encode_progress(p: dict) -> bytes:
+    from static_campaigns import compact
+    return json.dumps(compact(p), ensure_ascii=False, separators=(',', ':')).encode('utf-8')
+
+
+def _retain_previous_file(main, recovery, previous):
+    """上一完整档独立刷盘；旧恢复副本改名留作失败回退，不创建硬链接。"""
+    import uuid
+    tag=f'.{os.getpid()}.{uuid.uuid4().hex}.tmp'
+    rollback=recovery.with_name(recovery.name+'.rollback'+tag)
+    main_stamp = _file_stamp(main)
+    if _trusted_bytes(main) != previous:
+        raise OSError('保存前主档已变化')
+    try:
+        if recovery.exists():
+            recovery.replace(rollback)
+        _atomic_bytes(recovery,previous)
+        if _file_stamp(main) != main_stamp:
+            raise OSError('保存恢复副本期间主档已变化')
+        return rollback if rollback.exists() else None
+    except OSError:
+        if rollback.exists():
+            rollback.replace(recovery)
+        raise
+
+
+def _native_backup_enabled():
+    return os.name == 'nt'
+
+
+def _native_replace_file(main, candidate, recovery):
+    import ctypes
+    from ctypes import wintypes
+    function = ctypes.WinDLL('kernel32', use_last_error=True).ReplaceFileW
+    function.argtypes = [wintypes.LPCWSTR, wintypes.LPCWSTR, wintypes.LPCWSTR,
+                         wintypes.DWORD, ctypes.c_void_p, ctypes.c_void_p]
+    function.restype = wintypes.BOOL
+    if not function(str(main), str(candidate), str(recovery), 0, None, None):
+        raise ctypes.WinError(ctypes.get_last_error())
+
+
+def _replace_with_previous(main, recovery, content, previous):
+    """新候选刷盘一次；系统替换同时保留已经刷盘的上一主档，备份不共享文件对象。"""
+    import uuid
+    tag = f'.{os.getpid()}.{uuid.uuid4().hex}.tmp'
+    candidate = main.with_name(main.name + tag)
+    rollback = recovery.with_name(recovery.name + '.rollback' + tag)
+    before = _file_stamp(main)
+    if _trusted_bytes(main) != previous:
+        raise OSError('保存前主档已变化')
+    moved = False
+    try:
+        with _open_atomic_temp(candidate) as stream:
+            stream.write(content);stream.flush();os.fsync(stream.fileno())
+        written = _file_stamp(candidate)
+        if _file_stamp(main) != before:
+            raise OSError('候选刷盘期间主档已变化')
+        if recovery.exists():
+            recovery.replace(rollback);moved = True
+        try:
+            for delay in (0.0, 0.05, 0.15, 0.45):
+                if delay:time.sleep(delay)
+                if _file_stamp(main) != before:
+                    raise OSError('替换前主档已变化')
+                try:
+                    _native_replace_file(main, candidate, recovery)
+                    break
+                except OSError as error:
+                    if getattr(error, 'winerror', None) not in (5, 32, 33) or delay == 0.45:
+                        raise
+        except OSError:
+            # ERROR_UNABLE_TO_MOVE_REPLACEMENT_2可能已将上一主档移至备份。
+            # 先恢复主档；仍失败则保留该备份和旧rollback，重开优先读取备份。
+            if not main.exists() and recovery.exists():
+                recovery.replace(main)
+            if moved and rollback.exists() and main.exists():
+                rollback.replace(recovery)
+            raise
+        _remember_bytes(main, content, written)
+        _remember_bytes(recovery, previous, before)
+        if moved:
+            try:rollback.unlink(missing_ok=True)
+            except OSError:pass
+    finally:
+        # 主档仍缺失时保留全部可恢复文件，不能以清理覆盖异常结果。
+        if main.exists():
+            try:candidate.unlink(missing_ok=True)
+            except OSError:pass
+
+
+def save_progress(p: dict) -> bool:
+    try:
+        f = app_data_dir() / PROGRESS_FILE
+        if (f.parent / "game-saves/switch-commit.json").exists():
+            return False
+        # 部分重开已写主档但元数据尚未提交时，必须续完同一事务；否则下次读取会覆盖重试之后的新进度。
+        if f.with_name(f.name + '.reset-commit').exists():
+            return save_new_progress(p)
+        content = encode_progress(p)
+        recovery = f.with_name(f.name + ".last-good")
+        # 保留上一份已验证正常的完整档，再持久化并原子替换本次档。
+        rollback=None
+        if f.exists():
+            previous = _trusted_bytes(f)
+            if previous == content:
+                # 相同候选不重复写主档，但初次保存或恢复副本损坏时仍须补齐备份。
+                try:
+                    _valid_progress(recovery)
+                except (OSError, ValueError, UnicodeError):
+                    _atomic_bytes(recovery, content)
+                return True
+            try:
+                prior = json.loads(previous.decode("utf-8"))
+                valid = isinstance(prior, dict)
+            except (ValueError, UnicodeError):
+                valid = False
+                prior = {}
+            if p.get('reset_epoch') and p['reset_epoch'] != prior.get('reset_epoch'):
+                return save_new_progress(p)
+            if valid:
+                if _native_backup_enabled():
+                    _replace_with_previous(f,recovery,content,previous)
+                    return True
+                rollback=_retain_previous_file(f,recovery,previous)
+        else:
+            # 第一份成功保存即应能恢复，不依赖用户随后修改进度。
+            _atomic_bytes(recovery, content)
+        try:
+            _atomic_bytes(f, content)
+        except (OSError, ValueError, TypeError):
+            # 回退也可能被外部读句柄阻止；失败时保留原恢复副本供重试/人工恢复。
+            # 不能在finally中删掉尚未恢复的唯一原副本。
+            if rollback is not None and rollback.exists():rollback.replace(recovery)
+            raise
+        if rollback is not None:
+            try:rollback.unlink(missing_ok=True)
+            except OSError:pass  # 主档已持久化，清理旧副本失败不撤销已提交的事务。
         return True
-    except Exception:
+    except (OSError, ValueError, TypeError):
+        return False
+
+
+def save_new_progress(p: dict) -> bool:
+    """完整归档存档及恢复副本，再提交同代新档；仅用于已确认的重新开始。"""
+    import hashlib
+    try:
+        if not p.get('reset_epoch'):
+            raise ValueError('缺少重开事务编号')
+        directory = app_data_dir()
+        f = directory / PROGRESS_FILE
+        commit = f.with_name(f.name + '.reset-commit')
+        if not commit.exists():
+            import desktop_save_slots as slots
+            slots.archive_current(directory)
+            archive = directory / 'reset-archives' / p['reset_epoch']
+            if not archive.resolve().is_relative_to((directory / 'reset-archives').resolve()):
+                raise ValueError('重开归档目录越界')
+            archive.mkdir(parents=True, exist_ok=True)
+            records = []
+            for source in sorted(directory.glob('progress*')):
+                if not source.is_file() or source.suffix == '.tmp':
+                    continue
+                target = archive / source.name
+                shutil.copy2(source, target)
+                digest = hashlib.sha256(source.read_bytes()).hexdigest()
+                if digest != hashlib.sha256(target.read_bytes()).hexdigest():
+                    raise OSError('重开前存档归档核验失败')
+                records.append({'file': source.name, 'sha256': digest, 'bytes': source.stat().st_size})
+            _atomic_bytes(archive / 'manifest.json', json.dumps(records, ensure_ascii=False).encode('utf-8'))
+            content = encode_progress(p)
+            _atomic_bytes(commit, content)
+        else:
+            fresh = _valid_progress(commit)
+            if fresh.get('reset_epoch') != p['reset_epoch']:
+                raise ValueError('已有不同的待重开事务，请先恢复')
+            content = commit.read_bytes()
+        _atomic_bytes(f.with_name(f.name + '.last-good'), content)
+        _atomic_bytes(f, content)
+        import desktop_save_slots as slots
+        slots.reset_completed(directory, json.loads(content))
+        commit.unlink()
+        return True
+    except (OSError, ValueError, TypeError):
         return False
 
 
@@ -399,7 +698,7 @@ def book_progress(p: dict, qs: list[dict]) -> list[dict[str, Any]]:
     bm = book_meta(qs)
     out = []
     for bid, meta in sorted(bm.items(), key=lambda kv: kv[1]["order"]):
-        scope = [q for q in qs if q.get("book_id") == bid]
+        scope = filter_by_book(qs,bid)
         qid_set = {q["id"] for q in scope}
         ans_in = {qid: v for qid, v in ans.items() if qid in qid_set}
         n_ans = len(ans_in)
@@ -416,3 +715,14 @@ def book_progress(p: dict, qs: list[dict]) -> list[dict[str, Any]]:
             "fav": sum(1 for qid in scope if qid["id"] in fav_set),
         })
     return out
+
+
+def question_number(question: dict) -> str:
+    """保留原题号；旧整数序号从零转为显示序号，缺号题使用稳定ID尾号。"""
+    number = question.get("num")
+    if isinstance(number, int):
+        return str(number + 1)
+    if number is not None and str(number).strip():
+        return str(number)
+    tail = str(question["id"]).rsplit("-", 1)[-1]
+    return str(int(tail)) if tail.isdigit() else str(question["id"])

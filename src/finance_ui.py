@@ -12,10 +12,13 @@ from PIL import Image
 import finance
 import game
 import store
+from learning_explanations import explanation_text, is_audit
 from app import C, _f, btn_ghost, btn_primary, btn_soft
 
 
 def analysis_text(question: dict) -> str:
+    if question.get('detailed_explanation'):
+        return ''
     analysis = question.get("analysis") or {}
     lines = []
     for key, title in (("position", "考点定位"), ("principle", "原理解释"),
@@ -34,6 +37,42 @@ def analysis_text(question: dict) -> str:
 
 
 class FinanceUIMixin:
+    def __init__(self, *args, **kwargs):
+        from question_images import QuestionImages
+        self._question_images = QuestionImages()
+        self._scratch_box = None
+        try:
+            super().__init__(*args, **kwargs)
+        except BaseException:
+            self._question_images.close()
+            raise
+
+    def _render_current(self):
+        result = super()._render_current()
+        paths = []
+        for index in (self.current_idx - 1, self.current_idx + 1):
+            if 0 <= index < len(self.current_qids):
+                q = self.qmap[self.current_qids[index]]
+                paths += [store.resource_path('assets/' + name) for name in q.get('stem_images', [])]
+        self._question_images.prefetch(paths)
+        return result
+
+    def _flush_scratch(self):
+        box=self._scratch_box
+        if box is None or not box.winfo_exists():return True
+        text=box.get('1.0','end').strip()
+        if text==finance.state(self.g)['tools']['scratch']:return True
+        return bool(self._commit(lambda p:finance.state(p['game'])['tools'].update(scratch=text)))
+
+    def _show_page(self, name, builder=None):
+        if not self._flush_scratch():return
+        self._scratch_box=None
+        return super()._show_page(name,builder)
+
+    def destroy(self):
+        self._question_images.close()
+        return super().destroy()
+
     def _finance_question(self):
         if not self.current_qids:
             return None
@@ -56,20 +95,16 @@ class FinanceUIMixin:
         return label
 
     def _finance_source_images(self, question, kind="stem_images"):
-        for relative in question.get(kind, []):
-            path = store.resource_path("assets/" + relative)
-            if not path.is_file():
-                continue
-            with Image.open(path) as original:
-                im = original.convert("RGB")
-            width = min(850, max(320, self.winfo_width() - 330), im.width)
-            height = max(1, round(im.height * width / im.width))
-            picture = ctk.CTkImage(im, size=(width, height))
-            label = ctk.CTkLabel(self.body, text="", image=picture)
-            label._finance_image = picture
-            label.pack(pady=8)
-            btn_ghost(self.body, text="放大图表", height=28,
-                      command=lambda p=path: self._finance_zoom(p)).pack(pady=(0, 8))
+        # 正式题库只显示由答题事实重绘的原生图表，禁止任何书页回退入口。
+        if kind != 'stem_images' or not question.get('diagram_id'):
+            return
+        from question_diagrams import QuestionDiagram
+        diagram = QuestionDiagram(self.body, question['diagram_id'])
+        options = getattr(self, 'options_frame', None)
+        if options is not None and options.winfo_exists() and options.master is self.body:
+            diagram.pack(fill='x', pady=(2, 10), before=options)
+        else:
+            diagram.pack(fill='x', pady=(2, 10))
 
     def _finance_zoom(self, path: Path):
         window = ctk.CTkToplevel(self)
@@ -77,8 +112,7 @@ class FinanceUIMixin:
         window.geometry("1000x760")
         panel = ctk.CTkScrollableFrame(window, fg_color=C["card"])
         panel.pack(fill="both", expand=True)
-        with Image.open(path) as original:
-            im = original.convert("RGB")
+        im = self._question_images.read(path)
         width = min(930, im.width)
         picture = ctk.CTkImage(im, size=(width, round(im.height * width / im.width)))
         label = ctk.CTkLabel(panel, text="", image=picture)
@@ -99,8 +133,7 @@ class FinanceUIMixin:
         if q.get("stem_images_primary") and q.get("stem_images"):
             rendered = {**q, "stem": "请阅读下方原题图示，按图中的选项选择答案。", "options": {letter: f"选项 {letter}（见题目图示）" for letter in q.get("options", {})}}
         super()._render_objective(rendered)
-        if any(line.count("|") >= 2 for line in rendered["stem"].splitlines()):
-            self.stem_box.configure(wrap="none")
+        self.stem_box.configure(wrap="char")
         self._finance_source_images(q)
 
     def _render_finance_subjective(self, question):
@@ -115,7 +148,7 @@ class FinanceUIMixin:
         card.pack(fill="x", pady=(0, 8))
         rendered_stem = "完整题目资料、表格与公式见下方原题图示。" if question.get("stem_images_primary") and question.get("stem_images") else question["stem"]
         stem = ctk.CTkTextbox(card, height=self._stem_height(rendered_stem), font=_f(15),
-                             wrap="none" if any(line.count("|") >= 2 for line in rendered_stem.splitlines()) else "char",
+                             wrap="char",
                              fg_color=C["card"], border_width=0)
         stem.pack(fill="x", padx=15, pady=10)
         stem.insert("1.0", rendered_stem)
@@ -123,12 +156,16 @@ class FinanceUIMixin:
         self._finance_source_images(question)
         self._finance_process_boxes, self._finance_value_entries, self._finance_unit_vars = {}, {}, {}
         self._finance_process_vars = {}
+        self._finance_process_menus = {}
+        self._finance_subcards = {}
+        self._finance_unit_menus = {}
         snapshot = submission["draft"] if submission else current
         for sub in question["subquestions"]:
             card = self._card_frame(self.body)
+            self._finance_subcards[sub['id']]=card
             card.pack(fill="x", pady=6)
             ctk.CTkLabel(card, text=f"小问 {sub['id']}  {sub['prompt']}", font=_f(13, "bold"),
-                         wraplength=820, justify="left", anchor="w").pack(fill="x", padx=16, pady=(12, 5))
+                         wraplength=max(160,self.body._parent_canvas.winfo_width()/self._get_widget_scaling()-64), justify="left", anchor="w").pack(fill="x", padx=16, pady=(12, 5))
             box = ctk.CTkTextbox(card, height=110, font=_f(13), wrap="char", fg_color=C["card"])
             box.pack(fill="x", padx=16, pady=(0, 10))
             box.insert("1.0", snapshot["process"].get(sub["id"], ""))
@@ -156,6 +193,7 @@ class FinanceUIMixin:
                 menu.pack(side="left")
                 menu.configure(state="disabled" if frozen else "normal")
                 self._finance_unit_vars[check["key"]] = variable
+                self._finance_unit_menus[check['key']]=menu
             if submission:
                 reference = ctk.CTkTextbox(card, height=150, font=_f(13), wrap="char", fg_color=C["card"])
                 reference.pack(fill="x", padx=16, pady=5)
@@ -169,6 +207,7 @@ class FinanceUIMixin:
                 if submission["graded"]:
                     choice.configure(state="disabled")
                 self._finance_process_vars[sub["id"]] = variable
+                self._finance_process_menus[sub['id']] = choice
         if submission:
             card = self._card_frame(self.body)
             card.pack(fill="x", pady=8)
@@ -179,7 +218,9 @@ class FinanceUIMixin:
                          wraplength=820, anchor="w").pack(fill="x", padx=16, pady=12)
             ref = ctk.CTkTextbox(card, height=240, font=_f(13), wrap="char", fg_color=C["card"])
             ref.pack(fill="x", padx=16, pady=(0, 12))
-            ref.insert("1.0", "原参考答案与解析\n" + (question.get("explanation") or question.get("answer", "")) + "\n\n扩展讲解\n" + analysis_text(question))
+            text = explanation_text(question) or str(question.get('answer', ''))
+            extra = analysis_text(question)
+            ref.insert("1.0", text + ('\n\n扩展讲解\n' + extra if extra else ''))
             ref.configure(state="disabled")
             self.explain_box = ref
             for index, text in enumerate(attempt.get("outlines", {}).get(question["id"], []), 1):
@@ -205,8 +246,62 @@ class FinanceUIMixin:
         self.btn_next.pack(side="right")
         self.btn_prev.configure(state="normal" if self.current_idx else "disabled")
         self.btn_next.configure(state="normal" if self.answer_submitted else "disabled")
+        self._finance_view_qid=question['id']
+        self._finance_action_row=actions
+        self._finance_action_widgets=[w for w in actions.winfo_children() if w not in (self.btn_prev,self.btn_next)]
         if correction:
             ctk.CTkLabel(self.body, text="纠正练习会单独保存，首次提交成绩保持原记录。", font=_f(11), text_color=C["text_sub"]).pack(pady=4)
+
+    def _reuse_finance_reference(self, question):
+        actions=getattr(self,'_finance_action_row',None)
+        if getattr(self,'_finance_view_qid',None)!=question['id'] or actions is None or not actions.winfo_exists() or getattr(self,'subj_ref_shown',False):return False
+        submission=self._finance_attempt().get('structured_submissions',{}).get(question['id'])
+        if not submission:return False
+        self.subj_ref_shown=True;self.answer_submitted=False
+        for box in self._finance_process_boxes.values():box.configure(state='disabled')
+        for entry in self._finance_value_entries.values():entry.configure(state='disabled')
+        for menu in self._finance_unit_menus.values():menu.configure(state='disabled')
+        for sub in question['subquestions']:
+            card=self._finance_subcards[sub['id']]
+            reference=ctk.CTkTextbox(card,height=150,font=_f(13),wrap='char',fg_color=C['card'])
+            reference.pack(fill='x',padx=16,pady=5)
+            reference.insert('1.0','参考过程\n'+sub['reference']+'\n\n过程核对\n'+'\n'.join(sub.get('process_checklist',[])))
+            reference.configure(state='disabled')
+            variable=ctk.StringVar(value='选择过程自评')
+            menu=ctk.CTkOptionMenu(card,values=['选择过程自评','过程正确','需要复盘'],variable=variable,command=lambda value,sid=sub['id']:self._finance_set_process(sid,value))
+            menu.pack(anchor='w',padx=16,pady=(5,12))
+            self._finance_process_vars[sub['id']]=variable;self._finance_process_menus[sub['id']]=menu
+        summary=self._card_frame(self.body);summary.pack(fill='x',pady=8,before=actions)
+        verdicts=[f"{'✓' if c['correct'] else '✗'} {c['label']}：{c['message']}；参考 {c['expected']} {c['unit']}" for c in submission['checks']] or ['本题通过逐小问过程自评记录成绩。']
+        ctk.CTkLabel(summary,text='数值核对\n'+'\n'.join(verdicts),font=_f(13),justify='left',wraplength=820,anchor='w').pack(fill='x',padx=16,pady=12)
+        ref=ctk.CTkTextbox(summary,height=240,font=_f(13),wrap='char',fg_color=C['card']);ref.pack(fill='x',padx=16,pady=(0,12))
+        ref.insert('1.0',explanation_text(question));ref.configure(state='disabled');self.explain_box=ref
+        for index,text in enumerate(self._finance_attempt().get('outlines',{}).get(question['id'],[]),1):
+            ctk.CTkLabel(summary,text=f'答题卡 {index} · {text}',font=_f(12),wraplength=820,justify='left',anchor='w').pack(fill='x',padx=16,pady=6)
+        for widget in self._finance_action_widgets:widget.destroy()
+        button=btn_primary(actions,text='保存本次核对结果',height=40,command=self._finance_grade);button.pack(side='left',padx=(0,8))
+        self._finance_action_widgets=[button];self.btn_next.configure(state='disabled')
+        return True
+
+    def _refresh_finance_grade(self, question):
+        """核对结果只更新操作区；长材料、原题表格和独立过程保持原控件。"""
+        actions=getattr(self,'_finance_action_row',None)
+        if getattr(self,'_finance_view_qid',None)!=question['id'] or actions is None or not actions.winfo_exists():return False
+        submission=self._finance_attempt().get('structured_submissions',{}).get(question['id'])
+        if not submission or not submission['graded'] or not getattr(self,'_finance_process_menus',{}):return False
+        self.answer_submitted=True;self.subj_ref_shown=True
+        for key,menu in self._finance_process_menus.items():
+            menu.configure(state='disabled')
+            value=submission['process'].get(key)
+            self._finance_process_vars[key].set('过程正确' if value is True else '需要复盘' if value is False else '选择过程自评')
+        for widget in self._finance_action_widgets:widget.destroy()
+        result=submission['record']
+        label=ctk.CTkLabel(actions,text=('✓ 本次全部通过' if result['correct'] else '✗ 本次仍需复盘')+(' · 纠正练习' if submission['correction'] else ' · 首次成绩已记录'),font=_f(12,'bold'))
+        label.pack(side='left',padx=(0,10))
+        redo=btn_soft(actions,text='重新核对',command=self._finance_correct);redo.pack(side='left')
+        self._finance_action_widgets=[label,redo]
+        self.btn_next.configure(state='normal')
+        return True
 
     def _finance_capture(self):
         return {"process": {key: box.get("1.0", "end").strip() for key, box in self._finance_process_boxes.items()},
@@ -369,8 +464,14 @@ class FinanceUIMixin:
         if len(qids) != item["amount"]:
             messagebox.showinfo("委托准备中", "对应章节的完整题目暂不足，其他委托和学习入口仍可使用。")
             return
-        self._start_qids(qids, "经营委托")
-        self._commit(lambda p: p["practice"].update(commission_id=commission_id))
+        self._flush_draft()
+        import desktop_product as product
+        def create(progress):
+            attempt=product.start_practice(progress,qids,mode='basic',name='经营委托')
+            attempt['commission_id']=commission_id
+            return attempt
+        attempt=self._commit(create)
+        if attempt:self._open_practice(attempt)
 
     def _build_finance_rescue(self):
         frame = self._scroll()
@@ -527,6 +628,7 @@ class FinanceUIMixin:
             box = ctk.CTkTextbox(frame, height=430, font=_f(15), wrap="char")
             box.pack(fill="both", expand=True, pady=10)
             box.insert("1.0", tools["scratch"])
+            self._scratch_box=box
             def save():
                 text = box.get("1.0", "end").strip()
                 if self._commit(lambda p: finance.state(p["game"])["tools"].update(scratch=text)):
@@ -541,7 +643,7 @@ class FinanceUIMixin:
                     return
                 current = finance.state(self.g)["tools"]
                 start = current["focus_started_at"]
-                remaining = max(0, current["focus_seconds"] - int(time.time() - start)) if start else current["focus_seconds"]
+                remaining = min(current['focus_seconds'],max(0, current["focus_seconds"] - int(time.time() - start))) if start else current["focus_seconds"]
                 label.configure(text=f"{remaining//60:02d}:{remaining%60:02d}" if remaining else "专注完成！")
                 label.after(1000, tick)
             def start():

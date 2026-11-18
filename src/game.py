@@ -22,7 +22,11 @@ CONFIG = {**CONFIG, "drop_percent": ECONOMY["boss_drop_percent"],
           "rarity_weights": ECONOMY["rarity_weights"],
           "rarities": {**CONFIG["rarities"], **ECONOMY["rarities"]}}
 BIOMES = CONFIG["biomes"]
-WORLDS = ({'id': 'accounting', 'name': '会计世界', 'prefix': 'acc', 'subtitle': '从会计基础出发，点亮原创章节地图'}, {'id': 'law', 'name': '经济法世界', 'prefix': 'law', 'subtitle': '穿过法律森林，挑战原创案例守护者'}, {'id': 'finance', 'name': '财管经营世界', 'prefix': 'cg_original_', 'subtitle': '三位主角修复星光账本，20章经营冒险'})
+WORLDS = (
+    {"id": "accounting", "prefix": "acc_original_v01", "name": "会计世界", "subtitle": "从原创会计基础出发，点亮章节地图"},
+    {"id": "law", "prefix": "law_original_v01", "name": "经济法世界", "subtitle": "穿过法律森林，挑战原创案例守护者"},
+    {"id": "finance", "prefix": "cg_original_v02", "name": "财管经营世界", "subtitle": "和小圆、小团、小宝一起修复星光账本，建设经营小镇"},
+)
 BASE_SKINS = ("xiaoyuan", "orange_adventurer", "xiaobao")
 RARITY_NAMES = {k: v["name"] for k, v in CONFIG["rarities"].items()}
 
@@ -53,8 +57,9 @@ def make_catalog() -> dict[str, dict]:
     items.update({item["id"]: item for item in WONDERS["items"]})
     for item in finance.CONFIG["outfits"]:
         items[item["id"]] = {**item, "category": "skin"}
-    for item in finance.CONFIG["companions"]:
-        items[item["id"]] = {**item, "category": "companion", "rarity": "rare", "story_only": True}
+    for item in finance.companion_catalog():
+        RARITY_NAMES[item['rarity']]=item['rarity_name']
+        items[item["id"]] = {**item, "category": "companion", "rarity": item.get("rarity", "rare"), "story_only": True}
     for item in finance.CONFIG["props"]:
         items[item["id"]] = {**item, "category": "collection", "rarity": "epic" if item["price"] >= 600 else "rare" if item["price"] >= 300 else "common"}
     for item in finance.CONFIG["commissions"]:
@@ -70,21 +75,79 @@ CATALOG = make_catalog()
 
 
 def build_campaign(questions: list[dict]) -> dict:
-    """读取独立原创地图，必须与实际加载题号全量匹配。"""
-    installed = json.loads(resource_path("data/campaign.json").read_text(encoding="utf-8"))
+    """普通关全量覆盖客观题；章零的原题仅在游戏编排中关联章节。"""
+    levels: dict[str, dict] = {}
+    worlds: list[dict] = []
+    included: list[str] = []
+    for definition in WORLDS:
+        objective: dict[int, list[dict]] = defaultdict(list)
+        subjective: dict[int, list[dict]] = defaultdict(list)
+        for q in questions:
+            if not q.get("book_id", "").startswith(definition["prefix"]):
+                continue
+            if is_subjective(q):
+                chapter = q.get("chapter", "")
+                if "民法" in chapter:
+                    number = 4
+                elif "破产" in chapter:
+                    number = 8
+                elif "票据" in chapter:
+                    number = 9
+                else:
+                    number = int(q.get("chapter_no") or 0)
+                if not number:
+                    raise ValueError("主观题缺少游戏章节映射：" + q["id"])
+                subjective[number].append(q)
+            else:
+                objective[int(q.get("chapter_no") or 0)].append(q)
+        chapters = []
+        chapter_numbers = sorted(set(objective) | set(subjective))
+        if not chapter_numbers:
+            continue
+        for order, number in enumerate(chapter_numbers):
+            pool = objective[number]
+            special = subjective[number]
+            chapter_id = f"{definition['id']}:550:{number:02d}"
+            title = (pool or special)[0].get("chapter", f"第{number}章")
+            biome = BIOMES[min(5, order * 6 // max(1, len(chapter_numbers)))]
+            if definition['id']=='audit':
+                biome=next(b for b in BIOMES if b['id']=='ruins')
+            stage_ids = []
+
+            def stage(kind: str, index: int, group: list[dict], label: str) -> None:
+                stage_id = f"{chapter_id}:{kind}:{index:02d}"
+                stage_ids.append(stage_id)
+                levels[stage_id] = {"id": stage_id, "world_id": definition["id"], "chapter_id": chapter_id,
+                                    "chapter_no": number, "chapter_title": title, "biome": biome["id"],
+                                    "kind": kind, "name": label, "qids": [q["id"] for q in group],
+                                    "subjective": bool(group and is_subjective(group[0]))}
+
+            for offset in range(0, len(pool), CONFIG["ordinary_size"]):
+                group = pool[offset:offset + CONFIG["ordinary_size"]]
+                stage("normal", offset // CONFIG["ordinary_size"] + 1, group,
+                      f"探索关 {offset // CONFIG['ordinary_size'] + 1}")
+                included.extend(q["id"] for q in group)
+            if special:
+                size = finance.CONFIG["subjective_boss_size"] if definition["id"] == "finance" else CONFIG["subjective_boss_size"]
+                for offset in range(0, len(special), size):
+                    group = special[offset:offset + size]
+                    stage("boss", offset // size + 1, group, f"案例 Boss {offset // size + 1}")
+                    included.extend(q["id"] for q in group)
+            elif pool:
+                elite = sorted(pool, key=lambda q: (-int(q.get("difficulty") or 2), q["id"]))[:CONFIG["boss_size"]]
+                stage("boss", 1, elite, "章节精英 Boss")
+            chapters.append({"id": chapter_id, "number": number, "title": title,
+                             "biome": biome["id"], "stages": stage_ids})
+        worlds.append({**definition, "chapters": chapters})
     ids = [q["id"] for q in questions]
-    arranged = [qid for level in installed["levels"].values() for qid in level["qids"]]
-    bank_meta = json.loads(resource_path("data/questions.json").read_text(encoding="utf-8"))
-    if len(ids) != len(set(ids)) or sorted(ids) != sorted(arranged) or installed["bank_fingerprint"] != bank_meta["bank_fingerprint"]:
-        raise ValueError("原创地图与题库不一致，请重新同步公开内容。")
-    descriptions = {world["id"]: world["subtitle"] for world in WORLDS}
-    for world in installed["worlds"]:
-        world.setdefault("subtitle", descriptions[world["id"]])
-    return copy.deepcopy(installed)
+    if sorted(included) != sorted(ids):
+        raise ValueError("主线题目覆盖不完整或存在重复，请检查题库。")
+    fingerprint = hashlib.sha256("\n".join(sorted(ids)).encode("utf-8")).hexdigest()
+    return {"version": 1, "bank_fingerprint": fingerprint, "worlds": worlds, "levels": levels}
 
 
-def default_game(questions: list[dict]) -> dict:
-    return {"schema_version": 1, "campaign": build_campaign(questions), "results": {},
+def default_game(questions: list[dict], *, bank: dict | None = None) -> dict:
+    return {"schema_version": 1, "campaign": copy.deepcopy(bank['campaign']) if bank else build_campaign(questions), "results": {},
             "active": None, "paused": {}, "last_result": None, "coins": 0, "xp": 0,
             "inventory": list(BASE_SKINS), "equipment": {"xp": None, "coins": None, "wonder": None},
             "growth_version": 2, "wishlist": "wonder_broom",
@@ -93,27 +156,31 @@ def default_game(questions: list[dict]) -> dict:
             "expedition_round": 1, "expedition_stages": {}, "badges": []}
 
 
-def ensure_game(progress: dict, questions: list[dict]) -> dict:
+def prepare_bank(questions: list[dict]) -> dict:
+    """仅缓存安装题库的只读派生；不缓存进度或事务候选。"""
+    return {'campaign':build_campaign(questions),'qmap':{q['id']:q for q in questions}}
+
+
+def ensure_game(progress: dict, questions: list[dict], *, bank: dict | None = None) -> dict:
     g = progress.get("game")
     if progress.get("bank_family") not in (None, "original") or isinstance(g, dict) and g.get("bank_family") not in (None, "original"):
         raise ValueError("这份备份属于另一种题库，请在对应版本恢复；原存档未修改。")
     if not isinstance(g, dict) or not isinstance(g.get("campaign"), dict):
-        g = default_game(questions)
+        g = default_game(questions,bank=bank)
         progress["game"] = g
-    qmap = {q["id"]: q for q in questions}
-    installed = build_campaign(questions)
+    qmap = bank['qmap'] if bank else {q["id"]: q for q in questions}
+    installed = bank['campaign'] if bank else build_campaign(questions)
     if g["campaign"] != installed:
-        baseline_path = resource_path("assets/finance_migration.json")
-        baseline = json.loads(baseline_path.read_text(encoding="utf-8")) if baseline_path.exists() else {}
-        trusted = baseline.get("public_campaign")
+        trusted = json.loads(resource_path("assets/finance_migration.json").read_text(encoding="utf-8")).get("public_campaign")
         if g["campaign"] != trusted:
-            raise ValueError("保存的地图与受信题库不一致，原存档已保留，请使用对应版本或备份。")
+            raise ValueError("这份存档的地图不属于已核验的原创题库，原档保留。")
         old_levels = g["campaign"]["levels"]
-        if any(installed["levels"].get(sid) != level for sid, level in old_levels.items()):
-            raise ValueError("旧关卡发生变化，不能自动迁移学习进度。")
+        g.setdefault("legacy_campaign_levels", {}).update(copy.deepcopy(old_levels))
         if all(g.get("results", {}).get(sid, {}).get("cleared") for sid in old_levels) or g.get("expedition_stages"):
             g["expedition_unlocked"] = True
-        g["campaign"] = installed
+        g["campaign"] = copy.deepcopy(installed)
+        g["bank_migration_version"] = "6.1.0-public"
+        g = progress['game']
     for level in g["campaign"]["levels"].values():
         if not level.get("qids") or any(qid not in qmap for qid in level["qids"]):
             raise ValueError("保存的地图与题库不一致，请恢复原题库后再续关。")
@@ -131,14 +198,18 @@ def ensure_game(progress: dict, questions: list[dict]) -> dict:
     g["bank_family"] = "original"
     progress["bank_family"] = "original"
     finance.state(g)
-    if "xiaobao" not in g["inventory"]:
+    if "xiaobao" not in g["inventory"] and not g.get("product"):
         g["inventory"].append("xiaobao")
     return g
 
 
 def level_for(g: dict, stage_id: str) -> dict:
+    if stage_id.startswith("v5:"):
+        return g["product_campaign"]["levels"][stage_id]
     if stage_id in g["campaign"]["levels"]:
         return g["campaign"]["levels"][stage_id]
+    if stage_id in g.get('legacy_campaign_levels',{}):
+        return g['legacy_campaign_levels'][stage_id]
     return g["expedition_stages"][stage_id]
 
 
@@ -152,8 +223,13 @@ def world_stages(g: dict, world_id: str) -> list[str]:
 
 
 def can_play(g: dict, stage_id: str) -> bool:
+    if stage_id.startswith("v5:"):
+        from desktop_product import can_play as product_can_play
+        return product_can_play(g, stage_id)
     if stage_id.startswith("expedition:"):
         return expedition_available(g) and stage_id in g["expedition_stages"]
+    if stage_id in g.get('legacy_campaign_levels',{}):
+        return stage_id in g.get('paused',{}) or (g.get('active') or {}).get('stage_id')==stage_id
     level = level_for(g, stage_id)
     ordered = world_stages(g, level["world_id"])
     index = ordered.index(stage_id)
@@ -173,6 +249,9 @@ def chapter_complete(g: dict, chapter: dict) -> bool:
 
 
 def next_stage(g: dict, stage_id: str | None = None, world_id: str | None = None) -> str | None:
+    if stage_id and stage_id.startswith("v5:"):
+        from desktop_product import next_stage as product_next_stage
+        return product_next_stage(g, stage_id, world_id)
     if stage_id and stage_id.startswith("expedition:"):
         return None
     world_id = world_id or (level_for(g, stage_id)["world_id"] if stage_id else g["world"])
@@ -184,6 +263,9 @@ def next_stage(g: dict, stage_id: str | None = None, world_id: str | None = None
 
 
 def equipment_bonuses(g: dict) -> dict[str, int]:
+    if g.get("product", {}).get("version") == 2:
+        from desktop_product import bonuses
+        return bonuses(g)
     wonder = CATALOG.get(g["equipment"].get("wonder"), {})
     return {slot: int(CATALOG.get(g["equipment"].get(slot), {}).get("bonus_percent", 0))
             + int(wonder.get(slot + "_percent", 0)) for slot in ("xp", "coins")}
@@ -191,16 +273,30 @@ def equipment_bonuses(g: dict) -> dict[str, int]:
 
 def start_attempt(progress: dict, stage_id: str, *, restart: bool = False,
                   rng: Any = None) -> dict:
+    if stage_id.startswith("v5:"):
+        from desktop_product import start_adventure
+        return start_adventure(progress, stage_id, restart=restart)
     g = progress["game"]
+    if g.get("product"):
+        from desktop_product import require_action
+        require_action(g)
     if not can_play(g, stage_id):
         raise ValueError("请先通关前一关。")
     current = g["active"]
     if current and current["stage_id"] == stage_id and not current["settled"] and not restart:
+        if g.get("product"):
+            current["product_mode"] = "adventure"
+            from desktop_growth import upgrade_attempt
+            upgrade_attempt(g, current)
         return current
     if current and not current["settled"] and current["stage_id"] != stage_id:
         g["paused"][current["stage_id"]] = current
     resumed = g["paused"].pop(stage_id, None)
     if resumed and not restart:
+        if g.get("product"):
+            resumed["product_mode"] = "adventure"
+            from desktop_growth import upgrade_attempt
+            upgrade_attempt(g, resumed)
         g["active"] = resumed
         return resumed
     qids = list(level_for(g, stage_id)["qids"])
@@ -209,11 +305,22 @@ def start_attempt(progress: dict, stage_id: str, *, restart: bool = False,
                "answers": {}, "drafts": {}, "references": [], "index": 0,
                "bonuses": equipment_bonuses(g), "settled": False, "result": None}
     g["active"] = attempt
+    if g.get("product"):
+        attempt["product_mode"] = "adventure"
     skills.apply_boosts(g, attempt, level_for(g, stage_id))
+    from desktop_growth import enabled, prepare
+    if enabled(g):
+        from desktop_product import bonuses
+        attempt['bonuses']=bonuses(g)
+        prepare(g,attempt)
     return attempt
 
 
 def submit_answer(progress: dict, question: dict, user_answer: str, correct: bool) -> bool:
+    from desktop_growth import current
+    if (progress["game"].get("active") or {}).get("stage_id", "").startswith("v5:") or current(progress['game'].get('active')):
+        from desktop_product import submit_adventure
+        return submit_adventure(progress, question, user_answer, correct)
     attempt = progress["game"]["active"]
     if not attempt or attempt["settled"]:
         raise ValueError("当前没有进行中的挑战。")
@@ -228,7 +335,12 @@ def submit_answer(progress: dict, question: dict, user_answer: str, correct: boo
         raise ValueError("请先查看参考答案，再对照自评。")
     rec = {"correct": bool(correct), "user_answer": user_answer, "ts": time.time()}
     attempt["answers"][qid] = rec
-    record_answer(progress, qid, correct, user_answer)
+    if progress["game"].get("product"):
+        from desktop_product import record_action
+        reward = record_action(progress, question, correct, user_answer, attempt, mode="adventure", self_assessed=is_subjective(question))
+        rec.update(assisted=reward["assisted"], self_assessed=reward["self_assessed"])
+    else:
+        record_answer(progress, qid, correct, user_answer)
     return True
 
 
@@ -274,6 +386,8 @@ def roll_loot(g: dict, rng: Any) -> dict:
         rarity = "epic"
         pool = [item for item in CATALOG.values() if item["category"] == category
                 and item["rarity"] == rarity and not item.get("starter") and not item.get("story_only")]
+    if not pool:
+        return {'kind':'none','name':'这次没有额外掉落','coins':0,'xp':0}
     item = rng.choice(pool)
     duplicate = item["id"] in g["inventory"]
     coins = CONFIG["rarities"][rarity]["duplicate_coins"] if duplicate else 0
@@ -301,6 +415,9 @@ def roll_surprise(g: dict, rng: Any) -> list[dict]:
 
 
 def settle_attempt(progress: dict, *, rng: Any = None, surprise_rng: Any = None) -> dict:
+    if (progress["game"].get("active") or {}).get("stage_id", "").startswith("v5:"):
+        from desktop_product import settle_adventure
+        return settle_adventure(progress)
     g = progress["game"]
     attempt = g["active"]
     if not attempt:
@@ -392,7 +509,18 @@ def growth_status(g: dict) -> list[dict]:
 
 def buy_item(progress: dict, item_id: str) -> dict:
     g = progress["game"]
+    if g.get("product"):
+        from desktop_product import SHOP_CATALOG, buy
+        if item_id in SHOP_CATALOG:
+            return buy(progress, item_id, "legacy-buy-" + uuid.uuid4().hex)
     item = CATALOG[item_id]
+    if g.get("product") and item.get("character"):
+        from desktop_product import HEROES, buy
+        base = "orange_adventurer" if item_id.startswith("orange_") else item_id
+        if item_id in HEROES:
+            return buy(progress, item_id, "legacy-unlock-" + uuid.uuid4().hex)
+        if base not in g["product"]["heroes"]:
+            raise ValueError("请先在补给商店解锁对应主角，再购买它的旧版装扮。")
     if item.get("earned_only"):
         raise ValueError("完成对应经营委托即可获得这张明信片。")
     if item.get("story_only"):
@@ -413,14 +541,34 @@ def buy_item(progress: dict, item_id: str) -> dict:
 
 def equip_item(progress: dict, item_id: str) -> None:
     g = progress["game"]
+    if g.get("product"):
+        from desktop_product import SHOP_CATALOG, equip, switch_hero
+        if item_id in SHOP_CATALOG:
+            equip(progress, item_id, "legacy-equip-" + uuid.uuid4().hex)
+            fit = SHOP_CATALOG[item_id].get("fit_character")
+            if fit:
+                switch_hero(progress, fit)
+            return
     if item_id not in g["inventory"]:
         raise ValueError("尚未拥有这件物品。")
     item = CATALOG[item_id]
+    if g.get("product") and (item.get("character") or item.get("fit_character")):
+        required = item_id if item.get("character") else item["fit_character"]
+        required = "orange_adventurer" if required.startswith("orange_") else required
+        if required not in g["product"]["heroes"]:
+            raise ValueError("这件装扮对应的主角尚未解锁，请先去补给商店领取或解锁。")
     if item["category"] == "equipment":
         slot = item["slot"]
         g["equipment"][slot] = None if g["equipment"].get(slot) == item_id else item_id
     elif item.get("character"):
         g["skin"] = item_id
+        if g.get("product", {}).get("version") == 2:
+            from desktop_product import hero_id, switch_hero
+            base = hero_id(g)
+            g["product"]["appearances"][base]["legacy_skin"] = item_id
+            g["product"]["appearances"][base]["skin"] = base
+            switch_hero(progress, base)
+            return
         worn = CATALOG.get(g.get("outfit"), {})
         fit = worn.get("fit_character")
         if fit and not (fit == item_id or fit == "orange_adventurer" and item_id.startswith("orange_")):
@@ -478,7 +626,17 @@ def create_expedition(progress: dict, questions: list[dict], *, rng: Any = None)
 
 
 def stats(g: dict, world_id: str | None = None) -> dict:
+    from desktop_product import level as desktop_level
     stages = world_stages(g, world_id) if world_id else list(g["campaign"]["levels"])
     return {"cleared": sum(cleared(g, sid) for sid in stages), "total": len(stages),
             "stars": sum(g["results"].get(sid, {}).get("best_stars", 0) for sid in stages),
-            "max_stars": 3 * len(stages), "level": g["xp"] // CONFIG["xp_per_level"] + 1}
+            "max_stars": 3 * len(stages), "level": desktop_level(g) if g.get('product') else g["xp"] // CONFIG["xp_per_level"] + 1}
+
+
+_classic_settle_legacy=settle_attempt
+def settle_attempt(progress: dict, *, rng: Any = None, surprise_rng: Any = None) -> dict:
+    from desktop_growth import current, settle_classic
+    a=progress['game'].get('active')
+    if current(a) and not a['stage_id'].startswith('v5:'):
+        return settle_classic(progress,legacy=_classic_settle_legacy,rng=rng,surprise_rng=surprise_rng)
+    return _classic_settle_legacy(progress,rng=rng,surprise_rng=surprise_rng)

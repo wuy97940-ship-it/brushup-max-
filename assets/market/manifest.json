@@ -1,0 +1,1677 @@
+{
+  "version": "5.5.0",
+  "reference_photos_excluded": true,
+  "items": [
+    {
+      "id": "home_chair",
+      "source": "内置image_gen精美家装原件：market/source/home_chair.png",
+      "image": "market/items/home_chair.png",
+      "thumbnail": "market/thumbs/home_chair.png",
+      "sha256": "b965ee9a6b9692bde4ec7d52b71b43a59ea5e3eeeb8f35cce594f1729ae7ff06"
+    },
+    {
+      "id": "home_bed",
+      "source": "内置image_gen精美家装原件：market/source/home_bed.png",
+      "image": "market/items/home_bed.png",
+      "thumbnail": "market/thumbs/home_bed.png",
+      "sha256": "9ba3eab1e74c4b1da567480ab33965521b03c19bf7364c1ffffd95282c3961dd"
+    },
+    {
+      "id": "home_desk",
+      "source": "内置image_gen精美家装原件：market/source/home_desk.png",
+      "image": "market/items/home_desk.png",
+      "thumbnail": "market/thumbs/home_desk.png",
+      "sha256": "04b3856b77862e0df8a1b9736cbc2b4926d7c467b1d6df92b07204e900add173"
+    },
+    {
+      "id": "home_shelf",
+      "source": "内置image_gen精美家装原件：market/source/home_shelf.png",
+      "image": "market/items/home_shelf.png",
+      "thumbnail": "market/thumbs/home_shelf.png",
+      "sha256": "7a0aae720a794acf4fa37a4094addd0331a965dc6fe8aa78a46facdf7e4f683c"
+    },
+    {
+      "id": "home_washer",
+      "source": "内置image_gen精美家装原件：market/source/home_washer.png",
+      "image": "market/items/home_washer.png",
+      "thumbnail": "market/thumbs/home_washer.png",
+      "sha256": "8cab95a41a1524cffb7a8fd7621ced35a47907029d90ae546a5cd46472b59450"
+    },
+    {
+      "id": "home_sofa",
+      "source": "内置image_gen精美家装原件：market/source/home_sofa.png",
+      "image": "market/items/home_sofa.png",
+      "thumbnail": "market/thumbs/home_sofa.png",
+      "sha256": "9c8774473fe08ec0337143f8d01643289395227bcb2fa3be102804ac0377f870"
+    },
+    {
+      "id": "home_window",
+      "source": "内置image_gen精美家装原件：market/source/home_window.png",
+      "image": "market/items/home_window.png",
+      "thumbnail": "market/thumbs/home_window.png",
+      "sha256": "e9b579ee2fb16fcffe9c988c6f3811f7dd9df9754cd93745cea508f83ba8966a"
+    },
+    {
+      "id": "home_wallpaper",
+      "source": "内置image_gen精美家装原件：market/source/home_wallpaper.png",
+      "image": "market/items/home_wallpaper.png",
+      "thumbnail": "market/thumbs/home_wallpaper.png",
+      "sha256": "d74879b4b0d9c61120e8391c1a0b5bd087fd4dc2acba6ddf56eef63d434dbe2a"
+    },
+    {
+      "id": "home_floor",
+      "source": "内置image_gen精美家装原件：market/source/home_floor.png",
+      "image": "market/items/home_floor.png",
+      "thumbnail": "market/thumbs/home_floor.png",
+      "sha256": "51a865ef3ecd8b7de0dff388fc94cf4df01350f6e00263eed1476571c994c59e"
+    },
+    {
+      "id": "home_rug",
+      "source": "内置image_gen精美家装原件：market/source/home_rug.png",
+      "image": "market/items/home_rug.png",
+      "thumbnail": "market/thumbs/home_rug.png",
+      "sha256": "22710c03bdd48bbc03bc6e1ca69df104ebe1074cde2afefe072e88efd66aee0f"
+    },
+    {
+      "id": "home_plant",
+      "source": "内置image_gen精美家装原件：market/source/home_plant.png",
+      "image": "market/items/home_plant.png",
+      "thumbnail": "market/thumbs/home_plant.png",
+      "sha256": "d8d49aad589d8779ecf0075af884ef4f0d2d525c00c65b82defc51fce88d765c"
+    },
+    {
+      "id": "home_picture",
+      "source": "内置image_gen精美家装原件：market/source/home_picture.png",
+      "image": "market/items/home_picture.png",
+      "thumbnail": "market/thumbs/home_picture.png",
+      "sha256": "fbbb4cdab68cb04072e9655b00b8ce60e8fef4b72c9c5354a8b71c46d15abfa0"
+    },
+    {
+      "id": "outfit_forest",
+      "source": "overlays/outfit_forest_v510.png",
+      "image": "market/items/outfit_forest.png",
+      "thumbnail": "market/thumbs/outfit_forest.png",
+      "sha256": "c9a500c008af5aa9090ced64e7d24716bb83ef0b776545cb0d2d472408d97b38"
+    },
+    {
+      "id": "outfit_island",
+      "source": "overlays/outfit_island_v510.png",
+      "image": "market/items/outfit_island.png",
+      "thumbnail": "market/thumbs/outfit_island.png",
+      "sha256": "d3f0ee77ec0ebe09587bd21d464c98e8bce1414430986ade583bc75cfbee57b4"
+    },
+    {
+      "id": "outfit_snow",
+      "source": "overlays/outfit_snow_v510.png",
+      "image": "market/items/outfit_snow.png",
+      "thumbnail": "market/thumbs/outfit_snow.png",
+      "sha256": "606b83106fd3b184e262ac71b2077b43c0196782d73c0e1f04b6c69de15c9ffa"
+    },
+    {
+      "id": "outfit_ruins",
+      "source": "overlays/outfit_ruins_v510.png",
+      "image": "market/items/outfit_ruins.png",
+      "thumbnail": "market/thumbs/outfit_ruins.png",
+      "sha256": "f94bcefe6ed17cc7b628efe91f0ed16dc9eb75f69630fa614eb819155f01ba34"
+    },
+    {
+      "id": "outfit_sky",
+      "source": "overlays/outfit_sky_v510.png",
+      "image": "market/items/outfit_sky.png",
+      "thumbnail": "market/thumbs/outfit_sky.png",
+      "sha256": "0f80f5a5c0cc34f7aad11c8fd5eaaf0472a3fd8e003eff2b7eb0f6553610cc7e"
+    },
+    {
+      "id": "outfit_stars",
+      "source": "overlays/outfit_stars_v510.png",
+      "image": "market/items/outfit_stars.png",
+      "thumbnail": "market/thumbs/outfit_stars.png",
+      "sha256": "33905b5e5aaa389450893d94bf3233bfe114db13602e4f6330bd884dc0549064"
+    },
+    {
+      "id": "equipment_xp_common",
+      "source": "overlays/equipment_xp_common_v510.png",
+      "image": "market/items/equipment_xp_common.png",
+      "thumbnail": "market/thumbs/equipment_xp_common.png",
+      "sha256": "ec04aa4dc34fe41cd5525e014310f793eb7af9355ffbb9c36520e6e87d0f0723"
+    },
+    {
+      "id": "equipment_xp_rare",
+      "source": "overlays/equipment_xp_rare_v510.png",
+      "image": "market/items/equipment_xp_rare.png",
+      "thumbnail": "market/thumbs/equipment_xp_rare.png",
+      "sha256": "2fef32d76c70646ec6b4c21be0f28a20b33f1f1e5b885c7f1b746b11e8a1fca5"
+    },
+    {
+      "id": "equipment_xp_epic",
+      "source": "overlays/equipment_xp_epic_v510.png",
+      "image": "market/items/equipment_xp_epic.png",
+      "thumbnail": "market/thumbs/equipment_xp_epic.png",
+      "sha256": "fd5fbe64025e186edc28c86aae0bb53dba8e6cf764bdd6e6ed42929dc8ff0d0e"
+    },
+    {
+      "id": "equipment_coins_common",
+      "source": "overlays/equipment_coins_common_v510.png",
+      "image": "market/items/equipment_coins_common.png",
+      "thumbnail": "market/thumbs/equipment_coins_common.png",
+      "sha256": "d36dc9431d6d08e4927fe53f7a9fbd5ab12973b90aa0754e7dd554bb6e1851d4"
+    },
+    {
+      "id": "equipment_coins_rare",
+      "source": "overlays/equipment_coins_rare_v510.png",
+      "image": "market/items/equipment_coins_rare.png",
+      "thumbnail": "market/thumbs/equipment_coins_rare.png",
+      "sha256": "2cec3d052781d41211ad9b36b9342f79469256babd3779519d12f9fc343c9eee"
+    },
+    {
+      "id": "equipment_coins_epic",
+      "source": "overlays/equipment_coins_epic_v510.png",
+      "image": "market/items/equipment_coins_epic.png",
+      "thumbnail": "market/thumbs/equipment_coins_epic.png",
+      "sha256": "cb219d674e8cd68663f6558be21fa7786c645c1f85bf9f0010bc6eaeb228738c"
+    },
+    {
+      "id": "wonder_lantern",
+      "source": "shop/originals/wonder_lantern.png",
+      "image": "market/items/wonder_lantern.png",
+      "thumbnail": "market/thumbs/wonder_lantern.png",
+      "sha256": "7ead2542a6232085ec81a27976d4527d4673561f25c41019462a7d985787e540"
+    },
+    {
+      "id": "wonder_satchel",
+      "source": "shop/originals/wonder_satchel.png",
+      "image": "market/items/wonder_satchel.png",
+      "thumbnail": "market/thumbs/wonder_satchel.png",
+      "sha256": "85792c632c7e6eec23c78fbc80e912241e03adcefbbbb27e45fbded250fedb09"
+    },
+    {
+      "id": "wonder_wand",
+      "source": "shop/originals/wonder_wand.png",
+      "image": "market/items/wonder_wand.png",
+      "thumbnail": "market/thumbs/wonder_wand.png",
+      "sha256": "c4fabacdf34fb7c71514d5fdbd1b01b06d3717e83b42f84443b11378e225cbbb"
+    },
+    {
+      "id": "wonder_broom",
+      "source": "shop/originals/wonder_broom.png",
+      "image": "market/items/wonder_broom.png",
+      "thumbnail": "market/thumbs/wonder_broom.png",
+      "sha256": "51e5216e4f10efa49b808ca5df10c664acae095a48cd5ff1c705fffaadd338f0"
+    },
+    {
+      "id": "wonder_cape",
+      "source": "shop/originals/wonder_cape.png",
+      "image": "market/items/wonder_cape.png",
+      "thumbnail": "market/thumbs/wonder_cape.png",
+      "sha256": "e67bb90ddb3a2b1e7037372af9080ba6e459b88a86c133bc9a031b81e0452b50"
+    },
+    {
+      "id": "wonder_wings",
+      "source": "shop/originals/wonder_wings.png",
+      "image": "market/items/wonder_wings.png",
+      "thumbnail": "market/thumbs/wonder_wings.png",
+      "sha256": "6f7371fcc68cce09d8aeb02b444dfa5d1ce4adc05d7ce257b56e25a5b01225d9"
+    },
+    {
+      "id": "xiaoyuan",
+      "source": "正式角色与逐姿态穿戴渲染",
+      "image": "market/items/xiaoyuan.png",
+      "thumbnail": "market/thumbs/xiaoyuan.png",
+      "sha256": "fbbb34f1f358168c8a71285a48634a23de34458dcdc721cbcbf7a5226486ff0b"
+    },
+    {
+      "id": "orange_adventurer",
+      "source": "正式角色与逐姿态穿戴渲染",
+      "image": "market/items/orange_adventurer.png",
+      "thumbnail": "market/thumbs/orange_adventurer.png",
+      "sha256": "45a4d085301bfec98a684ee66044f0545292b2128d93a91c017f1eca17a6613b"
+    },
+    {
+      "id": "xiaobao",
+      "source": "正式角色与逐姿态穿戴渲染",
+      "image": "market/items/xiaobao.png",
+      "thumbnail": "market/thumbs/xiaobao.png",
+      "sha256": "f437551a422e7f638d25ffd2b2e27d47ef6116f9f86b7e914e8727d4c59732e9"
+    },
+    {
+      "id": "food_cookie",
+      "source": "内置image_gen生成原件：market/source/food_cookie.png",
+      "image": "market/items/food_cookie.png",
+      "thumbnail": "market/thumbs/food_cookie.png",
+      "sha256": "bde7d1d593edf1ec8f3919fb8595dc32cb22f520f3cee3d7268290378a5f3523"
+    },
+    {
+      "id": "food_bento",
+      "source": "内置image_gen生成原件：market/source/food_bento.png",
+      "image": "market/items/food_bento.png",
+      "thumbnail": "market/thumbs/food_bento.png",
+      "sha256": "67e854f3ceda6500ae5263d423711b10afee01d0b96a746411078e2169133425"
+    },
+    {
+      "id": "food_feast",
+      "source": "内置image_gen生成原件：market/source/food_feast.png",
+      "image": "market/items/food_feast.png",
+      "thumbnail": "market/thumbs/food_feast.png",
+      "sha256": "9c18fbc44fcee755227a816ecf20dc4194dc41635d095e6d8245e5064e284366"
+    },
+    {
+      "id": "food_supply",
+      "source": "内置image_gen生成原件：market/source/food_supply.png",
+      "image": "market/items/food_supply.png",
+      "thumbnail": "market/thumbs/food_supply.png",
+      "sha256": "bc0667e371c39434b0e77f68aef8704a02834a5e1137de9b587bc44ed0a4637b"
+    },
+    {
+      "id": "calm_drink",
+      "source": "内置image_gen生成原件：market/source/calm_drink.png",
+      "image": "market/items/calm_drink.png",
+      "thumbnail": "market/thumbs/calm_drink.png",
+      "sha256": "6d083e10ec8fa28162a7a4608ec11d758da55eb071121acfd0407b3731a36388"
+    },
+    {
+      "id": "revival_pill",
+      "source": "内置image_gen生成原件：market/source/revival_pill.png",
+      "image": "market/items/revival_pill.png",
+      "thumbnail": "market/thumbs/revival_pill.png",
+      "sha256": "42fe12df174c397521025c66b77461616e21fdcc421083723f00e8cddf015388"
+    },
+    {
+      "id": "outfit_finance_xiaoyuan_ledger",
+      "source": "正式角色与逐姿态穿戴渲染",
+      "image": "market/items/outfit_finance_xiaoyuan_ledger.png",
+      "thumbnail": "market/thumbs/outfit_finance_xiaoyuan_ledger.png",
+      "sha256": "dbdb08df3b3932a3d87d084b38d35d46177ba805171f8b49f103ac6cde877390"
+    },
+    {
+      "id": "outfit_finance_xiaoyuan_sailing",
+      "source": "正式角色与逐姿态穿戴渲染",
+      "image": "market/items/outfit_finance_xiaoyuan_sailing.png",
+      "thumbnail": "market/thumbs/outfit_finance_xiaoyuan_sailing.png",
+      "sha256": "f73330bf940b8e8def3ae77f09ad9bac02bf61fd4e1b134c3c0150536ce48501"
+    },
+    {
+      "id": "outfit_finance_xiaoyuan_workshop",
+      "source": "正式角色与逐姿态穿戴渲染",
+      "image": "market/items/outfit_finance_xiaoyuan_workshop.png",
+      "thumbnail": "market/thumbs/outfit_finance_xiaoyuan_workshop.png",
+      "sha256": "56f174434234c7832dfbcc6ebfd400e5b73732ba08388817f2948e108abf6cdd"
+    },
+    {
+      "id": "outfit_finance_xiaoyuan_stars",
+      "source": "正式角色与逐姿态穿戴渲染",
+      "image": "market/items/outfit_finance_xiaoyuan_stars.png",
+      "thumbnail": "market/thumbs/outfit_finance_xiaoyuan_stars.png",
+      "sha256": "209f55bbffaaed3c473d54654a8af86285888cdfa1f2dcfd6e234b74977e0322"
+    },
+    {
+      "id": "outfit_finance_orange_adventurer_ledger",
+      "source": "正式角色与逐姿态穿戴渲染",
+      "image": "market/items/outfit_finance_orange_adventurer_ledger.png",
+      "thumbnail": "market/thumbs/outfit_finance_orange_adventurer_ledger.png",
+      "sha256": "d3bbd2b46a82bf64ef40b283afc66538bc31d06b7797036e257b1ca4549c9c47"
+    },
+    {
+      "id": "outfit_finance_orange_adventurer_sailing",
+      "source": "正式角色与逐姿态穿戴渲染",
+      "image": "market/items/outfit_finance_orange_adventurer_sailing.png",
+      "thumbnail": "market/thumbs/outfit_finance_orange_adventurer_sailing.png",
+      "sha256": "3361f75f11891cebeca7c0d30589bb15fcb88c3636153d103a5ff4e81f5f73cb"
+    },
+    {
+      "id": "outfit_finance_orange_adventurer_workshop",
+      "source": "正式角色与逐姿态穿戴渲染",
+      "image": "market/items/outfit_finance_orange_adventurer_workshop.png",
+      "thumbnail": "market/thumbs/outfit_finance_orange_adventurer_workshop.png",
+      "sha256": "74e83800a786aecf1c02739b69e1cf1ada4a5d3a7000e9dfded013545a2cc7f4"
+    },
+    {
+      "id": "outfit_finance_orange_adventurer_stars",
+      "source": "正式角色与逐姿态穿戴渲染",
+      "image": "market/items/outfit_finance_orange_adventurer_stars.png",
+      "thumbnail": "market/thumbs/outfit_finance_orange_adventurer_stars.png",
+      "sha256": "0e26353d2d19e44d03196ba2f0a51d7d65e15ac360f53d27be42428f7da331c5"
+    },
+    {
+      "id": "outfit_finance_xiaobao_ledger",
+      "source": "正式角色与逐姿态穿戴渲染",
+      "image": "market/items/outfit_finance_xiaobao_ledger.png",
+      "thumbnail": "market/thumbs/outfit_finance_xiaobao_ledger.png",
+      "sha256": "dedb8aaf701ff3193e15a3d759049be3224824af05300620e9d37ab28e7be25c"
+    },
+    {
+      "id": "outfit_finance_xiaobao_sailing",
+      "source": "正式角色与逐姿态穿戴渲染",
+      "image": "market/items/outfit_finance_xiaobao_sailing.png",
+      "thumbnail": "market/thumbs/outfit_finance_xiaobao_sailing.png",
+      "sha256": "8dc74e3eba67ce6aac6d8042c7e2ba5ed487def81da0aaa52b36d64168a84880"
+    },
+    {
+      "id": "outfit_finance_xiaobao_workshop",
+      "source": "正式角色与逐姿态穿戴渲染",
+      "image": "market/items/outfit_finance_xiaobao_workshop.png",
+      "thumbnail": "market/thumbs/outfit_finance_xiaobao_workshop.png",
+      "sha256": "ad6aefc643afdb2af5a8ed638db13864b2af1f81e091fa581493d6a6421670c2"
+    },
+    {
+      "id": "outfit_finance_xiaobao_stars",
+      "source": "正式角色与逐姿态穿戴渲染",
+      "image": "market/items/outfit_finance_xiaobao_stars.png",
+      "thumbnail": "market/thumbs/outfit_finance_xiaobao_stars.png",
+      "sha256": "ca61c103430f2aa7581bca294616c73927d7fe4b7a7c902c02c324cc44a68210"
+    },
+    {
+      "id": "home_second_floor",
+      "source": "内置image_gen精美家装原件：market/source/home_second_floor.png",
+      "image": "market/items/home_second_floor.png",
+      "thumbnail": "market/thumbs/home_second_floor.png",
+      "sha256": "3865490914ed878f270b1bf706d46fb0be3f0fe6f28309a9c5e9f8f1ea95b071"
+    },
+    {
+      "id": "home_third_floor",
+      "source": "内置image_gen精美家装原件：market/source/home_third_floor.png",
+      "image": "market/items/home_third_floor.png",
+      "thumbnail": "market/thumbs/home_third_floor.png",
+      "sha256": "3ba93cfbdee5d509eea02acee591ca0298bcdae4f64cdac8b31ff8056de73e77"
+    },
+    {
+      "id": "footwear_xiaoyuan_common",
+      "source": "market/source/footwear_xiaoyuan_common_v530.png",
+      "image": "market/items/footwear_xiaoyuan_common.png",
+      "thumbnail": "market/thumbs/footwear_xiaoyuan_common.png",
+      "sha256": "8535f3cec0870d81cc52ad83fc756997fce090fbf33bd95a48ccac60d5e2592d",
+      "source_sha256": "969689b5f0800402d21b8c5c292ab09e3f88441db198ec400ec67d898969b9e0"
+    },
+    {
+      "id": "footwear_xiaoyuan_rare",
+      "source": "market/source/footwear_xiaoyuan_rare_v530.png",
+      "image": "market/items/footwear_xiaoyuan_rare.png",
+      "thumbnail": "market/thumbs/footwear_xiaoyuan_rare.png",
+      "sha256": "3a1daf0df2f643fa844d67a45062d3e7aafecbcab62c46496855cad336715ea3",
+      "source_sha256": "dc71687f465724e12f7f1f60acc20120f7f874865cf7000700c5b826fdca972d"
+    },
+    {
+      "id": "footwear_xiaoyuan_legendary",
+      "source": "market/source/footwear_xiaoyuan_legendary_v530.png",
+      "image": "market/items/footwear_xiaoyuan_legendary.png",
+      "thumbnail": "market/thumbs/footwear_xiaoyuan_legendary.png",
+      "sha256": "abb80ab400f532edbab5cb625b70905d01d3d8517a9818bee8ee285bab196039",
+      "source_sha256": "0385ad34f2699ad5e513891b2fffc758db426cac79c2939dd5371bc1cb4902af"
+    },
+    {
+      "id": "pawgear_xiaoyuan_common",
+      "source": "market/source/pawgear_xiaoyuan_common_v530.png",
+      "image": "market/items/pawgear_xiaoyuan_common.png",
+      "thumbnail": "market/thumbs/pawgear_xiaoyuan_common.png",
+      "sha256": "c5eed8ab5035de1325db913a9f4a73217bad89bacf1ee827b366ec6a7f258058",
+      "source_sha256": "1bafe380c92b30cb1af1744435fc877dbedc3279bc7ed3fbd25e1e685937cbbe"
+    },
+    {
+      "id": "pawgear_xiaoyuan_rare",
+      "source": "market/source/pawgear_xiaoyuan_rare_v530.png",
+      "image": "market/items/pawgear_xiaoyuan_rare.png",
+      "thumbnail": "market/thumbs/pawgear_xiaoyuan_rare.png",
+      "sha256": "1ed559282f0592fa52e34a422c02d0b3c865a846ffa77e00491eac01c6970be0",
+      "source_sha256": "2b98ac31e49ee100cf965c109326e0eccfcb6a2a56b62c7ba0b48f415aaf98a7"
+    },
+    {
+      "id": "pawgear_xiaoyuan_legendary",
+      "source": "market/source/pawgear_xiaoyuan_legendary_v530.png",
+      "image": "market/items/pawgear_xiaoyuan_legendary.png",
+      "thumbnail": "market/thumbs/pawgear_xiaoyuan_legendary.png",
+      "sha256": "3ed6c3d94090f6ee2dc6618121a04c4385b667722199b8eb272041d52a013abf",
+      "source_sha256": "1670dfafcc9272bccc89b8ee4d0c3648bf1b6eb44c927d5c33bedb314d452886"
+    },
+    {
+      "id": "footwear_orange_adventurer_common",
+      "source": "market/source/footwear_orange_adventurer_common_v530.png",
+      "image": "market/items/footwear_orange_adventurer_common.png",
+      "thumbnail": "market/thumbs/footwear_orange_adventurer_common.png",
+      "sha256": "6983aaac21bae2d1fefc18dbbcb315d849b695807628d53360e2aba000ad47ac",
+      "source_sha256": "e7898d7b0c35a7daab34528261f770fc3699c549906e96e76cab631a0b9cc0f8"
+    },
+    {
+      "id": "footwear_orange_adventurer_rare",
+      "source": "market/source/footwear_orange_adventurer_rare_v530.png",
+      "image": "market/items/footwear_orange_adventurer_rare.png",
+      "thumbnail": "market/thumbs/footwear_orange_adventurer_rare.png",
+      "sha256": "5b1aa2750fb773273413fd1cd68f9191fbc6d93152aed6af0eedf204eafb2ae0",
+      "source_sha256": "af8f65f8cf834c13b7d21816ed4d12d1fd81979eabd36abb8e7e8b284a7deda2"
+    },
+    {
+      "id": "footwear_orange_adventurer_legendary",
+      "source": "market/source/footwear_orange_adventurer_legendary_v530.png",
+      "image": "market/items/footwear_orange_adventurer_legendary.png",
+      "thumbnail": "market/thumbs/footwear_orange_adventurer_legendary.png",
+      "sha256": "9f18f034bf862760868ef5ccf7f7ee97d3945e088c4bfc5adf1bc7bf60ef5deb",
+      "source_sha256": "d25fc80ded4a0e51bfe19be64229b7572f27f46772b4502ef84f4866d0573e18"
+    },
+    {
+      "id": "pawgear_orange_adventurer_common",
+      "source": "market/source/pawgear_orange_adventurer_common_v530.png",
+      "image": "market/items/pawgear_orange_adventurer_common.png",
+      "thumbnail": "market/thumbs/pawgear_orange_adventurer_common.png",
+      "sha256": "566f40864f31a3aacb95c316e85bdbc2ac09a5b1abed56b6b2b9818e59357590",
+      "source_sha256": "e98044d65d35816387cce086a4fd234962942606dfcdb54426f1e393e38b483d"
+    },
+    {
+      "id": "pawgear_orange_adventurer_rare",
+      "source": "market/source/pawgear_orange_adventurer_rare_v530.png",
+      "image": "market/items/pawgear_orange_adventurer_rare.png",
+      "thumbnail": "market/thumbs/pawgear_orange_adventurer_rare.png",
+      "sha256": "146b3488ed9600ced598744ecfef68959324929e035c976915dc3c7868617ea6",
+      "source_sha256": "76a2679b3ea692c330401b8ddcf137442b2b3a8c658c0771ecabe2eff134461d"
+    },
+    {
+      "id": "pawgear_orange_adventurer_legendary",
+      "source": "market/source/pawgear_orange_adventurer_legendary_v530.png",
+      "image": "market/items/pawgear_orange_adventurer_legendary.png",
+      "thumbnail": "market/thumbs/pawgear_orange_adventurer_legendary.png",
+      "sha256": "7c32c1875a31d684b6aa9c7458295b10360ed144f13c38ae2bc04e6e3ba20d0d",
+      "source_sha256": "34969b2904d529e34a181a0225be07dfbe57862995241676bd2ad0a93aa8e4b9"
+    },
+    {
+      "id": "footwear_xiaobao_common",
+      "source": "market/source/footwear_xiaobao_common_v530.png",
+      "image": "market/items/footwear_xiaobao_common.png",
+      "thumbnail": "market/thumbs/footwear_xiaobao_common.png",
+      "sha256": "fe1884689c1b7b1aebe4e6c4f74fbe57c6739e2a1d7e050de0307340e836993f",
+      "source_sha256": "3f01a80063669ff078fa0bacdc9be11e5115cf3d0090cdbb667528d29efed6a3"
+    },
+    {
+      "id": "footwear_xiaobao_rare",
+      "source": "market/source/footwear_xiaobao_rare_v530.png",
+      "image": "market/items/footwear_xiaobao_rare.png",
+      "thumbnail": "market/thumbs/footwear_xiaobao_rare.png",
+      "sha256": "fafacd69ebdbc201dafbcc80ad570846063d3b7dca2c3495d236a628fd3cf60e",
+      "source_sha256": "91440ec9d745ec68cbe0ebe6af87d26fb35a13012ec5b8dacf03555132231941"
+    },
+    {
+      "id": "footwear_xiaobao_legendary",
+      "source": "market/source/footwear_xiaobao_legendary_v530.png",
+      "image": "market/items/footwear_xiaobao_legendary.png",
+      "thumbnail": "market/thumbs/footwear_xiaobao_legendary.png",
+      "sha256": "cfef45977bff2c805784f90597b71a12301403ee1c059b422ad31c722e023ad6",
+      "source_sha256": "1dafc4ed5db2bd5c0da99a42c72e33f0aa864cba5e14c89291f0facd12e67072"
+    },
+    {
+      "id": "pawgear_xiaobao_common",
+      "source": "market/source/pawgear_xiaobao_common_v530.png",
+      "image": "market/items/pawgear_xiaobao_common.png",
+      "thumbnail": "market/thumbs/pawgear_xiaobao_common.png",
+      "sha256": "404373f63a2e8615dc3e3f5b0ed27af6fca457a44e858be0d3d25c409ae389fc",
+      "source_sha256": "0c0f675adeea55ce253041ccb5896cb6791309ef716e2ab7ee98260d54fbcfe8"
+    },
+    {
+      "id": "pawgear_xiaobao_rare",
+      "source": "market/source/pawgear_xiaobao_rare_v530.png",
+      "image": "market/items/pawgear_xiaobao_rare.png",
+      "thumbnail": "market/thumbs/pawgear_xiaobao_rare.png",
+      "sha256": "c7575bf38a2fb53ff76c36cd0018a00ff9b5636ccdbfdd543ec5208c3c064275",
+      "source_sha256": "e08d1761340e029316fb42f7de884a2cb1f2c977e1f2e215fd4334af71f60efc"
+    },
+    {
+      "id": "pawgear_xiaobao_legendary",
+      "source": "market/source/pawgear_xiaobao_legendary_v530.png",
+      "image": "market/items/pawgear_xiaobao_legendary.png",
+      "thumbnail": "market/thumbs/pawgear_xiaobao_legendary.png",
+      "sha256": "631dd448bf6833a3b1e935d342ce16059c0aae4ef99241b4f687d6385981d8c8",
+      "source_sha256": "9405d2e6101d8159d90476b49898606f90d0049f4413cad40e114f941ac80e0f"
+    },
+    {
+      "id": "mana_potion_small",
+      "source": "market/source/mana_potion_small_v530.png",
+      "image": "market/items/mana_potion_small.png",
+      "thumbnail": "market/thumbs/mana_potion_small.png",
+      "sha256": "fb515b0cef966f62244e00817341ee8ad73ccbdf9a143fe7a3d455bbd035f9c4",
+      "source_sha256": "4e72bdee874c200aba9dcf103c474a42dd27033999bc78cd67efec647493c7ac"
+    },
+    {
+      "id": "mana_potion_large",
+      "source": "market/source/mana_potion_large_v530.png",
+      "image": "market/items/mana_potion_large.png",
+      "thumbnail": "market/thumbs/mana_potion_large.png",
+      "sha256": "844db2b2da6c7a03d62963d6d5320b4b9db4c1dd8edcf1a975dba043245e9726",
+      "source_sha256": "93b51bdb6d01826f6983e2fd74e88d477475cde301a94642d33d2f8e25977fef"
+    },
+    {
+      "id": "outfit_blue_scholar_550",
+      "source": "art_requests/5.5.0/selected/blue_scholar-items.png",
+      "image": "market/items/outfit_blue_scholar_550.png",
+      "thumbnail": "market/thumbs/outfit_blue_scholar_550.png",
+      "sha256": "145383dff4ce1a7a19159f6ee620a9df37c18184eeccde5ae2874613785a7fc8"
+    },
+    {
+      "id": "headwear_blue_scholar_550",
+      "source": "art_requests/5.5.0/selected/blue_scholar-items.png",
+      "image": "market/items/headwear_blue_scholar_550.png",
+      "thumbnail": "market/thumbs/headwear_blue_scholar_550.png",
+      "sha256": "86334ce21946a1f22f305e15b3e3e94ebedb412520f8fac8ceddbcb72995d9ec"
+    },
+    {
+      "id": "footwear_blue_scholar_550",
+      "source": "art_requests/5.5.0/selected/blue_scholar-items.png",
+      "image": "market/items/footwear_blue_scholar_550.png",
+      "thumbnail": "market/thumbs/footwear_blue_scholar_550.png",
+      "sha256": "eb31f0e9c5d949142c08215e2504582905892650bc168dd6a8eaffd3a4d155db"
+    },
+    {
+      "id": "pawgear_blue_scholar_550",
+      "source": "art_requests/5.5.0/selected/blue_scholar-items.png",
+      "image": "market/items/pawgear_blue_scholar_550.png",
+      "thumbnail": "market/thumbs/pawgear_blue_scholar_550.png",
+      "sha256": "8b1cfea95cfa5b7de4c50cf28ee27447b8be1b6e1b56988673b39440d776e4a5"
+    },
+    {
+      "id": "outfit_dawn_knight_550",
+      "source": "art_requests/5.5.0/selected/dawn_knight-items.png",
+      "image": "market/items/outfit_dawn_knight_550.png",
+      "thumbnail": "market/thumbs/outfit_dawn_knight_550.png",
+      "sha256": "15d5e7dd44c3bda55e7fb2cc8cb3b2d292581f05ebcfb898c329b1fb7c0a6266"
+    },
+    {
+      "id": "headwear_dawn_knight_550",
+      "source": "art_requests/5.5.0/selected/dawn_knight-items.png",
+      "image": "market/items/headwear_dawn_knight_550.png",
+      "thumbnail": "market/thumbs/headwear_dawn_knight_550.png",
+      "sha256": "76b6f22255bfd191ee35d1389c82068b1e67f3cc5e7d497d05e4453016a717b7"
+    },
+    {
+      "id": "footwear_dawn_knight_550",
+      "source": "art_requests/5.5.0/selected/dawn_knight-items.png",
+      "image": "market/items/footwear_dawn_knight_550.png",
+      "thumbnail": "market/thumbs/footwear_dawn_knight_550.png",
+      "sha256": "ed5b8a7b80a97a072a376199b31803a0912d202669443c7f1f69b5c454151601"
+    },
+    {
+      "id": "pawgear_dawn_knight_550",
+      "source": "art_requests/5.5.0/selected/dawn_knight-items.png",
+      "image": "market/items/pawgear_dawn_knight_550.png",
+      "thumbnail": "market/thumbs/pawgear_dawn_knight_550.png",
+      "sha256": "d2e63d2ba0f2c2f3ca81b4209d429bd8789039ab7d6e512f8e3b75b460d79b96"
+    },
+    {
+      "id": "outfit_sea_ranger_550",
+      "source": "art_requests/5.5.0/selected/sea_ranger-items.png",
+      "image": "market/items/outfit_sea_ranger_550.png",
+      "thumbnail": "market/thumbs/outfit_sea_ranger_550.png",
+      "sha256": "1b28f0c1423834ecf10e26bf5ed52581ee95939328004fa2267beadaa806b1cd"
+    },
+    {
+      "id": "headwear_sea_ranger_550",
+      "source": "art_requests/5.5.0/selected/sea_ranger-items.png",
+      "image": "market/items/headwear_sea_ranger_550.png",
+      "thumbnail": "market/thumbs/headwear_sea_ranger_550.png",
+      "sha256": "96c696b664990e84f45ba7789a1c09b1dcab5694738ea3c4c2c99ff727827d81"
+    },
+    {
+      "id": "footwear_sea_ranger_550",
+      "source": "art_requests/5.5.0/selected/sea_ranger-items.png",
+      "image": "market/items/footwear_sea_ranger_550.png",
+      "thumbnail": "market/thumbs/footwear_sea_ranger_550.png",
+      "sha256": "f2bf72ca05c7912d93006431afee316b0b3f248b1cfdf663ec0cf4ca2d68ea7a"
+    },
+    {
+      "id": "pawgear_sea_ranger_550",
+      "source": "art_requests/5.5.0/selected/sea_ranger-items.png",
+      "image": "market/items/pawgear_sea_ranger_550.png",
+      "thumbnail": "market/thumbs/pawgear_sea_ranger_550.png",
+      "sha256": "6b225d8023b23f1de504c6f3bd607a684bda7c375731633b5d3a77d6b2ed1dea"
+    },
+    {
+      "id": "outfit_flame_warrior_550",
+      "source": "art_requests/5.5.0/selected/flame_warrior-items.png",
+      "image": "market/items/outfit_flame_warrior_550.png",
+      "thumbnail": "market/thumbs/outfit_flame_warrior_550.png",
+      "sha256": "94192db268df7d1b9c0e2dc95b7c774c60e34a080bde9efea5bef3d840a3192f"
+    },
+    {
+      "id": "headwear_flame_warrior_550",
+      "source": "art_requests/5.5.0/selected/flame_warrior-items.png",
+      "image": "market/items/headwear_flame_warrior_550.png",
+      "thumbnail": "market/thumbs/headwear_flame_warrior_550.png",
+      "sha256": "492234729a4adf33bfa33fc7ab8a808c9b3ce4a46904c5c260a3130dba8ed54d"
+    },
+    {
+      "id": "footwear_flame_warrior_550",
+      "source": "art_requests/5.5.0/selected/flame_warrior-items.png",
+      "image": "market/items/footwear_flame_warrior_550.png",
+      "thumbnail": "market/thumbs/footwear_flame_warrior_550.png",
+      "sha256": "ca3d46aab757cffa47f2936875d9e548da38150b9fc2ee0aa6b6c367252668eb"
+    },
+    {
+      "id": "pawgear_flame_warrior_550",
+      "source": "art_requests/5.5.0/selected/flame_warrior-items.png",
+      "image": "market/items/pawgear_flame_warrior_550.png",
+      "thumbnail": "market/thumbs/pawgear_flame_warrior_550.png",
+      "sha256": "63753e407656cc58080267a9bcdcf777a118436ea09c41e1b7f26efbd67f15d9"
+    },
+    {
+      "id": "outfit_polar_explorer_550",
+      "source": "art_requests/5.5.0/selected/polar_explorer-items.png",
+      "image": "market/items/outfit_polar_explorer_550.png",
+      "thumbnail": "market/thumbs/outfit_polar_explorer_550.png",
+      "sha256": "3ee6ab51870a03322d18c8e1ab9701b5aee8b6f45b2311befcf757cf06b63e35"
+    },
+    {
+      "id": "headwear_polar_explorer_550",
+      "source": "art_requests/5.5.0/selected/polar_explorer-items.png",
+      "image": "market/items/headwear_polar_explorer_550.png",
+      "thumbnail": "market/thumbs/headwear_polar_explorer_550.png",
+      "sha256": "a6f0b8a382779db6f437268d60a8e4659a8b120aa8d58086d7e27b800615cbe1"
+    },
+    {
+      "id": "footwear_polar_explorer_550",
+      "source": "art_requests/5.5.0/selected/polar_explorer-items.png",
+      "image": "market/items/footwear_polar_explorer_550.png",
+      "thumbnail": "market/thumbs/footwear_polar_explorer_550.png",
+      "sha256": "fb03a731a33fd27937d50ac047c7992f8a2561f6c413562ef9a28bc82035406f"
+    },
+    {
+      "id": "pawgear_polar_explorer_550",
+      "source": "art_requests/5.5.0/selected/polar_explorer-items.png",
+      "image": "market/items/pawgear_polar_explorer_550.png",
+      "thumbnail": "market/thumbs/pawgear_polar_explorer_550.png",
+      "sha256": "a898e89ba1daac4a4a26a3d950afea09f6fb4f5cbcda1cc9ef530606fdea3b08"
+    },
+    {
+      "id": "outfit_starfrost_guard_550",
+      "source": "art_requests/5.5.0/selected/starfrost_guard-items.png",
+      "image": "market/items/outfit_starfrost_guard_550.png",
+      "thumbnail": "market/thumbs/outfit_starfrost_guard_550.png",
+      "sha256": "339fb24c881d620061db3456caf674429bfc481e60420b2aef573658ecfd9310"
+    },
+    {
+      "id": "headwear_starfrost_guard_550",
+      "source": "art_requests/5.5.0/selected/starfrost_guard-items.png",
+      "image": "market/items/headwear_starfrost_guard_550.png",
+      "thumbnail": "market/thumbs/headwear_starfrost_guard_550.png",
+      "sha256": "e4e5856119438a48936b8c38c770be895798eede0afdbdce3047aae56e061ebe"
+    },
+    {
+      "id": "footwear_starfrost_guard_550",
+      "source": "art_requests/5.5.0/selected/starfrost_guard-items.png",
+      "image": "market/items/footwear_starfrost_guard_550.png",
+      "thumbnail": "market/thumbs/footwear_starfrost_guard_550.png",
+      "sha256": "9df9ad62e1642dc82d90e329540763fae7406b0e9f404c7f006041482b6e6074"
+    },
+    {
+      "id": "pawgear_starfrost_guard_550",
+      "source": "art_requests/5.5.0/selected/starfrost_guard-items.png",
+      "image": "market/items/pawgear_starfrost_guard_550.png",
+      "thumbnail": "market/thumbs/pawgear_starfrost_guard_550.png",
+      "sha256": "5f7f5fd5b41e021d61aa912f3f032331fa500f05e6488001369a3e3b3595f9de"
+    },
+    {
+      "id": "mood_plush",
+      "source": "内置image_gen独立商品图：market/source600/mood_plush.png",
+      "image": "market/items/mood_plush.png",
+      "thumbnail": "market/thumbs/mood_plush.png",
+      "sha256": "8f3bd373d90c235632eb72ebc3f7564bee34bc2d1a8a3e0eea2f8d57a796768f"
+    },
+    {
+      "id": "mood_blocks",
+      "source": "内置image_gen独立商品图：market/source600/mood_blocks.png",
+      "image": "market/items/mood_blocks.png",
+      "thumbnail": "market/thumbs/mood_blocks.png",
+      "sha256": "247abb93ecca995d73f7a0368d2f5753161d675a1475011a4968824ada3317a1"
+    },
+    {
+      "id": "mood_shopping",
+      "source": "内置image_gen独立商品图：market/source600/mood_shopping.png",
+      "image": "market/items/mood_shopping.png",
+      "thumbnail": "market/thumbs/mood_shopping.png",
+      "sha256": "663842734faa9da35ecfb800140bf325989d0899699191251b98c35fb8352889"
+    },
+    {
+      "id": "mood_disney",
+      "source": "内置image_gen独立商品图：market/source600/mood_disney.png",
+      "image": "market/items/mood_disney.png",
+      "thumbnail": "market/thumbs/mood_disney.png",
+      "sha256": "38358c4e7a4b1e9ac8a4f05c3f262bcd3bab05f13b02a5487a599739c56f941a"
+    }
+  ],
+  "effects": [
+    {
+      "path": "market/effects/revival_pill.png",
+      "source": "market/source/revival_pill.png",
+      "method": "同一物品的丹体道具裁取，原件不改动"
+    }
+  ],
+  "art_530": [
+    {
+      "id": "footwear_xiaoyuan_common",
+      "origin": "art_requests/5.3.0/selected/footwear_xiaoyuan_common.png",
+      "source": "market/source/footwear_xiaoyuan_common_v530.png",
+      "source_sha256": "969689b5f0800402d21b8c5c292ab09e3f88441db198ec400ec67d898969b9e0",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparent_fraction": 0.7094255320772571,
+      "derivatives": [
+        {
+          "path": "market/items/footwear_xiaoyuan_common.png",
+          "sha256": "8535f3cec0870d81cc52ad83fc756997fce090fbf33bd95a48ccac60d5e2592d",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/thumbs/footwear_xiaoyuan_common.png",
+          "sha256": "70538563b55d035f65cf428c0f33d6d84144ccc259ab34ce4c5b7bcab57b7968",
+          "size": [
+            160,
+            160
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/wearables/footwear_xiaoyuan_common.png",
+          "sha256": "8535f3cec0870d81cc52ad83fc756997fce090fbf33bd95a48ccac60d5e2592d",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        }
+      ],
+      "generator": "用户ChatGPT试样"
+    },
+    {
+      "id": "footwear_xiaoyuan_rare",
+      "origin": "art_requests/5.3.0/selected/footwear_xiaoyuan_rare.png",
+      "source": "market/source/footwear_xiaoyuan_rare_v530.png",
+      "source_sha256": "dc71687f465724e12f7f1f60acc20120f7f874865cf7000700c5b826fdca972d",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparent_fraction": 0.7079063106512112,
+      "derivatives": [
+        {
+          "path": "market/items/footwear_xiaoyuan_rare.png",
+          "sha256": "3a1daf0df2f643fa844d67a45062d3e7aafecbcab62c46496855cad336715ea3",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/thumbs/footwear_xiaoyuan_rare.png",
+          "sha256": "ffd00c7526ec85fc7fbb9952e3933c1cdc8612e324b53e33774e4f0beecd5bb8",
+          "size": [
+            160,
+            160
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/wearables/footwear_xiaoyuan_rare.png",
+          "sha256": "3a1daf0df2f643fa844d67a45062d3e7aafecbcab62c46496855cad336715ea3",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        }
+      ],
+      "generator": "内置imagegen"
+    },
+    {
+      "id": "footwear_xiaoyuan_legendary",
+      "origin": "art_requests/5.3.0/selected/footwear_xiaoyuan_legendary.png",
+      "source": "market/source/footwear_xiaoyuan_legendary_v530.png",
+      "source_sha256": "0385ad34f2699ad5e513891b2fffc758db426cac79c2939dd5371bc1cb4902af",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparent_fraction": 0.7002606014819563,
+      "derivatives": [
+        {
+          "path": "market/items/footwear_xiaoyuan_legendary.png",
+          "sha256": "abb80ab400f532edbab5cb625b70905d01d3d8517a9818bee8ee285bab196039",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/thumbs/footwear_xiaoyuan_legendary.png",
+          "sha256": "e023e5fa565baeb3ddde000832e74627184254b4459fa604112bda59d7def933",
+          "size": [
+            160,
+            160
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/wearables/footwear_xiaoyuan_legendary.png",
+          "sha256": "abb80ab400f532edbab5cb625b70905d01d3d8517a9818bee8ee285bab196039",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        }
+      ],
+      "generator": "内置imagegen"
+    },
+    {
+      "id": "pawgear_xiaoyuan_common",
+      "origin": "art_requests/5.3.0/selected/pawgear_xiaoyuan_common.png",
+      "source": "market/source/pawgear_xiaoyuan_common_v530.png",
+      "source_sha256": "1bafe380c92b30cb1af1744435fc877dbedc3279bc7ed3fbd25e1e685937cbbe",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparent_fraction": 0.6152993037908676,
+      "derivatives": [
+        {
+          "path": "market/items/pawgear_xiaoyuan_common.png",
+          "sha256": "c5eed8ab5035de1325db913a9f4a73217bad89bacf1ee827b366ec6a7f258058",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/thumbs/pawgear_xiaoyuan_common.png",
+          "sha256": "2bd854347611e1226b81e81a696f5d1d3b8e239ffca3c877cfc7241a4b17dbcc",
+          "size": [
+            160,
+            160
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/wearables/pawgear_xiaoyuan_common.png",
+          "sha256": "c5eed8ab5035de1325db913a9f4a73217bad89bacf1ee827b366ec6a7f258058",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        }
+      ],
+      "generator": "内置imagegen"
+    },
+    {
+      "id": "pawgear_xiaoyuan_rare",
+      "origin": "art_requests/5.3.0/selected/pawgear_xiaoyuan_rare.png",
+      "source": "market/source/pawgear_xiaoyuan_rare_v530.png",
+      "source_sha256": "2b98ac31e49ee100cf965c109326e0eccfcb6a2a56b62c7ba0b48f415aaf98a7",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparent_fraction": 0.5901192738261487,
+      "derivatives": [
+        {
+          "path": "market/items/pawgear_xiaoyuan_rare.png",
+          "sha256": "1ed559282f0592fa52e34a422c02d0b3c865a846ffa77e00491eac01c6970be0",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/thumbs/pawgear_xiaoyuan_rare.png",
+          "sha256": "2bed593a6c84eebfd18eb369efb4234928560eddc6c50fe9162f12c73c004a14",
+          "size": [
+            160,
+            160
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/wearables/pawgear_xiaoyuan_rare.png",
+          "sha256": "1ed559282f0592fa52e34a422c02d0b3c865a846ffa77e00491eac01c6970be0",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        }
+      ],
+      "generator": "内置imagegen"
+    },
+    {
+      "id": "pawgear_xiaoyuan_legendary",
+      "origin": "art_requests/5.3.0/selected/pawgear_xiaoyuan_legendary.png",
+      "source": "market/source/pawgear_xiaoyuan_legendary_v530.png",
+      "source_sha256": "1670dfafcc9272bccc89b8ee4d0c3648bf1b6eb44c927d5c33bedb314d452886",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparent_fraction": 0.6009992903092878,
+      "derivatives": [
+        {
+          "path": "market/items/pawgear_xiaoyuan_legendary.png",
+          "sha256": "3ed6c3d94090f6ee2dc6618121a04c4385b667722199b8eb272041d52a013abf",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/thumbs/pawgear_xiaoyuan_legendary.png",
+          "sha256": "81c9b42f042e3507131ec7eb0c82a705a183e936d9fc71a0add35e9d3e040a1f",
+          "size": [
+            160,
+            160
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/wearables/pawgear_xiaoyuan_legendary.png",
+          "sha256": "3ed6c3d94090f6ee2dc6618121a04c4385b667722199b8eb272041d52a013abf",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        }
+      ],
+      "generator": "用户ChatGPT试样"
+    },
+    {
+      "id": "footwear_orange_adventurer_common",
+      "origin": "art_requests/5.3.0/selected/footwear_orange_adventurer_common.png",
+      "source": "market/source/footwear_orange_adventurer_common_v530.png",
+      "source_sha256": "e7898d7b0c35a7daab34528261f770fc3699c549906e96e76cab631a0b9cc0f8",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparent_fraction": 0.7150674460546029,
+      "derivatives": [
+        {
+          "path": "market/items/footwear_orange_adventurer_common.png",
+          "sha256": "6983aaac21bae2d1fefc18dbbcb315d849b695807628d53360e2aba000ad47ac",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/thumbs/footwear_orange_adventurer_common.png",
+          "sha256": "027fbedecee1c0a0d8e73ac99375ca847cf7922e6df20595fa374cd69bc85828",
+          "size": [
+            160,
+            160
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/wearables/footwear_orange_adventurer_common.png",
+          "sha256": "6983aaac21bae2d1fefc18dbbcb315d849b695807628d53360e2aba000ad47ac",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        }
+      ],
+      "generator": "内置imagegen"
+    },
+    {
+      "id": "footwear_orange_adventurer_rare",
+      "origin": "art_requests/5.3.0/selected/footwear_orange_adventurer_rare.png",
+      "source": "market/source/footwear_orange_adventurer_rare_v530.png",
+      "source_sha256": "af8f65f8cf834c13b7d21816ed4d12d1fd81979eabd36abb8e7e8b284a7deda2",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparent_fraction": 0.6771829348636198,
+      "derivatives": [
+        {
+          "path": "market/items/footwear_orange_adventurer_rare.png",
+          "sha256": "5b1aa2750fb773273413fd1cd68f9191fbc6d93152aed6af0eedf204eafb2ae0",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/thumbs/footwear_orange_adventurer_rare.png",
+          "sha256": "c996cd26f171f1061b5e8fdeb373dc705212225ab92e94b9b59a960e86399780",
+          "size": [
+            160,
+            160
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/wearables/footwear_orange_adventurer_rare.png",
+          "sha256": "5b1aa2750fb773273413fd1cd68f9191fbc6d93152aed6af0eedf204eafb2ae0",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        }
+      ],
+      "generator": "内置imagegen"
+    },
+    {
+      "id": "footwear_orange_adventurer_legendary",
+      "origin": "art_requests/5.3.0/selected/footwear_orange_adventurer_legendary.png",
+      "source": "market/source/footwear_orange_adventurer_legendary_v530.png",
+      "source_sha256": "d25fc80ded4a0e51bfe19be64229b7572f27f46772b4502ef84f4866d0573e18",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparent_fraction": 0.7088996232788728,
+      "derivatives": [
+        {
+          "path": "market/items/footwear_orange_adventurer_legendary.png",
+          "sha256": "9f18f034bf862760868ef5ccf7f7ee97d3945e088c4bfc5adf1bc7bf60ef5deb",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/thumbs/footwear_orange_adventurer_legendary.png",
+          "sha256": "dd3c6be97c3ef7b19f5cf7ec29faa4887b54d6e5b6c612afc0c0df1c179aeedb",
+          "size": [
+            160,
+            160
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/wearables/footwear_orange_adventurer_legendary.png",
+          "sha256": "9f18f034bf862760868ef5ccf7f7ee97d3945e088c4bfc5adf1bc7bf60ef5deb",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        }
+      ],
+      "generator": "内置imagegen"
+    },
+    {
+      "id": "pawgear_orange_adventurer_common",
+      "origin": "art_requests/5.3.0/selected/pawgear_orange_adventurer_common.png",
+      "source": "market/source/pawgear_orange_adventurer_common_v530.png",
+      "source_sha256": "e98044d65d35816387cce086a4fd234962942606dfcdb54426f1e393e38b483d",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparent_fraction": 0.6031716052491676,
+      "derivatives": [
+        {
+          "path": "market/items/pawgear_orange_adventurer_common.png",
+          "sha256": "566f40864f31a3aacb95c316e85bdbc2ac09a5b1abed56b6b2b9818e59357590",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/thumbs/pawgear_orange_adventurer_common.png",
+          "sha256": "b82f4abd8bc9dc46701d5c4effc0849c55307b48e86f9af3acb6f72340610af2",
+          "size": [
+            160,
+            160
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/wearables/pawgear_orange_adventurer_common.png",
+          "sha256": "566f40864f31a3aacb95c316e85bdbc2ac09a5b1abed56b6b2b9818e59357590",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        }
+      ],
+      "generator": "内置imagegen"
+    },
+    {
+      "id": "pawgear_orange_adventurer_rare",
+      "origin": "art_requests/5.3.0/selected/pawgear_orange_adventurer_rare.png",
+      "source": "market/source/pawgear_orange_adventurer_rare_v530.png",
+      "source_sha256": "76a2679b3ea692c330401b8ddcf137442b2b3a8c658c0771ecabe2eff134461d",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparent_fraction": 0.6136592568851446,
+      "derivatives": [
+        {
+          "path": "market/items/pawgear_orange_adventurer_rare.png",
+          "sha256": "146b3488ed9600ced598744ecfef68959324929e035c976915dc3c7868617ea6",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/thumbs/pawgear_orange_adventurer_rare.png",
+          "sha256": "d748602821adad1100e4133c257dfbd4d2256ddb4e080a31a87cacaa1185286f",
+          "size": [
+            160,
+            160
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/wearables/pawgear_orange_adventurer_rare.png",
+          "sha256": "146b3488ed9600ced598744ecfef68959324929e035c976915dc3c7868617ea6",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        }
+      ],
+      "generator": "内置imagegen"
+    },
+    {
+      "id": "pawgear_orange_adventurer_legendary",
+      "origin": "art_requests/5.3.0/selected/pawgear_orange_adventurer_legendary.png",
+      "source": "market/source/pawgear_orange_adventurer_legendary_v530.png",
+      "source_sha256": "34969b2904d529e34a181a0225be07dfbe57862995241676bd2ad0a93aa8e4b9",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparent_fraction": 0.6293404963765075,
+      "derivatives": [
+        {
+          "path": "market/items/pawgear_orange_adventurer_legendary.png",
+          "sha256": "7c32c1875a31d684b6aa9c7458295b10360ed144f13c38ae2bc04e6e3ba20d0d",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/thumbs/pawgear_orange_adventurer_legendary.png",
+          "sha256": "ff5a340d4d80d39bce1ccb4a95f30b79518b424a256c7b6b26af640d72d81333",
+          "size": [
+            160,
+            160
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/wearables/pawgear_orange_adventurer_legendary.png",
+          "sha256": "7c32c1875a31d684b6aa9c7458295b10360ed144f13c38ae2bc04e6e3ba20d0d",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        }
+      ],
+      "generator": "内置imagegen"
+    },
+    {
+      "id": "footwear_xiaobao_common",
+      "origin": "art_requests/5.3.0/selected/footwear_xiaobao_common.png",
+      "source": "market/source/footwear_xiaobao_common_v530.png",
+      "source_sha256": "3f01a80063669ff078fa0bacdc9be11e5115cf3d0090cdbb667528d29efed6a3",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparent_fraction": 0.7820053977193236,
+      "derivatives": [
+        {
+          "path": "market/items/footwear_xiaobao_common.png",
+          "sha256": "fe1884689c1b7b1aebe4e6c4f74fbe57c6739e2a1d7e050de0307340e836993f",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/thumbs/footwear_xiaobao_common.png",
+          "sha256": "4fb93dbc608a8d790a40214da80a4f485b3a32da3d8ea585260e6e06738309cd",
+          "size": [
+            160,
+            160
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/wearables/footwear_xiaobao_common.png",
+          "sha256": "fe1884689c1b7b1aebe4e6c4f74fbe57c6739e2a1d7e050de0307340e836993f",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        }
+      ],
+      "generator": "内置imagegen"
+    },
+    {
+      "id": "footwear_xiaobao_rare",
+      "origin": "art_requests/5.3.0/selected/footwear_xiaobao_rare.png",
+      "source": "market/source/footwear_xiaobao_rare_v530.png",
+      "source_sha256": "91440ec9d745ec68cbe0ebe6af87d26fb35a13012ec5b8dacf03555132231941",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparent_fraction": 0.7627197433921181,
+      "derivatives": [
+        {
+          "path": "market/items/footwear_xiaobao_rare.png",
+          "sha256": "fafacd69ebdbc201dafbcc80ad570846063d3b7dca2c3495d236a628fd3cf60e",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/thumbs/footwear_xiaobao_rare.png",
+          "sha256": "2e7d7ded9aa4869c62c270fa1029e74e150d34351b3566f3fd05d5fe912944c6",
+          "size": [
+            160,
+            160
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/wearables/footwear_xiaobao_rare.png",
+          "sha256": "fafacd69ebdbc201dafbcc80ad570846063d3b7dca2c3495d236a628fd3cf60e",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        }
+      ],
+      "generator": "内置imagegen"
+    },
+    {
+      "id": "footwear_xiaobao_legendary",
+      "origin": "art_requests/5.3.0/selected/footwear_xiaobao_legendary.png",
+      "source": "market/source/footwear_xiaobao_legendary_v530.png",
+      "source_sha256": "1dafc4ed5db2bd5c0da99a42c72e33f0aa864cba5e14c89291f0facd12e67072",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparent_fraction": 0.7871315776755212,
+      "derivatives": [
+        {
+          "path": "market/items/footwear_xiaobao_legendary.png",
+          "sha256": "cfef45977bff2c805784f90597b71a12301403ee1c059b422ad31c722e023ad6",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/thumbs/footwear_xiaobao_legendary.png",
+          "sha256": "840404d77dc2ce7ccae448d702ffe3e7af8152cac08c4c7764057b75cc5061c3",
+          "size": [
+            160,
+            160
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/wearables/footwear_xiaobao_legendary.png",
+          "sha256": "cfef45977bff2c805784f90597b71a12301403ee1c059b422ad31c722e023ad6",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        }
+      ],
+      "generator": "内置imagegen"
+    },
+    {
+      "id": "pawgear_xiaobao_common",
+      "origin": "art_requests/5.3.0/selected/pawgear_xiaobao_common.png",
+      "source": "market/source/pawgear_xiaobao_common_v530.png",
+      "source_sha256": "0c0f675adeea55ce253041ccb5896cb6791309ef716e2ab7ee98260d54fbcfe8",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparent_fraction": 0.6833736508881308,
+      "derivatives": [
+        {
+          "path": "market/items/pawgear_xiaobao_common.png",
+          "sha256": "404373f63a2e8615dc3e3f5b0ed27af6fca457a44e858be0d3d25c409ae389fc",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/thumbs/pawgear_xiaobao_common.png",
+          "sha256": "770f87533f49c7a1e46ffa79930c4de3cc02fbb83bbd25636999d493c0c452f4",
+          "size": [
+            160,
+            160
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/wearables/pawgear_xiaobao_common.png",
+          "sha256": "404373f63a2e8615dc3e3f5b0ed27af6fca457a44e858be0d3d25c409ae389fc",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        }
+      ],
+      "generator": "内置imagegen"
+    },
+    {
+      "id": "pawgear_xiaobao_rare",
+      "origin": "art_requests/5.3.0/selected/pawgear_xiaobao_rare.png",
+      "source": "market/source/pawgear_xiaobao_rare_v530.png",
+      "source_sha256": "e08d1761340e029316fb42f7de884a2cb1f2c977e1f2e215fd4334af71f60efc",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparent_fraction": 0.7171132122026104,
+      "derivatives": [
+        {
+          "path": "market/items/pawgear_xiaobao_rare.png",
+          "sha256": "c7575bf38a2fb53ff76c36cd0018a00ff9b5636ccdbfdd543ec5208c3c064275",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/thumbs/pawgear_xiaobao_rare.png",
+          "sha256": "01375f4cc848041507923b09828b616f60263bf2731a2616609ed2d99cb22a1b",
+          "size": [
+            160,
+            160
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/wearables/pawgear_xiaobao_rare.png",
+          "sha256": "c7575bf38a2fb53ff76c36cd0018a00ff9b5636ccdbfdd543ec5208c3c064275",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        }
+      ],
+      "generator": "内置imagegen"
+    },
+    {
+      "id": "pawgear_xiaobao_legendary",
+      "origin": "art_requests/5.3.0/selected/pawgear_xiaobao_legendary.png",
+      "source": "market/source/pawgear_xiaobao_legendary_v530.png",
+      "source_sha256": "9405d2e6101d8159d90476b49898606f90d0049f4413cad40e114f941ac80e0f",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparent_fraction": 0.707436999051202,
+      "derivatives": [
+        {
+          "path": "market/items/pawgear_xiaobao_legendary.png",
+          "sha256": "631dd448bf6833a3b1e935d342ce16059c0aae4ef99241b4f687d6385981d8c8",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/thumbs/pawgear_xiaobao_legendary.png",
+          "sha256": "e5ea2a2d9e14c85bd63f60732cc72b5c542e5516d2cf716ba70ab09966da9bfd",
+          "size": [
+            160,
+            160
+          ],
+          "operation": "左右独立裁切缩放定位"
+        },
+        {
+          "path": "market/wearables/pawgear_xiaobao_legendary.png",
+          "sha256": "631dd448bf6833a3b1e935d342ce16059c0aae4ef99241b4f687d6385981d8c8",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "左右独立裁切缩放定位"
+        }
+      ],
+      "generator": "内置imagegen"
+    },
+    {
+      "id": "npc_squirrel_cast",
+      "origin": "art_requests/5.3.0/selected/npc_squirrel_cast.png",
+      "source": "market/source/npc_squirrel_cast_v530.png",
+      "source_sha256": "7510a8c2b50f9fc1384c324d7006428ce31b86fc22d5b32b37db935901be55f9",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparent_fraction": 0.45842140874878223,
+      "derivatives": [
+        {
+          "path": "market/npcs/npc_squirrel_cast.png",
+          "sha256": "07ca6fd0130f785f3e904e88f56b09347175cbdb4d93df2684e3e03fd80a90e5",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "透明边距裁切缩放"
+        }
+      ],
+      "generator": "内置imagegen"
+    },
+    {
+      "id": "npc_turtle_cast",
+      "origin": "art_requests/5.3.0/selected/npc_turtle_cast.png",
+      "source": "market/source/npc_turtle_cast_v530.png",
+      "source_sha256": "b0de23ddc4b6cf2a060847c3fc673c5cfb3754e53bf5bbbde9f39b65eec3ab54",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparent_fraction": 0.5737321591640403,
+      "derivatives": [
+        {
+          "path": "market/npcs/npc_turtle_cast.png",
+          "sha256": "c3e388792c51a5d17f805ff9f43669b7fbf03917f2f4d5017ac9f2af8475f267",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "透明边距裁切缩放"
+        }
+      ],
+      "generator": "内置imagegen"
+    },
+    {
+      "id": "npc_fox_cast",
+      "origin": "art_requests/5.3.0/selected/npc_fox_cast.png",
+      "source": "market/source/npc_fox_cast_v530.png",
+      "source_sha256": "bff08595983dad43419e3602df787409438057b0f55323a72267d6b23306ebc8",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparent_fraction": 0.5075967430538068,
+      "derivatives": [
+        {
+          "path": "market/npcs/npc_fox_cast.png",
+          "sha256": "afba9ba43116609e0e0f9565cf4bee9ae97a9c7056446099a12b82542ae7849f",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "透明边距裁切缩放"
+        }
+      ],
+      "generator": "内置imagegen"
+    },
+    {
+      "id": "npc_raccoon_cast",
+      "origin": "art_requests/5.3.0/selected/npc_raccoon_cast.png",
+      "source": "market/source/npc_raccoon_cast_v530.png",
+      "source_sha256": "5141d324ccc171468400ed56b278fad9ff842d312c8ea11d622babd14e9222d2",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparent_fraction": 0.49362041467304624,
+      "derivatives": [
+        {
+          "path": "market/npcs/npc_raccoon_cast.png",
+          "sha256": "319c9ff5dfcc9cdca7fa8495ec3ddf10eafe4bdbdc61c0e9f934efcd057475e7",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "透明边距裁切缩放"
+        }
+      ],
+      "generator": "内置imagegen"
+    },
+    {
+      "id": "npc_beaver_cast",
+      "origin": "art_requests/5.3.0/selected/npc_beaver_cast.png",
+      "source": "market/source/npc_beaver_cast_v530.png",
+      "source_sha256": "b9bc1454a76903e1f75ab9b3f1fb8134400ed1b30562816451acb214bc98bdfb",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparent_fraction": 0.53433796540067,
+      "derivatives": [
+        {
+          "path": "market/npcs/npc_beaver_cast.png",
+          "sha256": "c290e216154e8e0a17c2ffa0218bf60d27ef0a4847068cd6dc70cbc7da41b4a5",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "透明边距裁切缩放"
+        }
+      ],
+      "generator": "内置imagegen"
+    },
+    {
+      "id": "mana_potion_small",
+      "origin": "art_requests/5.3.0/selected/mana_potion_small.png",
+      "source": "market/source/mana_potion_small_v530.png",
+      "source_sha256": "4e72bdee874c200aba9dcf103c474a42dd27033999bc78cd67efec647493c7ac",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparent_fraction": 0.7236123511620868,
+      "derivatives": [
+        {
+          "path": "market/items/mana_potion_small.png",
+          "sha256": "fb515b0cef966f62244e00817341ee8ad73ccbdf9a143fe7a3d455bbd035f9c4",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "透明边距裁切缩放"
+        },
+        {
+          "path": "market/thumbs/mana_potion_small.png",
+          "sha256": "e1e3fe6d6ca82518e2e3332a1c30d0b473d8bfbb039abb02673fa6731ca95eeb",
+          "size": [
+            160,
+            160
+          ],
+          "operation": "透明边距裁切缩放"
+        },
+        {
+          "path": "market/effects/mana_potion_small.png",
+          "sha256": "fb515b0cef966f62244e00817341ee8ad73ccbdf9a143fe7a3d455bbd035f9c4",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "透明边距裁切缩放"
+        }
+      ],
+      "generator": "内置imagegen"
+    },
+    {
+      "id": "mana_potion_large",
+      "origin": "art_requests/5.3.0/selected/mana_potion_large.png",
+      "source": "market/source/mana_potion_large_v530.png",
+      "source_sha256": "93b51bdb6d01826f6983e2fd74e88d477475cde301a94642d33d2f8e25977fef",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparent_fraction": 0.7009372241681484,
+      "derivatives": [
+        {
+          "path": "market/items/mana_potion_large.png",
+          "sha256": "844db2b2da6c7a03d62963d6d5320b4b9db4c1dd8edcf1a975dba043245e9726",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "透明边距裁切缩放"
+        },
+        {
+          "path": "market/thumbs/mana_potion_large.png",
+          "sha256": "f0c0f634f38a51c8adc6306e0ba47bead4b9bfde5faf900880258b453873cde7",
+          "size": [
+            160,
+            160
+          ],
+          "operation": "透明边距裁切缩放"
+        },
+        {
+          "path": "market/effects/mana_potion_large.png",
+          "sha256": "844db2b2da6c7a03d62963d6d5320b4b9db4c1dd8edcf1a975dba043245e9726",
+          "size": [
+            512,
+            512
+          ],
+          "operation": "透明边距裁切缩放"
+        }
+      ],
+      "generator": "内置imagegen"
+    }
+  ]
+}

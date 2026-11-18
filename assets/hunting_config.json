@@ -1,0 +1,241 @@
+{
+  "version": "5.8.0",
+  "schema_version": 1,
+  "spirit_unlock_questions": 30,
+  "spirit_pass_percent": 80,
+  "hero_trial": {
+    "questions": 100,
+    "pass_percent": 90,
+    "deposit": 300,
+    "balance": 1200
+  },
+  "rarities": {
+    "common": {
+      "name": "普通",
+      "weight": 60,
+      "questions": 8,
+      "seconds": 60,
+      "wrong_points": 1,
+      "failure_points": 2,
+      "capture_percent": 70,
+      "pass_percent": 85
+    },
+    "rare": {
+      "name": "稀有",
+      "weight": 25,
+      "questions": 12,
+      "seconds": 45,
+      "wrong_points": 2,
+      "failure_points": 3,
+      "capture_percent": 45,
+      "pass_percent": 90
+    },
+    "legendary": {
+      "name": "至尊",
+      "weight": 12,
+      "questions": 20,
+      "seconds": 30,
+      "wrong_points": 3,
+      "failure_points": 5,
+      "capture_percent": 25,
+      "pass_percent": 95
+    },
+    "mythic": {
+      "name": "神话",
+      "weight": 3,
+      "questions": 25,
+      "seconds": 25,
+      "wrong_points": 4,
+      "failure_points": 7,
+      "capture_percent": 10,
+      "pass_percent": 96
+    }
+  },
+  "spirits": [
+    {
+      "id": "spirit_deer",
+      "name": "小鹿露露",
+      "rarity": "common",
+      "role": "复习提醒",
+      "asset": "finance/companions/spirit_deer.png",
+      "story": "小鹿露露会记得你每一次认真作答。",
+      "projectile": "leaf"
+    },
+    {
+      "id": "spirit_rabbit",
+      "name": "蒲公英兔芽芽",
+      "rarity": "common",
+      "role": "温柔陪伴",
+      "asset": "hunting/spirits/spirit_rabbit.png",
+      "story": "蒲公英兔芽芽会记得你每一次认真作答。",
+      "projectile": "dandelion"
+    },
+    {
+      "id": "spirit_chipmunk",
+      "name": "松果松鼠栗栗",
+      "rarity": "common",
+      "role": "收藏努力",
+      "asset": "hunting/spirits/spirit_chipmunk.png",
+      "story": "松果松鼠栗栗会记得你每一次认真作答。",
+      "projectile": "pinecone"
+    },
+    {
+      "id": "spirit_otter",
+      "name": "海獭泡泡",
+      "rarity": "rare",
+      "role": "经营线索",
+      "asset": "finance/companions/spirit_otter.png",
+      "story": "海獭泡泡会记得你每一次认真作答。",
+      "projectile": "bubble"
+    },
+    {
+      "id": "spirit_bee",
+      "name": "风铃蜂铃铃",
+      "rarity": "rare",
+      "role": "轻快陪伴",
+      "asset": "hunting/spirits/spirit_bee.png",
+      "story": "风铃蜂铃铃会记得你每一次认真作答。",
+      "projectile": "windbell"
+    },
+    {
+      "id": "spirit_mushroom",
+      "name": "晨露蘑菇点点",
+      "rarity": "rare",
+      "role": "晨光陪伴",
+      "asset": "hunting/spirits/spirit_mushroom.png",
+      "story": "晨露蘑菇点点会记得你每一次认真作答。",
+      "projectile": "dew"
+    },
+    {
+      "id": "spirit_owl",
+      "name": "猫头鹰知知",
+      "rarity": "legendary",
+      "role": "公式索引",
+      "asset": "finance/companions/spirit_owl.png",
+      "story": "猫头鹰知知会记得你每一次认真作答。",
+      "projectile": "feather"
+    },
+    {
+      "id": "spirit_whale",
+      "name": "星河鲸澜澜",
+      "rarity": "legendary",
+      "role": "星河陪伴",
+      "asset": "hunting/spirits/spirit_whale.png",
+      "story": "星河鲸澜澜会记得你每一次认真作答。",
+      "projectile": "starwave"
+    },
+    {
+      "id": "spirit_fox",
+      "name": "极光狐璃璃",
+      "rarity": "legendary",
+      "role": "极光陪伴",
+      "asset": "hunting/spirits/spirit_fox.png",
+      "story": "极光狐璃璃会记得你每一次认真作答。",
+      "projectile": "aurora"
+    },
+    {
+      "id": "spirit_hedgehog",
+      "name": "刺猬豆豆",
+      "rarity": "mythic",
+      "role": "鼓励陪伴",
+      "asset": "finance/companions/spirit_hedgehog.png",
+      "story": "刺猬豆豆会记得你每一次认真作答。",
+      "projectile": "starlight"
+    },
+    {
+      "id": "spirit_dragon",
+      "name": "云冠龙穹穹",
+      "rarity": "mythic",
+      "role": "云端陪伴",
+      "asset": "hunting/spirits/spirit_dragon.png",
+      "story": "云冠龙穹穹会记得你每一次认真作答。",
+      "projectile": "cloud"
+    },
+    {
+      "id": "spirit_qilin",
+      "name": "时砂麒麟晷晷",
+      "rarity": "mythic",
+      "role": "时光陪伴",
+      "asset": "hunting/spirits/spirit_qilin.png",
+      "story": "时砂麒麟晷晷会记得你每一次认真作答。",
+      "projectile": "sand"
+    },
+    {
+      "id": "spirit_pikachu",
+      "name": "皮卡丘",
+      "rarity": "rare",
+      "role": "雷电陪伴",
+      "asset": "hunting/spirits/spirit_pikachu.png",
+      "story": "皮卡丘用小小雷电送来题目，认真作答就能接住它的鼓励。",
+      "projectile": "lightning",
+      "poses": {
+        "idle": "hunting/spirits/spirit_pikachu.png",
+        "send": "hunting/spirits/poses/spirit_pikachu_send.png",
+        "celebrate": "hunting/spirits/poses/spirit_pikachu_celebrate.png",
+        "sad": "hunting/spirits/poses/spirit_pikachu_sad.png"
+      }
+    },
+    {
+      "id": "spirit_blue_fat_fish",
+      "name": "蓝色大肥鱼",
+      "rarity": "legendary",
+      "role": "白米饭陪伴",
+      "asset": "hunting/spirits/spirit_blue_fat_fish.png",
+      "story": "蓝色大肥鱼捧着小鲸鱼饭碗，用蓬松白米饭送来下一道题。",
+      "projectile": "rice",
+      "poses": {
+        "idle": "hunting/spirits/spirit_blue_fat_fish.png",
+        "send": "hunting/spirits/poses/spirit_blue_fat_fish_send.png",
+        "celebrate": "hunting/spirits/poses/spirit_blue_fat_fish_celebrate.png",
+        "sad": "hunting/spirits/poses/spirit_blue_fat_fish_sad.png"
+      }
+    },
+    {
+      "id": "spirit_charizard",
+      "name": "喷火龙",
+      "rarity": "legendary",
+      "role": "烈焰守护",
+      "asset": "hunting/spirits/spirit_charizard.png",
+      "story": "喷火龙用烈焰为坚持学习的伙伴照亮前路。",
+      "projectile": "flame",
+      "poses": {
+        "idle": "hunting/spirits/spirit_charizard_idle.png",
+        "send": "hunting/spirits/spirit_charizard_send.png",
+        "celebrate": "hunting/spirits/spirit_charizard_celebrate.png",
+        "sad": "hunting/spirits/spirit_charizard_sad.png"
+      }
+    },
+    {
+      "id": "spirit_puni",
+      "name": "普尼",
+      "rarity": "mythic",
+      "role": "圣灵守护者",
+      "asset": "hunting/spirits570/puni_idle_v2.png",
+      "story": "经典赛尔号圣灵形象：金白光体与双螺旋光冠，青色能量翼环绕，六枚封印荚随光流浮动。它以沉静而坚定的圣光陪伴每一次挑战。",
+      "projectile": "holy_light",
+      "lore": "七道封印 · 虚无、元素、能量、生命、轮回、永恒、圣洁；金白灵体与外围六枚封印荚构成经典圣灵形象。投题时释放金色圣光。",
+      "poses": {
+        "idle": "hunting/spirits570/puni_idle_v2.png",
+        "send": "hunting/spirits570/puni_send.png",
+        "celebrate": "hunting/spirits570/puni_celebrate.png",
+        "sad": "hunting/spirits570/puni_sad.png"
+      }
+    },
+    {
+      "id": "spirit_diaochan",
+      "name": "貂蝉大小姐",
+      "rarity": "legendary",
+      "role": "花影伴读",
+      "asset": "hunting/spirits570/diaochan_idle_v2.png",
+      "story": "来自三国故事的国风大小姐，身着桃色与浅紫绣衣，金簪珠饰映着长发。她温柔从容，以绣扇与花影鼓励你专注作答。",
+      "projectile": "petal",
+      "lore": "花影清风 · 以扇送出桃花瓣；真人比例全身造型，兼具优雅与坚定。",
+      "poses": {
+        "idle": "hunting/spirits570/diaochan_idle_v2.png",
+        "send": "hunting/spirits570/diaochan_send.png",
+        "celebrate": "hunting/spirits570/diaochan_celebrate.png",
+        "sad": "hunting/spirits570/diaochan_sad.png"
+      }
+    }
+  ]
+}

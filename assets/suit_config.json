@@ -1,0 +1,395 @@
+{
+  "version": 2,
+  "suits": [
+    {
+      "id": "suit_xiaoyuan_common",
+      "hero": "xiaoyuan",
+      "rarity": "common",
+      "name": "账房探险套装",
+      "required_items": {
+        "outfit": "outfit_finance_xiaoyuan_ledger",
+        "headwear": "outfit_forest",
+        "footwear": "footwear_xiaoyuan_common",
+        "pawgear": "pawgear_xiaoyuan_common"
+      },
+      "poses": {
+        "idle": "hunting/suits/suit_xiaoyuan_common/idle.png",
+        "walk": "hunting/suits/suit_xiaoyuan_common/walk.png",
+        "think": "hunting/suits/suit_xiaoyuan_common/think.png",
+        "attack": "hunting/suits/suit_xiaoyuan_common/attack.png",
+        "happy": "hunting/suits/suit_xiaoyuan_common/happy.png",
+        "hurt": "hunting/suits/suit_xiaoyuan_common/hurt.png",
+        "celebrate": "hunting/suits/suit_xiaoyuan_common/celebrate.png",
+        "chest": "hunting/suits/suit_xiaoyuan_common/chest.png",
+        "wink": "hunting/suits/suit_xiaoyuan_common/wink.png",
+        "surprise": "hunting/suits/suit_xiaoyuan_common/surprise.png",
+        "tired": "hunting/suits/suit_xiaoyuan_common/tired.png",
+        "sleep": "hunting/suits/suit_xiaoyuan_common/sleep.png"
+      }
+    },
+    {
+      "id": "suit_xiaoyuan_rare",
+      "hero": "xiaoyuan",
+      "rarity": "rare",
+      "name": "工坊守护套装",
+      "required_items": {
+        "outfit": "outfit_finance_xiaoyuan_workshop",
+        "headwear": "outfit_snow",
+        "footwear": "footwear_xiaoyuan_rare",
+        "pawgear": "pawgear_xiaoyuan_rare"
+      },
+      "poses": {
+        "idle": "hunting/suits/suit_xiaoyuan_rare/idle.png",
+        "walk": "hunting/suits/suit_xiaoyuan_rare/walk.png",
+        "think": "hunting/suits/suit_xiaoyuan_rare/think.png",
+        "attack": "hunting/suits/suit_xiaoyuan_rare/attack.png",
+        "happy": "hunting/suits/suit_xiaoyuan_rare/happy.png",
+        "hurt": "hunting/suits/suit_xiaoyuan_rare/hurt.png",
+        "celebrate": "hunting/suits/suit_xiaoyuan_rare/celebrate.png",
+        "chest": "hunting/suits/suit_xiaoyuan_rare/chest.png",
+        "wink": "hunting/suits/suit_xiaoyuan_rare/wink.png",
+        "surprise": "hunting/suits/suit_xiaoyuan_rare/surprise.png",
+        "tired": "hunting/suits/suit_xiaoyuan_rare/tired.png",
+        "sleep": "hunting/suits/suit_xiaoyuan_rare/sleep.png"
+      }
+    },
+    {
+      "id": "suit_xiaoyuan_legendary",
+      "hero": "xiaoyuan",
+      "rarity": "legendary",
+      "name": "星光掌柜套装",
+      "required_items": {
+        "outfit": "outfit_finance_xiaoyuan_stars",
+        "headwear": "outfit_stars",
+        "footwear": "footwear_xiaoyuan_legendary",
+        "pawgear": "pawgear_xiaoyuan_legendary"
+      },
+      "poses": {
+        "idle": "hunting/suits/suit_xiaoyuan_legendary/idle.png",
+        "walk": "hunting/suits/suit_xiaoyuan_legendary/walk.png",
+        "think": "hunting/suits/suit_xiaoyuan_legendary/think.png",
+        "attack": "hunting/suits/suit_xiaoyuan_legendary/attack.png",
+        "happy": "hunting/suits/suit_xiaoyuan_legendary/happy.png",
+        "hurt": "hunting/suits/suit_xiaoyuan_legendary/hurt.png",
+        "celebrate": "hunting/suits/suit_xiaoyuan_legendary/celebrate.png",
+        "chest": "hunting/suits/suit_xiaoyuan_legendary/chest.png",
+        "wink": "hunting/suits/suit_xiaoyuan_legendary/wink.png",
+        "surprise": "hunting/suits/suit_xiaoyuan_legendary/surprise.png",
+        "tired": "hunting/suits/suit_xiaoyuan_legendary/tired.png",
+        "sleep": "hunting/suits/suit_xiaoyuan_legendary/sleep.png"
+      }
+    },
+    {
+      "id": "suit_orange_adventurer_common",
+      "hero": "orange_adventurer",
+      "rarity": "common",
+      "name": "账房探险套装",
+      "required_items": {
+        "outfit": "outfit_finance_orange_adventurer_ledger",
+        "headwear": "outfit_forest",
+        "footwear": "footwear_orange_adventurer_common",
+        "pawgear": "pawgear_orange_adventurer_common"
+      },
+      "poses": {
+        "idle": "hunting/suits/suit_orange_adventurer_common/idle.png",
+        "smile": "hunting/suits/suit_orange_adventurer_common/smile.png",
+        "wink": "hunting/suits/suit_orange_adventurer_common/wink.png",
+        "wave": "hunting/suits/suit_orange_adventurer_common/wave.png",
+        "celebrate": "hunting/suits/suit_orange_adventurer_common/celebrate.png",
+        "proud": "hunting/suits/suit_orange_adventurer_common/proud.png",
+        "sad": "hunting/suits/suit_orange_adventurer_common/sad.png",
+        "cry": "hunting/suits/suit_orange_adventurer_common/cry.png",
+        "surprise": "hunting/suits/suit_orange_adventurer_common/surprise.png",
+        "think": "hunting/suits/suit_orange_adventurer_common/think.png",
+        "tired": "hunting/suits/suit_orange_adventurer_common/tired.png",
+        "sleep": "hunting/suits/suit_orange_adventurer_common/sleep.png"
+      }
+    },
+    {
+      "id": "suit_orange_adventurer_rare",
+      "hero": "orange_adventurer",
+      "rarity": "rare",
+      "name": "工坊守护套装",
+      "required_items": {
+        "outfit": "outfit_finance_orange_adventurer_workshop",
+        "headwear": "outfit_snow",
+        "footwear": "footwear_orange_adventurer_rare",
+        "pawgear": "pawgear_orange_adventurer_rare"
+      },
+      "poses": {
+        "idle": "hunting/suits/suit_orange_adventurer_rare/idle.png",
+        "smile": "hunting/suits/suit_orange_adventurer_rare/smile.png",
+        "wink": "hunting/suits/suit_orange_adventurer_rare/wink.png",
+        "wave": "hunting/suits/suit_orange_adventurer_rare/wave.png",
+        "celebrate": "hunting/suits/suit_orange_adventurer_rare/celebrate.png",
+        "proud": "hunting/suits/suit_orange_adventurer_rare/proud.png",
+        "sad": "hunting/suits/suit_orange_adventurer_rare/sad.png",
+        "cry": "hunting/suits/suit_orange_adventurer_rare/cry.png",
+        "surprise": "hunting/suits/suit_orange_adventurer_rare/surprise.png",
+        "think": "hunting/suits/suit_orange_adventurer_rare/think.png",
+        "tired": "hunting/suits/suit_orange_adventurer_rare/tired.png",
+        "sleep": "hunting/suits/suit_orange_adventurer_rare/sleep.png"
+      }
+    },
+    {
+      "id": "suit_orange_adventurer_legendary",
+      "hero": "orange_adventurer",
+      "rarity": "legendary",
+      "name": "星光掌柜套装",
+      "required_items": {
+        "outfit": "outfit_finance_orange_adventurer_stars",
+        "headwear": "outfit_stars",
+        "footwear": "footwear_orange_adventurer_legendary",
+        "pawgear": "pawgear_orange_adventurer_legendary"
+      },
+      "poses": {
+        "idle": "hunting/suits/suit_orange_adventurer_legendary/idle.png",
+        "smile": "hunting/suits/suit_orange_adventurer_legendary/smile.png",
+        "wink": "hunting/suits/suit_orange_adventurer_legendary/wink.png",
+        "wave": "hunting/suits/suit_orange_adventurer_legendary/wave.png",
+        "celebrate": "hunting/suits/suit_orange_adventurer_legendary/celebrate.png",
+        "proud": "hunting/suits/suit_orange_adventurer_legendary/proud.png",
+        "sad": "hunting/suits/suit_orange_adventurer_legendary/sad.png",
+        "cry": "hunting/suits/suit_orange_adventurer_legendary/cry.png",
+        "surprise": "hunting/suits/suit_orange_adventurer_legendary/surprise.png",
+        "think": "hunting/suits/suit_orange_adventurer_legendary/think.png",
+        "tired": "hunting/suits/suit_orange_adventurer_legendary/tired.png",
+        "sleep": "hunting/suits/suit_orange_adventurer_legendary/sleep.png"
+      }
+    },
+    {
+      "id": "suit_xiaobao_common",
+      "hero": "xiaobao",
+      "rarity": "common",
+      "name": "账房探险套装",
+      "required_items": {
+        "outfit": "outfit_finance_xiaobao_ledger",
+        "headwear": "outfit_forest",
+        "footwear": "footwear_xiaobao_common",
+        "pawgear": "pawgear_xiaobao_common"
+      },
+      "poses": {
+        "idle": "hunting/suits/suit_xiaobao_common/idle.png",
+        "walk": "hunting/suits/suit_xiaobao_common/walk.png",
+        "think": "hunting/suits/suit_xiaobao_common/think.png",
+        "attack": "hunting/suits/suit_xiaobao_common/attack.png",
+        "happy": "hunting/suits/suit_xiaobao_common/happy.png",
+        "hurt": "hunting/suits/suit_xiaobao_common/hurt.png",
+        "celebrate": "hunting/suits/suit_xiaobao_common/celebrate.png",
+        "chest": "hunting/suits/suit_xiaobao_common/chest.png",
+        "wink": "hunting/suits/suit_xiaobao_common/wink.png",
+        "surprise": "hunting/suits/suit_xiaobao_common/surprise.png",
+        "tired": "hunting/suits/suit_xiaobao_common/tired.png",
+        "sleep": "hunting/suits/suit_xiaobao_common/sleep.png"
+      }
+    },
+    {
+      "id": "suit_xiaobao_rare",
+      "hero": "xiaobao",
+      "rarity": "rare",
+      "name": "工坊守护套装",
+      "required_items": {
+        "outfit": "outfit_finance_xiaobao_workshop",
+        "headwear": "outfit_snow",
+        "footwear": "footwear_xiaobao_rare",
+        "pawgear": "pawgear_xiaobao_rare"
+      },
+      "poses": {
+        "idle": "hunting/suits/suit_xiaobao_rare/idle.png",
+        "walk": "hunting/suits/suit_xiaobao_rare/walk.png",
+        "think": "hunting/suits/suit_xiaobao_rare/think.png",
+        "attack": "hunting/suits/suit_xiaobao_rare/attack.png",
+        "happy": "hunting/suits/suit_xiaobao_rare/happy.png",
+        "hurt": "hunting/suits/suit_xiaobao_rare/hurt.png",
+        "celebrate": "hunting/suits/suit_xiaobao_rare/celebrate.png",
+        "chest": "hunting/suits/suit_xiaobao_rare/chest.png",
+        "wink": "hunting/suits/suit_xiaobao_rare/wink.png",
+        "surprise": "hunting/suits/suit_xiaobao_rare/surprise.png",
+        "tired": "hunting/suits/suit_xiaobao_rare/tired.png",
+        "sleep": "hunting/suits/suit_xiaobao_rare/sleep.png"
+      }
+    },
+    {
+      "id": "suit_xiaobao_legendary",
+      "hero": "xiaobao",
+      "rarity": "legendary",
+      "name": "星光掌柜套装",
+      "required_items": {
+        "outfit": "outfit_finance_xiaobao_stars",
+        "headwear": "outfit_stars",
+        "footwear": "footwear_xiaobao_legendary",
+        "pawgear": "pawgear_xiaobao_legendary"
+      },
+      "poses": {
+        "idle": "hunting/suits/suit_xiaobao_legendary/idle.png",
+        "walk": "hunting/suits/suit_xiaobao_legendary/walk.png",
+        "think": "hunting/suits/suit_xiaobao_legendary/think.png",
+        "attack": "hunting/suits/suit_xiaobao_legendary/attack.png",
+        "happy": "hunting/suits/suit_xiaobao_legendary/happy.png",
+        "hurt": "hunting/suits/suit_xiaobao_legendary/hurt.png",
+        "celebrate": "hunting/suits/suit_xiaobao_legendary/celebrate.png",
+        "chest": "hunting/suits/suit_xiaobao_legendary/chest.png",
+        "wink": "hunting/suits/suit_xiaobao_legendary/wink.png",
+        "surprise": "hunting/suits/suit_xiaobao_legendary/surprise.png",
+        "tired": "hunting/suits/suit_xiaobao_legendary/tired.png",
+        "sleep": "hunting/suits/suit_xiaobao_legendary/sleep.png"
+      }
+    },
+    {
+      "id": "suit_blue_scholar_550",
+      "hero": "xiaoyuan",
+      "rarity": "rare",
+      "name": "蓝晶学者",
+      "required_items": {
+        "outfit": "outfit_blue_scholar_550",
+        "headwear": "headwear_blue_scholar_550",
+        "footwear": "footwear_blue_scholar_550",
+        "pawgear": "pawgear_blue_scholar_550"
+      },
+      "poses": {
+        "idle": "hunting/suits/suit_blue_scholar_550/idle.png",
+        "walk": "hunting/suits/suit_blue_scholar_550/walk.png",
+        "think": "hunting/suits/suit_blue_scholar_550/think.png",
+        "attack": "hunting/suits/suit_blue_scholar_550/attack.png",
+        "happy": "hunting/suits/suit_blue_scholar_550/happy.png",
+        "hurt": "hunting/suits/suit_blue_scholar_550/hurt.png",
+        "celebrate": "hunting/suits/suit_blue_scholar_550/celebrate.png",
+        "chest": "hunting/suits/suit_blue_scholar_550/chest.png",
+        "wink": "hunting/suits/suit_blue_scholar_550/wink.png",
+        "surprise": "hunting/suits/suit_blue_scholar_550/surprise.png",
+        "tired": "hunting/suits/suit_blue_scholar_550/tired.png",
+        "sleep": "hunting/suits/suit_blue_scholar_550/sleep.png"
+      }
+    },
+    {
+      "id": "suit_dawn_knight_550",
+      "hero": "xiaoyuan",
+      "rarity": "legendary",
+      "name": "黎明星骑",
+      "required_items": {
+        "outfit": "outfit_dawn_knight_550",
+        "headwear": "headwear_dawn_knight_550",
+        "footwear": "footwear_dawn_knight_550",
+        "pawgear": "pawgear_dawn_knight_550"
+      },
+      "poses": {
+        "idle": "hunting/suits/suit_dawn_knight_550/idle.png",
+        "walk": "hunting/suits/suit_dawn_knight_550/walk.png",
+        "think": "hunting/suits/suit_dawn_knight_550/think.png",
+        "attack": "hunting/suits/suit_dawn_knight_550/attack.png",
+        "happy": "hunting/suits/suit_dawn_knight_550/happy.png",
+        "hurt": "hunting/suits/suit_dawn_knight_550/hurt.png",
+        "celebrate": "hunting/suits/suit_dawn_knight_550/celebrate.png",
+        "chest": "hunting/suits/suit_dawn_knight_550/chest.png",
+        "wink": "hunting/suits/suit_dawn_knight_550/wink.png",
+        "surprise": "hunting/suits/suit_dawn_knight_550/surprise.png",
+        "tired": "hunting/suits/suit_dawn_knight_550/tired.png",
+        "sleep": "hunting/suits/suit_dawn_knight_550/sleep.png"
+      }
+    },
+    {
+      "id": "suit_sea_ranger_550",
+      "hero": "orange_adventurer",
+      "rarity": "rare",
+      "name": "碧海游侠",
+      "required_items": {
+        "outfit": "outfit_sea_ranger_550",
+        "headwear": "headwear_sea_ranger_550",
+        "footwear": "footwear_sea_ranger_550",
+        "pawgear": "pawgear_sea_ranger_550"
+      },
+      "poses": {
+        "idle": "hunting/suits/suit_sea_ranger_550/idle.png",
+        "walk": "hunting/suits/suit_sea_ranger_550/walk.png",
+        "think": "hunting/suits/suit_sea_ranger_550/think.png",
+        "attack": "hunting/suits/suit_sea_ranger_550/attack.png",
+        "happy": "hunting/suits/suit_sea_ranger_550/happy.png",
+        "hurt": "hunting/suits/suit_sea_ranger_550/hurt.png",
+        "celebrate": "hunting/suits/suit_sea_ranger_550/celebrate.png",
+        "chest": "hunting/suits/suit_sea_ranger_550/chest.png",
+        "wink": "hunting/suits/suit_sea_ranger_550/wink.png",
+        "surprise": "hunting/suits/suit_sea_ranger_550/surprise.png",
+        "tired": "hunting/suits/suit_sea_ranger_550/tired.png",
+        "sleep": "hunting/suits/suit_sea_ranger_550/sleep.png"
+      }
+    },
+    {
+      "id": "suit_flame_warrior_550",
+      "hero": "orange_adventurer",
+      "rarity": "legendary",
+      "name": "赤焰勇士",
+      "required_items": {
+        "outfit": "outfit_flame_warrior_550",
+        "headwear": "headwear_flame_warrior_550",
+        "footwear": "footwear_flame_warrior_550",
+        "pawgear": "pawgear_flame_warrior_550"
+      },
+      "poses": {
+        "idle": "hunting/suits/suit_flame_warrior_550/idle.png",
+        "walk": "hunting/suits/suit_flame_warrior_550/walk.png",
+        "think": "hunting/suits/suit_flame_warrior_550/think.png",
+        "attack": "hunting/suits/suit_flame_warrior_550/attack.png",
+        "happy": "hunting/suits/suit_flame_warrior_550/happy.png",
+        "hurt": "hunting/suits/suit_flame_warrior_550/hurt.png",
+        "celebrate": "hunting/suits/suit_flame_warrior_550/celebrate.png",
+        "chest": "hunting/suits/suit_flame_warrior_550/chest.png",
+        "wink": "hunting/suits/suit_flame_warrior_550/wink.png",
+        "surprise": "hunting/suits/suit_flame_warrior_550/surprise.png",
+        "tired": "hunting/suits/suit_flame_warrior_550/tired.png",
+        "sleep": "hunting/suits/suit_flame_warrior_550/sleep.png"
+      }
+    },
+    {
+      "id": "suit_polar_explorer_550",
+      "hero": "xiaobao",
+      "rarity": "rare",
+      "name": "极地探险",
+      "required_items": {
+        "outfit": "outfit_polar_explorer_550",
+        "headwear": "headwear_polar_explorer_550",
+        "footwear": "footwear_polar_explorer_550",
+        "pawgear": "pawgear_polar_explorer_550"
+      },
+      "poses": {
+        "idle": "hunting/suits/suit_polar_explorer_550/idle.png",
+        "walk": "hunting/suits/suit_polar_explorer_550/walk.png",
+        "think": "hunting/suits/suit_polar_explorer_550/think.png",
+        "attack": "hunting/suits/suit_polar_explorer_550/attack.png",
+        "happy": "hunting/suits/suit_polar_explorer_550/happy.png",
+        "hurt": "hunting/suits/suit_polar_explorer_550/hurt.png",
+        "celebrate": "hunting/suits/suit_polar_explorer_550/celebrate.png",
+        "chest": "hunting/suits/suit_polar_explorer_550/chest.png",
+        "wink": "hunting/suits/suit_polar_explorer_550/wink.png",
+        "surprise": "hunting/suits/suit_polar_explorer_550/surprise.png",
+        "tired": "hunting/suits/suit_polar_explorer_550/tired.png",
+        "sleep": "hunting/suits/suit_polar_explorer_550/sleep.png"
+      }
+    },
+    {
+      "id": "suit_starfrost_guard_550",
+      "hero": "xiaobao",
+      "rarity": "legendary",
+      "name": "星霜守卫",
+      "required_items": {
+        "outfit": "outfit_starfrost_guard_550",
+        "headwear": "headwear_starfrost_guard_550",
+        "footwear": "footwear_starfrost_guard_550",
+        "pawgear": "pawgear_starfrost_guard_550"
+      },
+      "poses": {
+        "idle": "hunting/suits/suit_starfrost_guard_550/idle.png",
+        "walk": "hunting/suits/suit_starfrost_guard_550/walk.png",
+        "think": "hunting/suits/suit_starfrost_guard_550/think.png",
+        "attack": "hunting/suits/suit_starfrost_guard_550/attack.png",
+        "happy": "hunting/suits/suit_starfrost_guard_550/happy.png",
+        "hurt": "hunting/suits/suit_starfrost_guard_550/hurt.png",
+        "celebrate": "hunting/suits/suit_starfrost_guard_550/celebrate.png",
+        "chest": "hunting/suits/suit_starfrost_guard_550/chest.png",
+        "wink": "hunting/suits/suit_starfrost_guard_550/wink.png",
+        "surprise": "hunting/suits/suit_starfrost_guard_550/surprise.png",
+        "tired": "hunting/suits/suit_starfrost_guard_550/tired.png",
+        "sleep": "hunting/suits/suit_starfrost_guard_550/sleep.png"
+      }
+    }
+  ]
+}

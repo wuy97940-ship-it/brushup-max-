@@ -25,6 +25,33 @@ def state(g: dict) -> dict:
         g["finance_expansion"].setdefault(key, copy.deepcopy(value))
     return g["finance_expansion"]
 
+def companion_ids(g: dict) -> list[str]:
+    """读取有序同行名单；未迁移的旧单只记录仍可渲染。"""
+    current = g.get('finance_expansion', {})
+    ids = current.get('companions')
+    if not isinstance(ids, list):
+        ids = [current.get('companion')]
+    return list(dict.fromkeys(identifier for identifier in ids if isinstance(identifier, str)))[:2]
+
+def set_companions(g: dict, identifiers: list[str]) -> None:
+    current = state(g)
+    current['companions'] = list(identifiers)
+    # 首位镜像供旧显示入口及独立回退读取；操作统一写入完整名单。
+    current['companion'] = identifiers[0] if identifiers else None
+
+def companion_render_state(g: dict, snapshot: list[str] | None) -> dict:
+    if snapshot is None:
+        return g
+    return {**g, 'finance_expansion': {**g.get('finance_expansion', {}),
+             'companions': list(snapshot), 'companion': snapshot[0] if snapshot else None}}
+
+def initialize_companions(g: dict) -> None:
+    from desktop_growth import companion_limit
+    known = {item['id'] for item in companion_catalog()}
+    ids = [identifier for identifier in companion_ids(g)
+           if identifier in known and identifier in g.get('inventory', [])]
+    set_companions(g, ids[:companion_limit(g)])
+
 
 def numeric_check(check: dict, value: str, unit: str | None = None) -> dict:
     target_unit = check.get("unit") or "无单位"
@@ -79,7 +106,7 @@ def draft(attempt: dict, question: dict) -> dict:
         question["id"], {"process": {}, "values": {}, "units": {}})
 
 
-def prepare_submission(attempt: dict, question: dict) -> dict:
+def prepare_submission(attempt: dict, question: dict, *, allow_partial: bool = False) -> dict:
     qid = question["id"]
     if attempt.get("settled") or qid not in attempt["qids"]:
         raise ValueError("题目不属于进行中的挑战。")
@@ -88,14 +115,23 @@ def prepare_submission(attempt: dict, question: dict) -> dict:
         return prior
     if qid in attempt["answers"] and not attempt.get("correction_edit", {}).get(qid):
         raise ValueError("首次成绩已保存，点击重新核对可继续练习。")
-    current = draft(attempt, question)
-    if any(not current["process"].get(sub["id"], "").strip() for sub in question["subquestions"]):
+    current = copy.deepcopy(draft(attempt, question))
+    for group in ('process','values','units'):
+        current.setdefault(group,{})
+    for sub in question['subquestions']:
+        current['process'].setdefault(sub['id'],'')
+    for check in question.get('numeric_checks',[]):
+        current['values'].setdefault(check['key'],'')
+    nonempty=any(str(v).strip() for group in ('process','values') for v in current.get(group,{}).values())
+    if allow_partial and not nonempty:
+        raise ValueError('请先填写非空作答，再提交核对。')
+    if not allow_partial and any(not current["process"].get(sub["id"], "").strip() for sub in question["subquestions"]):
         raise ValueError("请填写每个小问的计算过程或理由。")
     checks = question.get("numeric_checks", [])
-    if any(not current["values"].get(check["key"], "").strip() for check in checks):
+    if not allow_partial and any(not current["values"].get(check["key"], "").strip() for check in checks):
         raise ValueError("请填写所有可核对的关键数值。")
     submission = {"draft": copy.deepcopy(current), "checks": [
-        numeric_check(check, current["values"][check["key"]], current["units"].get(check["key"]) or check.get("unit"))
+        numeric_check(check, current["values"].get(check["key"],''), current["units"].get(check["key"]) or check.get("unit"))
         for check in checks], "process": {}, "submitted_at": time.time(), "graded": False,
         "correction": qid in attempt["answers"]}
     attempt.setdefault("structured_submissions", {})[qid] = submission
@@ -109,9 +145,13 @@ def grade(attempt: dict, question: dict) -> dict:
     submission = attempt.get("structured_submissions", {}).get(qid)
     if not submission:
         raise ValueError("请先提交各小问。")
-    if submission["graded"]:
-        return {"first": False, "record": submission["record"]}
-    if any(type(submission["process"].get(sub["id"])) is not bool for sub in question["subquestions"]):
+    if submission.get("graded"):
+        record=submission.get('record') or attempt.get('answers', {}).get(qid)
+        if record is None:raise ValueError('历史核对结果不完整，请重新核对本题。')
+        return {"first": False, "record": record}
+    if not isinstance(submission.get('draft'), dict) or not isinstance(submission.get('checks'), list):
+        raise ValueError('历史提交资料不完整，请重新提交各小问。')
+    if any(type(submission.get("process", {}).get(sub["id"])) is not bool for sub in question["subquestions"]):
         raise ValueError("请对照参考逐个完成过程自评。")
     correct = all(check["correct"] for check in submission["checks"]) and all(
         submission["process"][sub["id"]] for sub in question["subquestions"])
@@ -166,6 +206,14 @@ def act_open(g: dict, act: dict) -> bool:
                                      for number in range(1, start))
 
 
+def companion_catalog() -> list[dict]:
+    # 旧四只ID、昵称与陪伴身份不变，权益始终来自同一inventory。
+    from desktop_hunting import SPIRITS, CONFIG as HUNTING_CONFIG
+    old={item['id']:item for item in CONFIG['companions']}
+    return [{**old.get(item['id'],{'price':0,'unlock_chapter':0}),**item,
+             'rarity_name':HUNTING_CONFIG['rarities'][item['rarity']]['name']} for item in SPIRITS.values()]
+
+
 def view(g: dict) -> dict:
     current, cs = state(g), {c["number"]: c for c in chapters(g)}
     acts = [{**a, "open": act_open(g, a),
@@ -178,7 +226,7 @@ def view(g: dict) -> dict:
     return {"materials": current["materials"], "acts": acts, "buildings": buildings,
             "companions": [{**c, "owned": c["id"] in g["inventory"],
                             "unlocked": bool(current["chapter_claims"].get(str(c["unlock_chapter"]))),
-                            "equipped": c["id"] == current["companion"]} for c in CONFIG["companions"]],
+                            "equipped": c["id"] in companion_ids(g)} for c in companion_catalog()],
             "commissions": [{**c, "claimed": c["id"] in current["commission_claims"],
                              "open": next(a["open"] for a in acts if a["id"] == c["act_id"])} for c in CONFIG["commissions"]]}
 
@@ -214,6 +262,8 @@ def upgrade_building(progress: dict, building_id: str) -> dict:
 
 def recruit(progress: dict, companion_id: str) -> dict:
     g = progress["game"]
+    if g.get('product'):
+        raise ValueError('精灵统一在精灵狩猎中收服，请前往猎场。已拥有伙伴继续保留。')
     item = next((c for c in view(g)["companions"] if c["id"] == companion_id), None)
     if not item or not item["unlocked"]:
         raise ValueError("完成伙伴对应章节后，就能邀请它加入。")
@@ -228,10 +278,13 @@ def recruit(progress: dict, companion_id: str) -> dict:
 
 def equip_companion(progress: dict, companion_id: str) -> None:
     g = progress["game"]
-    if companion_id not in g["inventory"] or not any(c["id"] == companion_id for c in CONFIG["companions"]):
+    if g.get('product'):
+        from desktop_hunting import equip_spirit
+        return equip_spirit(progress,companion_id)
+    if companion_id not in g["inventory"] or not any(c["id"] == companion_id for c in companion_catalog()):
         raise ValueError("请先招募这位伙伴。")
     current = state(g)
-    current["companion"] = None if current["companion"] == companion_id else companion_id
+    set_companions(g, [] if companion_id in companion_ids(g) else [companion_id])
 
 
 def commission_questions(meta: list[dict], commission_id: str) -> list[str]:
@@ -254,8 +307,10 @@ def claim_commission(progress: dict, commission_id: str, attempt: dict) -> dict:
     if len(ids) != commission["amount"] or any(qid not in attempt["answers"] for qid in ids):
         raise ValueError("请完成委托的全部题目。")
     correct = sum(bool(attempt["answers"][qid]["correct"]) for qid in ids)
-    if correct * 100 < len(ids) * 70:
-        raise ValueError("继续复盘，达到70%即可完成委托。")
+    import game
+    threshold=game.CONFIG['pass_percent']
+    if correct * 100 < len(ids) * threshold:
+        raise ValueError(f"继续复盘，达到{threshold}%即可完成委托。")
     current["commission_claims"][commission_id] = {"postcard": commission["postcard"], "attempt_id": attempt["id"]}
     if commission["postcard"] not in g["inventory"]:
         g["inventory"].append(commission["postcard"])
@@ -264,7 +319,7 @@ def claim_commission(progress: dict, commission_id: str, attempt: dict) -> dict:
 
 def rescue_questions(progress: dict, meta: list[dict], world: str) -> list[str]:
     prefixes = {"accounting": ("cpa_kj_", "acc_original_"), "law": ("cpa_jjf_", "law_original_"),
-                "finance": ("cpa_cg_", "cg_original_")}
+                "finance": ("cpa_cg_", "cg_original_"), "audit": ("cpa_sj_",)}
     valid = {q["id"] for q in meta if q.get("book_id", "").startswith(prefixes.get(world, (world,)))}
     return [qid for qid in progress.get("wrong_book", []) if qid in valid][:5]
 

@@ -1,0 +1,6 @@
+<view class="resources600">
+ <view class="resource-row"><text>体力 {{mood.energy}}/{{mood.energyMaximum}}</text><view class="resource-track"><view style="width:{{mood.energy*100/mood.energyMaximum}}%;background:#3B82F6"/></view></view>
+ <view class="resource-row"><text style="color:{{mood.color}}">心情 {{mood.value}}/100 · {{mood.label}}</text><view class="resource-track"><view style="width:{{mood.value}}%;background:{{mood.color}}"/></view></view>
+ <view class="resource-row" wx:if="{{mood.manaVisible}}"><text>魔法 {{mood.mana}}/{{mood.manaMaximum}}</text><view class="resource-track"><view style="width:{{mood.mana*100/mood.manaMaximum}}%;background:#348FCE"/></view></view>
+ <view class="muted" wx:else>Lv.{{mood.unlockLevel}}首次可以学习技能时解锁魔法</view>
+</view>

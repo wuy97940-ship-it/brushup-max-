@@ -26,13 +26,13 @@ function normalizeProgress(p,G){
  }
  candidate.bank_family=BASELINE.family;
  F.ensureExpansion(g);
- if(!g.inventory.includes('xiaobao')&&G.CATALOG.xiaobao)g.inventory.push('xiaobao');
+ if(g.ruleset!=='6.0.0'&&!g.inventory.includes('xiaobao')&&G.CATALOG.xiaobao)g.inventory.push('xiaobao');
  return equal(candidate,p)?p:candidate;
 }
 function validProgress(p,G){
  const object=x=>!!x&&typeof x==='object'&&!Array.isArray(x);
  if(!object(p)||!object(p.game)||!object(p.answered)||!Array.isArray(p.wrong_book)||!Array.isArray(p.favorites))return false;
- const g=p.game;
+ const g=p.game,catalog=g.ruleset==='6.0.0'?require('./game600').CATALOG:G.CATALOG;
  if(p.bank_family&&p.bank_family!==BASELINE.family)return false;
  if(!equal(g.campaign,G.CAMPAIGN)||!Array.isArray(g.inventory)||!object(g.equipment)||!object(g.results)||![g.coins,g.xp].every(n=>Number.isFinite(n)&&n>=0))return false;
  const qids=new Set(G.META.map(q=>q.id)),sids=new Set(Object.keys(G.CAMPAIGN.levels));
@@ -41,10 +41,11 @@ function validProgress(p,G){
   if(!/^expedition:\d{6}$/.test(id)||stage.id!==id||stage.kind!=='expedition'||!Number.isInteger(stage.round)||stage.round<1||!Array.isArray(stage.qids)||!stage.qids.length||stage.qids.length>10||new Set(stage.qids).size!==stage.qids.length||stage.qids.some(q=>!qids.has(q)))return false;
   sids.add(id);
  }
- if([...p.wrong_book,...p.favorites,...Object.keys(p.answered)].some(id=>!qids.has(id))||Object.keys(g.results).some(id=>!sids.has(id))||g.inventory.some(id=>!G.CATALOG[id]))return false;
- if(!G.CATALOG[g.skin]?.character||!g.inventory.includes(g.skin))return false;
- for(const slot of ['xp','coins','wonder']){const id=g.equipment[slot];if(id&&(!g.inventory.includes(id)||G.CATALOG[id]?.slot!==slot))return false;}
- for(const slot of ['outfit','title']){const id=g[slot];if(id&&(!g.inventory.includes(id)||!G.CATALOG[id]?.[slot]))return false;}
+ if([...p.wrong_book,...p.favorites,...Object.keys(p.answered)].some(id=>!qids.has(id))||Object.keys(g.results).some(id=>!sids.has(id))||g.inventory.some(id=>!catalog[id]))return false;
+ const welcome=g.ruleset==='6.0.0'&&g.starter_claimed===false&&g.skin===null&&!g.inventory.length&&g.xp===0&&g.coins===0&&!Object.keys(p.answered).length&&!g.active&&!p.practice;
+ if(!welcome&&(!catalog[g.skin]?.character||!g.inventory.includes(g.skin)))return false;
+ for(const slot of ['xp','coins','wonder']){const id=g.equipment[slot];if(id&&(!g.inventory.includes(id)||catalog[id]?.slot!==slot))return false;}
+ for(const slot of ['outfit','title']){const id=g[slot];if(id&&(!g.inventory.includes(id)||!catalog[id]?.[slot]))return false;}
  function attempt(a,practice=false){
   if(!a)return true;
   if(!object(a)||!Array.isArray(a.qids)||!a.qids.length||new Set(a.qids).size!==a.qids.length||a.qids.some(id=>!qids.has(id))||!object(a.answers)||!object(a.drafts)||!Array.isArray(a.references)||!Number.isInteger(a.index)||a.index<0||a.index>=a.qids.length)return false;
@@ -57,7 +58,7 @@ function validProgress(p,G){
  }
  if(!attempt(g.active)||!Object.values(g.paused).every(a=>attempt(a))||!attempt(p.practice,true))return false;
  const s=g.finance_expansion;
- if(s){if(!object(s)||s.version!==1||!Number.isInteger(s.materials)||s.materials<0||s.materials>60||!object(s.chapter_claims)||!object(s.buildings)||!object(s.commission_claims)||!Array.isArray(s.story_seen)||!Array.isArray(s.diary)||!Array.isArray(s.formula_seen)||!object(s.tools))return false;const buildings=new Set(F.CONFIG.buildings.map(b=>b.id));if(Object.entries(s.buildings).some(([id,level])=>!buildings.has(id)||!Number.isInteger(level)||level<0||level>3))return false;if(s.companion&&(!g.inventory.includes(s.companion)||!F.CONFIG.companions.some(c=>c.id===s.companion)))return false;}
- return true;
+ if(s){if(!object(s)||s.version!==1||!Number.isInteger(s.materials)||s.materials<0||s.materials>60||!object(s.chapter_claims)||!object(s.buildings)||!object(s.commission_claims)||!Array.isArray(s.story_seen)||!Array.isArray(s.diary)||!Array.isArray(s.formula_seen)||!object(s.tools))return false;const buildings=new Set(F.CONFIG.buildings.map(b=>b.id));if(Object.entries(s.buildings).some(([id,level])=>!buildings.has(id)||!Number.isInteger(level)||level<0||level>3))return false;if(s.companion&&(!g.inventory.includes(s.companion)||!(F.CONFIG.companions.some(c=>c.id===s.companion)||g.ruleset==='6.0.0'&&require('../data/hunting600').config.spirits.some(c=>c.id===s.companion))))return false;}
+ return require('./validate600').valid(p,G);
 }
 module.exports={BASELINE,historicalCampaign,isAppendOnly,normalizeProgress,validProgress};

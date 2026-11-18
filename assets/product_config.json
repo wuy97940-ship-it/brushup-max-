@@ -1,0 +1,867 @@
+{
+  "schema_version": 2,
+  "version": "6.1.0",
+  "stage_size": 10,
+  "pass_percent": 80,
+  "energy": {
+    "initial_points": 40,
+    "level_capacity_points": 1,
+    "capacity_ceiling": 90,
+    "offline_points_per_day": 10,
+    "answer_points": 0.2,
+    "low_mood_extra_points": 0.6,
+    "low_mood_daily_ceiling": 3,
+    "wrong_streak_threshold": 5,
+    "stage_failure_threshold": 3,
+    "calm_rest_seconds": 600,
+    "wrong_points": 4,
+    "boss_wrong_points": 6
+  },
+  "rewards": {
+    "answer_xp": 8,
+    "answer_coins": 0.5,
+    "daily_answer_coins_ceiling": 100,
+    "first_stage_xp": 20,
+    "first_stage_coins": 3,
+    "first_chapter_xp": 50,
+    "first_chapter_coins": 10,
+    "first_chapter_materials": 5,
+    "review_first_materials": 4,
+    "review_second_materials": 6,
+    "review_answer_cooldown_seconds": 600,
+    "review_second_gap_seconds": 86400,
+    "review_reward_window_seconds": 604800,
+    "review_window_materials_ceiling": 10,
+    "daily_consolidation_questions": 5,
+    "daily_consolidation_materials": 5,
+    "arena_xp": {
+      "胜": 20,
+      "平": 12,
+      "败": 8
+    }
+  },
+  "heroes": [
+    {
+      "id": "xiaoyuan",
+      "name": "小圆",
+      "description": "金棕圆脸，绿眼睛。陪你稳稳走过每一关。",
+      "price": 1500
+    },
+    {
+      "id": "orange_adventurer",
+      "name": "小团",
+      "description": "奶油橘白、琥珀眼。一起把知识点变成小小胜利。",
+      "price": 1500
+    },
+    {
+      "id": "xiaobao",
+      "name": "小宝",
+      "description": "黑白小企鹅。认真练习，也记得给自己喝彩。",
+      "price": 1500
+    }
+  ],
+  "skills": [
+    {
+      "id": "recall",
+      "name": "回忆线索",
+      "level": 1,
+      "energy": 2,
+      "description": "显示本题知识点线索；本题标记为使用提示。"
+    },
+    {
+      "id": "focus",
+      "name": "专注结界",
+      "level": 3,
+      "energy": 4,
+      "description": "本场免除低落带来的额外体力消耗。"
+    },
+    {
+      "id": "rally",
+      "name": "重整旗鼓",
+      "level": 5,
+      "energy": 5,
+      "description": "解除低落；不恢复当前体力。"
+    }
+  ],
+  "items": [
+    {
+      "id": "food_cookie",
+      "name": "元气小饼",
+      "category": "消耗品",
+      "kind": "food",
+      "price": 10,
+      "currency": "coins",
+      "restore_points": 15,
+      "icon": "饼",
+      "color": "#DFA765",
+      "description": "恢复15点体力。休眠角色需先使用还魂丹。"
+    },
+    {
+      "id": "food_bento",
+      "name": "暖心便当",
+      "category": "消耗品",
+      "kind": "food",
+      "price": 25,
+      "currency": "coins",
+      "restore_points": 35,
+      "icon": "餐",
+      "color": "#EC947F",
+      "description": "恢复35点体力，让冒险继续。"
+    },
+    {
+      "id": "food_feast",
+      "name": "活力大餐",
+      "category": "消耗品",
+      "kind": "food",
+      "price": 45,
+      "currency": "coins",
+      "restore_points": 70,
+      "icon": "宴",
+      "color": "#E9AE58",
+      "description": "恢复70点体力。使用前可查看溢出量。"
+    },
+    {
+      "id": "food_supply",
+      "name": "冒险补给箱",
+      "category": "消耗品",
+      "kind": "food",
+      "price": 90,
+      "currency": "coins",
+      "restore_percent": 60,
+      "icon": "补",
+      "color": "#64A99F",
+      "description": "恢复体力上限的60%，适合高等级伙伴。"
+    },
+    {
+      "id": "calm_drink",
+      "name": "暖心饮",
+      "category": "消耗品",
+      "kind": "calm",
+      "price": 15,
+      "currency": "coins",
+      "icon": "暖",
+      "color": "#D687AA",
+      "description": "恢复40点情绪，不补体力和魔法；情绪未满时可用。"
+    },
+    {
+      "id": "revival_pill",
+      "name": "还魂丹",
+      "category": "消耗品",
+      "kind": "revive",
+      "price": 600,
+      "currency": "coins",
+      "restore_percent": 60,
+      "icon": "丹",
+      "color": "#9674D6",
+      "description": "唤醒体力为0的伙伴，恢复至上限的60%，并解除低落。"
+    },
+    {
+      "id": "home_chair",
+      "name": "蓝绒小椅子",
+      "category": "家具家电",
+      "kind": "furniture",
+      "price": 6,
+      "currency": "materials",
+      "width": 1,
+      "height": 1,
+      "max_quantity": 6,
+      "icon": "椅",
+      "color": "#5A97CB",
+      "description": "一把属于你的椅子，占1格。"
+    },
+    {
+      "id": "home_bed",
+      "name": "云朵小床",
+      "category": "家具家电",
+      "kind": "furniture",
+      "price": 12,
+      "currency": "materials",
+      "width": 2,
+      "height": 1,
+      "max_quantity": 3,
+      "icon": "床",
+      "color": "#8AACD8",
+      "description": "白枕头与蓝色被子，占2×1格。"
+    },
+    {
+      "id": "home_desk",
+      "name": "知识书桌",
+      "category": "家具家电",
+      "kind": "furniture",
+      "price": 20,
+      "currency": "materials",
+      "width": 2,
+      "height": 1,
+      "max_quantity": 3,
+      "icon": "桌",
+      "color": "#B88760",
+      "description": "摆上书本和台灯，占2×1格。"
+    },
+    {
+      "id": "home_shelf",
+      "name": "满分书架",
+      "category": "家具家电",
+      "kind": "furniture",
+      "price": 30,
+      "currency": "materials",
+      "width": 1,
+      "height": 1,
+      "max_quantity": 3,
+      "icon": "架",
+      "color": "#B18A68",
+      "description": "把每次进步收藏起来，占1格。"
+    },
+    {
+      "id": "home_washer",
+      "name": "元气洗衣机",
+      "category": "家具家电",
+      "kind": "furniture",
+      "price": 45,
+      "currency": "materials",
+      "width": 1,
+      "height": 1,
+      "max_quantity": 3,
+      "icon": "洗",
+      "color": "#92B4C6",
+      "description": "有圆形舱门的洗衣机，占1格。"
+    },
+    {
+      "id": "home_sofa",
+      "name": "午后沙发",
+      "category": "家具家电",
+      "kind": "furniture",
+      "price": 28,
+      "currency": "materials",
+      "width": 2,
+      "height": 1,
+      "max_quantity": 3,
+      "icon": "沙",
+      "color": "#DAB68F",
+      "description": "柔软的双人小沙发，占2×1格。"
+    },
+    {
+      "id": "home_window",
+      "name": "晴空窗户",
+      "category": "房间装修",
+      "kind": "wall",
+      "price": 15,
+      "currency": "materials",
+      "max_quantity": 9,
+      "icon": "窗",
+      "color": "#74B7D7",
+      "description": "装在墙面槽位，让阳光照进来。"
+    },
+    {
+      "id": "home_wallpaper",
+      "name": "晴蓝壁纸",
+      "category": "房间装修",
+      "kind": "wallpaper",
+      "price": 25,
+      "currency": "materials",
+      "max_quantity": 1,
+      "icon": "墙",
+      "color": "#C4DFF0",
+      "description": "把整个房间换成柔和的晴蓝色。"
+    },
+    {
+      "id": "home_floor",
+      "name": "蜂蜜木地板",
+      "category": "房间装修",
+      "kind": "floor",
+      "price": 35,
+      "currency": "materials",
+      "max_quantity": 1,
+      "icon": "地",
+      "color": "#C89B73",
+      "description": "整间房的温暖木地板，可随时切回原样。"
+    },
+    {
+      "id": "home_rug",
+      "name": "星星地毯",
+      "category": "装饰",
+      "kind": "furniture",
+      "price": 8,
+      "currency": "materials",
+      "width": 2,
+      "height": 1,
+      "max_quantity": 3,
+      "icon": "毯",
+      "color": "#9EB0DB",
+      "description": "铺在地面，占2×1格。"
+    },
+    {
+      "id": "home_plant",
+      "name": "小小绿植",
+      "category": "装饰",
+      "kind": "furniture",
+      "price": 10,
+      "currency": "materials",
+      "width": 1,
+      "height": 1,
+      "max_quantity": 12,
+      "icon": "绿",
+      "color": "#75A88C",
+      "description": "一盆会陪你一起长大的绿色，占1格。"
+    },
+    {
+      "id": "home_picture",
+      "name": "冒险挂画",
+      "category": "装饰",
+      "kind": "wall",
+      "price": 12,
+      "currency": "materials",
+      "max_quantity": 9,
+      "icon": "画",
+      "color": "#C29679",
+      "description": "把旅途挂在墙上，使用墙面槽位。"
+    },
+    {
+      "id": "home_second_floor",
+      "name": "扩建二楼",
+      "category": "房间装修",
+      "kind": "floor_upgrade",
+      "target_floor": 2,
+      "price": 300,
+      "currency": "materials",
+      "max_quantity": 1,
+      "icon": "楼",
+      "description": "增加一间独立的8×4格房间；一楼布置保留，总空间64格。需先拥有一楼。"
+    },
+    {
+      "id": "home_third_floor",
+      "name": "扩建三楼",
+      "category": "房间装修",
+      "kind": "floor_upgrade",
+      "target_floor": 3,
+      "price": 600,
+      "currency": "materials",
+      "max_quantity": 1,
+      "icon": "楼",
+      "description": "再增加一间独立的8×4格房间，总空间96格。需先扩建二楼，已有布置保留。"
+    },
+    {
+      "id": "mana_potion_small",
+      "name": "小魔法药",
+      "category": "消耗品",
+      "kind": "mana",
+      "price": 20,
+      "currency": "coins",
+      "restore_mana": 30,
+      "color": "#389BE8",
+      "description": "恢复30点魔法；满蓝或零体力时不能使用，不能复活。"
+    },
+    {
+      "id": "mana_potion_large",
+      "name": "大魔法药",
+      "category": "消耗品",
+      "kind": "mana",
+      "price": 50,
+      "currency": "coins",
+      "restore_mana": 80,
+      "color": "#389BE8",
+      "description": "恢复80点魔法；满蓝或零体力时不能使用，不能复活。"
+    },
+    {
+      "id": "mood_plush",
+      "name": "圆宝毛绒玩具",
+      "category": "消耗品",
+      "kind": "calm",
+      "price": 10,
+      "currency": "coins",
+      "restore_mood": 20,
+      "mood_action": "toy",
+      "icon": "乐",
+      "color": "#EC6FA9",
+      "description": "恢复20点心情；每次使用消耗1个，不限每天次数。体力和魔法保持原值。"
+    },
+    {
+      "id": "mood_blocks",
+      "name": "彩色积木玩具",
+      "category": "消耗品",
+      "kind": "calm",
+      "price": 18,
+      "currency": "coins",
+      "restore_mood": 35,
+      "mood_action": "toy",
+      "icon": "乐",
+      "color": "#EC6FA9",
+      "description": "恢复35点心情；每次使用消耗1个，不限每天次数。体力和魔法保持原值。"
+    },
+    {
+      "id": "mood_shopping",
+      "name": "逛街体验券",
+      "category": "消耗品",
+      "kind": "calm",
+      "price": 25,
+      "currency": "coins",
+      "restore_mood": 50,
+      "mood_action": "outing",
+      "icon": "乐",
+      "color": "#EC6FA9",
+      "description": "恢复50点心情；每次使用消耗1个，不限每天次数。体力和魔法保持原值。"
+    },
+    {
+      "id": "mood_disney",
+      "name": "迪士尼一日游券",
+      "category": "消耗品",
+      "kind": "calm",
+      "price": 60,
+      "currency": "coins",
+      "restore_mood": 90,
+      "mood_action": "outing",
+      "icon": "乐",
+      "color": "#EC6FA9",
+      "description": "恢复90点心情；每次使用消耗1个，不限每天次数。体力和魔法保持原值。"
+    }
+  ],
+  "room": {
+    "columns": 8,
+    "rows": 4,
+    "wall_slots": [
+      "left",
+      "center",
+      "right"
+    ]
+  },
+  "feedback": {
+    "correct": [
+      "smile",
+      "wink",
+      "wave",
+      "proud",
+      "celebrate"
+    ],
+    "wrong": [
+      "sad",
+      "cry",
+      "surprise",
+      "think"
+    ],
+    "correct_text": [
+      "这题拿下啦！",
+      "判断得很准。",
+      "又点亮一个知识点。",
+      "继续，状态不错！"
+    ],
+    "wrong_text": [
+      "差一点，一起看看解析。",
+      "记下这个知识点，下次再赢回来。",
+      "慢慢来，我们再理解一次。"
+    ],
+    "review_text": [
+      "这次弄明白啦！",
+      "把错题变成新的进步。",
+      "家园又多了一份建材。"
+    ]
+  },
+  "equipment_tiers": {
+    "common": {
+      "name": "普通",
+      "xp_percent": 3,
+      "coins_percent": 0,
+      "mana_percent": 0,
+      "price": 150
+    },
+    "rare": {
+      "name": "稀有",
+      "xp_percent": 7,
+      "coins_percent": 5,
+      "mana_percent": 0,
+      "price": 600
+    },
+    "legendary": {
+      "name": "传说",
+      "xp_percent": 15,
+      "coins_percent": 10,
+      "mana_percent": 20,
+      "price": 1800
+    }
+  },
+  "new_equipment": [
+    {
+      "id": "footwear_xiaoyuan_common",
+      "name": "小圆·普通冒险鞋",
+      "fit_character": "xiaoyuan",
+      "slot": "footwear",
+      "rarity": "common",
+      "price": 150
+    },
+    {
+      "id": "footwear_xiaoyuan_rare",
+      "name": "小圆·稀有冒险鞋",
+      "fit_character": "xiaoyuan",
+      "slot": "footwear",
+      "rarity": "rare",
+      "price": 600
+    },
+    {
+      "id": "footwear_xiaoyuan_legendary",
+      "name": "小圆·传说冒险鞋",
+      "fit_character": "xiaoyuan",
+      "slot": "footwear",
+      "rarity": "legendary",
+      "price": 1800
+    },
+    {
+      "id": "pawgear_xiaoyuan_common",
+      "name": "小圆·普通猫爪套",
+      "fit_character": "xiaoyuan",
+      "slot": "pawgear",
+      "rarity": "common",
+      "price": 150
+    },
+    {
+      "id": "pawgear_xiaoyuan_rare",
+      "name": "小圆·稀有猫爪套",
+      "fit_character": "xiaoyuan",
+      "slot": "pawgear",
+      "rarity": "rare",
+      "price": 600
+    },
+    {
+      "id": "pawgear_xiaoyuan_legendary",
+      "name": "小圆·传说猫爪套",
+      "fit_character": "xiaoyuan",
+      "slot": "pawgear",
+      "rarity": "legendary",
+      "price": 1800
+    },
+    {
+      "id": "footwear_orange_adventurer_common",
+      "name": "小团·普通冒险鞋",
+      "fit_character": "orange_adventurer",
+      "slot": "footwear",
+      "rarity": "common",
+      "price": 150
+    },
+    {
+      "id": "footwear_orange_adventurer_rare",
+      "name": "小团·稀有冒险鞋",
+      "fit_character": "orange_adventurer",
+      "slot": "footwear",
+      "rarity": "rare",
+      "price": 600
+    },
+    {
+      "id": "footwear_orange_adventurer_legendary",
+      "name": "小团·传说冒险鞋",
+      "fit_character": "orange_adventurer",
+      "slot": "footwear",
+      "rarity": "legendary",
+      "price": 1800
+    },
+    {
+      "id": "pawgear_orange_adventurer_common",
+      "name": "小团·普通猫爪套",
+      "fit_character": "orange_adventurer",
+      "slot": "pawgear",
+      "rarity": "common",
+      "price": 150
+    },
+    {
+      "id": "pawgear_orange_adventurer_rare",
+      "name": "小团·稀有猫爪套",
+      "fit_character": "orange_adventurer",
+      "slot": "pawgear",
+      "rarity": "rare",
+      "price": 600
+    },
+    {
+      "id": "pawgear_orange_adventurer_legendary",
+      "name": "小团·传说猫爪套",
+      "fit_character": "orange_adventurer",
+      "slot": "pawgear",
+      "rarity": "legendary",
+      "price": 1800
+    },
+    {
+      "id": "footwear_xiaobao_common",
+      "name": "小宝·普通脚掌鞋",
+      "fit_character": "xiaobao",
+      "slot": "footwear",
+      "rarity": "common",
+      "price": 150
+    },
+    {
+      "id": "footwear_xiaobao_rare",
+      "name": "小宝·稀有脚掌鞋",
+      "fit_character": "xiaobao",
+      "slot": "footwear",
+      "rarity": "rare",
+      "price": 600
+    },
+    {
+      "id": "footwear_xiaobao_legendary",
+      "name": "小宝·传说脚掌鞋",
+      "fit_character": "xiaobao",
+      "slot": "footwear",
+      "rarity": "legendary",
+      "price": 1800
+    },
+    {
+      "id": "pawgear_xiaobao_common",
+      "name": "小宝·普通翅膀护套",
+      "fit_character": "xiaobao",
+      "slot": "pawgear",
+      "rarity": "common",
+      "price": 150
+    },
+    {
+      "id": "pawgear_xiaobao_rare",
+      "name": "小宝·稀有翅膀护套",
+      "fit_character": "xiaobao",
+      "slot": "pawgear",
+      "rarity": "rare",
+      "price": 600
+    },
+    {
+      "id": "pawgear_xiaobao_legendary",
+      "name": "小宝·传说翅膀护套",
+      "fit_character": "xiaobao",
+      "slot": "pawgear",
+      "rarity": "legendary",
+      "price": 1800
+    },
+    {
+      "id": "outfit_blue_scholar_550",
+      "name": "蓝晶学者 · 服装",
+      "slot": "outfit",
+      "rarity": "rare",
+      "fit_character": "xiaoyuan",
+      "wearable_layout": "garment_only",
+      "asset": "market/wearables/outfit_blue_scholar_550.png"
+    },
+    {
+      "id": "headwear_blue_scholar_550",
+      "name": "蓝晶学者 · 头饰",
+      "slot": "headwear",
+      "rarity": "rare",
+      "fit_character": "xiaoyuan",
+      "wearable_layout": "accessory",
+      "asset": "market/wearables/headwear_blue_scholar_550.png"
+    },
+    {
+      "id": "footwear_blue_scholar_550",
+      "name": "蓝晶学者 · 鞋子",
+      "slot": "footwear",
+      "rarity": "rare",
+      "fit_character": "xiaoyuan",
+      "wearable_layout": "accessory",
+      "asset": "market/wearables/footwear_blue_scholar_550.png"
+    },
+    {
+      "id": "pawgear_blue_scholar_550",
+      "name": "蓝晶学者 · 爪套",
+      "slot": "pawgear",
+      "rarity": "rare",
+      "fit_character": "xiaoyuan",
+      "wearable_layout": "accessory",
+      "asset": "market/wearables/pawgear_blue_scholar_550.png"
+    },
+    {
+      "id": "outfit_dawn_knight_550",
+      "name": "黎明星骑 · 服装",
+      "slot": "outfit",
+      "rarity": "legendary",
+      "fit_character": "xiaoyuan",
+      "wearable_layout": "garment_only",
+      "asset": "market/wearables/outfit_dawn_knight_550.png"
+    },
+    {
+      "id": "headwear_dawn_knight_550",
+      "name": "黎明星骑 · 头饰",
+      "slot": "headwear",
+      "rarity": "legendary",
+      "fit_character": "xiaoyuan",
+      "wearable_layout": "accessory",
+      "asset": "market/wearables/headwear_dawn_knight_550.png"
+    },
+    {
+      "id": "footwear_dawn_knight_550",
+      "name": "黎明星骑 · 鞋子",
+      "slot": "footwear",
+      "rarity": "legendary",
+      "fit_character": "xiaoyuan",
+      "wearable_layout": "accessory",
+      "asset": "market/wearables/footwear_dawn_knight_550.png"
+    },
+    {
+      "id": "pawgear_dawn_knight_550",
+      "name": "黎明星骑 · 爪套",
+      "slot": "pawgear",
+      "rarity": "legendary",
+      "fit_character": "xiaoyuan",
+      "wearable_layout": "accessory",
+      "asset": "market/wearables/pawgear_dawn_knight_550.png"
+    },
+    {
+      "id": "outfit_sea_ranger_550",
+      "name": "碧海游侠 · 服装",
+      "slot": "outfit",
+      "rarity": "rare",
+      "fit_character": "orange_adventurer",
+      "wearable_layout": "garment_only",
+      "asset": "market/wearables/outfit_sea_ranger_550.png"
+    },
+    {
+      "id": "headwear_sea_ranger_550",
+      "name": "碧海游侠 · 头饰",
+      "slot": "headwear",
+      "rarity": "rare",
+      "fit_character": "orange_adventurer",
+      "wearable_layout": "accessory",
+      "asset": "market/wearables/headwear_sea_ranger_550.png"
+    },
+    {
+      "id": "footwear_sea_ranger_550",
+      "name": "碧海游侠 · 鞋子",
+      "slot": "footwear",
+      "rarity": "rare",
+      "fit_character": "orange_adventurer",
+      "wearable_layout": "accessory",
+      "asset": "market/wearables/footwear_sea_ranger_550.png"
+    },
+    {
+      "id": "pawgear_sea_ranger_550",
+      "name": "碧海游侠 · 爪套",
+      "slot": "pawgear",
+      "rarity": "rare",
+      "fit_character": "orange_adventurer",
+      "wearable_layout": "accessory",
+      "asset": "market/wearables/pawgear_sea_ranger_550.png"
+    },
+    {
+      "id": "outfit_flame_warrior_550",
+      "name": "赤焰勇士 · 服装",
+      "slot": "outfit",
+      "rarity": "legendary",
+      "fit_character": "orange_adventurer",
+      "wearable_layout": "garment_only",
+      "asset": "market/wearables/outfit_flame_warrior_550.png"
+    },
+    {
+      "id": "headwear_flame_warrior_550",
+      "name": "赤焰勇士 · 头饰",
+      "slot": "headwear",
+      "rarity": "legendary",
+      "fit_character": "orange_adventurer",
+      "wearable_layout": "accessory",
+      "asset": "market/wearables/headwear_flame_warrior_550.png"
+    },
+    {
+      "id": "footwear_flame_warrior_550",
+      "name": "赤焰勇士 · 鞋子",
+      "slot": "footwear",
+      "rarity": "legendary",
+      "fit_character": "orange_adventurer",
+      "wearable_layout": "accessory",
+      "asset": "market/wearables/footwear_flame_warrior_550.png"
+    },
+    {
+      "id": "pawgear_flame_warrior_550",
+      "name": "赤焰勇士 · 爪套",
+      "slot": "pawgear",
+      "rarity": "legendary",
+      "fit_character": "orange_adventurer",
+      "wearable_layout": "accessory",
+      "asset": "market/wearables/pawgear_flame_warrior_550.png"
+    },
+    {
+      "id": "outfit_polar_explorer_550",
+      "name": "极地探险 · 服装",
+      "slot": "outfit",
+      "rarity": "rare",
+      "fit_character": "xiaobao",
+      "wearable_layout": "garment_only",
+      "asset": "market/wearables/outfit_polar_explorer_550.png"
+    },
+    {
+      "id": "headwear_polar_explorer_550",
+      "name": "极地探险 · 头饰",
+      "slot": "headwear",
+      "rarity": "rare",
+      "fit_character": "xiaobao",
+      "wearable_layout": "accessory",
+      "asset": "market/wearables/headwear_polar_explorer_550.png"
+    },
+    {
+      "id": "footwear_polar_explorer_550",
+      "name": "极地探险 · 鞋子",
+      "slot": "footwear",
+      "rarity": "rare",
+      "fit_character": "xiaobao",
+      "wearable_layout": "accessory",
+      "asset": "market/wearables/footwear_polar_explorer_550.png"
+    },
+    {
+      "id": "pawgear_polar_explorer_550",
+      "name": "极地探险 · 翅套",
+      "slot": "pawgear",
+      "rarity": "rare",
+      "fit_character": "xiaobao",
+      "wearable_layout": "accessory",
+      "asset": "market/wearables/pawgear_polar_explorer_550.png"
+    },
+    {
+      "id": "outfit_starfrost_guard_550",
+      "name": "星霜守卫 · 服装",
+      "slot": "outfit",
+      "rarity": "legendary",
+      "fit_character": "xiaobao",
+      "wearable_layout": "garment_only",
+      "asset": "market/wearables/outfit_starfrost_guard_550.png"
+    },
+    {
+      "id": "headwear_starfrost_guard_550",
+      "name": "星霜守卫 · 头饰",
+      "slot": "headwear",
+      "rarity": "legendary",
+      "fit_character": "xiaobao",
+      "wearable_layout": "accessory",
+      "asset": "market/wearables/headwear_starfrost_guard_550.png"
+    },
+    {
+      "id": "footwear_starfrost_guard_550",
+      "name": "星霜守卫 · 鞋子",
+      "slot": "footwear",
+      "rarity": "legendary",
+      "fit_character": "xiaobao",
+      "wearable_layout": "accessory",
+      "asset": "market/wearables/footwear_starfrost_guard_550.png"
+    },
+    {
+      "id": "pawgear_starfrost_guard_550",
+      "name": "星霜守卫 · 翅套",
+      "slot": "pawgear",
+      "rarity": "legendary",
+      "fit_character": "xiaobao",
+      "wearable_layout": "accessory",
+      "asset": "market/wearables/pawgear_starfrost_guard_550.png"
+    }
+  ],
+  "boss": {
+    "size": 10,
+    "pass_percent": 90,
+    "first_stage_xp": 26,
+    "first_stage_coins": 5,
+    "objective_seconds": 45,
+    "objective_per_level": 0.5,
+    "objective_ceiling": 75
+  },
+  "mood": {
+    "maximum": 100,
+    "initial": 50,
+    "legacy_initial": 80,
+    "low_threshold": 20,
+    "correct_gain": 8,
+    "wrong_loss": 12,
+    "stage_clear_gain": 20,
+    "stage_failure_loss": 10,
+    "calm_restore": 40,
+    "rest_restore": 40,
+    "rally_floor": 60,
+    "revive_floor": 80,
+    "extra_mana": 2,
+    "daily_mana_ceiling": 30
+  }
+}

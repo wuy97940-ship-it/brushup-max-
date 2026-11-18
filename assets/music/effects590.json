@@ -1,0 +1,37 @@
+{
+  "version": "5.9.0",
+  "authorship": "Codex标准库原创合成",
+  "recipe": "tools/compose_hunting_effects590.py",
+  "tracks": [
+    {
+      "file": "music/hunting_countdown590.wav",
+      "seconds": 0.14,
+      "sha256": "f0b745c48b4378eb9e314561815b66bdd7d43881064ebdea2cd0dbc97f64886b"
+    },
+    {
+      "file": "music/hunting_send590.wav",
+      "seconds": 0.26,
+      "sha256": "cc2e4c7dfb0ae2ed35ed2857b5f8c59ab21351f420bd5f059fea19a1591de2cd"
+    },
+    {
+      "file": "music/hunting_ultimate590.wav",
+      "seconds": 0.4,
+      "sha256": "78040bb6e5f9edb7e0662830ca18a63d35eed639a86ff598dba6ce555ceca5c4"
+    },
+    {
+      "file": "music/hunting_correct590.wav",
+      "seconds": 0.28,
+      "sha256": "dc3aaae2543cf8be919137c3e3e5c21714ac23055d3ac4405cfc477b28f8ca72"
+    },
+    {
+      "file": "music/hunting_wrong590.wav",
+      "seconds": 0.26,
+      "sha256": "f35616aa31fbc020291483e767d6966ee50cad5a8dfc035b2c964ee075eddf94"
+    },
+    {
+      "file": "music/hunting_throw590.wav",
+      "seconds": 0.6,
+      "sha256": "cac6018825480ca25fbbc4f379ef1b93006ff80e1beefe35c44e4c3e3ca0f13c"
+    }
+  ]
+}

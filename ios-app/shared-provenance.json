@@ -7,29 +7,9 @@
   },
   "shared_pairs": [
     {
-      "source": "miniprogram/utils/game.js",
-      "target": "ios-app/src/shared/utils/game.js",
-      "sha256": "148901f3b7b166362d0142c2a29b29641d7adbb9ffac03f9be95d464d39b076d"
-    },
-    {
       "source": "miniprogram/utils/skills.js",
       "target": "ios-app/src/shared/utils/skills.js",
       "sha256": "d6ccb7130a7db64e828fb8b47fc00cc9946490223445f3a20f59209ea5eddd6a"
-    },
-    {
-      "source": "miniprogram/utils/shop.js",
-      "target": "ios-app/src/shared/utils/shop.js",
-      "sha256": "8fe5a3434609a7eccf3e3c768a70eced5a403ba4e2c642138d46968491c68670"
-    },
-    {
-      "source": "miniprogram/utils/finance.js",
-      "target": "ios-app/src/shared/utils/finance.js",
-      "sha256": "8e548a5287274101eecbebb843389ef53854285f4f24aba8aea3de7bdc148cb3"
-    },
-    {
-      "source": "miniprogram/utils/migration.js",
-      "target": "ios-app/src/shared/utils/migration.js",
-      "sha256": "18f93cffa7b37fd9abdab0df14d2dc320f59ce14534adf57d42810d209e4acfe"
     },
     {
       "source": "miniprogram/utils/study_text.js",
@@ -613,5 +593,27 @@
   "bank_fingerprint": "c03eb4a3e5c2222e42c909f2d9905753d0c8320d00234445b6283c3d47b56178",
   "original_question_count": 704,
   "old_question_bank_included": false,
-  "note": "公开候选内共有代码与美术来源核对，题库使用独立原创主库。"
+  "note": "公开候选内共有代码与美术来源核对，题库使用独立原创主库。",
+  "diverged_pairs": [
+    {
+      "source": "miniprogram/utils/game.js",
+      "target": "ios-app/src/shared/utils/game.js",
+      "reason": "私人主库中两端已独立演进，公开树按各自导出原样保留"
+    },
+    {
+      "source": "miniprogram/utils/shop.js",
+      "target": "ios-app/src/shared/utils/shop.js",
+      "reason": "私人主库中两端已独立演进，公开树按各自导出原样保留"
+    },
+    {
+      "source": "miniprogram/utils/finance.js",
+      "target": "ios-app/src/shared/utils/finance.js",
+      "reason": "私人主库中两端已独立演进，公开树按各自导出原样保留"
+    },
+    {
+      "source": "miniprogram/utils/migration.js",
+      "target": "ios-app/src/shared/utils/migration.js",
+      "reason": "私人主库中两端已独立演进，公开树按各自导出原样保留"
+    }
+  ]
 }

@@ -30,15 +30,48 @@
     }
   },
   "packOptions": {
-    "ignore": [],
+    "ignore": [
+      {
+        "value": "README.md",
+        "type": "file"
+      }
+    ],
     "include": [
       {
-        "type": "folder",
-        "value": "assets"
+        "value": "assets",
+        "type": "folder"
       },
       {
         "type": "folder",
-        "value": "packages/financeArt/assets"
+        "value": "packages/adventureArt/assets"
+      },
+      {
+        "type": "folder",
+        "value": "packages/adventureSupply/assets"
+      },
+      {
+        "type": "folder",
+        "value": "packages/spiritMedia1/assets"
+      },
+      {
+        "type": "folder",
+        "value": "packages/spiritMedia2/assets"
+      },
+      {
+        "type": "folder",
+        "value": "packages/spiritMedia3/assets"
+      },
+      {
+        "type": "folder",
+        "value": "packages/spiritMedia4/assets"
+      },
+      {
+        "type": "folder",
+        "value": "packages/spiritMedia5/assets"
+      },
+      {
+        "type": "folder",
+        "value": "packages/spiritMedia6/assets"
       }
     ]
   },

@@ -13,9 +13,12 @@ import customtkinter as ctk
 
 import app as classic
 import game
+import desktop_growth
 import game_skills as skills
 import game_shop as shop
 import store
+from desktop_persistence import save_with_events, waiting, defer_close
+from learning_explanations import explanation_text
 import finance
 from finance_ui import FinanceUIMixin
 from app import App, C, _f, btn_ghost, btn_primary, btn_soft, is_correct
@@ -46,43 +49,65 @@ class AdventureApp(FinanceUIMixin, App):
     @property
     def g(self) -> dict:
         existing = self.progress.get("game")
+        if not hasattr(self,'_bank_derived'):
+            self._bank_derived=game.prepare_bank(self.questions)
         if (not isinstance(existing, dict) or existing.get("growth_version") != 2
                 or not existing.get("finance_expansion") or "xiaobao" not in existing.get("inventory", [])
-                or existing.get("campaign", {}).get("bank_fingerprint") != game.build_campaign(self.questions)["bank_fingerprint"]):
+                or existing.get("campaign", {}).get("bank_fingerprint") != self._bank_derived['campaign']["bank_fingerprint"]):
             self._growth_migration_pending = True
-        return game.ensure_game(self.progress, self.questions)
+        if getattr(self, '_normalized_progress', None) is not self.progress:
+            game.ensure_game(self.progress, self.questions, bank=self._bank_derived)
+            from static_campaigns import seal
+            seal(self.progress)
+            self._normalized_progress = self.progress
+        return self.progress['game']
 
     def _commit(self, mutate):
         """先在副本中变更，写盘成功后替换内存，抽奖未保存不展示。"""
+        if waiting(self):return None
         if self._pending_transaction:
             messagebox.showinfo("还有待保存的进度", "请先点击侧栏「重试保存」，再继续操作。")
             return None
-        candidate = copy.deepcopy(self.progress)
+        candidate = store.clone_progress(self.progress)
         try:
             result = mutate(candidate)
+            from static_campaigns import ReadOnlyDict, seal
+            if isinstance(candidate.get('game'), dict) and not isinstance(candidate['game'].get('campaign'), ReadOnlyDict):
+                seal(candidate)
         except (ValueError, KeyError) as error:
             messagebox.showinfo("小圆提醒", str(error))
             return None
-        if not store.save_progress(candidate):
+        if not save_with_events(self,store.save_progress,candidate):
             self._pending_transaction = (candidate, result)
             self.retry_save_btn.pack(fill="x", padx=16, pady=4)
-            messagebox.showerror("保存失败", "磁盘写入失败，当前变更尚未生效。\n请检查磁盘空间或目录权限，再点击侧栏「重试保存」。\n奖励结果已暂存，不会重新抽取。")
+            quiz_retry = getattr(self, "_quiz_retry_btn", None)
+            if quiz_retry is not None and quiz_retry.winfo_exists():
+                quiz_retry.pack(side="right", padx=6)
+            messagebox.showerror("保存失败", "磁盘写入失败，当前变更尚未生效。\n请检查磁盘空间或目录权限，再点击「重试保存」（页首或侧栏）。\n奖励结果已暂存，不会重新抽取。")
             return None
         self.progress = candidate
-        self._sync_avatar()
+        self._normalized_progress = candidate
+        self._sync_after_commit()
         return result if result is not None else True
+
+    def _sync_after_commit(self):
+        self._sync_avatar()
 
     def _retry_pending(self) -> None:
         if not self._pending_transaction:
             return
         candidate, result = self._pending_transaction
-        if not store.save_progress(candidate):
+        if not save_with_events(self,store.save_progress,candidate):
             messagebox.showerror("仍未保存", "无法写入存档，请检查磁盘空间与目录权限。")
             return
         self.progress = candidate
+        self._normalized_progress = candidate
         self._sync_avatar()
         self._pending_transaction = None
         self.retry_save_btn.pack_forget()
+        quiz_retry = getattr(self, "_quiz_retry_btn", None)
+        if quiz_retry is not None and quiz_retry.winfo_exists():
+            quiz_retry.pack_forget()
         self.current_qids = []
         self._game_mode = False
         if isinstance(result, dict) and "passed" in result:
@@ -90,19 +115,44 @@ class AdventureApp(FinanceUIMixin, App):
         else:
             self._show_page("home")
 
+    def _scroll_answer_feedback(self):
+        canvas = getattr(self.body, "_parent_canvas", None)
+        if canvas is not None and canvas.winfo_exists():
+            pending = getattr(self, '_feedback_scroll_id', None)
+            if pending is not None:
+                self.after_cancel(pending)
+            body = self.body
+            question = (self._attempt()['id'], self.current_idx,
+                        self.current_qids[self.current_idx])
+
+            def reveal():
+                self._feedback_scroll_id = None
+                if (self.body is body and canvas.winfo_exists() and self.current_qids
+                        and self.answer_submitted
+                        and question == (self._attempt()['id'], self.current_idx,
+                                         self.current_qids[self.current_idx])):
+                    canvas.yview_moveto(1)
+
+            # 让现有布局空闲任务先完成，再滚动；避免同步强刷后再绘制一遍。
+            self._feedback_scroll_id = self.after_idle(reveal)
+
     def _save(self) -> None:
         if self._pending_transaction:
             messagebox.showinfo("尚未保存", "请先重试保存待处理进度。")
             return
-        if self._practice_skills_enabled and self.current_qids:
-            a = self.progress.get("practice")
-            qid = self.current_qids[self.current_idx]
-            if a and qid in a["qids"]:
-                a["index"] = self.current_idx
-        if not store.save_progress(self.progress):
-            messagebox.showerror("保存失败", "学习记录暂未写入磁盘，请检查存档目录权限或磁盘空间。")
+        def save(candidate):
+            if self._practice_skills_enabled and self.current_qids:
+                a = candidate.get("practice")
+                qid = self.current_qids[self.current_idx]
+                if a and qid in a["qids"]:
+                    a["index"] = self.current_idx
+        self._commit(save)
 
     def _clear(self) -> None:
+        pending = getattr(self, '_feedback_scroll_id', None)
+        if pending is not None:
+            self.after_cancel(pending)
+            self._feedback_scroll_id = None
         if self._draft_timer:
             try:
                 self.after_cancel(self._draft_timer)
@@ -113,13 +163,8 @@ class AdventureApp(FinanceUIMixin, App):
         self._practice_skills_enabled = False
         # CustomTkinter 5.2.2 的下拉菜单 destroy 未注销缩放回调。
         # 页面销毁前补齐注销，避免切页后调整缩放或跨屏时访问已销毁菜单。
-        from customtkinter.windows.widgets.scaling import CTkScalingBaseClass
-        def release_menus(widget):
-            for child in widget.winfo_children():
-                release_menus(child)
-            if isinstance(widget, tk.Menu) and isinstance(widget, CTkScalingBaseClass):
-                CTkScalingBaseClass.destroy(widget)
-        release_menus(self.page_area)
+        from desktop_window_resources import release_resources
+        release_resources(self.page_area)
         super()._clear()
 
     def _build_sidebar(self) -> None:
@@ -190,7 +235,9 @@ class AdventureApp(FinanceUIMixin, App):
         frame = self._scroll()
         st = game.stats(g)
         title = game.CATALOG.get(g.get("title"), {}).get("name", "新的冒险，等你出发")
-        self._heading(frame, f"小圆，今天去哪里冒险？", f"Lv.{st['level']}  ·  {title}  ·  {game.CONFIG['pass_percent']}% 解锁下一关，{game.CONFIG['two_star_percent']}% 高质量通关")
+        # 技能工坊（成长模式 v3）经典关结算线为 80%，与 desktop_growth 结算一致；旧经典规则为 70%。
+        pass_line = 80 if desktop_growth.enabled(g) else game.CONFIG["pass_percent"]
+        self._heading(frame, f"小圆，今天去哪里冒险？", f"Lv.{st['level']}  ·  {title}  ·  {pass_line}% 解锁下一关，{game.CONFIG['two_star_percent']}% 高质量通关")
         numbers = ctk.CTkFrame(frame, fg_color="transparent")
         numbers.pack(fill="x", pady=(0, 14))
         values = [("已通关", f"{st['cleared']} / {st['total']}"), ("冒险星星", str(st["stars"])),
@@ -370,6 +417,8 @@ class AdventureApp(FinanceUIMixin, App):
         btn_ghost(top, text="← 保存并返回", width=115, height=31, font=_f(11), command=self._back_home).pack(side="left")
         self.lbl_meta = ctk.CTkLabel(top, text="", font=_f(11), text_color=C["text_sub"])
         self.lbl_meta.pack(side="left", padx=10)
+        # 答题页侧栏已隐藏：保存失败时重试入口就地显示在页首，避免被指引到不可见的侧栏按钮。
+        self._quiz_retry_btn = btn_primary(top, text="重试保存", command=self._retry_pending, width=112, height=31, font=_f(11))
         self.btn_fav = btn_soft(top, text="☆ 收藏", width=80, height=31, font=_f(11), command=self._toggle_favorite_current)
         self.btn_fav.pack(side="right")
         score_row = ctk.CTkFrame(self.page_area, fg_color="transparent")
@@ -378,7 +427,7 @@ class AdventureApp(FinanceUIMixin, App):
         self.lbl_score.pack(side="left")
         level = game.level_for(self.g, self.g["active"]["stage_id"])
         self._game_scene = AdventureScene(self.page_area, self.sprites, self.g, biome=level["biome"], height=135,
-                                           boss=level["kind"] == "boss")
+                                           boss=level["kind"] == "boss",companions_snapshot=self.g['active'].get('companions_snapshot'))
         self._game_scene.pack(fill="x", padx=25, pady=(2, 5))
         self.progress_bar = ctk.CTkProgressBar(self.page_area, height=6, corner_radius=100)
         self.progress_bar.pack(fill="x", padx=25, pady=(3, 7))
@@ -524,7 +573,9 @@ class AdventureApp(FinanceUIMixin, App):
         total = len(attempt["qids"])
         answered = len(attempt["answers"])
         correct = sum(bool(rec["correct"]) for rec in attempt["answers"].values())
-        required = math.ceil(total * game.CONFIG["pass_percent"] / 100)
+        # 结算线以 attempt 规则为准：5.2.0 与成长模式（5.3.0）经典关均按 80% 结算（见 desktop_growth 结算）。
+        percent = 80 if attempt.get("ruleset") in ("5.2.0", desktop_growth.RULESET) else game.CONFIG["pass_percent"]
+        required = math.ceil(total * percent / 100)
         self.lbl_score.configure(text=f"第 {self.current_idx + 1}/{total} 题    已答 {answered}    答对 {correct}/{required} 即可通关")
         self.progress_bar.set(answered / total)
 
@@ -745,6 +796,7 @@ class AdventureApp(FinanceUIMixin, App):
     def _back_home(self) -> None:
         self._flush_draft()
         if self._pending_transaction:
+            messagebox.showinfo("还有待保存的进度", "请先点击「重试保存」，保存成功后即可继续。")
             return
         if not self._game_mode:
             super()._back_home()
@@ -769,7 +821,7 @@ class AdventureApp(FinanceUIMixin, App):
             self._heading(frame, heading,
                           level["chapter_title"] + " · " + level["name"])
             self._game_scene = AdventureScene(frame, self.sprites, g, biome=level["biome"], height=235,
-                                               boss=level["kind"] == "boss", pose="celebrate" if passed else "hurt")
+                                               boss=level["kind"] == "boss", pose="celebrate" if passed else "hurt",companions_snapshot=result.get('companions_snapshot'))
             self._game_scene.pack(fill="x", pady=(0, 12))
             card = self._card_frame(frame)
             card.pack(fill="x", pady=(0, 12))
@@ -777,13 +829,13 @@ class AdventureApp(FinanceUIMixin, App):
                          font=_f(32, "bold"), text_color="#DBAC38").pack(pady=(13, 4))
             ctk.CTkLabel(card, text=f"答对 {result['correct']}/{result['total']} · 正确率 {result['correct'] / result['total']:.0%}",
                          font=_f(18, "bold"), text_color=C["text"]).pack(pady=4)
-            detail_quality = quality + (" · 三星全对" if result["stars"] == 3 else " · 下一关已解锁" if passed else f" · 至少 {game.CONFIG['pass_percent']}% 才能解锁")
+            detail_quality = quality + (" · 三星全对" if result["stars"] == 3 else " · 下一关已解锁" if passed else f" · 至少 {result.get('pass_percent',game.CONFIG['pass_percent'])}% 才能解锁")
             ctk.CTkLabel(card, text=detail_quality, font=_f(13, "bold"),
                          text_color=C["brand"] if high_quality else C["text_sub"]).pack(pady=3)
             ctk.CTkLabel(card, text=f"经验 +{result['xp']}     金币 +{result['coins']}", font=_f(14),
                          text_color=C["brand"]).pack(pady=(3, 13))
             if result.get("assisted"):
-                ctk.CTkLabel(card, text="本轮消耗 1 次瞒天过海，真实成绩与错题已保留。", font=_f(11), text_color=C["text_sub"]).pack(pady=(0, 12))
+                ctk.CTkLabel(card, text="本轮技能助力，真实成绩与错题已保留，最高两星。" if 'game_correct' in result else "本轮消耗 1 次瞒天过海，真实成绩与错题已保留。", font=_f(11), text_color=C["text_sub"]).pack(pady=(0, 12))
             if result.get("level_after", 1) > result.get("level_before", 1):
                 learned = "、".join(skills.DEFINITIONS[s]["name"] for s in result.get("new_skills", []))
                 ctk.CTkLabel(frame, text=f"升级啦！Lv.{result['level_before']} → Lv.{result['level_after']}" + (f" · 学会 {learned}" if learned else ""),
@@ -825,7 +877,7 @@ class AdventureApp(FinanceUIMixin, App):
                 next_button.pack(fill="x", pady=4)
             else:
                 a = g.get("active")
-                status = skills.mercy_status(g, a, level) if a and a["id"] == result["attempt_id"] else {"eligible": False}
+                status = skills.mercy_status(g, a, level) if 'game_correct' not in result and a and a["id"] == result["attempt_id"] else {"eligible": False}
                 if status["eligible"]:
                     mercy_button = btn_soft(buttons, text=f"☁ 瞒天过海 · 多错一题继续前进（{status['available']} 次）", height=42,
                                             command=self._use_mercy)
@@ -868,7 +920,7 @@ class AdventureApp(FinanceUIMixin, App):
                 card.pack(fill="x", pady=8)
                 ctk.CTkLabel(card, text=f"{index + 1}. {q['stem']}", font=_f(13), text_color=C["text"],
                              wraplength=780, justify="left", anchor="w").pack(fill="x", padx=18, pady=(15, 8))
-                text = f"参考答案：{q.get('answer', '')}\n\n{q.get('explanation', '')}"
+                text = f"参考答案：{q.get('answer', '')}\n\n{explanation_text(q)}"
                 box = ctk.CTkTextbox(card, height=250, wrap="char", font=_f(12), fg_color=C["card"])
                 box.pack(fill="x", padx=14, pady=(0, 14))
                 box.insert("1.0", text)
@@ -1064,6 +1116,16 @@ class AdventureApp(FinanceUIMixin, App):
 
     def _build_growth(self) -> None:
         frame, g = self._scroll(), self.g
+        if g.get("product", {}).get("version") == 3:
+            from desktop_growth import state as growth_state
+            archive = growth_state(g)
+            self._heading(frame, "旧版技能历史档案", "旧计次技能已归档，未用付费次数及墨水已一次性退款；永久技能请到技能工坊学习。")
+            self._text(frame, f"迁移金币补偿：{archive['refund_coins']}。旧技能不再购买、预约或施放。")
+            history = archive['old_skill_archive']
+            for s in skills.CONFIG['definitions']:
+                self._text(frame, f"{s['name']} · 历史购买{history.get('purchased', {}).get(s['id'], 0)}次 · 历史使用{history.get('used', {}).get(s['id'], 0)}次")
+            btn_soft(frame, text="进入永久技能工坊", command=lambda:self._show_page('workshop', self._build_workshop)).pack(anchor='w', pady=12)
+            return
         level = skills.level(g)
         self._heading(frame, "小圆的成长之路", f"Lv.{level} · 累计经验 {g['xp']} · 每 500 经验升一级 · 金币 {g['coins']} · 魔法墨水 {g['skill_state']['ink']}")
         hero = self._card_frame(frame)
@@ -1146,7 +1208,14 @@ class AdventureApp(FinanceUIMixin, App):
             self._show_page("home")
 
     def _on_close(self) -> None:
+        if defer_close(self):return
+        if not self._flush_scratch():
+            return
         self._flush_draft()
+        # 经典层作答只改内存（App._save 静默），关窗兜底补存一次全量内存态。
+        if not save_with_events(self,store.save_progress,self.progress):
+            if not messagebox.askyesno("存档写入失败", "进度可能未写入磁盘，现在退出可能丢失最近的作答记录。\n仍要退出吗？"):
+                return
         if self._pending_transaction:
             if not messagebox.askyesno("仍有未保存内容", "有进度尚未写入磁盘。关闭后将丢失这次未保存变更。\n仍要关闭吗？"):
                 return
@@ -1160,15 +1229,20 @@ AdventureApp._pages = {**App._pages, "home": "_build_home", "practice": "_build_
 def main() -> None:
     mutex = None
     try:
-        kernel = ctypes.windll.kernel32
+        kernel = ctypes.WinDLL("kernel32", use_last_error=True)
         kernel.CreateMutexW.argtypes = [ctypes.c_void_p, ctypes.c_int, ctypes.c_wchar_p]
         kernel.CreateMutexW.restype = ctypes.c_void_p
-        kernel.GetLastError.restype = ctypes.c_ulong
         kernel.CloseHandle.argtypes = [ctypes.c_void_p]
         data_dir = os.environ.get("XY_SHUATI_DATA_DIR")
         suffix = "-" + hashlib.sha256(os.path.abspath(data_dir).encode("utf-8")).hexdigest()[:12] if data_dir else ""
-        mutex = kernel.CreateMutexW(None, False, "Local\\XiaoYuanAdventureOriginal-v02" + suffix)
-        if kernel.GetLastError() == 183:
+        ctypes.set_last_error(0)
+        mutex = kernel.CreateMutexW(None, False, "Local\\XiaoYuanAdventureOriginal-v61" + suffix)
+        error_code = ctypes.get_last_error()
+        if not mutex:
+            raise OSError(error_code, "无法建立存档单实例保护")
+        if error_code == 183:
+            kernel.CloseHandle(ctypes.c_void_p(mutex))
+            mutex = None
             root = tk.Tk()
             root.withdraw()
             messagebox.showinfo("小圆已经出发了", "小圆冒险世界已打开，请切换到现有窗口。")
@@ -1176,8 +1250,15 @@ def main() -> None:
             return
     except AttributeError:
         pass
+    except OSError:
+        root = tk.Tk()
+        root.withdraw()
+        messagebox.showerror("启动失败", "无法建立存档保护，请关闭现有游戏后重新打开。")
+        root.destroy()
+        return
     try:
-        window = AdventureApp()
+        from desktop_product_ui import ProductApp
+        window = ProductApp()
         icon = classic._icon_path()
         if icon:
             window.iconbitmap(icon)

@@ -1,6 +1,6 @@
 // 财管数值核对、剧情与小镇规则；苹果和网页由准备脚本复制同一源文件。
 const CONFIG=require('../data/finance_config');
-const KNOWLEDGE=require('../data/finance_knowledge');
+const knowledge=()=>require('../data/finance_knowledge');
 const clone=x=>JSON.parse(JSON.stringify(x));
 const object=x=>!!x&&typeof x==='object'&&!Array.isArray(x);
 const time=()=>Date.now()/1000;
@@ -154,7 +154,7 @@ function finishPractice(p,attempt,passPercent=70){
 }
 function claimCommission(p,id,attempt){const c=(CONFIG.commissions||[]).find(x=>x.id===id),s=state(p.game);if(!c||!actOpen(p.game,CONFIG.acts.find(a=>a.id===c.act_id)))throw Error('经营委托尚未开放。');if(attempt&&attempt.commission_id===id&&attempt.settled)finishPractice(p,attempt);const status=s.commission_claims[id];if(!status?.completed)throw Error('先完成该委托的题目。');if(status.claimed)return {id,already_claimed:true};status.claimed=true;const card=c.postcard||c.postcard_id||'postcard_'+id;if(!p.game.inventory.includes(card))p.game.inventory.push(card);return {id,postcard:card};}
 function rescueQuestions(p,meta,world){const w=p.game.campaign.worlds.find(x=>x.id===(world||p.game.world));return w?meta.filter(q=>q.book_id.startsWith(w.prefix)&&p.wrong_book.includes(q.id)).slice(0,5).map(q=>q.id):[];}
-function formulas(g){const collection=Array.isArray(KNOWLEDGE)?KNOWLEDGE:KNOWLEDGE.chapters||[],cs=chapters(g),s=state(g);return collection.map(c=>{const number=Number(c.chapter_no||c.number||c.chapter),chapter=cs.find(x=>x.number===number);return {...c,chapter_no:number,seen:s.formula_seen.includes('chapter:'+number),open:!!chapter&&Array.from({length:number-1},(_,i)=>i+1).every(n=>{const prior=cs.find(x=>x.number===n);return !!prior&&cleared(g,prior);})};});}
+function formulas(g){const KNOWLEDGE=knowledge(),collection=Array.isArray(KNOWLEDGE)?KNOWLEDGE:KNOWLEDGE.chapters||[],cs=chapters(g),s=state(g);return collection.map(c=>{const number=Number(c.chapter_no||c.number||c.chapter),chapter=cs.find(x=>x.number===number);return {...c,chapter_no:number,seen:s.formula_seen.includes('chapter:'+number),open:!!chapter&&Array.from({length:number-1},(_,i)=>i+1).every(n=>{const prior=cs.find(x=>x.number===n);return !!prior&&cleared(g,prior);})};});}
 function seeFormulas(p,number){const chapter=formulas(p.game).find(c=>c.chapter_no===Number(number));if(!chapter?.open)throw Error('完成前面的财管章节后开放本章公式。');const seen=state(p.game).formula_seen,key='chapter:'+chapter.chapter_no;if(!seen.includes(key))seen.push(key);return chapter;}
 function storyFor(g,id){const a=(CONFIG.acts||[]).find(x=>x.id===id);if(!a||!actOpen(g,a))throw Error('完成前面的章节后开放剧情。');return {act:a,story:a.story||[],completion_story:a.completion_story||[],completed:view(g).acts.find(x=>x.id===id).completed};}
 function evaluateNumeric(checks,values){return checks.map(c=>{const v=values[c.key];return checkNumber(c,object(v)?v.value:v,object(v)?v.unit:c.unit);});}
@@ -164,4 +164,4 @@ function companionGuide(p,meta){
  const messages={spirit_deer:count?'当前科目还有'+count+'道错题需要照顾，我们一起复习吧。':'错题已清空，露露会继续记住你的学习足迹。',spirit_owl:'先认清公式的符号和适用条件，再代入数字。公式图鉴一直为你打开。',spirit_otter:'看看经营委托：把知识放进小镇的现金流、成本和预算里。',spirit_hedgehog:'一道错题只是下一次进步的线索。先整理思路，我陪你再试一次。'};
  return {...friend,message:messages[friend.id]||friend.story,utility:friend.id==='spirit_owl'?'formulas':friend.id==='spirit_otter'?'town':'review'};
 }
-module.exports={CONFIG,KNOWLEDGE,state,ensureExpansion:state,structured,checkNumber,numericCheck:checkNumber,evaluateNumeric,draft,saveDraft,prepareSubmission,setProcess,grade,beginCorrection,chapters,awardChapters,claimChapters:p=>awardChapters(p.game),view,build,upgradeBuilding:build,seeStory,storyFor,recruit,companion,equipCompanion:companion,companionGuide,commissionQuestions,finishPractice,claimCommission,rescueQuestions,formulas,seeFormulas};
+module.exports={CONFIG,get KNOWLEDGE(){return knowledge();},state,ensureExpansion:state,structured,checkNumber,numericCheck:checkNumber,evaluateNumeric,draft,saveDraft,prepareSubmission,setProcess,grade,beginCorrection,chapters,awardChapters,claimChapters:p=>awardChapters(p.game),view,build,upgradeBuilding:build,seeStory,storyFor,recruit,companion,equipCompanion:companion,companionGuide,commissionQuestions,finishPractice,claimCommission,rescueQuestions,formulas,seeFormulas};

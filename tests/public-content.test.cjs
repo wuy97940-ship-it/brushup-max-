@@ -44,8 +44,9 @@ test('微信原子保存失败保持旧材料，重试不重复升级，公开�
  assert.equal(F.state(store.progress.game).buildings[id],1);
 });
 
-test('公开微信与Expo共享运行代码和原创地图，具备三主角及六经营区域',()=>{
- for(const file of ['utils/game.js','utils/finance.js','utils/migration.js','utils/shop.js'])assert.deepEqual(fs.readFileSync(path.join(root,'miniprogram',file)),fs.readFileSync(path.join(root,'ios-app/src/shared',file)));
+test('公开微信与Expo按共享清单核对共有运行代码和原创地图，具备三主角及六经营区域',()=>{
+ const provenance=require('../ios-app/shared-provenance.json');
+ for(const pair of provenance.shared_pairs)assert.deepEqual(fs.readFileSync(path.join(root,pair.source)),fs.readFileSync(path.join(root,pair.target)));
  assert.deepEqual(G.CAMPAIGN,require('../content/campaign.json'));
  assert(G.CATALOG.xiaobao);assert.equal(F.CONFIG.acts.length,6);assert.equal(F.CONFIG.buildings.length,6);
  assert.equal(F.CONFIG.outfits.length,12);assert.equal(F.CONFIG.companions.length,4);

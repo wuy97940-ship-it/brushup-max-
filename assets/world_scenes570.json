@@ -1,0 +1,29 @@
+{
+  "version":"5.8.0",
+  "worlds":{
+    "accounting":[
+      {"id":"accounting_morning","name":"晨光森林","day":"forest_day_v520.png","night":"forest_night_v520.png"},
+      {"id":"accounting_ledger","name":"账本林径","day":"accounting_ledger_day_v570.png"},
+      {"id":"accounting_mirror_v2","name":"水镜桥","day":"accounting_mirror_v2_day_v570.png"},
+      {"id":"accounting_library","name":"藏书树屋","day":"accounting_library_day_v570.png"},
+      {"id":"accounting_starlight","name":"星光讲堂","day":"accounting_starlight_day_v570.png"}],
+    "law":[
+      {"id":"law_codex","name":"蔚蓝法典岛","day":"island_day_v520.png","night":"island_night_v520.png"},
+      {"id":"law_contract","name":"契约长廊","day":"law_contract_day_v570.png"},
+      {"id":"law_order","name":"秩序花园","day":"law_order_day_v570.png"},
+      {"id":"law_arbitration","name":"仲裁广场","day":"law_arbitration_day_v570.png"},
+      {"id":"law_moon","name":"月光议事厅","day":"law_moon_day_v570.png"}],
+    "finance":[
+      {"id":"finance_stars","name":"星光金融岛","day":"stars_day_v520.png","night":"stars_night_v520.png"},
+      {"id":"finance_windmill","name":"风车工坊","day":"finance_windmill_day_v570.png"},
+      {"id":"finance_harbor","name":"港湾集市","day":"finance_harbor_day_v570.png"},
+      {"id":"finance_tower","name":"账本高塔","day":"finance_tower_day_v570.png"},
+      {"id":"finance_trade","name":"星河商路","day":"finance_trade_day_v570.png"}],
+    "audit":[
+      {"id":"audit_time","name":"时光遗迹","day":"audit_time_day_v570.png"},
+      {"id":"audit_evidence","name":"证据回廊","day":"audit_evidence_day_v570.png"},
+      {"id":"audit_archive","name":"镜湖档案馆","day":"audit_archive_day_v570.png"},
+      {"id":"audit_observatory","name":"星盘观测台","day":"audit_observatory_day_v570.png"},
+      {"id":"audit_dawn","name":"黎明钟塔","day":"audit_dawn_day_v570.png"}]
+  }
+}

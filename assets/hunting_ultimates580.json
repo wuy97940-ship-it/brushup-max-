@@ -1,0 +1,31 @@
+{
+  "version": "5.8.0",
+  "schema_version": 1,
+  "minimum_seconds": 12,
+  "energy_cap_percent": 25,
+  "tiers": {
+    "rare": {"chance": 0.12, "energy_points": 0.5, "mana_points": 2, "time_seconds": 2, "power": 1},
+    "legendary": {"chance": 0.26, "energy_points": 1.2, "mana_points": 4, "time_seconds": 4, "power": 2},
+    "mythic": {"chance": 0.5, "energy_points": 2.5, "mana_points": 8, "time_seconds": 8, "power": 3},
+    "hero": {"chance": 0.5, "energy_points": 2.5, "mana_points": 8, "time_seconds": 8, "power": 3}
+  },
+  "targets": {
+    "xiaoyuan": {"name": "月圆星辉", "projectile": "starlight", "color": "#85B8FF"},
+    "xiaobao": {"name": "王者爪击", "projectile": "flame", "color": "#FFB563"},
+    "orange_adventurer": {"name": "冒险龙卷", "projectile": "aurora", "color": "#A4EACB"},
+    "spirit_otter": {"name": "潮汐水炮", "color": "#85D7F3"},
+    "spirit_bee": {"name": "风铃震荡", "color": "#FFE089"},
+    "spirit_mushroom": {"name": "晨露迷雾", "color": "#96EADF"},
+    "spirit_pikachu": {"name": "十万伏特", "color": "#FFE366"},
+    "spirit_owl": {"name": "夜幕羽刃", "color": "#AECEFF"},
+    "spirit_whale": {"name": "星河洪流", "color": "#7FAEFF"},
+    "spirit_fox": {"name": "极光幻境", "color": "#D8BAFF"},
+    "spirit_blue_fat_fish": {"name": "白米风暴", "color": "#FFF3CB"},
+    "spirit_charizard": {"name": "大字爆炎", "color": "#FFAA66"},
+    "spirit_diaochan": {"name": "倾城花雨", "color": "#F7ACD0"},
+    "spirit_hedgehog": {"name": "星陨裂空", "color": "#FFE49A"},
+    "spirit_dragon": {"name": "苍穹龙息", "color": "#A0DFFF"},
+    "spirit_qilin": {"name": "时砂逆流", "color": "#EED598"},
+    "spirit_puni": {"name": "圣灵魔闪光", "color": "#FFE795"}
+  }
+}

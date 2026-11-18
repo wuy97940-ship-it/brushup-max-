@@ -20,8 +20,10 @@ v3.3 UI 架构升级（业务逻辑与 v3.1/3.2 完全一致）：
 from __future__ import annotations
 
 import os
+import json
 import random
 import sys
+import math
 import tkinter as tk
 from pathlib import Path
 from tkinter import messagebox, simpledialog
@@ -30,6 +32,8 @@ import customtkinter as ctk
 
 import store
 from store import question_number
+from question_textbox import QuestionTextbox
+from learning_explanations import explanation_text, display_options
 from books import (
     ALL_BOOKS_VALUE,
     BOOKS,
@@ -58,7 +62,7 @@ from store import (
 )
 
 APP_TITLE = "小圆冒险世界 · 原创公开版"
-APP_VERSION = "v0.2.0-public.1"
+APP_VERSION = "v6.1.0-public.1"
 ALL_BOOK = ALL_BOOKS_VALUE  # "全部书本"
 ALL_CH = "全部章节"
 ALL_TYPE = "全部题型"
@@ -187,6 +191,23 @@ def is_correct(question: dict, user_answer: str) -> bool:
 
 
 class App(ctk.CTk):
+    def report_callback_exception(self, exc, value, tb):
+        """窗口版异常也能追溯，日志只保存在本机存档目录。"""
+        from datetime import datetime
+        import traceback
+        try:
+            folder = store.app_data_dir() / "logs"
+            folder.mkdir(parents=True, exist_ok=True)
+            with (folder / ("callback-errors-" + datetime.now().strftime("%Y%m%d") + ".log")).open("a", encoding="utf-8") as stream:
+                stream.write(datetime.now().astimezone().isoformat() + "\n")
+                stream.write("".join(traceback.format_exception(exc, value, tb)))
+        except OSError:
+            pass
+        try:
+            messagebox.showerror("操作未完成", "这次操作出现异常，进度不会因重复点击而补发。请重试或重新打开应用。\n错误信息已保存在本机存档目录。")
+        except tk.TclError:
+            pass
+
     def __init__(self) -> None:
         # 主题与字体必须在窗口创建前生效
         self.progress = load_progress()
@@ -199,6 +220,7 @@ class App(ctk.CTk):
             ctk.set_widget_scaling(float(self.progress.get("scaling", 1.0)))
         except Exception:
             pass
+        self._fit_initial_window()
 
         try:
             self.questions: list[dict] = load_questions()
@@ -238,6 +260,27 @@ class App(ctk.CTk):
         self._build_sidebar()
         self._show_page("home")
         self._bind_global_keys()
+
+    def _fit_initial_window(self):
+        """用物理工作区及CTk窗口倍率定位，避免150%DPI默认下沿落到屏幕外。"""
+        left, top = 0, 0
+        right, bottom = self.winfo_screenwidth(), self.winfo_screenheight()
+        if sys.platform == 'win32':
+            import ctypes
+            from ctypes import wintypes
+            area = wintypes.RECT()
+            user = ctypes.windll.user32
+            user.SystemParametersInfoW.argtypes = [wintypes.UINT, wintypes.UINT, ctypes.c_void_p, wintypes.UINT]
+            if user.SystemParametersInfoW(0x0030, 0, ctypes.byref(area), 0):
+                left, top, right, bottom = area.left, area.top, area.right, area.bottom
+        scale = self._get_window_scaling()
+        frame_width, frame_height = math.ceil(16*scale), math.ceil(48*scale)
+        width = min(1180, max(1, int((right-left-frame_width)/scale)))
+        height = min(820, max(1, int((bottom-top-frame_height)/scale)))
+        self.minsize(min(1020, width), min(660, height))
+        x = left + max(0, (right-left-round(width*scale)-frame_width)//2)
+        y = top + max(0, (bottom-top-round(height*scale)-frame_height)//2)
+        self.geometry(f'{width}x{height}+{x}+{y}')
 
     # ------------------------------------------------------------------
     # 工具
@@ -288,7 +331,7 @@ class App(ctk.CTk):
         chapters: list[str] = []
         seen: set[str] = set()
         for q in self.questions:
-            if book_id and q.get("book_id") != book_id:
+            if book_id and book_id not in q.get("book_ids", [q.get("book_id")]):
                 continue
             ch = self._chapter_label(q)
             if ch and ch not in seen:
@@ -299,7 +342,7 @@ class App(ctk.CTk):
     def _filter_questions(self, book_id: str | None, chapter: str, qtype: str) -> list[dict]:
         out = []
         for q in self.questions:
-            if book_id and q.get("book_id") != book_id:
+            if book_id and book_id not in q.get("book_ids", [q.get("book_id")]):
                 continue
             if chapter != ALL_CH and self._chapter_label(q) != chapter:
                 continue
@@ -309,7 +352,48 @@ class App(ctk.CTk):
         return out
 
     def _save(self) -> None:
-        save_progress(self.progress)
+        from desktop_persistence import save_with_events
+        if not save_with_events(self,save_progress,self.progress):
+            messagebox.showerror('保存失败', '本次进度尚未写入，请检查磁盘空间和存档目录权限。')
+            return False
+        return True
+
+    def _commit(self, mutate) -> None:
+        from desktop_persistence import save_with_events, waiting
+        if waiting(self):return None
+        if getattr(self, '_pending_transaction', None):
+            return None
+        candidate = store.clone_progress(self.progress)
+        result = mutate(candidate)
+        if not save_with_events(self,save_progress,candidate):
+            self._pending_transaction = (candidate, result)
+            button = getattr(self, 'retry_save_btn', None)
+            if button is None or not button.winfo_exists():
+                self.retry_save_btn = btn_primary(self.page_area, text='重试保存', command=self._retry_pending)
+            self.retry_save_btn.pack(fill='x', padx=22, pady=8)
+            messagebox.showerror('保存失败', '本次变更暂存，请点击「重试保存」。原进度保留。')
+            return None
+        self.progress = candidate
+        return result if result is not None else True
+
+    def _retry_pending(self):
+        from desktop_persistence import save_with_events, waiting
+        if waiting(self):return
+        pending = getattr(self, '_pending_transaction', None)
+        if not pending:
+            return
+        candidate, result = pending
+        if not save_with_events(self,save_progress,candidate):
+            messagebox.showerror('仍未保存', '同一候选仍保留，请检查磁盘后重试。')
+            return
+        self.progress = candidate
+        self._pending_transaction = None
+        self.retry_save_btn.pack_forget()
+        if self.current_qids:
+            self.current_idx = min(candidate['last']['index'], len(self.current_qids) - 1)
+            self._render_current()
+        else:
+            self._show_page('home')
 
     def _answer_record(self, qid: str) -> dict | None:
         """游戏挑战可以覆盖此入口，避免旧成绩直接成为本轮答案。"""
@@ -335,7 +419,7 @@ class App(ctk.CTk):
         brand = ctk.CTkFrame(s, fg_color="transparent")
         brand.pack(fill="x", padx=20, pady=(24, 20))
         ctk.CTkLabel(brand, text="🐱", font=_f(26)).pack(side="left")
-        ctk.CTkLabel(brand, text=" 小圆爱刷题",
+        ctk.CTkLabel(brand, text=" 小圆冒险世界",
                      font=_f(19, "bold"), text_color=C["brand"]).pack(side="left", padx=(2, 0))
         ctk.CTkLabel(brand, text="MAX", font=_f(10, "bold"),
                      text_color=C["text_sub"]).pack(side="left", pady=(8, 0))
@@ -763,6 +847,25 @@ class App(ctk.CTk):
 
         self._render_current()
 
+    def _objective_layout_is_live(self) -> bool:
+        """缓存题卡只有内部文本、滚动条和操作按钮也完整时才能复用。"""
+        roots = getattr(self, '_objective_layout_roots', ())
+        if not roots or getattr(self, '_objective_layout_body', None) is not getattr(self, 'body', None):
+            return False
+        widgets = [*roots, *getattr(self, 'option_buttons', {}).values()]
+        for name in ('stem_box', 'explain_box', 'btn_submit', 'btn_prev', 'btn_next'):
+            widget = getattr(self, name, None)
+            widgets.append(widget)
+            if isinstance(widget, ctk.CTkTextbox):
+                widgets.extend(getattr(widget, child, None) for child in
+                               ('_textbox', '_canvas', '_x_scrollbar', '_y_scrollbar'))
+                widgets.extend(getattr(getattr(widget, child, None), '_canvas', None)
+                               for child in ('_x_scrollbar', '_y_scrollbar'))
+        try:
+            return all(widget is not None and widget.winfo_exists() for widget in widgets)
+        except tk.TclError:
+            return False
+
     def _render_current(self) -> None:
         if not self.current_qids:
             self._back_home()
@@ -778,9 +881,20 @@ class App(ctk.CTk):
         is_fav = q["id"] in self.progress.get("favorites", [])
         self.btn_fav.configure(text=("★ 已收藏" if is_fav else "☆ 收藏 (F)"))
 
-        # 重建 body
+        reuse_finance=getattr(self,'_reuse_finance_reference',None)
+        if q.get('subquestions') and reuse_finance is not None and reuse_finance(q):
+            return
+
+        # 连续客观题保留题干、选项和操作区，只移除上一题附加图表/提示。
+        roots=getattr(self, '_objective_layout_roots', ())
+        keys=('√','×') if q['type']=='判断题' else tuple(sorted(k for k in display_options(q) if k) or ['A','B','C','D'])
+        self._objective_reuse=(not is_subjective(q) and getattr(self,'_objective_keys',None)==keys
+                               and self._objective_layout_is_live())
         for w in self.body.winfo_children():
-            w.destroy()
+            if not self._objective_reuse or w not in roots:
+                from desktop_window_resources import release_resources
+                release_resources(w)
+                w.destroy()
 
         if is_subjective(q):
             self._render_subjective(q)
@@ -795,7 +909,7 @@ class App(ctk.CTk):
         card = ctk.CTkFrame(parent, corner_radius=16, fg_color=C["card"],
                             border_width=1, border_color=C["border"])
         if accent:
-            bar = ctk.CTkFrame(card, width=4, corner_radius=2, fg_color=C["brand"])
+            bar = ctk.CTkFrame(card, width=4, height=1, corner_radius=2, fg_color=C["brand"])
             bar.pack(side="left", fill="y", padx=(12, 0), pady=14)
         return card
 
@@ -819,9 +933,35 @@ class App(ctk.CTk):
         self.current_selection = set()
         self.current_judge = None
 
+        roots=getattr(self,'_objective_layout_roots',())
+        if (getattr(self, '_objective_reuse', False) and getattr(self,'_objective_layout_body',None) is self.body
+                and roots and all(w.winfo_exists() for w in roots)):
+            self.stem_box.configure(state='normal')
+            height = self._stem_height(q['stem'])
+            if self.stem_box.cget('height') != height:
+                self.stem_box.configure(height=height)
+            self.stem_box.delete('1.0','end');self.stem_box.insert('1.0',q['stem'])
+            self.stem_box.configure(state='disabled')
+            options=display_options(q)
+            for key,button in self.option_buttons.items():
+                text=('√  正确  (按 1)' if key=='√' else '×  错误  (按 2)') if q['type']=='判断题' else f"  {key}.  {options.get(key,'（缺失）')}"
+                values = dict(text=text, state='normal', fg_color=C['card'], hover_color=C['sel_bg'],
+                              text_color=C['text'], border_color=C['border'])
+                changed = {key: value for key, value in values.items() if button.cget(key) != value}
+                if changed:
+                    button.configure(**changed)
+            self.btn_next.configure(state='normal')
+            self._option_wrap_width=None
+            from types import SimpleNamespace
+            self._wrap_option_text(SimpleNamespace(width=self.options_frame.winfo_width()))
+            self._restore_objective_answer(q)
+            canvas=getattr(self.body,'_parent_canvas',None)
+            if canvas is not None:canvas.yview_moveto(0)
+            return
+
         stem_card = self._card(self.body, accent=True)
         stem_card.pack(fill="x", pady=(0, 10))
-        self.stem_box = ctk.CTkTextbox(
+        self.stem_box = QuestionTextbox(
             stem_card, height=self._stem_height(q["stem"]),
             font=_f(15),
             wrap="char", activate_scrollbars=True,
@@ -871,7 +1011,7 @@ class App(ctk.CTk):
         explain_card.pack(fill="both", expand=True, pady=(8, 0))
         ctk.CTkLabel(explain_card, text="💡 解析", font=_f(12, "bold"),
                      text_color=C["brand"], anchor="w").pack(fill="x", padx=20, pady=(12, 0))
-        self.explain_box = ctk.CTkTextbox(
+        self.explain_box = QuestionTextbox(
             explain_card, height=200,
             font=_f(13),
             wrap="char",
@@ -894,7 +1034,7 @@ class App(ctk.CTk):
                 btn.pack(fill="x", pady=3)
                 self.option_buttons[val] = btn
         else:
-            options = q.get("options") or {}
+            options = display_options(q)
             # v3.5: 按实际选项键渲染（兼容非标准题的E/F/G选项），缺键时退回ABCD
             letters = sorted(k for k in options if k) or ["A", "B", "C", "D"]
             for letter in letters:
@@ -911,9 +1051,15 @@ class App(ctk.CTk):
                 btn.pack(fill="x", pady=3)
                 self.option_buttons[letter] = btn
 
+        self._objective_layout_body=self.body
+        self._objective_layout_roots=(stem_card,self.options_frame,action_row,explain_card)
+        self._objective_keys=tuple(self.option_buttons)
         # 解析区初始化 + 状态恢复
         self._option_wrap_width = None
         self.options_frame.bind("<Configure>", self._wrap_option_text, add="+")
+        self._restore_objective_answer(q)
+
+    def _restore_objective_answer(self, q):
         self.explain_box.configure(state="normal")
         self.explain_box.delete("1.0", "end")
         rec = self._answer_record(q["id"])
@@ -941,13 +1087,14 @@ class App(ctk.CTk):
             return
         self._option_wrap_width = width
         for button in self.option_buttons.values():
-            label = button._text_label
+            label = getattr(button, '_text_label', None)
             if label is None:
                 continue
             label.configure(wraplength=width, justify="left")
             font = tkfont.Font(font=label.cget("font"))
             lines = sum(max(1, math.ceil(font.measure(line) / width)) for line in button.cget("text").split("\n"))
-            height = max(50, (lines * font.metrics("linespace") + 25) / self._get_widget_scaling())
+            # 按钮提供控件缩放；CTk主窗只保证初始化窗口缩放。
+            height = max(50, (lines * font.metrics("linespace") + 25) / button._get_widget_scaling())
             button.configure(height=height)
 
     def _update_action_buttons_objective(self) -> None:
@@ -967,13 +1114,16 @@ class App(ctk.CTk):
             self.btn_redo.configure(state="disabled")
 
     def _toggle_option(self, letter: str) -> None:
-        if self.answer_submitted:
+        if self.answer_submitted or getattr(self, '_pending_transaction', None):
             return
         q = self.qmap[self.current_qids[self.current_idx]]
         if q["type"] == "单选题":
             self.current_selection = {letter}
-            self._refresh_option_styles(q)
             self._submit_answer()
+            # 自动提交直接绘制最终对错；拒绝提交时保留用户刚选的状态。
+            if (not self.answer_submitted and self.current_qids
+                    and self.current_qids[self.current_idx] == q['id']):
+                self._refresh_option_styles(q)
         else:
             if letter in self.current_selection:
                 self.current_selection.remove(letter)
@@ -982,29 +1132,45 @@ class App(ctk.CTk):
             self._refresh_option_styles(q)
 
     def _toggle_judge(self, val: str) -> None:
-        if self.answer_submitted:
+        if self.answer_submitted or getattr(self, '_pending_transaction', None):
             return
         self.current_judge = val
         q = self.qmap[self.current_qids[self.current_idx]]
-        self._refresh_option_styles(q)
         self._submit_answer()
+        if (not self.answer_submitted and self.current_qids
+                and self.current_qids[self.current_idx] == q['id']):
+            self._refresh_option_styles(q)
+
+    @staticmethod
+    def _configure_option_colors(button, **colors) -> None:
+        # CTk即使收到相同颜色也会重绘圆角和文字；仅提交实际改变的颜色。
+        changed = {}
+        for name, value in colors.items():
+            current = button.cget(name)
+            equal = (tuple(current) == tuple(value)
+                     if isinstance(current, (tuple, list)) and isinstance(value, (tuple, list))
+                     else current == value)
+            if not equal:
+                changed[name] = value
+        if changed:
+            button.configure(**changed)
 
     def _refresh_option_styles(self, q: dict) -> None:
         if q["type"] == "判断题":
             for v, btn in self.option_buttons.items():
                 if v == self.current_judge:
-                    btn.configure(fg_color=C["sel_bg"], border_color=C["sel_border"],
+                    self._configure_option_colors(btn, fg_color=C["sel_bg"], border_color=C["sel_border"],
                                   text_color=C["soft_text"])
                 else:
-                    btn.configure(fg_color=C["card"], border_color=C["border"],
+                    self._configure_option_colors(btn, fg_color=C["card"], border_color=C["border"],
                                   text_color=C["text"])
         else:
             for letter, btn in self.option_buttons.items():
                 if letter in self.current_selection:
-                    btn.configure(fg_color=C["sel_bg"], border_color=C["sel_border"],
+                    self._configure_option_colors(btn, fg_color=C["sel_bg"], border_color=C["sel_border"],
                                   text_color=C["soft_text"])
                 else:
-                    btn.configure(fg_color=C["card"], border_color=C["border"],
+                    self._configure_option_colors(btn, fg_color=C["card"], border_color=C["border"],
                                   text_color=C["text"])
 
     def _highlight_options(self, q: dict, user_ans: str) -> None:
@@ -1013,26 +1179,26 @@ class App(ctk.CTk):
             correct_v = norm_judge(q.get("answer"))
             for v, btn in self.option_buttons.items():
                 if v == correct_v:
-                    btn.configure(fg_color=C["green_bg"], border_color=C["green_border"],
+                    self._configure_option_colors(btn, fg_color=C["green_bg"], border_color=C["green_border"],
                                   text_color=C["green"])
                 elif user_ans and v == user_ans and v != correct_v:
-                    btn.configure(fg_color=C["red_bg"], border_color=C["red_border"],
+                    self._configure_option_colors(btn, fg_color=C["red_bg"], border_color=C["red_border"],
                                   text_color=C["red"])
                 else:
-                    btn.configure(fg_color=C["card"], border_color=C["border"],
+                    self._configure_option_colors(btn, fg_color=C["card"], border_color=C["border"],
                                   text_color=C["text"])
         else:
             user_set = set(user_ans.upper())
             correct_set = set(correct)
             for letter, btn in self.option_buttons.items():
                 if letter in correct_set:
-                    btn.configure(fg_color=C["green_bg"], border_color=C["green_border"],
+                    self._configure_option_colors(btn, fg_color=C["green_bg"], border_color=C["green_border"],
                                   text_color=C["green"])
                 elif letter in user_set and letter not in correct_set:
-                    btn.configure(fg_color=C["red_bg"], border_color=C["red_border"],
+                    self._configure_option_colors(btn, fg_color=C["red_bg"], border_color=C["red_border"],
                                   text_color=C["red"])
                 else:
-                    btn.configure(fg_color=C["card"], border_color=C["border"],
+                    self._configure_option_colors(btn, fg_color=C["card"], border_color=C["border"],
                                   text_color=C["text"])
 
     def _render_explanation_objective(self, q: dict, user_ans: str, correct: bool) -> None:
@@ -1042,13 +1208,13 @@ class App(ctk.CTk):
         lines = [
             f"{verdict}    你的答案：{user_ans or '（未答）'}    标准答案：{q.get('answer','')}",
             "",
-            q.get("explanation") or "（题库未提供解析）",
+            explanation_text(q) or "（题库未提供解析）",
         ]
         self.explain_box.insert("1.0", "\n".join(lines))
         self.explain_box.configure(state="disabled")
 
     def _submit_answer(self) -> None:
-        if self.answer_submitted or not self.current_qids:
+        if self.answer_submitted or not self.current_qids or getattr(self, '_pending_transaction', None):
             return
         q = self.qmap[self.current_qids[self.current_idx]]
         if is_subjective(q):
@@ -1062,9 +1228,11 @@ class App(ctk.CTk):
                 return
             user_ans = "".join(sorted(self.current_selection))
         correct = is_correct(q, user_ans)
-        record_answer(self.progress, q["id"], correct, user_ans)
-        self.progress["last"]["index"] = self.current_idx
-        self._save()
+        def _record_progress(candidate):
+            record_answer(candidate, q["id"], correct, user_ans)
+            candidate["last"]["index"] = self.current_idx
+        if not self._commit(_record_progress):
+            return
         self.answer_submitted = True
         self._highlight_options(q, user_ans)
         self._render_explanation_objective(q, user_ans, correct)
@@ -1216,7 +1384,7 @@ class App(ctk.CTk):
         q = self.qmap[self.current_qids[self.current_idx]]
         if not is_subjective(q):
             return
-        ref = (q.get("explanation") or "").strip() or "（题库未提供参考答案，请对照原书查看）"
+        ref = explanation_text(q) or "（题库未提供参考答案，请对照原书查看）"
         self.explain_box.configure(state="normal")
         self.explain_box.delete("1.0", "end")
         self.explain_box.insert("1.0", ref)
@@ -1225,15 +1393,17 @@ class App(ctk.CTk):
         self._update_action_buttons_subjective()
 
     def _self_mark(self, correct: bool) -> None:
-        if not self.current_qids or self.answer_submitted:
+        if not self.current_qids or self.answer_submitted or getattr(self, '_pending_transaction', None):
             return
         q = self.qmap[self.current_qids[self.current_idx]]
         if not is_subjective(q):
             return
         user_text = self.user_answer_box.get("1.0", "end").strip()
-        record_answer(self.progress, q["id"], correct, user_text)
-        self.progress["last"]["index"] = self.current_idx
-        self._save()
+        def _record_progress(candidate):
+            record_answer(candidate, q["id"], correct, user_text)
+            candidate["last"]["index"] = self.current_idx
+        if not self._commit(_record_progress):
+            return
         self.answer_submitted = True
         # 自动显示参考答案
         if not self.subj_ref_shown:
@@ -1246,7 +1416,7 @@ class App(ctk.CTk):
         self.explain_box.configure(state="normal")
         self.explain_box.delete("1.0", "end")
         verdict = "✓ 已记录：答对" if rec.get("correct") else "✗ 已记录：答错（已加入错题本）"
-        ref = (q.get("explanation") or "").strip() or "（题库未提供参考答案，请对照原书查看）"
+        ref = explanation_text(q) or "（题库未提供参考答案，请对照原书查看）"
         lines = [verdict, "", ref]
         self.explain_box.insert("1.0", "\n".join(lines))
         self.explain_box.configure(state="disabled")
@@ -1338,7 +1508,7 @@ class App(ctk.CTk):
         # 按当前书本过滤
         if self.current_book_id:
             qids = [qid for qid in qids
-                    if self.qmap.get(qid, {}).get("book_id") == self.current_book_id]
+                    if self.current_book_id in self.qmap.get(qid, {}).get('book_ids',[self.qmap.get(qid, {}).get('book_id')])]
         # v3.1: 最近答错的排前面（原为收录顺序）
         ans = self.progress.get("answered", {})
         qids.sort(key=lambda x: -(ans.get(x, {}).get("ts") or 0))
@@ -1358,9 +1528,9 @@ class App(ctk.CTk):
         if not messagebox.askyesno("确认", f"清空{scope}错题本？答题历史不会被清除。"):
             return
         if self.current_book_id:
-            # 仅清除当前书本范围内的错题
+            # 仅清除当前书本范围内的错题（与错题本展示同口径 book_ids，多书题才能被清到）
             keep = [qid for qid in self.progress.get("wrong_book", [])
-                    if self.qmap.get(qid, {}).get("book_id") != self.current_book_id]
+                    if self.current_book_id not in self.qmap.get(qid, {}).get("book_ids", [self.qmap.get(qid, {}).get("book_id")])]
             self.progress["wrong_book"] = keep
         else:
             self.progress["wrong_book"] = []
@@ -1372,7 +1542,7 @@ class App(ctk.CTk):
         # 按当前书本过滤
         if self.current_book_id:
             qids = [qid for qid in qids
-                    if self.qmap.get(qid, {}).get("book_id") == self.current_book_id]
+                    if self.current_book_id in self.qmap.get(qid, {}).get('book_ids',[self.qmap.get(qid, {}).get('book_id')])]
         book_name = book_id_to_name(self.current_book_id) if self.current_book_id else ALL_BOOK
         self._open_qlist_panel(
             title=f"收藏夹 · {book_name}",
@@ -1390,7 +1560,7 @@ class App(ctk.CTk):
             return
         if self.current_book_id:
             keep = [qid for qid in self.progress.get("favorites", [])
-                    if self.qmap.get(qid, {}).get("book_id") != self.current_book_id]
+                    if self.current_book_id not in self.qmap.get(qid, {}).get("book_ids", [self.qmap.get(qid, {}).get("book_id")])]
             self.progress["favorites"] = keep
         else:
             self.progress["favorites"] = []
@@ -1409,7 +1579,10 @@ class App(ctk.CTk):
 
     def _open_qlist_panel(self, *, title: str, qids: list[str], empty_text: str,
                           start_label: str, extra_actions: list, mode_label: str,
-                          nav: str = "") -> None:
+                          nav: str = "", page_index: int = 0) -> None:
+        qids=list(dict.fromkeys(qid for qid in qids if qid in self.qmap))
+        pages=max(1, math.ceil(len(qids)/50))
+        page_index=max(0,min(page_index,pages-1))
         self._clear()
         nav_key = nav or ("wrongbook" if title.startswith("错题本") else "favorites")
         self._set_active_nav(nav_key)
@@ -1441,7 +1614,14 @@ class App(ctk.CTk):
         list_frame = ctk.CTkScrollableFrame(self.page_area, fg_color="transparent")
         list_frame.pack(fill="both", expand=True, padx=36, pady=(0, 14))
 
-        for i, qid in enumerate(qids):
+        pager=ctk.CTkFrame(self.page_area,fg_color='transparent');pager.pack(fill='x',padx=36,pady=(0,8))
+        def change_page(index):
+            self._open_qlist_panel(title=title,qids=qids,empty_text=empty_text,start_label=start_label,
+                                   extra_actions=extra_actions,mode_label=mode_label,nav=nav,page_index=index)
+        btn_ghost(pager,text='上一页',state='normal' if page_index else 'disabled',command=lambda:change_page(page_index-1)).pack(side='left')
+        ctk.CTkLabel(pager,text=f'第{page_index+1}/{pages}页 · 每页50题',font=_f(12)).pack(side='left',padx=12)
+        btn_ghost(pager,text='下一页',state='normal' if page_index<pages-1 else 'disabled',command=lambda:change_page(page_index+1)).pack(side='right')
+        for i, qid in enumerate(qids[page_index*50:(page_index+1)*50],start=page_index*50):
             q = self.qmap.get(qid)
             if not q:
                 continue
@@ -1579,7 +1759,7 @@ class App(ctk.CTk):
         bar.set((st["answered"] / st["total"]) if st["total"] else 0)
 
     def _start_book(self, book_id: str) -> None:
-        qids = [q["id"] for q in self.questions if q.get("book_id") == book_id]
+        qids = [q["id"] for q in filter_by_book(self.questions,book_id)]
         bn = book_id_to_name(book_id) or book_id
         self._start_qids(qids, mode=f"整本 · {bn}")
 
@@ -1617,7 +1797,7 @@ class App(ctk.CTk):
             fn()
         except Exception as e:
             try:
-                messagebox.showerror("发生错误", str(e))
+                messagebox.showerror("发生错误", str(e), parent=self)
             except Exception:
                 pass
 

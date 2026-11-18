@@ -30,6 +30,104 @@
       "pages": [
         "pages/ready/index"
       ]
+    },
+    {
+      "root": "packages/outfitArt610",
+      "name": "outfitArt610",
+      "pages": [
+        "pages/ready/index"
+      ]
+    },
+    {
+      "root": "packages/outfitArtTuan610",
+      "name": "outfitArtTuan610",
+      "pages": [
+        "pages/ready/index"
+      ]
+    },
+    {
+      "root": "packages/outfitHats610a",
+      "name": "outfitHats610a",
+      "pages": [
+        "pages/ready/index"
+      ]
+    },
+    {
+      "root": "packages/outfitHats610b",
+      "name": "outfitHats610b",
+      "pages": [
+        "pages/ready/index"
+      ]
+    },
+    {
+      "root": "packages/outfitHats610c",
+      "name": "outfitHats610c",
+      "pages": [
+        "pages/ready/index"
+      ]
+    },
+    {
+      "root": "packages/adventureArt",
+      "name": "adventureArt",
+      "pages": [
+        "pages/ready/index"
+      ]
+    },
+    {
+      "root": "packages/adventureSupply",
+      "name": "adventureSupply",
+      "pages": [
+        "pages/ready/index"
+      ]
+    },
+    {
+      "root": "packages/financeArt",
+      "name": "financeArt",
+      "pages": [
+        "pages/ready/index"
+      ]
+    },
+    {
+      "root": "packages/spiritMedia1",
+      "name": "spiritMedia1",
+      "pages": [
+        "pages/ready/index"
+      ]
+    },
+    {
+      "root": "packages/spiritMedia2",
+      "name": "spiritMedia2",
+      "pages": [
+        "pages/ready/index"
+      ]
+    },
+    {
+      "root": "packages/spiritMedia3",
+      "name": "spiritMedia3",
+      "pages": [
+        "pages/ready/index"
+      ]
+    },
+    {
+      "root": "packages/spiritMedia4",
+      "name": "spiritMedia4",
+      "pages": [
+        "pages/ready/index"
+      ]
+    },
+    {
+      "root": "packages/spiritMedia5",
+      "name": "spiritMedia5",
+      "pages": [
+        "pages/ready/index"
+      ]
+    },
+    {
+      "root": "packages/spiritMedia6",
+      "name": "spiritMedia6",
+      "pages": [
+        "pages/ready/index"
+      ]
     }
   ],
   "window": {

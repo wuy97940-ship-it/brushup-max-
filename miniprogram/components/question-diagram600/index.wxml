@@ -1,0 +1,1 @@
+<view class="diagram600"><canvas type="2d" id="curve600" class="diagram600-canvas"/><view wx:if="{{error}}" class="diagram600-error">{{error}}</view><view class="diagram600-note">作答所需示意图 · 原生重绘</view></view>

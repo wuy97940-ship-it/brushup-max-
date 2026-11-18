@@ -26,7 +26,16 @@ def main():
                "--specpath", str(output), "--collect-data", "customtkinter"]
     for path, destination in [("data/questions.json", "data"), ("data/campaign.json", "data"), ("assets", "assets")]:
         command.extend(["--add-data", str(ROOT / path) + ";" + destination])
-    for name in ["store", "books", "game", "game_ui", "game_art", "game_skills", "game_shop", "finance", "finance_ui", "PIL._tkinter_finder"]:
+    for name in ["store", "books", "app", "audit_migration", "supplement_migration",
+                 "game", "game_ui", "game_art", "game_skills", "game_shop", "finance", "finance_ui",
+                 "desktop_audio", "desktop_challenge", "desktop_effects", "desktop_growth",
+                 "desktop_growth_ui", "desktop_home_art", "desktop_hunting", "desktop_hunting_art",
+                 "desktop_hunting_effects", "desktop_hunting_ui", "desktop_journey", "desktop_market",
+                 "desktop_market_ui", "desktop_mood", "desktop_persistence", "desktop_product",
+                 "desktop_product_ui", "desktop_save_slots", "desktop_save_ui", "desktop_suits",
+                 "desktop_wardrobe", "desktop_window_resources", "learning_explanations",
+                 "question_diagrams", "question_images", "question_textbox", "static_campaigns",
+                 "world_scenes", "PIL._tkinter_finder"]:
         command.extend(["--hidden-import", name])
     command.append(str(ROOT / "src/main.py"))
     subprocess.run(command, cwd=ROOT, check=True)

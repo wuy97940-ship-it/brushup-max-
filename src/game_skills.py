@@ -14,6 +14,9 @@ DEFINITIONS = {s["id"]: s for s in CONFIG["definitions"]}
 
 
 def level(g):
+    if g.get('product', {}).get('version') == 3:
+        from desktop_growth import level as growth_level
+        return growth_level(g)
     return g["xp"] // RULES["xp_per_level"] + 1
 
 
@@ -26,6 +29,8 @@ def state(g):
 
 
 def available(g, skill_id):
+    if g.get("product", {}).get("version") == 3:
+        return 0
     s = DEFINITIONS.get(skill_id)
     if not s or level(g) < s["level"]:
         return 0
@@ -34,6 +39,8 @@ def available(g, skill_id):
 
 
 def use(g, skill_id):
+    if g.get("product", {}).get("version") == 3:
+        raise ValueError("旧技能已归档并完成退款，请到技能工坊学习永久技能。")
     if not available(g, skill_id):
         raise ValueError("技能尚未解锁或次数不足，可在成长页用金币或魔法墨水补充。")
     st = state(g)
@@ -41,6 +48,8 @@ def use(g, skill_id):
 
 
 def refill(progress, skill_id, with_ink=False):
+    if progress["game"].get("product", {}).get("version") == 3:
+        raise ValueError("旧技能已归档，请到技能工坊学习永久技能。")
     g = progress["game"]
     s = DEFINITIONS[skill_id]
     if level(g) < s["level"]:
@@ -59,6 +68,8 @@ def refill(progress, skill_id, with_ink=False):
 
 
 def queue(progress, skill_id):
+    if progress["game"].get("product", {}).get("version") == 3:
+        raise ValueError("旧技能已归档，不能再次预约或扣款。")
     g, s = progress["game"], DEFINITIONS[skill_id]
     if s["type"] != "boost":
         raise ValueError("请在对应答题页面使用此技能。")
@@ -73,6 +84,9 @@ def queue(progress, skill_id):
 
 
 def apply_boosts(g, attempt, stage):
+    if g.get("product", {}).get("version") == 3:
+        # 新产品已在开场冻结统一加成，旧技能不能再覆盖该快照。
+        return
     st = state(g)
     for skill_id in ("gold", "focus"):
         s = DEFINITIONS[skill_id]
@@ -92,7 +106,7 @@ def mercy_status(g, attempt, stage):
     if g["results"].get(attempt["stage_id"], {}).get("cleared"):
         return {"eligible": False, "reason": "这一关已经解锁，无需消耗技能"}
     if stage["kind"] not in CONFIG["mercy_kinds"]:
-        return {"eligible": False, "reason": "Boss 仍按 70% 通关"}
+        return {"eligible": False, "reason": "Boss 不适用旧版容错技能"}
     total = len(attempt["qids"])
     correct = sum(bool(a["correct"]) for a in attempt["answers"].values())
     required = math.ceil(total * RULES["pass_percent"] / 100)

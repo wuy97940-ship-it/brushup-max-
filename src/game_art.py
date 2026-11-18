@@ -5,127 +5,362 @@ import math
 import json
 import time
 import tkinter as tk
+from collections import OrderedDict
+from concurrent.futures import ThreadPoolExecutor
+from threading import RLock, current_thread, main_thread
 from pathlib import Path
 
 import customtkinter as ctk
-from PIL import Image, ImageTk
+from PIL import Image, ImageTk, ImageOps
 
 import game
+import desktop_wardrobe as wardrobe
+import desktop_suits as suits
 from store import resource_path
 
 
+class _BoundedCache(OrderedDict):
+    """缓存只保留最近使用项；活动窗口自身持有正在显示的Tk图片。"""
+    def __init__(self, limit):
+        super().__init__()
+        self.limit = limit
+
+    def __getitem__(self, key):
+        value = super().__getitem__(key)
+        self.move_to_end(key)
+        return value
+
+    def get(self, key, default=None):
+        return self[key] if key in self else default
+
+    def __setitem__(self, key, value):
+        super().__setitem__(key, value)
+        self.move_to_end(key)
+        while len(self) > self.limit:
+            self.popitem(last=False)
+
+
 class SpriteLibrary:
+    """共享PIL底图与合成缓存；Tk图片只在主线程创建。"""
     def __init__(self) -> None:
-        self._source: dict[str, Image.Image] = {}
-        self._tk: dict[tuple, ImageTk.PhotoImage] = {}
-        self._ctk: dict[tuple, ctk.CTkImage] = {}
+        self._source = _BoundedCache(80)
+        self._composed = _BoundedCache(32)
+        self._mouth_positions = _BoundedCache(32)
+        self._parts = _BoundedCache(16)
+        self._tk = _BoundedCache(96)
+        self._ctk = _BoundedCache(96)
+        self._lock = RLock()
+        self._image_reader = ThreadPoolExecutor(max_workers=1, thread_name_prefix="商品图片预读")
         manifest_path = resource_path("assets/character_manifest.json")
         self.manifest = json.loads(manifest_path.read_text(encoding="utf-8")) if manifest_path.exists() else {}
 
+    def _read(self, path: Path, *, atlas=False) -> Image.Image:
+        key = ("file", str(path), atlas)
+        with self._lock:
+            cached = self._source.get(key)
+            if cached is None:
+                with Image.open(path) as original:
+                    cached = original.convert("RGBA")
+                if not atlas and max(cached.size) > 512:
+                    cached.thumbnail((512, 512), Image.Resampling.LANCZOS)
+                self._source[key] = cached
+            return cached
+
     def source(self, character: str, pose: str = "idle") -> Image.Image:
-        aliases = {"walk": "idle", "think": "idle", "happy": "celebrate", "chest": "celebrate"}
-        manifest_pose = self.manifest.get("characters", {}).get(character, {}).get("poses", {}).get(pose)
-        path = resource_path("assets/" + manifest_pose) if manifest_pose else resource_path(f"assets/characters/{character}_{pose}.png")
-        if not path.exists():
-            path = resource_path(f"assets/characters/{character}_{aliases.get(pose, 'idle')}.png")
-        if not path.exists():
-            path = resource_path("assets/characters/xiaoyuan_idle.png")
-        key = str(path)
-        if key not in self._source:
-            with Image.open(path) as original:
-                image = original.convert("RGBA")
-            # 游戏渲染时统一占用区域与落脚点，原始生图文件不改动。
-            alpha_box = image.getchannel("A").point(lambda opacity: 255 if opacity >= 16 else 0).getbbox()
-            if alpha_box:
-                image = image.crop(alpha_box)
-            frame = Image.new("RGBA", (512, 512))
-            image.thumbnail((440, 450), Image.Resampling.LANCZOS)
-            frame.alpha_composite(image, ((512 - image.width) // 2, 472 - image.height))
-            self._source[key] = frame
-        return self._source[key]
+        with self._lock:
+            definition = self.manifest.get("characters", {}).get(character, {})
+            poses = definition.get("poses", {})
+            actual_pose = wardrobe.canonical_pose(character, pose)
+            actual_pose = definition.get("aliases", {}).get(actual_pose, actual_pose)
+            if actual_pose not in poses:
+                actual_pose = {"walk": "idle", "think": "idle", "happy": "celebrate", "chest": "celebrate"}.get(actual_pose, actual_pose)
+            if actual_pose not in poses:
+                actual_pose = "idle"
+            key = ("character", character, actual_pose)
+            cached = self._source.get(key)
+            if cached is not None:
+                return cached
+            prepared = self.manifest.get("prepared_poses", {}).get(character, {}).get(actual_pose)
+            if prepared:
+                prepared_path = resource_path("assets/" + prepared)
+                if prepared_path.is_file():
+                    cached = self._read(prepared_path)
+                    if cached.size == (512, 512):
+                        self._source[key] = cached
+                        return cached
+            relative = poses.get(actual_pose, f"characters/{character}_{actual_pose}.png")
+            path = resource_path("assets/" + relative)
+            if not path.is_file():
+                path = resource_path("assets/characters/xiaoyuan_idle.png")
+            if character == "orange_adventurer" and definition.get("atlas"):
+                frame = wardrobe.atlas_frame(self._read(path, atlas=True), actual_pose)
+            elif actual_pose in definition.get("pose_frames", {}):
+                atlas = self._read(path, atlas=True)
+                col, row = definition["pose_frames"][actual_pose]
+                columns, rows = definition["atlas_grid"]
+                frame = atlas.crop((round(atlas.width*col/columns), round(atlas.height*row/rows),
+                                    round(atlas.width*(col+1)/columns), round(atlas.height*(row+1)/rows)))
+            else:
+                frame = self._read(path)
+                if path.name.endswith("_v510.png"):
+                    # 补充姿态图的网格间有相邻尾尖碎片；按主体连通域裁出范围。
+                    from PIL import ImageDraw, ImageChops
+                    alpha = frame.getchannel("A")
+                    solid = alpha.point(lambda value: 255 if value >= 32 else 0)
+                    center = (frame.width//2, frame.height//2)
+                    if solid.getpixel(center):
+                        ImageDraw.floodfill(solid, center, 128)
+                        body = solid.point(lambda value: 255 if value == 128 else 0)
+                        box = body.getbbox()
+                        if box:
+                            mask = Image.new("L", frame.size)
+                            ImageDraw.Draw(mask).rectangle((max(0, box[0]-2), max(0, box[1]-2), min(frame.width, box[2]+2), min(frame.height, box[3]+2)), fill=255)
+                            frame = frame.copy()
+                            frame.putalpha(ImageChops.multiply(alpha, mask))
+            cached = wardrobe.normalize_frame(frame)
+            self._source[key] = cached
+            return cached
+
+    @staticmethod
+    def _require_main_thread():
+        if current_thread() is not main_thread():
+            raise RuntimeError("Tk图片须在界面主线程创建；后台预读请调用item_source或warm_items")
 
     def photo(self, character: str, pose: str, size: int) -> ImageTk.PhotoImage:
+        self._require_main_thread()
         key = (character, pose, size)
         if key not in self._tk:
             self._tk[key] = ImageTk.PhotoImage(self.source(character, pose).resize((size, size), Image.Resampling.LANCZOS))
         return self._tk[key]
 
     def ctk_image(self, character: str, pose: str, size: int) -> ctk.CTkImage:
+        self._require_main_thread()
         key = (character, pose, size)
         if key not in self._ctk:
             self._ctk[key] = ctk.CTkImage(self.source(character, pose), size=(size, size))
         return self._ctk[key]
 
-    def _actor_key(self, g, pose, size):
-        return ("actor", g["skin"], pose, g.get("outfit"),
+    def _actor_key(self, g, pose, size=None):
+        from finance import companion_ids
+        suit=suits.matched(g)
+        action=suits.pose_key(suit,pose) if suit else wardrobe.canonical_pose(g['skin'],pose)
+        return ("actor", g["skin"], action, g.get("outfit"), g.get("headwear"),
+                g.get('footwear'), g.get('pawgear'),
                 *(g.get("equipment", {}).get(slot) for slot in ("xp", "coins", "wonder")),
-                g.get("finance_expansion", {}).get("companion"), size)
+                tuple(companion_ids(g)), size)
+
+    def _wear_source(self, item_id):
+        if not item_id:
+            return None
+        item = game.CATALOG.get(item_id, {})
+        candidates = [resource_path(f"assets/market/wearables/{item_id}.png")]
+        if item_id in self.manifest.get("overlays", {}):
+            candidates.append(resource_path("assets/" + self.manifest["overlays"][item_id]))
+        if item.get("fit_character") and item.get("asset"):
+            candidates.append(resource_path("assets/" + item["asset"]))
+        candidates.extend((resource_path(f"assets/overlays/{item_id}.png"),
+                           resource_path(f"assets/shop/rendered/{item_id}_layer.png")))
+        path = next((path for path in candidates if path.is_file()), None)
+        return self._read(path) if path else None
 
     def compose(self, g, pose="idle") -> Image.Image:
-        image = Image.new("RGBA", (512, 512))
-        wonder_id = g.get("equipment", {}).get("wonder")
-        wonder = game.CATALOG.get(wonder_id, {})
+        with self._lock:
+            key = self._actor_key(g, pose)
+            cached = self._composed.get(key)
+            if cached is not None:
+                self._mouth_positions.get(key)
+                return cached
+            role = g["skin"]
+            mouths = {"xiaoyuan": ((294, 248), (390, 390)),
+                      "orange_adventurer": ((274, 261), (374, 389)), "xiaobao": ((279, 190), (175, 376))}
+            mouth = mouths.get(role, mouths["xiaoyuan"])[int(wardrobe.canonical_pose(role, pose) == "sleep")]
+            suit=suits.matched(g)
+            suit_path=resource_path('assets/'+suit['poses'][suits.pose_key(suit,pose)]) if suit else None
+            base=self._read(suit_path) if suit_path and suit_path.is_file() else self.source(role,pose)
+            complete_suit=bool(suit_path and suit_path.is_file())
+            image = Image.new("RGBA", (512, 512))
+            equipment = g.get("equipment", {})
+            wonder_id = equipment.get("wonder")
+            wonder = game.CATALOG.get(wonder_id, {})
+            wonder_source = self._wear_source(wonder_id)
+            if wonder_source is not None and wonder.get("layer") == "back":
+                image.alpha_composite(wardrobe.accessory_layer(wonder_source, "wonder", role, pose, wonder_id))
+            image.alpha_composite(base)
+            outfit_id = g.get("outfit")
+            from desktop_market import SHOP_CATALOG
+            outfit = SHOP_CATALOG.get(outfit_id, game.CATALOG.get(outfit_id, {}))
+            headwear = g.get("headwear")
+            hat_source, hat_id = None, headwear
+            outfit_source = self._wear_source(outfit_id) if not complete_suit else None
+            if not complete_suit and outfit.get("fit_character") == role and outfit_source is not None:
+                parts = self._parts.get(outfit_id)
+                if parts is None:
+                    parts = (wardrobe.cropped(outfit_source),None) if outfit.get('wearable_layout')=='garment_only' else wardrobe.garment_parts(outfit_source, outfit_id)
+                    self._parts[outfit_id] = parts
+                cloth, suit_hat = parts
+                image.alpha_composite(wardrobe.garment_layer(base, cloth, role, pose))
+                if not headwear:
+                    hat_source, hat_id = suit_hat, outfit_id
+            elif not complete_suit and outfit_source is not None and not outfit.get("fit_character"):
+                # 兼容迁移前把六顶场景帽存于outfit的旧进度。
+                headwear = headwear or outfit_id
+            if headwear and not complete_suit:
+                hat_source, hat_id = self._wear_source(headwear), headwear
+            for slot in ("xp", "coins"):
+                item_id = equipment.get(slot)
+                layer = self._wear_source(item_id)
+                if layer is not None:
+                    image.alpha_composite(wardrobe.accessory_layer(layer, slot, role, pose, item_id))
+            if wonder_source is not None and wonder.get("layer") == "front":
+                image.alpha_composite(wardrobe.accessory_layer(wonder_source, "wonder", role, pose, wonder_id))
+            for slot in ('footwear', 'pawgear'):
+                item_id = g.get(slot)
+                source = self._wear_source(item_id) if not complete_suit else None
+                if source is not None and not complete_suit:
+                    image.alpha_composite(wardrobe.limb_layer(source, slot, role, pose))
+            from finance import companion_ids
+            for index, identifier in enumerate(companion_ids(g)):
+                companion = game.CATALOG.get(identifier, {})
+                if companion.get("asset"):
+                    path = resource_path("assets/" + companion["asset"])
+                    if path.is_file():
+                        small = self._read(path).copy()
+                        small.thumbnail((160, 160), Image.Resampling.LANCZOS)
+                        image.alpha_composite(small, (350 if index == 0 else 0, 512-small.height))
+            if hat_source is not None:
+                image, mouth = wardrobe.fitted_headwear(image, hat_source, role, pose, hat_id, mouth)
+            self._mouth_positions[key] = mouth
+            self._composed[key] = image
+            return image
 
-        def overlay(relative):
-            path = resource_path(relative)
-            if path.is_file():
-                key = str(path)
-                if key not in self._source:
-                    with Image.open(path) as original:
-                        self._source[key] = original.convert("RGBA").resize((512, 512), Image.Resampling.LANCZOS)
-                image.alpha_composite(self._source[key])
-
-        if wonder.get("layer") == "back":
-            overlay(f"assets/shop/rendered/{wonder_id}_layer.png")
-        image.alpha_composite(self.source(g["skin"], pose))
-        for name in (g.get("outfit"), g.get("equipment", {}).get("xp"), g.get("equipment", {}).get("coins")):
-            if name:
-                item = game.CATALOG.get(name, {})
-                overlay("assets/" + item["asset"] if item.get("fit_character") and item.get("asset") else f"assets/overlays/{name}.png")
-        if wonder.get("layer") == "front":
-            overlay(f"assets/shop/rendered/{wonder_id}_layer.png")
-        companion = game.CATALOG.get(g.get("finance_expansion", {}).get("companion"), {})
-        if companion.get("asset"):
-            path = resource_path("assets/" + companion["asset"])
-            if path.is_file():
-                with Image.open(path) as source:
-                    small = source.convert("RGBA")
-                small.thumbnail((160, 160), Image.Resampling.LANCZOS)
-                image.alpha_composite(small, (350, 512-small.height))
-        return image
+    def actor_mouth(self, g, pose):
+        with self._lock:
+            self.compose(g, pose)
+            return self._mouth_positions[self._actor_key(g, pose)]
 
     def portrait(self, g: dict, size: int = 54, pose: str = "idle") -> ctk.CTkImage:
+        self._require_main_thread()
         key = self._actor_key(g, pose, size)
         if key not in self._ctk:
             self._ctk[key] = ctk.CTkImage(self.compose(g, pose), size=(size, size))
         return self._ctk[key]
 
     def actor_photo(self, g, pose, size):
+        self._require_main_thread()
         key = self._actor_key(g, pose, size)
         if key not in self._tk:
             self._tk[key] = ImageTk.PhotoImage(self.compose(g, pose).resize((size, size), Image.Resampling.LANCZOS))
         return self._tk[key]
 
-    def item_icon(self, item_id, size=96):
-        path = resource_path(f"assets/shop/rendered/{item_id}.png")
+    def item_source(self, item_id, *, thumbnail=False):
+        """后台可调用的PIL读取，优先正式商品图；返回副本以免调用方污染共享缓存。"""
         item = game.CATALOG.get(item_id, {})
+        folders = ("thumbs", "items") if thumbnail else ("items", "thumbs")
+        candidates = [resource_path(f"assets/market/{folder}/{item_id}.png") for folder in folders]
+        candidates.append(resource_path(f"assets/shop/rendered/{item_id}.png"))
         if item.get("asset"):
-            path = resource_path("assets/" + item["asset"])
-        elif item.get("character"):
-            path = resource_path(f"assets/characters/{item['character']}_idle.png")
-        if not path.is_file():
-            return None
+            candidates.append(resource_path("assets/" + item["asset"]))
+        path = next((path for path in candidates if path.is_file()), None)
+        if path:
+            return self._read(path).copy()
+        if item.get("character"):
+            return self.source(item["character"]).copy()
+        path = resource_path(f"assets/overlays/{item_id}.png")
+        return self._read(path).copy() if path.is_file() else None
+
+    def warm_items(self, item_ids):
+        """仅预读PIL小图；可直接提交后台线程池，不触碰Tk。"""
+        return {item_id: self.item_source(item_id, thumbnail=True) is not None for item_id in item_ids}
+
+    def warm_items_async(self, item_ids):
+        return self._image_reader.submit(self.warm_items, tuple(item_ids))
+
+    def warm_backgrounds_async(self):
+        def read():
+            paths=[resource_path('assets/backgrounds') / name for name in ('forest_day_v520.png', 'island_day_v520.png', 'stars_day_v520.png', 'audit_time_day_v570.png')]
+            for path in paths:
+                self._read(path,atlas=True)
+            return len(paths)
+        return self._image_reader.submit(read)
+
+    def close(self):
+        # 解码不操作Tk；等待队列退出后，主线程才恢复自动回收及销毁根窗口。
+        self._image_reader.shutdown(wait=True, cancel_futures=True)
+
+    def item_icon(self, item_id, size=96):
+        self._require_main_thread()
         key = ("item", item_id, size)
         if key not in self._ctk:
-            with Image.open(path) as original:
-                self._ctk[key] = ctk.CTkImage(original.convert("RGBA"), size=(size, size))
+            source = self.item_source(item_id, thumbnail=size <= 192)
+            if source is None:
+                return None
+            self._ctk[key] = ctk.CTkImage(source, size=(size, size))
         return self._ctk[key]
+
+    market_icon = item_icon
+
+    def cached_item_icon(self, item_id, size=96):
+        """主线程只查现成显示图；未命中交给异步预读，不在切分类时读盘。"""
+        self._require_main_thread()
+        return self._ctk.get(("item", item_id, size))
+
+    def market_photo(self, item_id, size=90):
+        self._require_main_thread()
+        key = ("item", item_id, size)
+        if key not in self._tk:
+            source = self.item_source(item_id, thumbnail=size <= 192)
+            if source is None:
+                return None
+            self._tk[key] = ImageTk.PhotoImage(source.resize((size, size), Image.Resampling.LANCZOS))
+        return self._tk[key]
+
+    def item_photo_fit(self, identifier, width, height):
+        self._require_main_thread()
+        width, height = max(1, round(width)), max(1, round(height))
+        key = ("home-item", identifier, width, height)
+        if key not in self._tk:
+            source = self.item_source(identifier)
+            if source is None:
+                return None
+            bounds = source.getchannel("A").getbbox()
+            source = source.crop(bounds) if bounds else source
+            source.thumbnail((width, height), Image.Resampling.LANCZOS)
+            self._tk[key] = ImageTk.PhotoImage(source)
+        return self._tk[key]
+
+    def room_photo(self, room, width, height):
+        self._require_main_thread()
+        style = "both" if room.get("wallpaper") and room.get("floor") else "wallpaper" if room.get("wallpaper") else "floor" if room.get("floor") else "base"
+        width, height = max(1, round(width)), max(1, round(height))
+        key = ("room", style, width, height)
+        if key not in self._tk:
+            path = resource_path("assets/market/rooms/" + style + ".png")
+            if not path.is_file():
+                return None
+            source = self._read(path, atlas=True)
+            self._tk[key] = ImageTk.PhotoImage(source.resize((width,height), Image.Resampling.LANCZOS))
+        return self._tk[key]
+
+    def cache_info(self):
+        with self._lock:
+            return {name: {"count": len(cache), "limit": cache.limit} for name, cache in
+                    (("source", self._source), ("composed", self._composed), ("mouth", self._mouth_positions), ("parts", self._parts), ("tk", self._tk), ("ctk", self._ctk))}
+
+    def effect_photo(self, item_id, size=48):
+        self._require_main_thread()
+        path = resource_path(f"assets/market/effects/{item_id}.png")
+        if not path.is_file():
+            return self.market_photo(item_id, size)
+        key = ("effect", item_id, size)
+        if key not in self._tk:
+            self._tk[key] = ImageTk.PhotoImage(self._read(path).resize((size, size), Image.Resampling.LANCZOS))
+        return self._tk[key]
 
 
 class AdventureScene(ctk.CTkFrame):
     def __init__(self, master, sprites: SpriteLibrary, g: dict, *, biome: str = "forest",
                  height: int = 230, nodes: list[dict] | None = None, on_node=None,
-                 boss: bool = False, pose: str = "idle", **kwargs) -> None:
+                 boss: bool = False, pose: str = "idle", companions_snapshot: list[str] | None = None, scene_id: str | None = None, **kwargs) -> None:
         initial_biome = next(b for b in game.BIOMES if b["id"] == biome)
         kwargs.setdefault("fg_color", (initial_biome["light"], initial_biome["dark"]))
         kwargs.setdefault("border_width", 0)
@@ -133,7 +368,9 @@ class AdventureScene(ctk.CTkFrame):
         self.pack_propagate(False)
         self.sprites = sprites
         self.g = g
+        self._companions_snapshot = None if companions_snapshot is None else list(companions_snapshot)
         self.biome = initial_biome
+        self.scene_id = scene_id
         self.nodes = nodes
         self.on_node = on_node
         self.boss = boss
@@ -146,6 +383,9 @@ class AdventureScene(ctk.CTkFrame):
         self._sprite_size = 160
         self._sprite_image = None
         self._overlays: list[ImageTk.PhotoImage] = []
+        self._background_photo = None
+        self._background_key = None
+        self._layout_redraw_id = None
         self._node_points = []
         self._map_walk_requested = False
         self._walk_started = None
@@ -155,10 +395,34 @@ class AdventureScene(ctk.CTkFrame):
         self._victory_finish = None
         self._feedback_started = None
         self._feedback_correct = None
+        self._reduced_motion = g.get("product", {}).get("settings", {}).get("reduced_motion", False)
         self.canvas = tk.Canvas(self, height=height, highlightthickness=0, bd=0)
         self.canvas.pack(fill="both", expand=True, padx=3, pady=3)
-        self.canvas.bind("<Configure>", lambda event: self.redraw())
-        self._timer = self.after(60, self._animate)
+        self.canvas.bind("<Configure>", self._request_layout_redraw)
+        reduced = g.get("product", {}).get("settings", {}).get("reduced_motion", False)
+        self._timer = None if reduced else self.after(60, self._animate)
+
+    def _request_layout_redraw(self, event=None):
+        # 主城多幅地图在同轮几何协商中会收到多次Configure，只按最终尺寸绘制。
+        if self._layout_redraw_id is None:
+            # CTk滚动条会嵌套update_idletasks；零延时事件等几何协商退出后执行。
+            self._layout_redraw_id = self.after(0, self._redraw_layout)
+
+    def _redraw_layout(self):
+        self._layout_redraw_id = None
+        self.redraw()
+
+    @classmethod
+    def flush_pending_layouts(cls, owner):
+        """启动进入消息循环前完成最终地图绘制，首屏不留下延迟的空画布。"""
+        for child in owner.winfo_children():
+            if isinstance(child, cls):
+                if child._layout_redraw_id is not None:
+                    child.after_cancel(child._layout_redraw_id)
+                    child._layout_redraw_id = None
+                    child.redraw()
+            else:
+                cls.flush_pending_layouts(child)
 
     def _apply_appearance_mode(self, mode_string: str) -> None:
         super()._apply_appearance_mode(mode_string)
@@ -169,8 +433,9 @@ class AdventureScene(ctk.CTkFrame):
         if not self.winfo_exists():
             return
         c = self.canvas
-        w = max(300, c.winfo_width())
-        h = max(120, c.winfo_height())
+        w = max(1, c.winfo_width())
+        h = max(1, c.winfo_height())
+        if w<10 or h<10:return
         dark = ctk.get_appearance_mode() == "Dark"
         bg = self.biome["dark" if dark else "light"]
         c.configure(bg=bg)
@@ -178,24 +443,29 @@ class AdventureScene(ctk.CTkFrame):
         self._overlays.clear()
         tint = self.biome["color"]
         self._draw_landscape(c, w, h, tint, dark)
+        self._draw_ambient(c,w,h,dark)
         if self.nodes is not None:
             self._draw_nodes(c, w, h)
         else:
-            self._sprite_size = min(int(220 * self._get_widget_scaling()), int(h * .90))
-            self._sprite_xy = (w * (.24 if self.boss else .28), h * .53)
+            self._sprite_size = min(int(220 * self._get_widget_scaling()), int(h * .90),int(w*.64))
+            center=w * (.24 if self.boss else .28)
+            self._sprite_xy = (max(self._sprite_size/2+4,min(w-self._sprite_size/2-4,center)), h * .53)
             if self.boss and not self.victory:
                 self._draw_boss(c, w * .78, h * .50, min(70 * self._get_widget_scaling(), h * .31), tint)
             elif self.victory:
                 c.create_text(w * .78, h * .45, text="★  击败！", fill="#D69C24",
                               font=("Microsoft YaHei UI", int(24 * self._get_widget_scaling()), "bold"))
-            elif h > 230:
+            elif h > 230 * self._get_widget_scaling() and w >= 570 * self._get_widget_scaling() and not getattr(self,'overview',False):
                 scale = self._get_widget_scaling()
+                c.create_rectangle(w*.47,h*.27,w*.90,h*.65,fill='#243852' if dark else '#EFF5FE',outline='#486482' if dark else '#D5E3F4')
                 c.create_text(w * .68, h * .39, text="准备好了吗？一起去下一关！", fill="#D4E4F8" if dark else "#365E8C",
-                              font=("Microsoft YaHei UI", int(16 * scale), "bold"))
+                              font=("Microsoft YaHei UI", int(16 * scale), "bold"),width=max(1,w*.43))
                 c.create_text(w * .68, h * .54, text="每一题，都让旅程前进一步", fill="#9DB9D1" if dark else "#6987A0",
-                              font=("Microsoft YaHei UI", int(11 * scale)))
+                              font=("Microsoft YaHei UI", int(11 * scale)),width=max(1,w*.43))
         x, y = self._sprite_xy
-        self._sprite_image = self.sprites.actor_photo(self.g, self.pose, self._sprite_size)
+        from finance import companion_render_state
+        actor=companion_render_state(self.g,self._companions_snapshot)
+        self._sprite_image = self.sprites.actor_photo(actor, self.pose, self._sprite_size)
         c.create_image(x, y, image=self._sprite_image, tags="hero")
         if self._victory_started is not None:
             self._draw_victory_effects(c, w, h, time.monotonic() - self._victory_started)
@@ -204,12 +474,33 @@ class AdventureScene(ctk.CTkFrame):
             if elapsed < .8:
                 self._draw_feedback(c, w, h, elapsed)
         if self.nodes is None:
-            text = "案例守护者" if self.boss else self.biome["name"]
-            c.create_text(w - 24, 22, text=text, anchor="ne", fill="#C8D7F3" if dark else "#506886",
+            from world_scenes import SCENES, CONFIG, BIOME_WORLDS
+            selected = SCENES.get(self.scene_id) or (CONFIG['worlds'][BIOME_WORLDS[self.biome['id']]][0] if self.biome['id'] in BIOME_WORLDS else {})
+            text = "案例守护者" if self.boss else selected.get('name', self.biome['name'])
+            label=c.create_text(w - 24, 22, text=text, anchor="ne", fill="#E4EDFF" if dark else "#365578",
                           font=("Microsoft YaHei UI", 11, "bold"))
+            bounds=c.bbox(label)
+            plate=c.create_rectangle(bounds[0]-8,bounds[1]-4,bounds[2]+8,bounds[3]+4,fill='#223755' if dark else '#EFF5FE',outline='')
+            c.tag_lower(plate,label)
 
     def _draw_landscape(self, c, w, h, tint, dark) -> None:
         biome = self.biome["id"]
+        from world_scenes import background
+        path = background(getattr(self,'scene_id',None),biome,dark)
+        if path.is_file():
+            key=(str(path),w,h,bool(getattr(self,'overview',False)))
+            if self._background_key!=key:
+                # PIL解码走现有有界素材缓存，Tk照片由场景主线程持有。
+                source=self.sprites._read(path,atlas=True)
+                if getattr(self,'overview',False):
+                    display=ImageOps.pad(source,(int(w),int(h)),method=Image.Resampling.LANCZOS,
+                                         color=self.biome['dark' if dark else 'light'],centering=(.5,.5))
+                else:
+                    display=ImageOps.fit(source,(int(w),int(h)),method=Image.Resampling.LANCZOS,centering=(.5,.68))
+                self._background_photo=ImageTk.PhotoImage(display)
+                self._background_key=key
+            c.create_image(0,0,image=self._background_photo,anchor='nw',tags='background')
+            return
         cloud = "#324159" if dark else "#FFFFFF"
         for x, y in ((w * .1, h * .16), (w * .58, h * .10), (w * .86, h * .24)):
             c.create_oval(x - 42, y - 10, x + 42, y + 14, fill=cloud, outline="")
@@ -253,6 +544,18 @@ class AdventureScene(ctk.CTkFrame):
             c.create_arc(w * .67, h * .11, w * .78 + 50, h * .12 + 53,
                          start=190, extent=165, style="arc", outline="#C5C7EF", width=3)
 
+    def _draw_ambient(self,c,w,h,dark):
+        if self._background_photo is None or self._reduced_motion:
+            return
+        # 只创建六个小粒子，动画移动粒子而不重画背景。
+        for i in range(6):
+            x,y=(i+.5)*w/6,h*(.18+.12*(i%3))
+            color='#BCE3CC' if self.biome['id']=='forest' else '#BDEFFF' if self.biome['id']=='island' else '#EDD6FF'
+            if self.biome['id']=='island':
+                c.create_line(x-8,y,x+8,y,fill=color,width=1,tags=('ambient',f'ambient_{i}'))
+            else:
+                c.create_oval(x-2,y-2,x+2,y+2,fill=color,outline='',tags=('ambient',f'ambient_{i}'))
+
     def _draw_nodes(self, c, w, h) -> None:
         count = len(self.nodes)
         cols = 4
@@ -277,7 +580,8 @@ class AdventureScene(ctk.CTkFrame):
             c.create_text(x, y, text="B" if boss else str(i + 1), fill="white",
                           font=("Microsoft YaHei UI", int(16 * scale), "bold"), tags=tag)
             stars = "★" * node["stars"] + "☆" * (3 - node["stars"]) if node["cleared"] else "Boss" if boss else "待挑战" if node["available"] else "未解锁"
-            c.create_text(x, y + 36 * scale, text=stars, fill="#B58923" if node["cleared"] else "#627895",
+            c.create_rectangle(x-40*scale,y+26*scale,x+40*scale,y+49*scale,fill='#F0F5FD',outline='',tags=tag)
+            c.create_text(x, y + 36 * scale, text=stars, fill="#936B1A" if node["cleared"] else "#435F80",
                           font=("Microsoft YaHei UI", int(10 * scale)), tags=tag)
             if node["available"]:
                 c.tag_bind(tag, "<Button-1>", lambda event, sid=node["id"]: self.on_node(sid))
@@ -311,19 +615,6 @@ class AdventureScene(ctk.CTkFrame):
         c.create_text(x, y + size + 15, text="知识守护者", fill=tint,
                       font=("Microsoft YaHei UI", 10, "bold"), tags="boss")
 
-    def _draw_overlays(self, c, x, y, size) -> None:
-        names = []
-        if self.g.get("outfit"):
-            names.append(self.g["outfit"])
-        names += [item for item in self.g.get("equipment", {}).values() if item]
-        for name in names:
-            path = resource_path("assets/overlays/" + name + ".png")
-            if path.exists():
-                with Image.open(path) as raw:
-                    layer = raw.convert("RGBA").resize((size, size), Image.Resampling.LANCZOS)
-                photo = ImageTk.PhotoImage(layer)
-                self._overlays.append(photo)
-                c.create_image(x, y, image=photo, tags="hero")
 
     def _draw_feedback(self, c, w, h, elapsed) -> None:
         scale = self._get_widget_scaling()
@@ -365,12 +656,20 @@ class AdventureScene(ctk.CTkFrame):
                                font=("Microsoft YaHei UI", 12), tags="effect")
 
     def play_victory(self, on_reveal=None) -> None:
+        if self._reduced_motion:
+            self.set_pose("celebrate", victory=True)
+            if on_reveal:
+                on_reveal()
+            return
         self._victory_started = time.monotonic()
         self._victory_finish = on_reveal
         self.set_pose("celebrate", victory=True)
 
     def _animate(self) -> None:
         if not self.winfo_exists():
+            return
+        if not self.winfo_viewable():
+            self._timer = self.after(250, self._animate)
             return
         self._phase += .16
         flying = self.g.get("equipment", {}).get("wonder") in ("wonder_broom", "wonder_wings")
@@ -405,24 +704,37 @@ class AdventureScene(ctk.CTkFrame):
                 self._feedback_started = None
         for item in self.canvas.find_withtag("hero"):
             self.canvas.coords(item, x, y + offset)
+        for i,item in enumerate(self.canvas.find_withtag('ambient')):
+            wave=math.sin(self._phase+i)*.22
+            self.canvas.move(item,wave,.06*math.cos(self._phase+i))
         self._timer = self.after(60, self._animate)
 
     def set_pose(self, pose: str, *, victory: bool = False) -> None:
+        previous_victory=self.victory
         self.pose = pose
         self.victory = victory or self.victory
-        self.redraw()
+        heroes=self.canvas.find_withtag('hero')
+        if self.nodes is None and heroes and previous_victory==self.victory:
+            from finance import companion_render_state
+            actor=companion_render_state(self.g,self._companions_snapshot)
+            self._sprite_image=self.sprites.actor_photo(actor,self.pose,self._sprite_size)
+            for item in heroes:self.canvas.itemconfigure(item,image=self._sprite_image)
+            if pose in ('idle','think','sleep'):
+                self._feedback_started=None;self.canvas.delete('effect')
+        else:self.redraw()
 
     def pulse(self, pose: str) -> None:
         if self._pulse_timer:
             self.after_cancel(self._pulse_timer)
         self.set_pose(pose)
-        if pose in ("attack", "happy", "hurt"):
+        if not self._reduced_motion and pose in ("attack", "happy", "hurt", "smile", "wink", "wave", "proud", "celebrate", "sad", "cry", "surprise", "think"):
             self._feedback_started = time.monotonic()
-            self._feedback_correct = pose != "hurt"
-        self._pulse_timer = self.after(950, lambda: self.set_pose("idle"))
+            self._feedback_correct = pose in ("attack", "happy", "smile", "wink", "wave", "proud", "celebrate")
+        # 新版表情保持到下一题；不因重建题目控件稍慢而提前消失。
+        self._pulse_timer = None if self.g.get("product") else self.after(950, lambda: self.set_pose("idle"))
 
     def destroy(self) -> None:
-        for timer in (self._timer, self._pulse_timer):
+        for timer in (self._timer, self._pulse_timer, self._layout_redraw_id):
             if timer:
                 try:
                     self.after_cancel(timer)

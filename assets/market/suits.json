@@ -1,0 +1,215 @@
+{
+  "version": 1,
+  "suits": [
+    {
+      "id": "suit_xiaoyuan_common",
+      "source": "assets/hunting/suits/suit_xiaoyuan_common/idle.png",
+      "source_sha256": "ea2887dbf166b309f2fcda77a0b10ca95841faa33bf5c3285494ab5903b34b29",
+      "method": "透明主体等比居中；512商品图及192缩略图",
+      "items": {
+        "path": "assets/market/items/suit_xiaoyuan_common.png",
+        "sha256": "31d9ebb4aee46a09ec3f5c7f0db3377c79ffad5da9439afca3bda6535892c0bf"
+      },
+      "thumbs": {
+        "path": "assets/market/thumbs/suit_xiaoyuan_common.png",
+        "sha256": "d9440461b46a160e224afbb48e1a9f52c738324da0fe26ebb7dc123de85e480b"
+      }
+    },
+    {
+      "id": "suit_xiaoyuan_rare",
+      "source": "assets/hunting/suits/suit_xiaoyuan_rare/idle.png",
+      "source_sha256": "fcd8d688b5cb30bed3a89dce8815f1c4576736247a500f9fc0f111ef65ca5249",
+      "method": "透明主体等比居中；512商品图及192缩略图",
+      "items": {
+        "path": "assets/market/items/suit_xiaoyuan_rare.png",
+        "sha256": "d673874f484141c6458b770757f2d0171e0e36f8cd07c3997985b294e62bb204"
+      },
+      "thumbs": {
+        "path": "assets/market/thumbs/suit_xiaoyuan_rare.png",
+        "sha256": "f89cf99397387eca2c68f9f55e70f8bacb6965af8b7e16370053b8a4c8ae089d"
+      }
+    },
+    {
+      "id": "suit_xiaoyuan_legendary",
+      "source": "assets/hunting/suits/suit_xiaoyuan_legendary/idle.png",
+      "source_sha256": "5836698ae08ee706cd8d5b2ae5b690fa75e31e518a48510bca1e5d51425e7df6",
+      "method": "透明主体等比居中；512商品图及192缩略图",
+      "items": {
+        "path": "assets/market/items/suit_xiaoyuan_legendary.png",
+        "sha256": "c51ad3ca1115fa8851d4111b3d44fa94de4bd69d3f15dafa1b41fecca9482649"
+      },
+      "thumbs": {
+        "path": "assets/market/thumbs/suit_xiaoyuan_legendary.png",
+        "sha256": "1ffa578eb485a6f5562870ee4c185c89ba8da4144ce6d1a8b529d0d4d016508a"
+      }
+    },
+    {
+      "id": "suit_orange_adventurer_common",
+      "source": "assets/hunting/suits/suit_orange_adventurer_common/idle.png",
+      "source_sha256": "b86298100410f79a4ca271415b0dfeb69bcb9c2664622d98de54b69a943562e9",
+      "method": "透明主体等比居中；512商品图及192缩略图",
+      "items": {
+        "path": "assets/market/items/suit_orange_adventurer_common.png",
+        "sha256": "5fe1803450cfb8e3ac1ad39b0a52be74dad0c86f8028ede0e1a675dbdd4d0a44"
+      },
+      "thumbs": {
+        "path": "assets/market/thumbs/suit_orange_adventurer_common.png",
+        "sha256": "713dbee68aeaaeb2b2b6b2ea33cc2add9a9ee6b2a1505726a55be46a632cd278"
+      }
+    },
+    {
+      "id": "suit_orange_adventurer_rare",
+      "source": "assets/hunting/suits/suit_orange_adventurer_rare/idle.png",
+      "source_sha256": "b779c69db835ae9e0272efac3d601345785bf243cb063da2475261e0ad96725e",
+      "method": "透明主体等比居中；512商品图及192缩略图",
+      "items": {
+        "path": "assets/market/items/suit_orange_adventurer_rare.png",
+        "sha256": "c73e525a532283e20eeb206f1edfd51a7fe308ea01b673f292362c8b41ecdbb2"
+      },
+      "thumbs": {
+        "path": "assets/market/thumbs/suit_orange_adventurer_rare.png",
+        "sha256": "6e6080bc192c585ee109c01b545dfb43363f3ea88ef99b410783b49f3c9d96a4"
+      }
+    },
+    {
+      "id": "suit_orange_adventurer_legendary",
+      "source": "assets/hunting/suits/suit_orange_adventurer_legendary/idle.png",
+      "source_sha256": "78eb3721de150d569a07b3f5cd32031ef89751eb0b6469adeceeea9da8c77051",
+      "method": "透明主体等比居中；512商品图及192缩略图",
+      "items": {
+        "path": "assets/market/items/suit_orange_adventurer_legendary.png",
+        "sha256": "9eb2fa5ea3f0d45b98583569f9e4c34ecb3ed1d68254fda403260b714053fea6"
+      },
+      "thumbs": {
+        "path": "assets/market/thumbs/suit_orange_adventurer_legendary.png",
+        "sha256": "6620b6ec8a234ee39a5db828444689d0838667609fa926b6043811e9d8611288"
+      }
+    },
+    {
+      "id": "suit_xiaobao_common",
+      "source": "assets/hunting/suits/suit_xiaobao_common/idle.png",
+      "source_sha256": "33ed029811c8d6ddeb2368c96a6badfd6bf191fbc882c477b8415f82f1a0be1f",
+      "method": "透明主体等比居中；512商品图及192缩略图",
+      "items": {
+        "path": "assets/market/items/suit_xiaobao_common.png",
+        "sha256": "8c5aa92936b79e3c2841b9278cdc30b31ceff0d22811d6b1c600f08a369e2f68"
+      },
+      "thumbs": {
+        "path": "assets/market/thumbs/suit_xiaobao_common.png",
+        "sha256": "a85df25a14668109bb18a6ecd7daa45aa522e0f2a46e463b4d5e11ba0b2e1289"
+      }
+    },
+    {
+      "id": "suit_xiaobao_rare",
+      "source": "assets/hunting/suits/suit_xiaobao_rare/idle.png",
+      "source_sha256": "b032c39202166fe4d7f7e2d1853794aca7c359268bb1a8f4b082cacbacfd2dd7",
+      "method": "透明主体等比居中；512商品图及192缩略图",
+      "items": {
+        "path": "assets/market/items/suit_xiaobao_rare.png",
+        "sha256": "1d318ab5a1996efe52a38445347932a216dd287ce271e4fa6f3a447a452b1284"
+      },
+      "thumbs": {
+        "path": "assets/market/thumbs/suit_xiaobao_rare.png",
+        "sha256": "25563cd1a18890fa130818d6bc99f62f3fc99e4320f496833720ffc20e0fa6fd"
+      }
+    },
+    {
+      "id": "suit_xiaobao_legendary",
+      "source": "assets/hunting/suits/suit_xiaobao_legendary/idle.png",
+      "source_sha256": "8bc0dcd2a284dcfd26853f1a7c63522fd0403ac3f2a35e49cf33522374c9fa84",
+      "method": "透明主体等比居中；512商品图及192缩略图",
+      "items": {
+        "path": "assets/market/items/suit_xiaobao_legendary.png",
+        "sha256": "62caed9fd32b03ad1d1d4917332bc58cf10701de2477658e69a8c166d840d2b3"
+      },
+      "thumbs": {
+        "path": "assets/market/thumbs/suit_xiaobao_legendary.png",
+        "sha256": "328d7bc69ced7ce2fa938ce5181db2fbd2bb9963e3a2ed8005b864d02c58c1ac"
+      }
+    },
+    {
+      "id": "suit_blue_scholar_550",
+      "source": "assets/hunting/suits/suit_blue_scholar_550/idle.png",
+      "source_sha256": "1b02cf2816d942edcf6d595d639f8aedcf1078953929a62950991243dfeb509e",
+      "method": "透明主体等比居中；512商品图及192缩略图",
+      "items": {
+        "path": "assets/market/items/suit_blue_scholar_550.png",
+        "sha256": "9fca96d96ad476388c618e24ddc46844fee970b2e8e7b2e06e1d2c0d014ee9a1"
+      },
+      "thumbs": {
+        "path": "assets/market/thumbs/suit_blue_scholar_550.png",
+        "sha256": "bf5a9a3680dad90af7b1839aa65c981de559f906c92de08c86559f588deb3697"
+      }
+    },
+    {
+      "id": "suit_dawn_knight_550",
+      "source": "assets/hunting/suits/suit_dawn_knight_550/idle.png",
+      "source_sha256": "7353c4d4246634384cbac08968577e66f4d36454c928f76da054d859993e351b",
+      "method": "透明主体等比居中；512商品图及192缩略图",
+      "items": {
+        "path": "assets/market/items/suit_dawn_knight_550.png",
+        "sha256": "c34727b661ed075ba87989ded59915ad592b274e99471306554fa1fc2f47357e"
+      },
+      "thumbs": {
+        "path": "assets/market/thumbs/suit_dawn_knight_550.png",
+        "sha256": "bb052cc35210774bfeaf05638fc595d8abce14323e8b3baa82670a7f9ca2a056"
+      }
+    },
+    {
+      "id": "suit_sea_ranger_550",
+      "source": "assets/hunting/suits/suit_sea_ranger_550/idle.png",
+      "source_sha256": "49dc55d10140c69c3ffe9ef752778c003be97398ebe097acd52503574f263957",
+      "method": "透明主体等比居中；512商品图及192缩略图",
+      "items": {
+        "path": "assets/market/items/suit_sea_ranger_550.png",
+        "sha256": "b322214ddb69748d0b465ba2ccd7bb8eb75398b54f4c7b34307163fb6d680577"
+      },
+      "thumbs": {
+        "path": "assets/market/thumbs/suit_sea_ranger_550.png",
+        "sha256": "b9ea5fd2c60a5f41ff1b9169949f1045dc2ceec8cd61084b30746e87b94c3cd6"
+      }
+    },
+    {
+      "id": "suit_flame_warrior_550",
+      "source": "assets/hunting/suits/suit_flame_warrior_550/idle.png",
+      "source_sha256": "aea05c576122a7a5d97657c67f998e97c9b969ba5725c1462c0a506636fb02cd",
+      "method": "透明主体等比居中；512商品图及192缩略图",
+      "items": {
+        "path": "assets/market/items/suit_flame_warrior_550.png",
+        "sha256": "553f70bb1009a7be8168d51455b02b827855d56e2ccd4735dda56b04f953271f"
+      },
+      "thumbs": {
+        "path": "assets/market/thumbs/suit_flame_warrior_550.png",
+        "sha256": "172366f719591762bb46ebef042052fa9462dd7c01a96c3e8d72df4687cde632"
+      }
+    },
+    {
+      "id": "suit_polar_explorer_550",
+      "source": "assets/hunting/suits/suit_polar_explorer_550/idle.png",
+      "source_sha256": "67a5c31e5c200b8a6960ea035ee6ad4056d5b052c6d190ed76eb5b09d1f45019",
+      "method": "透明主体等比居中；512商品图及192缩略图",
+      "items": {
+        "path": "assets/market/items/suit_polar_explorer_550.png",
+        "sha256": "e61858db4f35a36e3400fbb7547a933dc8cb7b1e966f3f01732373c0d4427456"
+      },
+      "thumbs": {
+        "path": "assets/market/thumbs/suit_polar_explorer_550.png",
+        "sha256": "a93b6bd14b3cc219a192a8d840ec47b051dd14a7cf31c5f044190aef87ee8866"
+      }
+    },
+    {
+      "id": "suit_starfrost_guard_550",
+      "source": "assets/hunting/suits/suit_starfrost_guard_550/idle.png",
+      "source_sha256": "fa8e841952d80046659a84ef4049347c704b9c245307e977728226faaeedb213",
+      "method": "透明主体等比居中；512商品图及192缩略图",
+      "items": {
+        "path": "assets/market/items/suit_starfrost_guard_550.png",
+        "sha256": "5b00584f5f1ac79c71db0f5ee00b4f78125d9accdc5d302ad7f6ca05c4a4e09f"
+      },
+      "thumbs": {
+        "path": "assets/market/thumbs/suit_starfrost_guard_550.png",
+        "sha256": "2ff84ab6fc63a3049a0ab4f1cfa5d18c0d4a9790053ffd0bcae7ec01995c68ca"
+      }
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "精灵猎场",
+  "usingComponents": {
+    "hunting-scene600": "/components/hunting-scene600/index",
+    "study-text": "/components/study-text/index",
+    "question-diagram600": "/components/question-diagram600/index"
+  }
+}

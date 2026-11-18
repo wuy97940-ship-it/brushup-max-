@@ -1,1 +1,10 @@
-<view class="actor {{wonder==='wonder_broom'?'flying':''}}"><image wx:for="{{backLayers}}" wx:key="*this" class="layer" src="{{item}}" data-src="{{item}}" bindload="imageLoaded" binderror="imageFailed" mode="aspectFit"/><image class="layer" src="{{image}}" data-src="{{image}}" bindload="imageLoaded" binderror="imageFailed" mode="aspectFit"/><image wx:for="{{layers}}" wx:key="*this" class="layer" src="{{item}}" data-src="{{item}}" bindload="imageLoaded" binderror="imageFailed" mode="aspectFit"/><image wx:if="{{friendImage}}" class="companion" src="{{friendImage}}" data-src="{{friendImage}}" bindload="imageLoaded" binderror="imageFailed" mode="aspectFit"/></view>
+<view class="actor {{wonder==='wonder_broom'?'flying':''}}">
+ <image wx:for="{{backLayers}}" wx:key="*this" class="layer" src="{{item}}" data-src="{{item}}" bindload="imageLoaded" binderror="imageFailed" mode="aspectFit"/>
+ <image wx:if="{{!costumeVisible}}" class="layer" src="{{image}}" data-src="{{image}}" bindload="imageLoaded" binderror="imageFailed" mode="aspectFit"/>
+ <view wx:if="{{costume}}" class="costume610-frame" style="{{costume.frameStyle}}opacity:{{costumeVisible?1:0}};">
+  <image class="costume610-image" style="{{costume.imageStyle}}" src="{{costume.src}}" data-src="{{costume.src}}" bindload="imageLoaded" binderror="imageFailed" mode="scaleToFill"/>
+ </view>
+ <image wx:for="{{layers}}" wx:key="*this" class="layer" src="{{item}}" data-src="{{item}}" bindload="imageLoaded" binderror="imageFailed" mode="aspectFit"/>
+ <image wx:for="{{friendImages}}" wx:key="*this" class="companion {{index===1?'companion-second':''}}" src="{{item}}" data-src="{{item}}" bindload="imageLoaded" binderror="imageFailed" mode="aspectFit"/>
+</view>
+<button wx:if="{{outfitError}}" class="outfit610-retry" catchtap="retryOutfit610">重试装扮</button>

@@ -22,24 +22,111 @@
         "happy": "characters/xiaoyuan_happy.png",
         "hurt": "characters/xiaoyuan_hurt.png",
         "celebrate": "characters/xiaoyuan_celebrate.png",
-        "chest": "characters/xiaoyuan_chest.png"
+        "chest": "characters/xiaoyuan_chest.png",
+        "wink": "characters/xiaoyuan_wink_v510.png",
+        "surprise": "characters/xiaoyuan_surprise_v510.png",
+        "tired": "characters/xiaoyuan_tired_v510.png",
+        "sleep": "characters/xiaoyuan_sleep_v510.png"
       },
       "aliases": {}
     },
     "orange_adventurer": {
-      "name": "橘白 · 围巾冒险者",
-      "appearance": "橘白毛色、蓝围巾",
+      "name": "小团 · 奶油橘白伙伴",
+      "appearance": "参考两张照片：奶油橘白、圆脸、琥珀眼、粉鼻子、白胸腹与白爪",
       "poses": {
-        "idle": "characters/orange_adventurer_idle.png",
-        "attack": "characters/orange_adventurer_attack.png",
-        "hurt": "characters/orange_adventurer_hurt.png",
-        "celebrate": "characters/orange_adventurer_celebrate.png"
+        "idle": "characters/xiaotuan_v2_atlas.png",
+        "smile": "characters/xiaotuan_v2_atlas.png",
+        "wink": "characters/xiaotuan_v2_atlas.png",
+        "wave": "characters/xiaotuan_v2_atlas.png",
+        "celebrate": "characters/xiaotuan_v2_atlas.png",
+        "proud": "characters/xiaotuan_v2_atlas.png",
+        "sad": "characters/xiaotuan_v2_atlas.png",
+        "cry": "characters/xiaotuan_v2_atlas.png",
+        "surprise": "characters/xiaotuan_v2_atlas.png",
+        "think": "characters/xiaotuan_v2_atlas.png",
+        "tired": "characters/xiaotuan_v2_atlas.png",
+        "sleep": "characters/xiaotuan_v2_atlas.png",
+        "walk": "characters/xiaotuan_v2_atlas.png",
+        "attack": "characters/xiaotuan_v2_atlas.png",
+        "happy": "characters/xiaotuan_v2_atlas.png",
+        "hurt": "characters/xiaotuan_v2_atlas.png",
+        "chest": "characters/xiaotuan_v2_atlas.png"
       },
-      "aliases": {
-        "walk": "idle",
-        "think": "idle",
-        "happy": "celebrate",
-        "chest": "celebrate"
+      "aliases": {},
+      "atlas": "characters/xiaotuan_v2_atlas.png",
+      "atlas_grid": [
+        4,
+        3
+      ],
+      "pose_frames": {
+        "idle": [
+          0,
+          0
+        ],
+        "smile": [
+          1,
+          0
+        ],
+        "wink": [
+          2,
+          0
+        ],
+        "wave": [
+          3,
+          0
+        ],
+        "celebrate": [
+          0,
+          1
+        ],
+        "proud": [
+          1,
+          1
+        ],
+        "sad": [
+          2,
+          1
+        ],
+        "cry": [
+          3,
+          1
+        ],
+        "surprise": [
+          0,
+          2
+        ],
+        "think": [
+          1,
+          2
+        ],
+        "tired": [
+          2,
+          2
+        ],
+        "sleep": [
+          3,
+          2
+        ],
+        "walk": [
+          3,
+          0
+        ],
+        "attack": [
+          3,
+          0
+        ],
+        "happy": [
+          1,
+          0
+        ],
+        "hurt": [
+          2,
+          1
+        ],
+        "chest": [
+          1,
+          1
+        ]
       }
     },
     "orange_mage": {
@@ -85,24 +172,28 @@
         "happy": "characters/xiaobao_happy.png",
         "hurt": "characters/xiaobao_hurt.png",
         "celebrate": "characters/xiaobao_celebrate.png",
-        "chest": "characters/xiaobao_chest.png"
+        "chest": "characters/xiaobao_chest.png",
+        "wink": "characters/xiaobao_wink_v510.png",
+        "surprise": "characters/xiaobao_surprise_v510.png",
+        "tired": "characters/xiaobao_tired_v510.png",
+        "sleep": "characters/xiaobao_sleep_v510.png"
       },
       "aliases": {}
     }
   },
   "overlays": {
-    "equipment_coins_common": "overlays/equipment_coins_common.png",
-    "equipment_coins_epic": "overlays/equipment_coins_epic.png",
-    "equipment_coins_rare": "overlays/equipment_coins_rare.png",
-    "equipment_xp_common": "overlays/equipment_xp_common.png",
-    "equipment_xp_epic": "overlays/equipment_xp_epic.png",
-    "equipment_xp_rare": "overlays/equipment_xp_rare.png",
-    "outfit_forest": "overlays/outfit_forest.png",
-    "outfit_island": "overlays/outfit_island.png",
-    "outfit_ruins": "overlays/outfit_ruins.png",
-    "outfit_sky": "overlays/outfit_sky.png",
-    "outfit_snow": "overlays/outfit_snow.png",
-    "outfit_stars": "overlays/outfit_stars.png",
+    "equipment_coins_common": "overlays/equipment_coins_common_v510.png",
+    "equipment_coins_epic": "overlays/equipment_coins_epic_v510.png",
+    "equipment_coins_rare": "overlays/equipment_coins_rare_v510.png",
+    "equipment_xp_common": "overlays/equipment_xp_common_v510.png",
+    "equipment_xp_epic": "overlays/equipment_xp_epic_v510.png",
+    "equipment_xp_rare": "overlays/equipment_xp_rare_v510.png",
+    "outfit_forest": "overlays/outfit_forest_v510.png",
+    "outfit_island": "overlays/outfit_island_v510.png",
+    "outfit_ruins": "overlays/outfit_ruins_v510.png",
+    "outfit_sky": "overlays/outfit_sky_v510.png",
+    "outfit_snow": "overlays/outfit_snow_v510.png",
+    "outfit_stars": "overlays/outfit_stars_v510.png",
     "outfit_finance_xiaoyuan_ledger": "finance/outfits/finance_xiaoyuan_ledger.png",
     "outfit_finance_xiaoyuan_sailing": "finance/outfits/finance_xiaoyuan_sailing.png",
     "outfit_finance_xiaoyuan_workshop": "finance/outfits/finance_xiaoyuan_workshop.png",
@@ -126,5 +217,50 @@
     "fit_character_required": true,
     "generated_from": "qa/finance-upgrade/wear-anchors",
     "poses": "衣服保持归一化画布，逐姿势检查穿戴图"
+  },
+  "product_art_version": "5.0.0",
+  "prepared_poses": {
+    "xiaoyuan": {
+      "idle": "characters/prepared-v510/xiaoyuan_idle.png",
+      "walk": "characters/prepared-v510/xiaoyuan_walk.png",
+      "think": "characters/prepared-v510/xiaoyuan_think.png",
+      "attack": "characters/prepared-v510/xiaoyuan_attack.png",
+      "happy": "characters/prepared-v510/xiaoyuan_happy.png",
+      "hurt": "characters/prepared-v510/xiaoyuan_hurt.png",
+      "celebrate": "characters/prepared-v510/xiaoyuan_celebrate.png",
+      "chest": "characters/prepared-v510/xiaoyuan_chest.png",
+      "wink": "characters/prepared-v510/xiaoyuan_wink.png",
+      "surprise": "characters/prepared-v510/xiaoyuan_surprise.png",
+      "tired": "characters/prepared-v510/xiaoyuan_tired.png",
+      "sleep": "characters/prepared-v510/xiaoyuan_sleep.png"
+    },
+    "orange_adventurer": {
+      "idle": "characters/prepared-v510/orange_adventurer_idle.png",
+      "smile": "characters/prepared-v510/orange_adventurer_smile.png",
+      "wink": "characters/prepared-v510/orange_adventurer_wink.png",
+      "wave": "characters/prepared-v510/orange_adventurer_wave.png",
+      "celebrate": "characters/prepared-v510/orange_adventurer_celebrate.png",
+      "proud": "characters/prepared-v510/orange_adventurer_proud.png",
+      "sad": "characters/prepared-v510/orange_adventurer_sad.png",
+      "cry": "characters/prepared-v510/orange_adventurer_cry.png",
+      "surprise": "characters/prepared-v510/orange_adventurer_surprise.png",
+      "think": "characters/prepared-v510/orange_adventurer_think.png",
+      "tired": "characters/prepared-v510/orange_adventurer_tired.png",
+      "sleep": "characters/prepared-v510/orange_adventurer_sleep.png"
+    },
+    "xiaobao": {
+      "idle": "characters/prepared-v510/xiaobao_idle.png",
+      "walk": "characters/prepared-v510/xiaobao_walk.png",
+      "think": "characters/prepared-v510/xiaobao_think.png",
+      "attack": "characters/prepared-v510/xiaobao_attack.png",
+      "happy": "characters/prepared-v510/xiaobao_happy.png",
+      "hurt": "characters/prepared-v510/xiaobao_hurt.png",
+      "celebrate": "characters/prepared-v510/xiaobao_celebrate.png",
+      "chest": "characters/prepared-v510/xiaobao_chest.png",
+      "wink": "characters/prepared-v510/xiaobao_wink.png",
+      "surprise": "characters/prepared-v510/xiaobao_surprise.png",
+      "tired": "characters/prepared-v510/xiaobao_tired.png",
+      "sleep": "characters/prepared-v510/xiaobao_sleep.png"
+    }
   }
 }
